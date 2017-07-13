@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+	
+	
+<sqlMap namespace="RmMarketCaseOrderReportInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/>
+
+	<select id="selectRmMarketCaseOrderReportInfoByThree" parameterClass="queryFilter" resultClass="java.util.HashMap">
+	SELECT
+		MARKET_CASE_NAME AS "marketCaseName",
+		MARKET_CASE_ID AS "marketCaseId",
+		SEND_DATE AS "sendDate",
+		MAX(SEND_NUM) AS "touchNum",
+		SUM(ORDER_NUM) AS "threeOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '实体渠道' THEN ORDER_NUM END) AS "HalOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '短信' THEN ORDER_NUM END) AS "SmsOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '网厅WAP厅' THEN ORDER_NUM END) AS "WapOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '客服' THEN ORDER_NUM END) AS "KfOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '其他' THEN ORDER_NUM END) AS "OtherOrderNum"
+	FROM rm_marketcaseorderreport_info
+	<dynamic prepend=" WHERE ">
+		
+		<isNotNull property="startTime" prepend="and">
+				<isNotEmpty property="startTime">
+				 <![CDATA[ SEND_DATE >= #startTime# ]]>
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend="and">
+				<isNotEmpty property="endTime">
+				   <![CDATA[ SEND_DATE <= #endTime# ]]>
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend="and">
+				<isNotEmpty property="marketCaseName">
+				   MARKET_CASE_NAME = #marketCaseName#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="threeDay" prepend="and">
+				<isNotEmpty property="threeDay">
+				   REPORT_DATE BETWEEN SEND_DATE AND DATE_ADD(SEND_DATE,INTERVAL #threeDay# DAY)
+				</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+		group by MARKET_CASE_NAME,MARKET_CASE_ID,SEND_DATE
+	</select>
+	
+	
+	<select id="selectRmMarketCaseOrderReportInfoBySeven" parameterClass="queryFilter" resultClass="java.util.HashMap">
+	SELECT
+		MARKET_CASE_NAME AS "marketCaseName",
+		MARKET_CASE_ID AS "marketCaseId",
+		SEND_DATE AS "sendDate",
+		MAX(SEND_NUM) AS "touchNum",
+		SUM(ORDER_NUM) AS "sevenOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '实体渠道' THEN ORDER_NUM END) AS "HalOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '短信' THEN ORDER_NUM END) AS "SmsOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '网厅WAP厅' THEN ORDER_NUM END) AS "WapOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '客服' THEN ORDER_NUM END) AS "KfOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '其他' THEN ORDER_NUM END) AS "OtherOrderNum"
+	FROM rm_marketcaseorderreport_info
+	<dynamic prepend=" WHERE ">
+		
+		<isNotNull property="startTime" prepend="and">
+				<isNotEmpty property="startTime">
+				 <![CDATA[ SEND_DATE >= #startTime# ]]>
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend="and">
+				<isNotEmpty property="endTime">
+				  <![CDATA[ SEND_DATE <= #endTime# ]]>
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend="and">
+				<isNotEmpty property="marketCaseName">
+				   MARKET_CASE_NAME = #marketCaseName#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sevenDay" prepend="and">
+				<isNotEmpty property="sevenDay">
+				   REPORT_DATE BETWEEN SEND_DATE AND DATE_ADD(SEND_DATE,INTERVAL #sevenDay# DAY)
+				</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+		group by MARKET_CASE_NAME,MARKET_CASE_ID,SEND_DATE
+	</select>
+	
+	
+	<select id="selectRmMarketCaseOrderReportInfoByFifth" parameterClass="queryFilter" resultClass="java.util.HashMap">
+	SELECT
+		MARKET_CASE_NAME AS "marketCaseName",
+		MARKET_CASE_ID AS "marketCaseId",
+		SEND_DATE AS "sendDate",
+		MAX(SEND_NUM) AS "touchNum",
+		SUM(ORDER_NUM) AS "fifthOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '实体渠道' THEN ORDER_NUM END) AS "HalOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '短信' THEN ORDER_NUM END) AS "SmsOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '网厅WAP厅' THEN ORDER_NUM END) AS "WapOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '客服' THEN ORDER_NUM END) AS "KfOrderNum",
+		SUM(CASE WHEN ORDER_CHANNEL = '其他' THEN ORDER_NUM END) AS "OtherOrderNum"
+	FROM rm_marketcaseorderreport_info
+	<dynamic prepend=" WHERE ">
+		
+		<isNotNull property="startTime" prepend="and">
+				<isNotEmpty property="startTime">
+				  <![CDATA[ SEND_DATE >= #startTime# ]]>
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend="and">
+				<isNotEmpty property="endTime">
+				 <![CDATA[ SEND_DATE <= #endTime# ]]>
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend="and">
+				<isNotEmpty property="marketCaseName">
+				   MARKET_CASE_NAME = #marketCaseName#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fifthDay" prepend="and">
+				<isNotEmpty property="fifthDay">
+				   REPORT_DATE BETWEEN SEND_DATE AND DATE_ADD(SEND_DATE,INTERVAL #fifthDay# DAY)
+				</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+		group by MARKET_CASE_NAME,MARKET_CASE_ID,SEND_DATE
+	</select>
+	
+	<select id="selectRmMarketCaseOrderReportInfo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			SUM(ORDER_NUM) AS "totalOrderNum"
+			FROM rm_marketcaseorderreport_info
+		<dynamic prepend=" WHERE ">
+		
+		<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+				   MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	</select>
+
+	<select id="selectChannelMarketCaseOrderReportInfo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT 
+			a.CHANNEL_ID AS channelId,
+			sum(maxSendNum) AS totalSendNum,
+			sum(sumContactNum) AS totalContactNum,
+			sum(sumOrderNum) AS totalOrderNum
+		FROM (
+			SELECT 
+			MARKET_CASE_ID,
+			SEND_DATE,
+			CHANNEL_ID,
+			max(send_num) AS maxSendNum ,
+			sum(contact_num) AS sumContactNum,
+			sum(order_num) AS sumOrderNum
+			FROM RM_MARKETCASEORDERREPORT_INFO 
+			GROUP BY MARKET_CASE_ID,SEND_DATE,CHANNEL_ID
+		) a 
+		GROUP BY a.CHANNEL_ID
+	</select>
+
+	<select id="selectMarketCaseOrderReportSendNum" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		SELECT 
+		sum(a.maxSendNum) AS totalSendNum
+		FROM (
+			SELECT 
+			MARKET_CASE_ID,
+			SEND_DATE,
+			max(send_num) AS maxSendNum
+			FROM RM_MARKETCASEORDERREPORT_INFO 
+            WHERE send_date= #sendDate#
+			GROUP BY MARKET_CASE_ID,SEND_DATE
+		) a	
+
+	</select>
+	
+	<insert id="insertRmMarketCaseOrderReportInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_marketcaseorderreport_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="businessId" prepend=",">
+			<isNotEmpty property="businessId">
+				BUSINESS_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="businessName" prepend=",">
+			<isNotEmpty property="businessName">
+				BUSINESS_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend=",">
+			<isNotEmpty property="marketCaseName">
+				MARKET_CASE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityId" prepend=",">
+			<isNotEmpty property="productCommodityId">
+				PRODUCTCOMMODITY_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityName" prepend=",">
+			<isNotEmpty property="productCommodityName">
+				PRODUCTCOMMODITY_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+			<isNotEmpty property="custGroupName">
+				CUST_GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="positionId" prepend=",">
+			<isNotEmpty property="positionId">
+				POSITION_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sendDate" prepend=",">
+			<isNotEmpty property="sendDate">
+				SEND_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reportDate" prepend=",">
+			<isNotEmpty property="reportDate">
+				REPORT_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sendNum" prepend=",">
+			<isNotEmpty property="sendNum">
+				SEND_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNum" prepend=",">
+			<isNotEmpty property="contactNum">
+				CONTACT_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNum" prepend=",">
+			<isNotEmpty property="orderNum">
+				ORDER_NUM
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="businessId" prepend=",">
+			<isNotEmpty property="businessId">
+				#businessId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="businessName" prepend=",">
+			<isNotEmpty property="businessName">
+				#businessName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend=",">
+			<isNotEmpty property="marketCaseName">
+				#marketCaseName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityId" prepend=",">
+			<isNotEmpty property="productCommodityId">
+				#productCommodityId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityName" prepend=",">
+			<isNotEmpty property="productCommodityName">
+				#productCommodityName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+			<isNotEmpty property="custGroupName">
+				#custGroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="positionId" prepend=",">
+			<isNotEmpty property="positionId">
+				#positionId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sendDate" prepend=",">
+			<isNotEmpty property="sendDate">
+				#sendDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reportDate" prepend=",">
+			<isNotEmpty property="reportDate">
+				#reportDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sendNum" prepend=",">
+			<isNotEmpty property="sendNum">
+				#sendNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNum" prepend=",">
+			<isNotEmpty property="contactNum">
+				#contactNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNum" prepend=",">
+			<isNotEmpty property="orderNum">
+				#orderNum#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	)
+	</insert>
+			
+</sqlMap>	
+	
+	

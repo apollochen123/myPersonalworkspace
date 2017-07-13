@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/CRMPD_RTMarket/!svn/ver/12005/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/algorithm
+END
+Algorithm.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/algorithm/Algorithm.java
+END
+IFilterAlgorithm.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/11809/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/algorithm/IFilterAlgorithm.java
+END
+IRecommedAlgo.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/algorithm/IRecommedAlgo.java
+END
+FilterAlgorithm.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/12005/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/algorithm/FilterAlgorithm.java
+END
+IAlgorithm.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/algorithm/IAlgorithm.java
+END
+SimpleRecomAlgoByMarketCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/CRMPD_RTMarket/!svn/ver/11798/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/algorithm/SimpleRecomAlgoByMarketCase.java
+END

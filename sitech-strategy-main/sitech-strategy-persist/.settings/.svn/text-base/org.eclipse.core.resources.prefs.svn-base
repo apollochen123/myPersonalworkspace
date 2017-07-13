@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/sitech/strategy/persist/base/BaseCoherenceDB.java=GBK
+encoding//src/main/java/com/sitech/strategy/persist/base/BaseHBaseDB.java=GBK
+encoding//src/main/java/com/sitech/strategy/persist/base/BaseOracleDB.java=GBK
+encoding//src/main/java/com/sitech/strategy/persist/base/BaseRedisDB.java=GBK
+encoding//src/main/java/com/sitech/strategy/persist/base/BaseServiceDB.java=GBK
+encoding//src/test/java=UTF-8

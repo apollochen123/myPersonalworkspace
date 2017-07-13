@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmNoticeInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+	    serial_id AS "serialId",
+		notice_name AS "noticeName",
+		region_code AS "regionCode",
+		oper_no AS "operNo",
+		oper_name AS "operName",
+		show_flag AS "showFlag",
+		create_time AS "createTime",
+		notice_desc AS "noticeDesc"	
+	FROM rm_notice_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="noticeName" prepend="and">
+				<isNotEmpty property="noticeName">		
+					 notice_name like '%'||#noticeName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	
+	</sql>
+	
+	<select id="selectRmNoticeInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmNoticeInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_NOTICE_INFO
+	]]>
+	<dynamic prepend=" (  ">
+	   <isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="noticeName" prepend=",">
+			<isNotEmpty property="noticeName">
+				NOTICE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="noticeDesc" prepend=",">
+			<isNotEmpty property="noticeDesc">
+				NOTICE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="showFlag" prepend=",">
+			<isNotEmpty property="showFlag">
+				SHOW_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createTime" prepend=",">
+			<isNotEmpty property="createTime">
+				CREATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+	    <isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="noticeName" prepend=",">
+			<isNotEmpty property="noticeName">
+				#noticeName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="noticeDesc" prepend=",">
+			<isNotEmpty property="noticeDesc">
+				#noticeDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="showFlag" prepend=",">
+			<isNotEmpty property="showFlag">
+				#showFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createTime" prepend=",">
+			<isNotEmpty property="createTime">
+				#createTime#
+			</isNotEmpty>
+		</isNotNull>            
+	</dynamic>
+	
+	)
+	</insert>
+	
+	
+	<delete id="removeRmNoticeInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_NOTICE_INFO 
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+
+	</delete>
+	
+	
+	<update id="updateRmNoticeInfo" parameterClass="java.util.Map">
+	UPDATE RM_NOTICE_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="noticeName" prepend=",">
+		    <isNotEmpty property="noticeName">
+			    NOTICE_NAME = #noticeName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="noticeDesc" prepend=",">
+		    <isNotEmpty property="noticeDesc">
+			    NOTICE_DESC = #noticeDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="showFlag" prepend=",">
+		    <isNotEmpty property="showFlag">
+			    SHOW_FLAG = #showFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createTime" prepend=",">
+		    <isNotEmpty property="createTime">
+			    CREATE_TIME = #createTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</update>
+		
+</sqlMap>

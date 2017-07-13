@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/CRMPD_RTMarket/!svn/ver/12075/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils
+END
+ImpalaUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/ImpalaUtil.java
+END
+SMPPUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/SMPPUtil.java
+END
+HBaseUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/CRMPD_RTMarket/!svn/ver/11497/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/HBaseUtil.java
+END
+HttpUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/HttpUtil.java
+END
+ServiceUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/11935/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/ServiceUtil.java
+END
+SparkSQLUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/SparkSQLUtil.java
+END
+HiveUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/HiveUtil.java
+END

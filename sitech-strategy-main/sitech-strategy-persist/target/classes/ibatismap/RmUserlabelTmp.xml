@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmUserlabelTmp">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		USER_LABEL_NAME AS "userLabelName",
+		USER_LABEL_CODE AS "userLabelCode",
+		USER_LABEL_KEY AS "userLabelKey",
+		USER_LABEL_TYPE AS "userLabelType",
+		DISPLAY_ORDER AS  "displayOrder",
+		USER_LABEL_SOURCE AS "userLabelSource",
+		BUSI_CALIBER AS "busiCaliber",
+		UPDATE_FREQ AS "updateFreq",
+		CONTACT AS "contact",
+		MANUFACTOR AS "manufactor",
+		BEGIN_DATE AS "beginDate",
+		END_DATE AS "endDate",
+		APP_RANGE AS "appRange",
+		LABEL_WHERE AS "labelWhere",
+		USER_LABEL_BOXTYPE AS "userLabelBoxtype"
+	FROM RM_USERLABEL_TMP
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="userLabelName" prepend="and">
+				<isNotEmpty property="userLabelName">
+					
+				    USER_LABEL_NAME like '%'||#userLabelName#||'%'
+				    or
+				    USER_LABEL_KEY like '%'||#userLabelName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="userLabelCode" prepend="and">
+				<isNotEmpty property="userLabelCode">
+					USER_LABEL_CODE = #userLabelCode#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmUserLabelTmp" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		SERIAL_ID AS "serialId",
+		USER_LABEL_NAME AS "userLabelName",
+		USER_LABEL_CODE AS "userLabelCode",
+		USER_LABEL_KEY AS "userLabelKey",
+		USER_LABEL_TYPE AS "userLabelType",
+		DISPLAY_ORDER AS  "displayOrder",
+		USER_LABEL_SOURCE AS "userLabelSource",
+		BUSI_CALIBER AS "busiCaliber",
+		UPDATE_FREQ AS "updateFreq",
+		CONTACT AS "contact",
+		MANUFACTOR AS "manufactor",
+		BEGIN_DATE AS "beginDate",
+		END_DATE AS "endDate",
+		APP_RANGE AS "appRange",
+		LABEL_WHERE AS "labelWhere",
+		USER_LABEL_BOXTYPE AS "userLabelBoxtype"
+	    FROM RM_USERLABEL_TMP
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="custGroupId" prepend="and">
+				<isNotEmpty property="custGroupId">
+					CUST_GROUP_ID in ($custGroupId$)
+				</isNotEmpty>
+	     	</isNotNull>
+			<isNotNull property="userLabelName" prepend="and">
+				<isNotEmpty property="userLabelName">
+					
+				    USER_LABEL_NAME like '%'||#userLabelName#||'%'
+				    or
+				    USER_LABEL_KEY like '%'||#userLabelName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="userLabelCode" prepend="and">
+				<isNotEmpty property="userLabelCode">
+					USER_LABEL_CODE = #userLabelCode#
+				</isNotEmpty>
+	     	</isNotNull>
+	     	<isNotNull property="busiType" prepend="and">
+				<isNotEmpty property="busiType">
+					USER_LABEL_TYPE is not null
+				</isNotEmpty>
+	     	</isNotNull>
+
+	   </dynamic>
+	</select>
+	
+	<insert id="insertRmUserLabelTmp" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_USERLABEL_TMP
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelName" prepend=",">
+			<isNotEmpty property="userLabelName">
+				USER_LABEL_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelCode" prepend=",">
+			<isNotEmpty property="userLabelCode">
+				USER_LABEL_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelKey" prepend=",">
+			<isNotEmpty property="userLabelKey">
+				USER_LABEL_KEY
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelType" prepend=",">
+			<isNotEmpty property="userLabelType">
+				USER_LABEL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="displayOrder" prepend=",">
+			<isNotEmpty property="displayOrder">
+				DISPLAY_ORDER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelSource" prepend=",">
+			<isNotEmpty property="userLabelSource">
+				USER_LABEL_SOURCE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiCaliber" prepend=",">
+			<isNotEmpty property="busiCaliber">
+				BUSI_CALIBER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateFreq" prepend=",">
+			<isNotEmpty property="updateFreq">
+				UPDATE_FREQ
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contact" prepend=",">
+			<isNotEmpty property="contact">
+				CONTACT
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="manufactor" prepend=",">
+			<isNotEmpty property="manufactor">
+				MANUFACTOR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="beginDate" prepend=",">
+			<isNotEmpty property="beginDate">
+				BEGIN_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				END_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="appRange" prepend=",">
+			<isNotEmpty property="appRange">
+				APP_RANGE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelWhere" prepend=",">
+			<isNotEmpty property="labelWhere">
+				LABEL_WHERE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelBoxtype" prepend=",">
+			<isNotEmpty property="userLabelBoxtype">
+				USER_LABEL_BOXTYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelName" prepend=",">
+			<isNotEmpty property="userLabelName">
+				#userLabelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelCode" prepend=",">
+			<isNotEmpty property="userLabelCode">
+				#userLabelCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelKey" prepend=",">
+			<isNotEmpty property="userLabelKey">
+				#userLabelKey#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelType" prepend=",">
+			<isNotEmpty property="userLabelType">
+				#userLabelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="displayOrder" prepend=",">
+			<isNotEmpty property="displayOrder">
+				#displayOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelSource" prepend=",">
+			<isNotEmpty property="userLabelSource">
+				#userLabelSource#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiCaliber" prepend=",">
+			<isNotEmpty property="busiCaliber">
+				#busiCaliber#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateFreq" prepend=",">
+			<isNotEmpty property="updateFreq">
+				#updateFreq#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contact" prepend=",">
+			<isNotEmpty property="contact">
+				#contact#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="manufactor" prepend=",">
+			<isNotEmpty property="manufactor">
+				#manufactor#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="beginDate" prepend=",">
+			<isNotEmpty property="beginDate">
+				#beginDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				#endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="appRange" prepend=",">
+			<isNotEmpty property="appRange">
+				#appRange#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelWhere" prepend=",">
+			<isNotEmpty property="labelWhere">
+				#labelWhere#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelBoxtype" prepend=",">
+			<isNotEmpty property="userLabelBoxtype">
+				#userLabelBoxtype#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmUserLabelTmp" parameterClass="java.util.Map">
+	UPDATE RM_USERLABEL_TMP
+	<dynamic prepend=" SET ">
+		<isNotNull property="userLabelName" prepend=",">
+		    <isNotEmpty property="userLabelName">
+			    USER_LABEL_NAME = #userLabelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelCode" prepend=",">
+		    <isNotEmpty property="userLabelCode">
+			    USER_LABEL_CODE = #userLabelCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelKey" prepend=",">
+		    <isNotEmpty property="userLabelKey">
+			    USER_LABEL_KEY = #userLabelKey#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelType" prepend=",">
+		    <isNotEmpty property="userLabelType">
+			    USER_LABEL_TYPE = #userLabelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="displayOrder" prepend=",">
+		    <isNotEmpty property="displayOrder">
+			    DISPLAY_ORDER = #displayOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelSource" prepend=",">
+		    <isNotEmpty property="userLabelSource">
+			    USER_LABEL_SOURCE = #userLabelSource#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiCaliber" prepend=",">
+		    <isNotEmpty property="busiCaliber">
+			    BUSI_CALIBER = #busiCaliber#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateFreq" prepend=",">
+		    <isNotEmpty property="updateFreq">
+			    UPDATE_FREQ = #updateFreq#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contact" prepend=",">
+		    <isNotEmpty property="contact">
+			    CONTACT = #contact#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="manufactor" prepend=",">
+		    <isNotEmpty property="manufactor">
+			    MANUFACTOR = #manufactor#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="beginDate" prepend=",">
+		    <isNotEmpty property="beginDate">
+			    BEGIN_DATE = #beginDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+		    <isNotEmpty property="endDate">
+			    END_DATE = #endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="appRange" prepend=",">
+		    <isNotEmpty property="appRange">
+			    APP_RANGE = #appRange#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelWhere" prepend=",">
+		    <isNotEmpty property="labelWhere">
+			    LABEL_WHERE = #labelWhere#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userLabelBoxtype" prepend=",">
+		    <isNotEmpty property="userLabelBoxtype">
+			    USER_LABEL_BOXTYPE = #userLabelBoxtype#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+		where SERIAL_ID = #serialId#
+
+	</update>
+	
+
+	<delete id="deleteRmUserLabelTmp" parameterClass="java.util.Map">
+	DELETE FROM RM_USERLABEL_TMP
+	<dynamic prepend=" WHERE ">
+	 	<isNotNull property="serialId" prepend="and">
+			<isNotEmpty property="serialId">
+				serialId = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend="and">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	</delete>
+	
+	<select id="selectRmUserlabelTmpParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			USER_LABEL_NAME AS 'userLabelName',
+			USER_LABEL_CODE AS 'userLabelCode',
+			USER_LABEL_KEY AS 'userLabelKey',
+			USER_LABEL_TYPE AS 'userLabelType',
+			DISPLAY_ORDER AS  'displayOrder',
+			USER_LABEL_SOURCE AS 'userLabelSource',
+			BUSI_CALIBER AS 'busiCaliber',
+			UPDATE_FREQ AS 'updateFreq',
+			CONTACT AS 'contact',
+			MANUFACTOR AS 'manufactor',
+			BEGIN_DATE AS 'beginDate',
+			END_DATE AS 'endDate',
+			APP_RANGE AS 'appRange',
+			LABEL_WHERE AS labelWhere
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_USERLABEL_TMP $W$
+	</select>
+</sqlMap>

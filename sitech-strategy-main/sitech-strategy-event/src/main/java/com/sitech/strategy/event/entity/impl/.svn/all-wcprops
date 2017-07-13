@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/impl
+END
+FlowEventEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/impl/FlowEventEntity.java
+END
+GroupMsgEventEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/impl/GroupMsgEventEntity.java
+END
+FeeEventEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/impl/FeeEventEntity.java
+END
+ProdEventEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/impl/ProdEventEntity.java
+END
+BusiEventEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/impl/BusiEventEntity.java
+END

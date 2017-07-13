@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmMonitorWarningInfo">
+
+
+	<sql id="select-all-column">
+	SELECT
+		WORK_CODE AS "workCode",
+		WORK_STATUS AS "workStatus",
+		RUNING_TIME AS "runingTime",
+		MAX_VALUE AS "maxValue",
+		MIN_VALUE AS "minValue",
+		MONITOR_PHONE_NO AS "monitorPhoneNo"	
+	FROM RM_MONITORWARNING_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="workCode" prepend="and">
+				<isNotEmpty property="workCode">
+					WORK_CODE = #workCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="workStatus" prepend="and">
+				<isNotEmpty property="workStatus">
+					WORK_STATUS = #workStatus#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="runingTimeStart" prepend="and">
+				<isNotEmpty property="runingTimeStart">
+					<![CDATA[ RUNING_TIME >= #runingTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="runingTimeEnd" prepend="and">
+				<isNotEmpty property="runingTimeEnd">
+					<![CDATA[ RUNING_TIME <= #runingTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="maxValue" prepend="and">
+				<isNotEmpty property="maxValue">
+					MAX_VALUE = #maxValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="minValue" prepend="and">
+				<isNotEmpty property="minValue">
+					MIN_VALUE = #minValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="monitorPhoneNo" prepend="and">
+				<isNotEmpty property="monitorPhoneNo">
+					MONITOR_PHONE_NO = #monitorPhoneNo#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmMonitorWarningInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE WORK_CODE = #workCode#
+	</select>
+
+	<select id="selectRmMonitorwarningInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmMonitorWarningInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_MONITORWARNING_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="workCode" prepend=",">
+			<isNotEmpty property="workCode">
+				WORK_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workStatus" prepend=",">
+			<isNotEmpty property="workStatus">
+				WORK_STATUS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runingTime" prepend=",">
+			<isNotEmpty property="runingTime">
+				RUNING_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="maxValue" prepend=",">
+			<isNotEmpty property="maxValue">
+				MAX_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="minValue" prepend=",">
+			<isNotEmpty property="minValue">
+				MIN_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="monitorPhoneNo" prepend=",">
+			<isNotEmpty property="monitorPhoneNo">
+				MONITOR_PHONE_NO
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="workCode" prepend=",">
+			<isNotEmpty property="workCode">
+				#workCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workStatus" prepend=",">
+			<isNotEmpty property="workStatus">
+				#workStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runingTime" prepend=",">
+			<isNotEmpty property="runingTime">
+				#runingTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="maxValue" prepend=",">
+			<isNotEmpty property="maxValue">
+				#maxValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="minValue" prepend=",">
+			<isNotEmpty property="minValue">
+				#minValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="monitorPhoneNo" prepend=",">
+			<isNotEmpty property="monitorPhoneNo">
+				#monitorPhoneNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmMonitorwarningInfo" parameterClass="java.util.Map">
+	UPDATE RM_MONITORWARNING_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="workCode" prepend=",">
+		    <isNotEmpty property="workCode">
+			    WORK_CODE = #workCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workStatus" prepend=",">
+		    <isNotEmpty property="workStatus">
+			    WORK_STATUS = #workStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runingTime" prepend=",">
+		    <isNotEmpty property="runingTime">
+			    RUNING_TIME = #runingTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="maxValue" prepend=",">
+		    <isNotEmpty property="maxValue">
+			    MAX_VALUE = #maxValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="minValue" prepend=",">
+		    <isNotEmpty property="minValue">
+			    MIN_VALUE = #minValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="monitorPhoneNo" prepend=",">
+		    <isNotEmpty property="monitorPhoneNo">
+			    MONITOR_PHONE_NO = #monitorPhoneNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmMonitorwarningInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_MONITORWARNING_INFO
+	WHERE WORK_CODE = #workCode#
+	</delete>
+
+	<delete id="deleteRmMonitorWarningInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_MONITORWARNING_INFO
+	WHERE WORK_CODE = #workCode#
+	</delete>
+	
+	<select id="selectRmMonitorwarningInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			WORK_CODE AS workCode,
+			WORK_STATUS AS workStatus,
+			RUNING_TIME AS runingTime,
+			MAX_VALUE AS maxValue,
+			MIN_VALUE AS minValue,
+			MONITOR_PHONE_NO AS monitorPhoneNo
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_MONITORWARNING_INFO $W$
+	</select>
+</sqlMap>

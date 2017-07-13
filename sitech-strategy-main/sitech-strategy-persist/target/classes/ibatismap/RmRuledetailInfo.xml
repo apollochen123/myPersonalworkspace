@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmRuledetailInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		RULE_ID AS "ruleId",
+		RULE_DETAIL_ID AS "ruleDetailId",
+		RULE_DETAIL_TYPE AS "ruleDetailType",
+		RULE_PAR_CODE AS "ruleParCode",
+		RULE_PAR_NAME AS "ruleParName",
+		RULE_PAR_VALUE AS "ruleParValue",
+		RULE_PAR_DESC AS "ruleParDesc",
+		BATCH_NO AS "batchNo"	
+	FROM rm_ruledetail_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="ruleId" prepend="and">
+				<isNotEmpty property="ruleId">
+					RULE_ID = #ruleId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ruleDetailId" prepend="and">
+				<isNotEmpty property="ruleDetailId">
+					RULE_DETAIL_ID = #ruleDetailId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ruleDetailType" prepend="and">
+				<isNotEmpty property="ruleDetailType">
+					RULE_DETAIL_TYPE = #ruleDetailType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="batchNo" prepend="and">
+				<isNotEmpty property="batchNo">
+					BATCH_NO = #batchNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ruleParCode" prepend="and">
+				<isNotEmpty property="ruleParCode">
+					RULE_PAR_CODE = #ruleParCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					RULE_PAR_VALUE = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmRuledetailInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmRuledetailInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmRuledetailId" parameterClass="querFilter" resultClass="java.util.HashMap">
+	SELECT
+		DISTINCT
+		RULE_DETAIL_ID AS "ruleDetailId",
+		RULE_DETAIL_TYPE AS "ruleDetailType"
+	FROM rm_ruledetail_info	
+	<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmRuledetailInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_ruledetail_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleId" prepend=",">
+			<isNotEmpty property="ruleId">
+				RULE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDetailId" prepend=",">
+			<isNotEmpty property="ruleDetailId">
+				RULE_DETAIL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDetailType" prepend=",">
+			<isNotEmpty property="ruleDetailType">
+				RULE_DETAIL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParCode" prepend=",">
+			<isNotEmpty property="ruleParCode">
+				RULE_PAR_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParName" prepend=",">
+			<isNotEmpty property="ruleParName">
+				RULE_PAR_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParValue" prepend=",">
+			<isNotEmpty property="ruleParValue">
+				RULE_PAR_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParDesc" prepend=",">
+			<isNotEmpty property="ruleParDesc">
+				RULE_PAR_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				BATCH_NO
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleId" prepend=",">
+			<isNotEmpty property="ruleId">
+				#ruleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDetailId" prepend=",">
+			<isNotEmpty property="ruleDetailId">
+				#ruleDetailId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDetailType" prepend=",">
+			<isNotEmpty property="ruleDetailType">
+				#ruleDetailType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParCode" prepend=",">
+			<isNotEmpty property="ruleParCode">
+				#ruleParCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParName" prepend=",">
+			<isNotEmpty property="ruleParName">
+				#ruleParName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParValue" prepend=",">
+			<isNotEmpty property="ruleParValue">
+				#ruleParValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParDesc" prepend=",">
+			<isNotEmpty property="ruleParDesc">
+				#ruleParDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				#batchNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmRuledetailInfo" parameterClass="java.util.Map">
+	UPDATE rm_ruledetail_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleId" prepend=",">
+		    <isNotEmpty property="ruleId">
+			    RULE_ID = #ruleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDetailId" prepend=",">
+		    <isNotEmpty property="ruleDetailId">
+			    RULE_DETAIL_ID = #ruleDetailId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDetailType" prepend=",">
+		    <isNotEmpty property="ruleDetailType">
+			    RULE_DETAIL_TYPE = #ruleDetailType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParCode" prepend=",">
+		    <isNotEmpty property="ruleParCode">
+			    RULE_PAR_CODE = #ruleParCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParName" prepend=",">
+		    <isNotEmpty property="ruleParName">
+			    RULE_PAR_NAME = #ruleParName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleParValue" prepend=",">
+		    <isNotEmpty property="ruleParValue">
+			    RULE_PAR_VALUE = #ruleParValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+		    <isNotEmpty property="batchNo">
+			    BATCH_NO = #batchNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmRuledetailInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_ruledetail_info
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+	
+	<delete id="deleteRmRuledetailInfoByBatchNo" parameterClass="java.util.Map">
+	DELETE FROM rm_ruledetail_info
+	WHERE BATCH_NO = #batchNo#
+	</delete>
+
+	<delete id="deleteRmRuledetailInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_ruledetail_info
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="ruleId" prepend="and">
+				<isNotEmpty property="ruleId">
+					RULE_ID = #ruleId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ruleDetailId" prepend="and">
+				<isNotEmpty property="ruleDetailId">
+					RULE_DETAIL_ID = #ruleDetailId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="batchNo" prepend="and">
+				<isNotEmpty property="batchNo">
+					BATCH_NO = #batchNo#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</delete>
+	
+	<select id="selectRmRuledetailInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			RULE_ID AS ruleId,
+			RULE_DETAIL_ID AS ruleDetailId,
+			RULE_DETAIL_TYPE AS ruleDetailType,
+			RULE_PAR_CODE AS ruleParCode,
+			RULE_PAR_NAME AS ruleParName,
+			RULE_PAR_VALUE AS ruleParValue,
+			BATCH_NO AS batchNo
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_ruledetail_info $W$
+	</select>
+	
+	<select id="selectWholeRuleDetailByMarketCaseId" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+			SERIAL_ID AS "serialId",
+			RULE_ID AS "ruleId",
+			RULE_DETAIL_ID AS "ruleDetailId",
+			RULE_DETAIL_TYPE AS "ruleDetailType",
+			RULE_PAR_CODE AS "ruleParCode",
+			RULE_PAR_NAME AS "ruleParName",
+			RULE_PAR_VALUE AS "ruleParValue",
+			RULE_PAR_DESC AS "ruleParDesc"
+		FROM
+			rm_ruledetail_info rule,
+			rm_relation_rel rel
+		WHERE
+			rel.component_id = rule.rule_id
+		AND rel.parent_component_id = #parentComponentId#
+		AND component_type = '06'
+	</select>
+	
+	<select id="selectRuleDetailBatchNoById" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT T.BATCH_NO AS "batchNo"
+		  FROM RM_RULEDETAIL_INFO T,RM_RELATION_REL R
+		 WHERE R.PARENT_COMPONENT_ID=#parentComponentId# AND R.COMPONENT_ID=T.RULE_ID
+		 GROUP BY T.BATCH_NO
+	</select>
+	
+	<select id="selectRuleDetailByParentComponentId" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+			SERIAL_ID AS "serialId",
+			RULE_ID AS "ruleId",
+			RULE_DETAIL_ID AS "ruleDetailId",
+			RULE_DETAIL_TYPE AS "ruleDetailType",
+			RULE_PAR_CODE AS "ruleParCode",
+			RULE_PAR_NAME AS "ruleParName",
+			RULE_PAR_VALUE AS "ruleParValue",
+			RULE_PAR_DESC AS "ruleParDesc"
+		  FROM RM_RULEDETAIL_INFO T,RM_RELATION_REL R
+		 WHERE R.PARENT_COMPONENT_ID=#parentComponentId# AND R.COMPONENT_ID=T.RULE_ID
+		 <isNotNull property="componentType" prepend="and">
+				<isNotEmpty property="componentType">
+					COMPONENT_TYPE = #componentType#
+				</isNotEmpty>
+			</isNotNull>
+		 <isNotNull property="ruleId" prepend="and">
+				<isNotEmpty property="ruleId">
+					RULE_ID = #ruleId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ruleDetailId" prepend="and">
+				<isNotEmpty property="ruleDetailId">
+					RULE_DETAIL_ID = #ruleDetailId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ruleDetailType" prepend="and">
+				<isNotEmpty property="ruleDetailType">
+					RULE_DETAIL_TYPE = #ruleDetailType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ruleParCode" prepend="and">
+				<isNotEmpty property="ruleParCode">
+					RULE_PAR_CODE = #ruleParCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="batchNo" prepend="and">
+				<isNotEmpty property="batchNo">
+					BATCH_NO = #batchNo#
+				</isNotEmpty>
+			</isNotNull>
+	</select>
+	
+	<select id="selectRuleDetailByEventIdAndMarketCaseId" parameterClass="querFilter" resultClass="java.util.HashMap">
+ 	SELECT
+		SERIAL_ID AS "serialId",
+		RULE_ID AS "ruleId",
+		RULE_DETAIL_ID AS "ruleDetailId",
+		RULE_DETAIL_TYPE AS "ruleDetailType",
+		RULE_PAR_CODE AS "ruleParCode",
+		RULE_PAR_NAME AS "ruleParName",
+		RULE_PAR_VALUE AS "ruleParValue",
+		RULE_PAR_DESC AS "ruleParDesc",
+		BATCH_NO AS "batchNo"
+   	from rm_ruledetail_info a
+  	where a.rule_id in (select event.ruleId
+        from (select t.parent_component_id eventId,
+                     t.component_type      componentType,
+                     t.component_id        ruleId
+                from rm_relation_rel t
+               where t.parent_component_type = '07'
+                 and t.parent_rel_id in
+                     (select t.rel_id
+                        from rm_relation_rel t
+                       where t.parent_component_type = '02'
+                         and t.parent_rel_id in
+                             (select t.rel_id
+                                from rm_relation_rel t
+                               where t.parent_component_type = '01'
+                                 and t.parent_component_id = #marketCaseId#))) event
+       where event.eventId = #eventId#
+         and event.componentType = '06')
+	</select>
+	
+	<select id="selectMarketCaseAndRuleList" parameterClass="querFilter" resultClass="java.util.HashMap">
+		   SELECT distinct a.parent_component_id as "marketCaseId",
+		      f.rule_par_value as "contentParValue"
+		    from rm_relation_rel a left join rm_relation_rel b on a.rel_id = b.parent_rel_id 
+		    left join rm_relation_rel c on b.rel_id = c.parent_rel_id  
+		    left join rm_relation_rel d on c.rel_id = d.parent_rel_id  ,
+		    rm_marketcase_info e ,rm_ruledetail_info f
+		   WHERE a.parent_component_id = e.market_case_id 
+		    and b.component_type = '03' 
+		    and c.component_type = '04'
+		    and d.component_type = '06'
+		    and d.component_id = f.rule_id
+			and e.STATUS_CODE = '04'
+			and <![CDATA[ e.START_TIME <= #sysDate# and e.END_TIME>= #sysDate# ]]>
+			<isNotNull property="contentParCode" prepend="and">
+				<isNotEmpty property="contentParCode">
+					f.rule_par_code = #contentParCode#
+				</isNotEmpty>
+			</isNotNull>
+	</select>
+	<select id="selectRuledetailInfoByMarketCaseId" parameterClass="querFilter" resultClass="java.util.HashMap">
+    SELECT T.SERIAL_ID        AS "serialId",
+           T.RULE_ID          AS "ruleId",
+           T.RULE_DETAIL_ID   AS "ruleDetailId",
+           T.RULE_DETAIL_TYPE AS "ruleDetailType",
+           T.RULE_PAR_CODE    AS "ruleParCode",
+           T.RULE_PAR_NAME    AS "ruleParName",
+           T.RULE_PAR_VALUE   AS "ruleParValue",
+           T.RULE_PAR_DESC    AS "ruleParDesc"
+      FROM RM_RULEDETAIL_INFO T, RM_RELATION_REL R, RM_RELATION_REL R2,RM_RELATION_REL R3
+     WHERE R.PARENT_COMPONENT_ID = #parentComponentId#
+       AND R.REL_ID = R2.PARENT_REL_ID
+       AND R2.COMPONENT_TYPE = '03'
+       AND R2.COMPONENT_ID in ('02','01')
+       AND R2.REL_ID = R3.PARENT_REL_ID
+       AND R3.Component_Type ='06'
+       AND R3.COMPONENT_ID = T.RULE_ID
+	</select>
+		
+</sqlMap>

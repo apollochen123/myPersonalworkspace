@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmAttributeInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		REL_ID AS "relId",
+		ATTRIBUTE_TYPE AS "attributeType",
+		ATTRIBUTE_CODE AS "attributeCode",
+		ATTRIBUTE_NAME AS "attributeName",
+		ATTRIBUTE_VALUE AS "attributeValue"	
+	FROM rm_attribute_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="relId" prepend="and">
+				<isNotEmpty property="relId">
+					REL_ID = #relId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="attributeType" prepend="and">
+				<isNotEmpty property="attributeType">
+					ATTRIBUTE_TYPE = #attributeType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="attributeCode" prepend="and">
+				<isNotEmpty property="attributeCode">
+					ATTRIBUTE_CODE = #attributeCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="attributeName" prepend="and">
+				<isNotEmpty property="attributeName">
+					ATTRIBUTE_NAME = #attributeName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="attributeValue" prepend="and">
+				<isNotEmpty property="attributeValue">
+					ATTRIBUTE_VALUE = #attributeValue#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmAttributeInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmAttributeInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="relId" prepend="and">
+				<isNotEmpty property="relId">
+					REL_ID = #relId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<insert id="insertRmAttributeInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_attribute_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="relId" prepend=",">
+			<isNotEmpty property="relId">
+				REL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeType" prepend=",">
+			<isNotEmpty property="attributeType">
+				ATTRIBUTE_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeCode" prepend=",">
+			<isNotEmpty property="attributeCode">
+				ATTRIBUTE_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeName" prepend=",">
+			<isNotEmpty property="attributeName">
+				ATTRIBUTE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeValue" prepend=",">
+			<isNotEmpty property="attributeValue">
+				ATTRIBUTE_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="relId" prepend=",">
+			<isNotEmpty property="relId">
+				#relId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeType" prepend=",">
+			<isNotEmpty property="attributeType">
+				#attributeType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeCode" prepend=",">
+			<isNotEmpty property="attributeCode">
+				#attributeCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeName" prepend=",">
+			<isNotEmpty property="attributeName">
+				#attributeName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeValue" prepend=",">
+			<isNotEmpty property="attributeValue">
+				#attributeValue#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmAttributeInfo" parameterClass="java.util.Map">
+	UPDATE rm_attribute_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="relId" prepend=",">
+		    <isNotEmpty property="relId">
+			    REL_ID = #relId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeType" prepend=",">
+		    <isNotEmpty property="attributeType">
+			    ATTRIBUTE_TYPE = #attributeType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeCode" prepend=",">
+		    <isNotEmpty property="attributeCode">
+			    ATTRIBUTE_CODE = #attributeCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeName" prepend=",">
+		    <isNotEmpty property="attributeName">
+			    ATTRIBUTE_NAME = #attributeName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attributeValue" prepend=",">
+		    <isNotEmpty property="attributeValue">
+			    ATTRIBUTE_VALUE = #attributeValue#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmAttributeInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_attribute_info
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmAttributeInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_attribute_info
+	WHERE REL_ID = #relId#
+	</delete>
+
+</sqlMap>

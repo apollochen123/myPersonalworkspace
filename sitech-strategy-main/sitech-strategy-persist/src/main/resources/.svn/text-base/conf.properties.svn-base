@@ -1,0 +1,8 @@
+##系统环境 开发：dev;测试：test;生产：prod
+system.env=${system.env}
+##是否进行kerberos认证
+security.kerberos=${security.kerberos}
+#系统应用类型
+SYSTEM_APP_TYPE=${system.app.type}
+#服务调用编码
+CALL_SERVICE_CODE=${call.service.code}

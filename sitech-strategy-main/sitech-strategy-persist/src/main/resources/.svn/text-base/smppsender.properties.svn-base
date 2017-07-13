@@ -1,0 +1,48 @@
+# This is the IP address of SMSC
+ip-address=10.26.53.155
+
+# Port to bind to 2577
+port=5016
+
+# Your system id  
+system-id=JFZXCF
+
+# Your password
+password=JFZXcf12
+
+# The bind mode can be t, r, or tr for transmitter,
+# receiver or transciever respectively
+bind-mode=t
+
+# The address range this smpp client will serve
+addr-ton=2
+addr-npi=2
+
+# The source address for this client
+source-ton=2
+source-npi=2
+# This is a made-up address
+source-address=10086
+
+# The default destination address
+destination-ton=2
+destination-npi=2
+# Set your destination address default
+destination-address=18707174030,13871272007
+
+# The service type can be empty or one of
+# the following values:
+# CMT, CPT, VMN, VMA, WAP or USSD
+# service-type=
+
+system-type=logica
+
+# The receive timeout is a timeout for trying to receive a message
+# from the SMSC. If you want go to infinite wait until a PDU
+# is received, set the receive-timeout to -1. Otherwise
+# set the receive-timeout to number of seconds.
+
+receive-timeout=10
+
+#是否加载smpp
+smpp.isLoad=${smpp.isLoad}

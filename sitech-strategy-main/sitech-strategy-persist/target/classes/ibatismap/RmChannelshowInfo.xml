@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmChannelShowInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		CHANNEL_ID AS "channelId",
+		MARKET_CASE_FLAG AS "marketCaseFlag",
+		AREA_FLAG AS "areaFlag",
+		MARKET_CASE_TYPE AS "marketCaseType",
+		AREA_NO AS "areaNo",
+		TOTAL_NO AS "totalNo"	
+	FROM RM_CHANNELSHOW_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	
+	<select id="selectRmChannelShowInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT A.channel_id as "channelId",
+       		   A.MARKET_CASE_FLAG AS "marketCaseFlag",
+               A.AREA_FLAG as "areaFlag",
+               A.MARKET_CASE_TYPE as "marketCaseType",
+               A.AREA_NO as "areaNo",
+               A.TOTAL_NO as "totalNo",
+               A.SERIAL_ID as "serialId",
+               B.CHANNEL_NAME as "channelName"
+               FROM RM_CHANNELSHOW_INFO A, RM_CHANNEL_INFO B
+               WHERE A.CHANNEL_ID = B.CHANNEL_ID
+		<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					A.CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+	</select>
+	
+	
+	
+	<insert id="insertRmChannelShowInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CHANNELSHOW_INFO
+	]]>
+	<dynamic prepend=" (  ">
+	   <isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseFlag" prepend=",">
+			<isNotEmpty property="marketCaseFlag">
+				MARKET_CASE_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaFlag" prepend=",">
+			<isNotEmpty property="areaFlag">
+				AREA_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+			<isNotEmpty property="marketCaseType">
+				MARKET_CASE_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaNo" prepend=",">
+			<isNotEmpty property="areaNo">
+				AREA_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="totalNo" prepend=",">
+			<isNotEmpty property="totalNo">
+				TOTAL_NO
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+	    <isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseFlag" prepend=",">
+			<isNotEmpty property="marketCaseFlag">
+				#marketCaseFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaFlag" prepend=",">
+			<isNotEmpty property="areaFlag">
+				#areaFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+			<isNotEmpty property="marketCaseType">
+				#marketCaseType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaNo" prepend=",">
+			<isNotEmpty property="areaNo">
+				#areaNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="totalNo" prepend=",">
+			<isNotEmpty property="totalNo">
+				#totalNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmChannelShowInfo" parameterClass="java.util.Map">
+	UPDATE RM_CHANNELSHOW_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseFlag" prepend=",">
+		    <isNotEmpty property="marketCaseFlag">
+			    MARKET_CASE_FLAG = #marketCaseFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaFlag" prepend=",">
+		    <isNotEmpty property="areaFlag">
+			    AREA_FLAG = #areaFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+		    <isNotEmpty property="marketCaseType">
+			    MARKET_CASE_TYPE = #marketCaseType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaNo" prepend=",">
+		    <isNotEmpty property="areaNo">
+			    AREA_NO = #areaNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="totalNo" prepend=",">
+		    <isNotEmpty property="totalNo">
+			    TOTAL_NO = #totalNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</update>
+	
+
+	<delete id="deleteRmChannelShowInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_CHANNELSHOW_INFO 
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+
+	</delete>
+	
+	<select id="selectRmChannelShowInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			CHANNEL_ID AS channelId,
+			MARKET_CASE_FLAG AS marketCaseFlag,
+			AREA_FLAG AS areaFlag,
+			MARKET_CASE_TYPE AS marketCaseType,
+			AREA_NO AS areaNo,
+			TOTAL_NO AS totalNo
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_CHANNELSHOW_INFO $W$
+	</select>
+</sqlMap>

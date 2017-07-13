@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmMarketCaseAttributeInfo">
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseMark" prepend="and">
+				<isNotEmpty property="marketCaseMark">
+					MARKET_CASE_MARK = #marketCaseMark#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="pushMode" prepend="and">
+				<isNotEmpty property="pushMode">
+					PUSH_MODE = #pushMode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="greenChannel" prepend="and">
+				<isNotEmpty property="greenChannel">
+					GREEN_CHANNEL = #greenChannel#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	
+	
+	<insert id="insertRmMarketcaseattributeInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_MARKETCASEATTRIBUTE_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseMark" prepend=",">
+			<isNotEmpty property="marketCaseMark">
+				MARKET_CASE_MARK
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="pushMode" prepend=",">
+			<isNotEmpty property="pushMode">
+				PUSH_MODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="greenChannel" prepend=",">
+			<isNotEmpty property="greenChannel">
+				GREEN_CHANNEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseMsgSendType" prepend=",">
+			<isNotEmpty property="marketCaseMsgSendType">
+				SMS_PUSH_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+			<isNotEmpty property="phoneNo">
+				CONTACT_NUMBER
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseMark" prepend=",">
+			<isNotEmpty property="marketCaseMark">
+				#marketCaseMark#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="pushMode" prepend=",">
+			<isNotEmpty property="pushMode">
+				#pushMode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="greenChannel" prepend=",">
+			<isNotEmpty property="greenChannel">
+				#greenChannel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseMsgSendType" prepend=",">
+			<isNotEmpty property="marketCaseMsgSendType">
+				#marketCaseMsgSendType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+			<isNotEmpty property="phoneNo">
+				#phoneNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+
+
+	<update id="updateRmMarketcaseattributeInfo" parameterClass="java.util.Map">
+	UPDATE RM_MARKETCASEATTRIBUTE_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="marketCaseId" prepend=",">
+		    <isNotEmpty property="marketCaseId">
+			    MARKET_CASE_ID = #marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseMark" prepend=",">
+		    <isNotEmpty property="marketCaseMark">
+			    MARKET_CASE_MARK = #marketCaseMark#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="pushMode" prepend=",">
+		    <isNotEmpty property="pushMode">
+			    PUSH_MODE = #pushMode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="greenChannel" prepend=",">
+		    <isNotEmpty property="greenChannel">
+			    GRENNL_CHANNEL = #greenChannel#
+			</isNotEmpty>
+		</isNotNull>
+
+	</dynamic>
+	where MARKET_CASE_ID = #marketCaseId#
+	</update>
+	
+	<delete id="deleteRmMarketcaseattributeInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_marketcaseattribute_info
+	WHERE MARKET_CASE_ID = #marketCaseId#
+	</delete>
+
+
+</sqlMap>

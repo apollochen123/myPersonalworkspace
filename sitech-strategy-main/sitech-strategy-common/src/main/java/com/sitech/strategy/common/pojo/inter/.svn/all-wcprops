@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/CRMPD_RTMarket/!svn/ver/11966/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter
+END
+ISparkAppProp.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/11682/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/ISparkAppProp.java
+END
+IResultItemPojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/IResultItemPojo.java
+END
+IPagingDevice.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/IPagingDevice.java
+END
+IMarketCaseDetailPojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/IMarketCaseDetailPojo.java
+END
+IQueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/11883/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/IQueryFilter.java
+END
+ISortParamer.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/ISortParamer.java
+END
+IMarketCaseCachePojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/IMarketCaseCachePojo.java
+END
+IMarketCasePacketPojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/IMarketCasePacketPojo.java
+END

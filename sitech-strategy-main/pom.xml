@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sitech.strategy</groupId>
+  <artifactId>sitech-strategy-main</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+<!-- 通过mvn deploy部署到指定服务器地址 -->
+  <distributionManagement>
+    <site>
+      <id>website</id>
+      <url>scp://webhost.company.com/www/website</url>
+    </site>
+  	<repository>
+  	  <!-- 稳定版本 -->
+      <id>releases</id>
+        <url>http://172.21.2.141:8081/nexus/content/repositories/releases</url> 
+      <!-- <url>http://127.0.0.1:8081/nexus/content/repositories/releases</url>-->
+  	</repository>
+  	<snapshotRepository>
+  	  <!--不稳定版本-->
+      <id>snapshots</id>
+      <url>http://172.21.2.141:8081/nexus/content/repositories/snapshots</url> 
+     <!--  <url>http://127.0.0.1:8081/nexus/content/repositories/snapshots</url>-->
+  	</snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <modules>
+  	<module>sitech-strategy-core</module>
+  	<module>sitech-strategy-persist</module>
+  	<module>sitech-strategy-process</module>
+  	<module>sitech-strategy-site</module>
+    <module>sitech-strategy-manage</module>
+    <module>sitech-strategy-event</module>
+    <module>sitech-strategy-common</module>
+    <module>sitech-strategy-recommend</module>
+  </modules>
+  
+  <!-- 定义中央仓库地址 -->
+  <repositories>
+  	<repository>
+  	  <id>nexus</id>
+  	  <name>Nexus</name>
+  	   <url>http://172.21.2.141:8081/nexus/content/groups/public</url>
+  	   <!--  <url>http://127.0.0.1:8081/nexus/content/groups/public</url> -->
+  	  <releases><enabled>true</enabled></releases>
+  	  <snapshots><enabled>true</enabled></snapshots>
+  	</repository>
+  </repositories>
+  
+  <!-- maven在使用第三方构件和插件是分开来配置的，如果希望插件的下载也通过我们的本地仓库下载，需要配置此项仓库 -->
+  <pluginRepositories>
+  	<pluginRepository>
+  	  <id>nexus</id>
+  	  <name>Nexus</name>
+  	   <url>http://172.21.2.141:8081/nexus/content/groups/public</url>
+  	   <!-- <url>http://127.0.0.1:8081/nexus/content/groups/public</url> -->
+  	  <releases><enabled>true</enabled></releases>
+  	  <snapshots><enabled>true</enabled></snapshots>
+  	</pluginRepository>
+  </pluginRepositories>
+  
+  <dependencies>
+    <dependency>
+  		<groupId>com.sitech.ac.idmm</groupId>
+  		<artifactId>sitech-ac-idmm2-client</artifactId>
+  		<version>0.0.1</version>
+	</dependency>
+	<dependency>
+    	<groupId>javax.jms</groupId>
+    	<artifactId>jms-api</artifactId>
+    	<version>1.1-rev-1</version>
+	</dependency>
+	<dependency>
+  		<groupId>com.sitech.crmpd.ijcf</groupId>
+  		<artifactId>sitech-crmpd-ijcf</artifactId>
+  		<version>2.5.0</version>
+	</dependency>
+	<dependency>
+  		<groupId>com.sitech.ac.hsf</groupId>
+  		<artifactId>sitech-ac-hsf</artifactId>
+  		<version>2.0.7</version>
+	</dependency>
+	<dependency>
+  		<groupId>com.oracle.ojdbc</groupId>
+  		<artifactId>oracle-ojdbc</artifactId>
+  		<version>6.0.0</version>
+	</dependency>
+	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>5.1.22</version>
+	</dependency>	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>3.0.5.RELEASE</version>
+	</dependency>
+	<dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
+    	<version>3.1.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.2.11</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.easymock</groupId>
+    	<artifactId>easymock</artifactId>
+    	<version>3.4</version>
+	</dependency>
+	<dependency>
+      	<groupId>junit</groupId>
+      	<artifactId>junit</artifactId>
+      	<version>4.10</version>
+      	<scope>test</scope>
+    </dependency>
+    <dependency>   
+      	<groupId>dom4j</groupId>    
+      	<artifactId>dom4j</artifactId>    
+     	 <version>1.6.1</version>   
+    </dependency>
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-simple</artifactId>
+    	<version>1.7.12</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.apache.curator</groupId>
+    	<artifactId>curator-framework</artifactId>
+   		<version>2.10.0</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.apache.curator</groupId>
+    	<artifactId>curator-recipes</artifactId>
+    	<version>2.10.0</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.apache.curator</groupId>
+   		<artifactId>curator-client</artifactId>
+    	<version>2.10.0</version>
+	</dependency>
+  </dependencies>
+	
+</project>

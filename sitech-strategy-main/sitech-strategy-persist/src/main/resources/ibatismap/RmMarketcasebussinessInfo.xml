@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmMarketCaseBussinessInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<select id="selectRmMarketCaseBussinessInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT 
+		    MARKET_CASE_ID AS "marketCaseId",
+			SUM(TOUCH_NUM) AS "touchNum",
+			SUM(EXEC_NUM) AS "execNum"
+			from RM_MARKETCASEBUSSINESS_INFO
+		group by MARKET_CASE_ID order by MARKET_CASE_ID
+		
+	</select>
+	
+	
+	<select id="selectRmMarketCaseBussinessInfoByRegionCode" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT 
+			MARKET_CASE_ID AS "marketCaseId",
+			SUM(TOUCH_NUM) AS "touchNum",
+			SUM(EXEC_NUM) AS "execNum"
+			from RM_MARKETCASEBUSSINESS_INFO
+			where REGION_CODE = #regionCode#
+		group by MARKET_CASE_ID order by MARKET_CASE_ID
+	
+	</select>
+	
+	
+</sqlMap>

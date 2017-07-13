@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmActdemandInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		ACT_NAME AS "actName",
+		ACT_TYPE AS "actType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseType' AND FIELD_VALUE = A.ACT_TYPE) AS "marketCaseType",
+		ACT_CLASS AS "actClass",
+	    (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseLevel' AND FIELD_VALUE = A.ACT_CLASS) AS "marketCaseLevel",
+		START_TIME AS "startTime",
+		END_TIME AS "endTime",
+		ACT_DESC AS "actDesc",
+		ACT_TARGET AS "actTarget",
+		TARGETUSER_DESC AS "targetUserDesc",
+		POLICY_DESC AS "policyDesc",
+		CHANNEL_ID AS "channelId",
+		CHANNELRULE_DESC AS "channelRuleDesc",
+		WORKORDERCLOSE_DESC AS "workOrdercloseDesc",
+		ASSESSRULE_DESC AS "assessRuleDesc",
+		OPER_NO AS "operNo",
+		OPER_TIME AS "operTime",
+		OPER_NAME AS "operName",
+		GROUP_ID AS "groupId",
+		GROUP_NAME AS "groupName",
+		STATUS_CODE AS "statusCode"	
+	FROM RM_ACTDEMAND_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actName" prepend="and">
+				<isNotEmpty property="actName">
+					ACT_NAME = #actName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actType" prepend="and">
+				<isNotEmpty property="actType">
+					ACT_TYPE = #actType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actClass" prepend="and">
+				<isNotEmpty property="actClass">
+					ACT_CLASS = #actClass#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="startTimeStart" prepend="and">
+				<isNotEmpty property="startTimeStart">
+					<![CDATA[ START_TIME >= #startTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="startTimeEnd" prepend="and">
+				<isNotEmpty property="startTimeEnd">
+					<![CDATA[ START_TIME <= #startTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="endTimeStart" prepend="and">
+				<isNotEmpty property="endTimeStart">
+					<![CDATA[ END_TIME >= #endTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="endTimeEnd" prepend="and">
+				<isNotEmpty property="endTimeEnd">
+					<![CDATA[ END_TIME <= #endTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actDesc" prepend="and">
+				<isNotEmpty property="actDesc">
+					ACT_DESC = #actDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actTarget" prepend="and">
+				<isNotEmpty property="actTarget">
+					ACT_TARGET = #actTarget#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="targetUserDesc" prepend="and">
+				<isNotEmpty property="targetUserDesc">
+					TARGETUSER_DESC = #targetUserDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="policyDesc" prepend="and">
+				<isNotEmpty property="policyDesc">
+					POLICY_DESC = #policyDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelRuleDesc" prepend="and">
+				<isNotEmpty property="channelRuleDesc">
+					CHANNELRULE_DESC = #channelRuleDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="workOrdercloseDesc" prepend="and">
+				<isNotEmpty property="workOrdercloseDesc">
+					WORKORDERCLOSE_DESC = #workOrdercloseDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="assessRuleDesc" prepend="and">
+				<isNotEmpty property="assessRuleDesc">
+					ASSESSRULE_DESC = #assessRuleDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeStart" prepend="and">
+				<isNotEmpty property="operTimeStart">
+					<![CDATA[ OPER_TIME >= #operTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeEnd" prepend="and">
+				<isNotEmpty property="operTimeEnd">
+					<![CDATA[ OPER_TIME <= #operTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operName" prepend="and">
+				<isNotEmpty property="operName">
+					OPER_NAME = #operName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupId" prepend="and">
+				<isNotEmpty property="groupId">
+					GROUP_ID = #groupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmActDemandInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmActDemandInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		SELECT
+		a.SERIAL_ID AS "serialId",
+		a.ACT_NAME AS "actName",
+		a.ACT_TYPE AS "actType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseType' AND FIELD_VALUE = A.ACT_TYPE) AS "marketCaseType",
+		a.ACT_CLASS AS "actClass",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseLevel' AND FIELD_VALUE = A.ACT_CLASS) AS "marketCaseLevel",
+		a.START_TIME AS "startTime",
+		a.END_TIME AS "endTime",
+		a.ACT_DESC AS "actDesc",
+		a.ACT_TARGET AS "actTarget",
+		a.TARGETUSER_DESC AS "targetUserDesc",
+		a.POLICY_DESC AS "policyDesc",
+		a.CHANNEL_ID AS "channelId",
+		(SELECT CHANNEL_NAME FROM RM_CHANNEL_INFO WHERE CHANNEL_ID = A.CHANNEL_ID) AS "channelName",
+		a.CHANNELRULE_DESC AS "channelRuleDesc",
+		a.WORKORDERCLOSE_DESC AS "workOrdercloseDesc",
+		a.ASSESSRULE_DESC AS "assessRuleDesc",
+		a.OPER_NO AS "operNo",
+		a.OPER_TIME AS "operTime",
+		a.OPER_NAME AS "operName",
+		a.GROUP_ID AS "groupId",
+		a.GROUP_NAME AS "groupName",
+		a.STATUS_CODE AS "statusCode"	
+	FROM RM_ACTDEMAND_INFO a
+		<dynamic prepend=" WHERE ">
+		<isNotNull property="actDemandId" prepend="and">
+			<isNotEmpty property="actDemandId">
+				a.SERIAL_ID = #actDemandId#
+			</isNotEmpty>
+		</isNotNull>	
+		<isNotNull property="actDemandType" prepend="and">
+			<isNotEmpty property="actDemandType">
+				a.ACT_TYPE = #actDemandType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDemandName" prepend="and">
+			<isNotEmpty property="actDemandName">
+				a.ACT_NAME = #actDemandName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDemandClass" prepend="and">
+			<isNotEmpty property="actDemandClass">
+				a.ACT_ClASS = #actDemandClass#
+			</isNotEmpty>
+		</isNotNull>
+			<isNotNull property="operTimeStart" prepend="and">
+				<isNotEmpty property="operTimeStart">
+					<![CDATA[ OPER_TIME >= #operTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeEnd" prepend="and">
+				<isNotEmpty property="operTimeEnd">
+					<![CDATA[ OPER_TIME <= #operTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+		
+
+		<isNotNull property="keyWords" prepend="and">
+			<isNotEmpty property="keyWords">
+				(
+				<iterate open="" close="" conjunction="or" property="keyWords" > 
+           		  a.ACT_NAME like '%'||#keyWords[]#||'%'
+           		</iterate>
+ 
+           		
+           		
+           		
+           		)
+			</isNotEmpty>
+			</isNotNull>
+		</dynamic>	
+		order by OPER_TIME desc
+	</select>
+	
+	<insert id="insertRmActDemandInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_ACTDEMAND_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actName" prepend=",">
+			<isNotEmpty property="actName">
+				ACT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actType" prepend=",">
+			<isNotEmpty property="actType">
+				ACT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actClass" prepend=",">
+			<isNotEmpty property="actClass">
+				ACT_CLASS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				START_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				END_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDesc" prepend=",">
+			<isNotEmpty property="actDesc">
+				ACT_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actTarget" prepend=",">
+			<isNotEmpty property="actTarget">
+				ACT_TARGET
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="targetUserDesc" prepend=",">
+			<isNotEmpty property="targetUserDesc">
+				TARGETUSER_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="policyDesc" prepend=",">
+			<isNotEmpty property="policyDesc">
+				POLICY_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelRuleDesc" prepend=",">
+			<isNotEmpty property="channelRuleDesc">
+				CHANNELRULE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workOrdercloseDesc" prepend=",">
+			<isNotEmpty property="workOrdercloseDesc">
+				WORKORDERCLOSE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assessRuleDesc" prepend=",">
+			<isNotEmpty property="assessRuleDesc">
+				ASSESSRULE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actName" prepend=",">
+			<isNotEmpty property="actName">
+				#actName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actType" prepend=",">
+			<isNotEmpty property="actType">
+				#actType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actClass" prepend=",">
+			<isNotEmpty property="actClass">
+				#actClass#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				#startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				#endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDesc" prepend=",">
+			<isNotEmpty property="actDesc">
+				#actDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actTarget" prepend=",">
+			<isNotEmpty property="actTarget">
+				#actTarget#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="targetUserDesc" prepend=",">
+			<isNotEmpty property="targetUserDesc">
+				#targetUserDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="policyDesc" prepend=",">
+			<isNotEmpty property="policyDesc">
+				#policyDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelRuleDesc" prepend=",">
+			<isNotEmpty property="channelRuleDesc">
+				#channelRuleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workOrdercloseDesc" prepend=",">
+			<isNotEmpty property="workOrdercloseDesc">
+				#workOrdercloseDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assessRuleDesc" prepend=",">
+			<isNotEmpty property="assessRuleDesc">
+				#assessRuleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				#groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				#groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmActDemandInfo" parameterClass="java.util.Map">
+	UPDATE RM_ACTDEMAND_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actName" prepend=",">
+		    <isNotEmpty property="actName">
+			    ACT_NAME = #actName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actType" prepend=",">
+		    <isNotEmpty property="actType">
+			    ACT_TYPE = #actType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actClass" prepend=",">
+		    <isNotEmpty property="actClass">
+			    ACT_CLASS = #actClass#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+		    <isNotEmpty property="startTime">
+			    START_TIME = #startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+		    <isNotEmpty property="endTime">
+			    END_TIME = #endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDesc" prepend=",">
+		    <isNotEmpty property="actDesc">
+			    ACT_DESC = #actDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actTarget" prepend=",">
+		    <isNotEmpty property="actTarget">
+			    ACT_TARGET = #actTarget#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="targetUserDesc" prepend=",">
+		    <isNotEmpty property="targetUserDesc">
+			    TARGETUSER_DESC = #targetUserDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="policyDesc" prepend=",">
+		    <isNotEmpty property="policyDesc">
+			    POLICY_DESC = #policyDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelRuleDesc" prepend=",">
+		    <isNotEmpty property="channelRuleDesc">
+			    CHANNELRULE_DESC = #channelRuleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workOrdercloseDesc" prepend=",">
+		    <isNotEmpty property="workOrdercloseDesc">
+			    WORKORDERCLOSE_DESC = #workOrdercloseDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assessRuleDesc" prepend=",">
+		    <isNotEmpty property="assessRuleDesc">
+			    ASSESSRULE_DESC = #assessRuleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+		    <isNotEmpty property="groupId">
+			    GROUP_ID = #groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+		    <isNotEmpty property="groupName">
+			    GROUP_NAME = #groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</update>
+	
+	<delete id="deleteRmActDemandInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_ACTDEMAND_INFO
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmActDemandInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_ACTDEMAND_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmActDemandInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			ACT_NAME AS actName,
+			ACT_TYPE AS actType,
+			ACT_CLASS AS actClass,
+			START_TIME AS startTime,
+			END_TIME AS endTime,
+			ACT_DESC AS actDesc,
+			ACT_TARGET AS actTarget,
+			TARGETUSER_DESC AS targetUserDesc,
+			POLICY_DESC AS policyDesc,
+			CHANNEL_ID AS channelId,
+			CHANNELRULE_DESC AS channelRuleDesc,
+			WORKORDERCLOSE_DESC AS workOrdercloseDesc,
+			ASSESSRULE_DESC AS assessRuleDesc,
+			OPER_NO AS operNo,
+			OPER_TIME AS operTime,
+			OPER_NAME AS operName,
+			GROUP_ID AS groupId,
+			GROUP_NAME AS groupName,
+			STATUS_CODE AS statusCode
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_ACTDEMAND_INFO $W$
+	</select>
+</sqlMap>

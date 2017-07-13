@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RmRecommendRecordInfo">
+	<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter"
+		alias="queryFilter" />
+	<select id="selectRmRecommendRecordInfo" parameterClass="queryFilter"
+		resultClass="java.util.HashMap">
+		SELECT
+		(SELECT b.CHANNEL_NAME from RM_CHANNEL_INFO b where
+		r.CHANNEL_ID=b.CHANNEL_ID) AS "channelName",
+		ID_NO AS "idNo",
+		MARKET_CASE_ID AS
+		"marketCaseId",
+		(select m.MARKET_CASE_NAME FROM rm_marketcase_info m where m.MARKET_CASE_ID=r.MARKET_CASE_ID) AS "marketCaseName",
+		(select m.MARKET_CASE_TYPE FROM rm_marketcase_info m where m.MARKET_CASE_ID=r.MARKET_CASE_ID) AS "marketCaseType",
+		(select m.START_TIME FROM rm_marketcase_info m where m.MARKET_CASE_ID=r.MARKET_CASE_ID) AS "actStartTime",
+		(select m.END_TIME FROM rm_marketcase_info m where m.MARKET_CASE_ID=r.MARKET_CASE_ID) AS "actEndTime",
+		(select m.STATUS_CODE FROM rm_marketcase_info m where m.MARKET_CASE_ID=r.MARKET_CASE_ID) AS "statusCode",
+		(select m.MARKETCASE_DESC FROM rm_marketcase_info m where m.MARKET_CASE_ID=r.MARKET_CASE_ID) AS "marketDesc",
+		NUM_TYPE AS "numType",
+		NUM_VALUE AS
+		"numValue",
+		OPER_NAME AS "operName",
+		OPER_NO AS "operNo",
+		RECOMMONED_TIME AS
+		"recommonedTime",
+		(SELECT c.FIELD_DESC from
+		rm_codename_dict c where c.FIELD_EN_NAME='regionCode' AND
+		r.REGION_CODE=c.FIELD_VALUE) AS "regionCodeName"
+		FROM
+		RM_RECOMMENDRECORD_INFO r
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID=#channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO=#idNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="recommonedStartTime" prepend="and">
+				<isNotEmpty property="recommonedStartTime">
+					<![CDATA[RECOMMONED_TIME>=#recommonedStartTime#]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="recommonedEndTime" prepend="and">
+				<isNotEmpty property="recommonedEndTime">
+					<![CDATA[ RECOMMONED_TIME<=#recommonedEndTime#]]>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		order by RECOMMONED_TIME desc
+	</select>
+</sqlMap>

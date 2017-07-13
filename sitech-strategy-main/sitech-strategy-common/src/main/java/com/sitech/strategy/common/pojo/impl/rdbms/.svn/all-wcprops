@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/CRMPD_RTMarket/!svn/ver/11964/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/rdbms
+END
+IBatisFields.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/rdbms/IBatisFields.java
+END
+IBatisSqlMapByHBMob.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/rdbms/IBatisSqlMapByHBMob.java
+END
+IBatisQueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/CRMPD_RTMarket/!svn/ver/11964/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/rdbms/IBatisQueryFilter.java
+END
+IBatisSqlMapByAHTel.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/CRMPD_RTMarket/!svn/ver/11963/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/rdbms/IBatisSqlMapByAHTel.java
+END
+IBatisSqlMapByJLMob.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/rdbms/IBatisSqlMapByJLMob.java
+END

@@ -1,0 +1,514 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <artifactId>sitech-strategy-main</artifactId>
+    <groupId>com.sitech.strategy</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>com.sitech.strategy</groupId>
+  <artifactId>sitech-strategy-persist</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>sitech-strategy-persist</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <build>
+	  <resources>
+	    <resource>
+	       <directory>${project.basedir}/src/main/resources</directory>
+	       <filtering>true</filtering>
+	    </resource>
+	  </resources>
+	  <testResources>
+	    <testResource>
+	       <directory>${project.basedir}/src/test/resources</directory>
+	       <filtering>true</filtering>
+	    </testResource>
+	  </testResources>
+  </build>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.sitech.strategy</groupId>
+  		<artifactId>sitech-strategy-common</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.spark</groupId>
+	    <artifactId>spark-streaming_2.10</artifactId>
+	    <version>1.6.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.kafka</groupId>
+		<artifactId>kafka_2.10</artifactId>
+		<version>0.9.0.1</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.kafka</groupId>
+	  <artifactId>kafka-clients</artifactId>
+	  <version>0.10.0.0</version>
+	</dependency>
+	<dependency>
+  		<groupId>com.oracle.coherence</groupId>
+  		<artifactId>oracle-coherence-client</artifactId>
+  		<version>3.7.0</version>
+	</dependency>
+ 	<dependency>
+		<groupId>redis.clients</groupId>
+		<artifactId>jedis</artifactId>
+		<version>2.9.0</version>
+	</dependency> 
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-pool2</artifactId>
+	    <version>2.4.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.hbase</groupId>
+		<artifactId>hbase-client</artifactId>
+		<version>1.2.1</version>
+	</dependency>
+	<dependency>
+  		<groupId>com.sitech.crmpd.smpp</groupId>
+  		<artifactId>sitech-crmpd-smpp</artifactId>
+  		<version>3.4.2</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.apache.hive</groupId>
+    	<artifactId>hive-jdbc</artifactId>
+    	<version>2.1.0</version>
+    	<exclusions>
+    		<exclusion>
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-slf4j-impl</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-1.2-api</artifactId>
+    		</exclusion>
+			<exclusion>
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-api</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-core</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-web</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>com.sun.jersey</groupId>
+    			<artifactId>jersey-server</artifactId>
+    		</exclusion>
+    		<exclusion>
+    			<groupId>org.apache.hbase</groupId>
+    			<artifactId>hbase-common</artifactId>
+    		</exclusion>
+    	</exclusions> 
+	</dependency>
+  </dependencies>
+  
+  <profiles>
+  	<profile>
+  		<id>local</id>
+  		<properties>
+  			<system.app.type>${sys}</system.app.type>
+  			<system.env>dev</system.env>
+  			<call.service.code>GBK</call.service.code>
+  			<datasource.type>oracle</datasource.type>
+  			<db.driver>oracle.jdbc.driver.OracleDriver</db.driver>
+  			<db.username>crmpdstrategy</db.username>
+  			<db.password>crmpdstrategy</db.password>
+  			<db.url>jdbc:oracle:thin:@172.21.1.7:1524:testdb</db.url>
+  			<db.ds>
+  				<![CDATA[
+	  				<bean id="dataSourceA1" class="com.sitech.jcf.core.datasource.BasicDataSource">
+				  		<property name="driverClassName"   	value="${DBCP.DataSource.ijdbc.driver}" />
+						<property name="url"               	value="${DBCP.DataSource.ijdbc.url}" /> 
+						<property name="username"          	value="${DBCP.DataSource.ijdbc.username}" />
+						<property name="password"          	value="${DBCP.DataSource.ijdbc.password}" />
+						<property name="maxActive"         	value="${DBCP.DataSource.ijdbc.maxactive}" />
+						<property name="maxIdle"           	value="${DBCP.DataSource.ijdbc.maxIdle}" />
+						<property name="maxWait"           	value="${DBCP.DataSource.ijdbc.maxwait}" />
+						<property name="testWhileIdle" 		value="${DBCP.DataSource.ijdbc.testWhileIdle}" />
+						<property name="validationQuery" 	value="${DBCP.DataSource.ijdbc.validationQuery}"/>
+						<property name="initialSize" 		value="${DBCP.DataSource.ijdbc.initialSize}"/>
+						<property name="defaultAutoCommit" 	value="true" />
+					</bean>
+				]]>
+			</db.ds>
+			<security.kerberos>false</security.kerberos>
+			<smpp.isLoad>false</smpp.isLoad>
+			<hbase.isLoad>true</hbase.isLoad>
+			<hive.isLoad>true</hive.isLoad>
+			<impala.isLoad>false</impala.isLoad>
+			<spark.isLoad>true</spark.isLoad>
+			<kafka.producer.broker.list>172.21.2.140:9092</kafka.producer.broker.list>
+			<redis.host>172.21.2.142:7000 172.21.2.142:7001 172.21.2.142:7002</redis.host>
+			<hbase.zookeeper.quorum>172.21.2.140,172.21.2.141,172.21.2.142</hbase.zookeeper.quorum>
+			<hbase.zookeeper.property.clientPort>2181</hbase.zookeeper.property.clientPort>
+			<hbase.zookeeper.znode.parent>/hbase</hbase.zookeeper.znode.parent>
+			<hive.jdbc.url>jdbc:hive2://172.21.2.140:10000/clzxdb</hive.jdbc.url>
+			<hive.jdbc.driver>org.apache.hive.jdbc.HiveDriver</hive.jdbc.driver>
+			<hive.jdbc.userName>crmpdstrategy1</hive.jdbc.userName>
+			<hive.jdbc.password>crmpdstrategy1</hive.jdbc.password>
+			<impala.jdbc.url>jdbc:hive2://134.64.12.82:21051/;auth=ldap</impala.jdbc.url>
+			<impala.jdbc.driver>org.apache.hive.jdbc.HiveDriver</impala.jdbc.driver>
+			<impala.jdbc.userName>stra_opr</impala.jdbc.userName>
+			<impala.jdbc.password>stra_opr</impala.jdbc.password>
+			<spark.sparksql.jdbc.url>jdbc:hive2://172.21.2.140:14000/clzxdb</spark.sparksql.jdbc.url>
+			<spark.sparksql.jdbc.driver>org.apache.hive.jdbc.HiveDriver</spark.sparksql.jdbc.driver>
+			<spark.sparksql.jdbc.userName>crmpdstrategy1</spark.sparksql.jdbc.userName>
+			<spark.sparksql.jdbc.password>crmpdstrategy1</spark.sparksql.jdbc.password>
+			<batchPushSender>com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$BatchPushSender</batchPushSender>
+			<proxyDataSelector>com.sitech.strategy.persist.capacity.impl.ProxyDataSelectorByJLMob</proxyDataSelector>
+			<proceMsgDML>com.sitech.strategy.persist.capacity.impl.ProceMsgDMLByKafka</proceMsgDML>
+  		</properties>
+  	</profile>
+  	
+  	<profile>
+  		<id>oracledev</id>
+  		<properties>
+  			<system.app.type>${sys}</system.app.type>
+  			<system.env>dev</system.env>
+  			<call.service.code>GBK</call.service.code>
+  			<datasource.type>oracle</datasource.type>
+  		  	<AppServer.DataSource.ijdbc.orajndi>orastrategy</AppServer.DataSource.ijdbc.orajndi>
+  			<INITIAL_CONTEXT_FACTORY>weblogic.jndi.WLInitialContextFactory</INITIAL_CONTEXT_FACTORY>
+  			<DefaultDataSourceName>ijdbc</DefaultDataSourceName>
+  			<default.db.class>oracle</default.db.class>
+  			<default.db.class.impl>com.sitech.jcf.ijdbc.support.OracleSqlBuilder</default.db.class.impl>
+  			<db.ds>
+	  			<![CDATA[
+		 			<bean id="dataSourceA1" class="org.springframework.jndi.JndiObjectFactoryBean">  
+	  					<property name="jndiName">   
+	 						<value>${AppServer.DataSource.ijdbc.orajndi}</value> 
+	  					</property>   
+	   					<property name="jndiEnvironment">   
+				  			<props>   
+				   				<prop key="java.naming.factory.initial">${INITIAL_CONTEXT_FACTORY}</prop>   
+				 				<prop key="java.naming.provider.url">${DEFAULT_PROVIDER_URL}</prop>   
+				  			</props>  
+	  					</property>   
+	 				</bean>
+	 			]]>
+			</db.ds>
+			<security.kerberos>false</security.kerberos>
+			<smpp.isLoad>false</smpp.isLoad>
+			<hbase.isLoad>true</hbase.isLoad>
+			<hive.isLoad>true</hive.isLoad>
+			<impala.isLoad>false</impala.isLoad>
+			<spark.isLoad>true</spark.isLoad>
+			<kafka.producer.broker.list>172.21.2.140:9092</kafka.producer.broker.list>
+			<redis.host>172.21.2.142:7000 172.21.2.142:7001 172.21.2.142:7002</redis.host>
+			<hbase.zookeeper.quorum>172.21.2.140,172.21.2.141,172.21.2.142</hbase.zookeeper.quorum>
+			<hbase.zookeeper.property.clientPort>2181</hbase.zookeeper.property.clientPort>
+			<hbase.zookeeper.znode.parent>/hbase</hbase.zookeeper.znode.parent>
+			<hive.jdbc.url>jdbc:hive2://172.21.2.140:10000/clzxdb</hive.jdbc.url>
+			<hive.jdbc.driver>org.apache.hive.jdbc.HiveDriver</hive.jdbc.driver>
+			<hive.jdbc.userName>crmpdstrategy1</hive.jdbc.userName>
+			<hive.jdbc.password>crmpdstrategy1</hive.jdbc.password>
+			<impala.jdbc.url>jdbc:hive2://134.64.12.82:21051/;auth=ldap</impala.jdbc.url>
+			<impala.jdbc.driver>org.apache.hive.jdbc.HiveDriver</impala.jdbc.driver>
+			<impala.jdbc.userName>stra_opr</impala.jdbc.userName>
+			<impala.jdbc.password>stra_opr</impala.jdbc.password>
+			<spark.sparksql.jdbc.url>jdbc:hive2://172.21.2.140:14000/clzxdb</spark.sparksql.jdbc.url>
+			<spark.sparksql.jdbc.driver>org.apache.hive.jdbc.HiveDriver</spark.sparksql.jdbc.driver>
+			<spark.sparksql.jdbc.userName>crmpdstrategy1</spark.sparksql.jdbc.userName>
+			<spark.sparksql.jdbc.password>crmpdstrategy1</spark.sparksql.jdbc.password>
+  			<batchPushSender>com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$BatchPushSender</batchPushSender>
+  			<proxyDataSelector>com.sitech.strategy.persist.capacity.impl.ProxyDataSelector</proxyDataSelector>
+  			<proceMsgDML>com.sitech.strategy.persist.capacity.impl.ProceMsgDMLByKafka</proceMsgDML>
+  		</properties>
+  	</profile>
+	<profile>
+  		<id>mysqldev</id>
+  		<properties>
+  			<system.app.type>${sys}</system.app.type>
+  			<system.env>dev</system.env>
+  			<call.service.code>GBK</call.service.code>
+  			<datasource.type>mysql</datasource.type>
+  		  	<AppServer.DataSource.ijdbc.mysqljndi>mysqlstrategy</AppServer.DataSource.ijdbc.mysqljndi>
+  			<INITIAL_CONTEXT_FACTORY>weblogic.jndi.WLInitialContextFactory</INITIAL_CONTEXT_FACTORY>
+  			<DefaultDataSourceName>mysql</DefaultDataSourceName>
+  			<default.db.class>mysql</default.db.class>
+  			<default.db.class.impl>com.sitech.jcf.ijdbc.support.MySqlBuilder</default.db.class.impl>
+  			<db.ds>
+	  			<![CDATA[
+					<bean id="dataSourceA1" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+						<property name="jndiName"> 
+							<value>${AppServer.DataSource.ijdbc.mysqljndi}</value> 
+						</property> 
+						<property name="jndiEnvironment"> 
+							<props> 
+								<prop key="java.naming.factory.initial">${INITIAL_CONTEXT_FACTORY}</prop> 
+								<prop key="java.naming.provider.url">${DEFAULT_PROVIDER_URL}</prop> 
+							</props> 
+						</property> 
+					</bean>
+	 			]]>
+			</db.ds>
+			<security.kerberos>false</security.kerberos>
+			<smpp.isLoad>false</smpp.isLoad>
+			<hbase.isLoad>true</hbase.isLoad>
+			<hive.isLoad>true</hive.isLoad>
+			<impala.isLoad>false</impala.isLoad>
+			<spark.isLoad>true</spark.isLoad>
+			<kafka.producer.broker.list>172.21.2.140:9092</kafka.producer.broker.list>
+			<redis.host>172.21.2.142:7000 172.21.2.142:7001 172.21.2.142:7002</redis.host>
+			<hbase.zookeeper.quorum>172.21.2.140,172.21.2.141,172.21.2.142</hbase.zookeeper.quorum>
+			<hbase.zookeeper.property.clientPort>2181</hbase.zookeeper.property.clientPort>
+			<hbase.zookeeper.znode.parent>/hbase</hbase.zookeeper.znode.parent>
+			<hive.jdbc.url>jdbc:hive2://172.21.2.140:10000/clzxdb</hive.jdbc.url>
+			<hive.jdbc.driver>org.apache.hive.jdbc.HiveDriver</hive.jdbc.driver>
+			<hive.jdbc.userName>crmpdstrategy1</hive.jdbc.userName>
+			<hive.jdbc.password>crmpdstrategy1</hive.jdbc.password>
+			<impala.jdbc.url>jdbc:hive2://134.64.12.82:21051/;auth=ldap</impala.jdbc.url>
+			<impala.jdbc.driver>org.apache.hive.jdbc.HiveDriver</impala.jdbc.driver>
+			<impala.jdbc.userName>stra_opr</impala.jdbc.userName>
+			<impala.jdbc.password>stra_opr</impala.jdbc.password>
+			<spark.sparksql.jdbc.url>jdbc:hive2://172.21.2.140:14000/clzxdb</spark.sparksql.jdbc.url>
+			<spark.sparksql.jdbc.driver>org.apache.hive.jdbc.HiveDriver</spark.sparksql.jdbc.driver>
+			<spark.sparksql.jdbc.userName>crmpdstrategy1</spark.sparksql.jdbc.userName>
+			<spark.sparksql.jdbc.password>crmpdstrategy1</spark.sparksql.jdbc.password>
+  			<batchPushSender>com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$BatchPushSender</batchPushSender>
+  			<proxyDataSelector>com.sitech.strategy.persist.capacity.impl.ProxyDataSelector</proxyDataSelector>
+  			<proceMsgDML>com.sitech.strategy.persist.capacity.impl.ProceMsgDMLByKafka</proceMsgDML>
+  		</properties>
+  	</profile>
+  	<profile>
+  	<id>dbcpmysqldev</id>
+  		<properties>
+  			<system.app.type>${sys}</system.app.type>
+  			<system.env>dev</system.env>
+  			<call.service.code>utf-8</call.service.code>
+  			<datasource.type>mysql</datasource.type>
+  			<db.driver>com.mysql.jdbc.Driver</db.driver>
+  			<db.username>strategy</db.username>
+  			<db.password>strategy</db.password>
+  			<db.url>jdbc:mysql://172.21.2.141:3306/clzxdb</db.url>
+  			<db.ds>
+  				<![CDATA[
+	  				<bean id="dataSourceA1" class="com.sitech.jcf.core.datasource.BasicDataSource">
+				  		<property name="driverClassName"   	value="${DBCP.DataSource.ijdbc.driver}" />
+						<property name="url"               	value="${DBCP.DataSource.ijdbc.url}" /> 
+						<property name="username"          	value="${DBCP.DataSource.ijdbc.username}" />
+						<property name="password"          	value="${DBCP.DataSource.ijdbc.password}" />
+						<property name="maxActive"         	value="${DBCP.DataSource.ijdbc.maxactive}" />
+						<property name="maxIdle"           	value="${DBCP.DataSource.ijdbc.maxIdle}" />
+						<property name="maxWait"           	value="${DBCP.DataSource.ijdbc.maxwait}" />
+						<property name="testWhileIdle" 		value="${DBCP.DataSource.ijdbc.testWhileIdle}" />
+						<property name="validationQuery" 	value="${DBCP.DataSource.ijdbc.validationQuery}"/>
+						<property name="initialSize" 		value="${DBCP.DataSource.ijdbc.initialSize}"/>
+						<property name="defaultAutoCommit" 	value="true" />
+					</bean>
+				]]>
+			</db.ds>
+			<security.kerberos>false</security.kerberos>
+			<smpp.isLoad>false</smpp.isLoad>
+			<hbase.isLoad>true</hbase.isLoad>
+			<hive.isLoad>true</hive.isLoad>
+			<impala.isLoad>false</impala.isLoad>
+			<spark.isLoad>true</spark.isLoad>
+			<kafka.producer.broker.list>172.21.2.140:9092</kafka.producer.broker.list>
+			<redis.host>172.21.2.142:7000 172.21.2.142:7001 172.21.2.142:7002</redis.host>
+			<hbase.zookeeper.quorum>172.21.2.140,172.21.2.141,172.21.2.142</hbase.zookeeper.quorum>
+			<hbase.zookeeper.property.clientPort>2181</hbase.zookeeper.property.clientPort>
+			<hbase.zookeeper.znode.parent>/hbase</hbase.zookeeper.znode.parent>
+			<hive.jdbc.url>jdbc:hive2://172.21.2.140:10000/clzxdb</hive.jdbc.url>
+			<hive.jdbc.driver>org.apache.hive.jdbc.HiveDriver</hive.jdbc.driver>
+			<hive.jdbc.userName>crmpdstrategy1</hive.jdbc.userName>
+			<hive.jdbc.password>crmpdstrategy1</hive.jdbc.password>
+			<impala.jdbc.url>jdbc:hive2://134.64.12.82:21051/;auth=ldap</impala.jdbc.url>
+			<impala.jdbc.driver>org.apache.hive.jdbc.HiveDriver</impala.jdbc.driver>
+			<impala.jdbc.userName>stra_opr</impala.jdbc.userName>
+			<impala.jdbc.password>stra_opr</impala.jdbc.password>
+			<spark.sparksql.jdbc.url>jdbc:hive2://172.21.2.140:14000/clzxdb</spark.sparksql.jdbc.url>
+			<spark.sparksql.jdbc.driver>org.apache.hive.jdbc.HiveDriver</spark.sparksql.jdbc.driver>
+			<spark.sparksql.jdbc.userName>crmpdstrategy1</spark.sparksql.jdbc.userName>
+			<spark.sparksql.jdbc.password>crmpdstrategy1</spark.sparksql.jdbc.password>
+  			<batchPushSender>com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$BatchPushSender</batchPushSender>
+  			<proxyDataSelector>com.sitech.strategy.persist.capacity.impl.ProxyDataSelector</proxyDataSelector>
+  		</properties>
+  	</profile>
+  	
+  	<profile>
+  		<id>jlmobtest</id>
+  		<properties> 
+			<system.app.type>${sys}</system.app.type> 
+			<system.env>test</system.env> 
+			<call.service.code>utf-8</call.service.code> 
+			<datasource.type>oracle</datasource.type>
+  			<db.driver>oracle.jdbc.driver.OracleDriver</db.driver>
+  			<db.username>dbstraopr</db.username>
+  			<db.password>dbstraopr!123</db.password>
+  			<db.url>jdbc:oracle:thin:@10.163.106.14:1521:tmanadb</db.url>
+  			<db.ds>
+  				<![CDATA[
+	  				<bean id="dataSourceA1" class="com.sitech.jcf.core.datasource.BasicDataSource">
+				  		<property name="driverClassName"   	value="${DBCP.DataSource.ijdbc.driver}" />
+						<property name="url"               	value="${DBCP.DataSource.ijdbc.url}" /> 
+						<property name="username"          	value="${DBCP.DataSource.ijdbc.username}" />
+						<property name="password"          	value="${DBCP.DataSource.ijdbc.password}" />
+						<property name="maxActive"         	value="${DBCP.DataSource.ijdbc.maxactive}" />
+						<property name="maxIdle"           	value="${DBCP.DataSource.ijdbc.maxIdle}" />
+						<property name="maxWait"           	value="${DBCP.DataSource.ijdbc.maxwait}" />
+						<property name="testWhileIdle" 		value="${DBCP.DataSource.ijdbc.testWhileIdle}" />
+						<property name="validationQuery" 	value="${DBCP.DataSource.ijdbc.validationQuery}"/>
+						<property name="initialSize" 		value="${DBCP.DataSource.ijdbc.initialSize}"/>
+						<property name="defaultAutoCommit" 	value="true" />
+					</bean>
+				]]>
+			</db.ds>
+			<security.kerberos>false</security.kerberos>
+			<smpp.isLoad>false</smpp.isLoad> 
+			<hbase.isLoad>true</hbase.isLoad> 
+			<hive.isLoad>true</hive.isLoad> 
+			<impala.isLoad>false</impala.isLoad> 
+			<spark.isLoad>true</spark.isLoad> 
+			<kafka.producer.broker.list>10.163.106.190:9092,10.163.106.191:9092,10.163.106.192:9092</kafka.producer.broker.list>
+			<redis.host>10.163.106.190:8888 10.163.106.191:8888 10.163.106.192:8888</redis.host>
+			<hbase.zookeeper.quorum>10.163.106.195,10.163.106.196,10.163.106.197</hbase.zookeeper.quorum> 
+			<hbase.zookeeper.property.clientPort>9501</hbase.zookeeper.property.clientPort> 
+			<hbase.zookeeper.znode.parent>/hbase</hbase.zookeeper.znode.parent> 
+			<hive.jdbc.url>jdbc:hive2://10.163.106.198:10000/clzxdb</hive.jdbc.url> 
+			<hive.jdbc.driver>org.apache.hive.jdbc.HiveDriver</hive.jdbc.driver> 
+			<hive.jdbc.userName>strategyapp</hive.jdbc.userName> 
+			<hive.jdbc.password>strategyapp!123</hive.jdbc.password> 
+			<impala.jdbc.url>jdbc:hive2://134.64.12.82:21051/;auth=ldap</impala.jdbc.url> 
+			<impala.jdbc.driver>org.apache.hive.jdbc.HiveDriver</impala.jdbc.driver> 
+			<impala.jdbc.userName>stra_opr</impala.jdbc.userName> 
+			<impala.jdbc.password>stra_opr</impala.jdbc.password> 
+			<spark.sparksql.jdbc.url>jdbc:hive2://10.163.106.198:10001/clzxdb</spark.sparksql.jdbc.url> 
+			<spark.sparksql.jdbc.driver>org.apache.hive.jdbc.HiveDriver</spark.sparksql.jdbc.driver> 
+			<spark.sparksql.jdbc.userName>strategyapp</spark.sparksql.jdbc.userName> 
+			<spark.sparksql.jdbc.password>strategyapp!123</spark.sparksql.jdbc.password> 
+			<batchPushSender>com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$BatchPushSender</batchPushSender>
+			<proxyDataSelector>com.sitech.strategy.persist.capacity.impl.ProxyDataSelectorByJLMob</proxyDataSelector>
+			<proceMsgDML>com.sitech.strategy.persist.capacity.impl.ProceMsgDMLByIDMM</proceMsgDML>
+		</properties>
+		<activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+  	</profile>
+  	<profile>
+  		<id>jlmobprod</id>
+  		<properties> 
+			<system.app.type>${sys}</system.app.type> 
+			<system.env>prod</system.env> 
+			<call.service.code>utf-8</call.service.code> 
+			<datasource.type>oracle</datasource.type>
+			<AppServer.DataSource.ijdbc.orajndi>MANA1_DBSTRAOPR</AppServer.DataSource.ijdbc.orajndi>
+  			<INITIAL_CONTEXT_FACTORY>weblogic.jndi.WLInitialContextFactory</INITIAL_CONTEXT_FACTORY>
+  			<DefaultDataSourceName>ijdbc</DefaultDataSourceName>
+  			<default.db.class>oracle</default.db.class>
+  			<default.db.class.impl>com.sitech.jcf.ijdbc.support.OracleSqlBuilder</default.db.class.impl>
+			<db.ds> 
+				<![CDATA[ 
+					<bean id="dataSourceA1" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+						<property name="jndiName"> 
+						<value>${AppServer.DataSource.ijdbc.orajndi}</value> 
+						</property> 
+						<property name="jndiEnvironment"> 
+						<props> 
+						<prop key="java.naming.factory.initial">${INITIAL_CONTEXT_FACTORY}</prop> 
+						<prop key="java.naming.provider.url">${DEFAULT_PROVIDER_URL}</prop> 
+						</props> 
+						</property> 
+					</bean> 
+				]]> 
+			</db.ds>
+			<security.kerberos>false</security.kerberos>
+			<smpp.isLoad>false</smpp.isLoad> 
+			<hbase.isLoad>true</hbase.isLoad> 
+			<hive.isLoad>true</hive.isLoad> 
+			<impala.isLoad>false</impala.isLoad> 
+			<spark.isLoad>true</spark.isLoad> 
+			<kafka.producer.broker.list>10.163.104.36:2181,10.163.104.37:2181,10.163.104.38:2181</kafka.producer.broker.list> 
+			<redis.host>10.163.104.46:8888 10.163.104.47:8888 10.163.104.48:8888 10.163.104.49:8888 10.163.104.50:8888</redis.host> 
+			<hbase.zookeeper.quorum>10.163.104.66,10.163.104.67,10.163.104.68</hbase.zookeeper.quorum> 
+			<hbase.zookeeper.property.clientPort>9501</hbase.zookeeper.property.clientPort> 
+			<hbase.zookeeper.znode.parent>/hbase</hbase.zookeeper.znode.parent> 
+			<hive.jdbc.url>jdbc:hive2://10.163.104.71:10000/clzxdb</hive.jdbc.url> 
+			<hive.jdbc.driver>org.apache.hive.jdbc.HiveDriver</hive.jdbc.driver> 
+			<hive.jdbc.userName>straapp</hive.jdbc.userName> 
+			<hive.jdbc.password>Xtpt!123</hive.jdbc.password> 
+			<impala.jdbc.url>jdbc:hive2://134.64.12.82:21051/;auth=ldap</impala.jdbc.url> 
+			<impala.jdbc.driver>org.apache.hive.jdbc.HiveDriver</impala.jdbc.driver> 
+			<impala.jdbc.userName>stra_opr</impala.jdbc.userName> 
+			<impala.jdbc.password>stra_opr</impala.jdbc.password> 
+			<spark.sparksql.jdbc.url>jdbc:hive2://10.163.104.69:10000/clzxdb</spark.sparksql.jdbc.url> 
+			<spark.sparksql.jdbc.driver>org.apache.hive.jdbc.HiveDriver</spark.sparksql.jdbc.driver> 
+			<spark.sparksql.jdbc.userName>straapp</spark.sparksql.jdbc.userName> 
+			<spark.sparksql.jdbc.password>Xtpt!123</spark.sparksql.jdbc.password> 
+			<batchPushSender>com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$BatchPushSender</batchPushSender>
+			<proxyDataSelector>com.sitech.strategy.persist.capacity.impl.ProxyDataSelectorByJLMob</proxyDataSelector>
+			<proceMsgDML>com.sitech.strategy.persist.capacity.impl.ProceMsgDMLByIDMM</proceMsgDML>
+		</properties>
+  	</profile>
+	<profile>
+  		<id>jlmobgray</id>
+  		<properties> 
+			<system.app.type>${sys}</system.app.type> 
+			<system.env>prod</system.env> 
+			<call.service.code>utf-8</call.service.code> 
+			<datasource.type>oracle</datasource.type>
+			<AppServer.DataSource.ijdbc.orajndi>MANA1_DBSTRAOPR</AppServer.DataSource.ijdbc.orajndi>
+  			<INITIAL_CONTEXT_FACTORY>weblogic.jndi.WLInitialContextFactory</INITIAL_CONTEXT_FACTORY>
+  			<DefaultDataSourceName>ijdbc</DefaultDataSourceName>
+  			<default.db.class>oracle</default.db.class>
+  			<default.db.class.impl>com.sitech.jcf.ijdbc.support.OracleSqlBuilder</default.db.class.impl>
+			<db.ds> 
+				<![CDATA[ 
+					<bean id="dataSourceA1" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+						<property name="jndiName"> 
+						<value>${AppServer.DataSource.ijdbc.orajndi}</value> 
+						</property> 
+						<property name="jndiEnvironment"> 
+						<props> 
+						<prop key="java.naming.factory.initial">${INITIAL_CONTEXT_FACTORY}</prop> 
+						<prop key="java.naming.provider.url">${DEFAULT_PROVIDER_URL}</prop> 
+						</props> 
+						</property> 
+					</bean> 
+				]]> 
+			</db.ds>
+			<security.kerberos>false</security.kerberos>
+			<smpp.isLoad>false</smpp.isLoad> 
+			<hbase.isLoad>true</hbase.isLoad> 
+			<hive.isLoad>true</hive.isLoad> 
+			<impala.isLoad>false</impala.isLoad> 
+			<spark.isLoad>true</spark.isLoad> 
+			<kafka.producer.broker.list>10.162.200.18:1234</kafka.producer.broker.list>  
+			<redis.host>10.163.106.190:8888 10.163.106.191:8888 10.163.106.192:8888</redis.host>
+			<hbase.zookeeper.quorum>10.163.104.66,10.163.104.67,10.163.104.68</hbase.zookeeper.quorum> 
+			<hbase.zookeeper.property.clientPort>9501</hbase.zookeeper.property.clientPort> 
+			<hbase.zookeeper.znode.parent>/hbase</hbase.zookeeper.znode.parent> 
+			<hive.jdbc.url>jdbc:hive2://10.163.104.71:10000/clzxdb</hive.jdbc.url> 
+			<hive.jdbc.driver>org.apache.hive.jdbc.HiveDriver</hive.jdbc.driver> 
+			<hive.jdbc.userName>straapp</hive.jdbc.userName> 
+			<hive.jdbc.password>Xtpt!123</hive.jdbc.password> 
+			<impala.jdbc.url>jdbc:hive2://134.64.12.82:21051/;auth=ldap</impala.jdbc.url> 
+			<impala.jdbc.driver>org.apache.hive.jdbc.HiveDriver</impala.jdbc.driver> 
+			<impala.jdbc.userName>stra_opr</impala.jdbc.userName> 
+			<impala.jdbc.password>stra_opr</impala.jdbc.password> 
+			<spark.sparksql.jdbc.url>jdbc:hive2://10.163.104.69:10000/clzxdb</spark.sparksql.jdbc.url> 
+			<spark.sparksql.jdbc.driver>org.apache.hive.jdbc.HiveDriver</spark.sparksql.jdbc.driver> 
+			<spark.sparksql.jdbc.userName>straapp</spark.sparksql.jdbc.userName> 
+			<spark.sparksql.jdbc.password>Xtpt!123</spark.sparksql.jdbc.password> 
+			<batchPushSender>com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$BatchPushSender</batchPushSender>
+			<proxyDataSelector>com.sitech.strategy.persist.capacity.impl.ProxyDataSelectorByJLMob</proxyDataSelector>
+			<proceMsgDML>com.sitech.strategy.persist.capacity.impl.ProceMsgDMLByIDMM</proceMsgDML>
+		</properties>
+  	</profile>
+  </profiles>
+</project>

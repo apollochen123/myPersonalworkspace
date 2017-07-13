@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmQuestionNaireInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		QUESTION_ID AS "questionId",
+		PRODUCT_ID AS "productId",
+		PRODUCE_NAME AS "produceName",
+		CHANNEL_TYPE AS "channelType",
+		CONTENT AS "content",
+		STATUS_CODE AS "statusCode",
+		PRODUCT_NOTE AS "productNote",
+		EFF_TIME AS "effTime",
+		EXP_TIME AS "expTime",
+		PRODUCE_SRC AS "produceSrc"
+	FROM rm_questionnaire_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="productId" prepend="and">
+				<isNotEmpty property="productId">
+					PRODUCT_ID = #productId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="questionId" prepend="and">
+				<isNotEmpty property="questionId">
+					QUESTION_ID = #questionId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	
+	<select id="selectRmQuestionNaireInfoById" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE QUESTION_ID = #questionId#
+	</select>
+
+	<select id="selectRmQuestionNaireList" parameterClass="querFilter" resultClass="java.util.HashMap">
+	   SELECT  
+		QUESTION_ID AS "questionId",
+		PRODUCT_ID AS "productId",
+		PRODUCE_NAME AS "produceName",
+		CHANNEL_TYPE AS "channelType",
+		CONTENT AS "content",
+		EFF_TIME AS "effTime",
+		EXP_TIME AS "expTime"
+	   FROM rm_questionnaire_info
+	   WHERE status_code='0'
+			<isNotNull property="dbType">
+				<isNotEmpty property="dbType">
+
+					<isEqual property="dbType" compareValue="mysql">
+						<isNotNull property="keyWords" prepend="and">
+							<isNotEmpty property="keyWords">
+								(
+								<iterate open="" close="" conjunction="or" property="keyWords" > 
+				           		  PRODUCE_NAME like concat('%',#keyWords[]#,'%')
+				           		</iterate>
+				           		<iterate open="or" close="" conjunction="or" property="keyWords" > 
+				           		  PRODUCT_NOTE like concat('%',#keyWords[]#,'%')
+				           		</iterate>
+				           		)
+							</isNotEmpty>
+						</isNotNull>
+		            </isEqual>
+		            		            
+				</isNotEmpty>
+			</isNotNull>		
+			<isNotNull property="channelType" prepend="and">
+				<isNotEmpty property="channelType">
+					CHANNEL_TYPE = #channelType#
+				</isNotEmpty>
+			</isNotNull>		
+ 
+	</select>
+	
+	<select id="selectMarketCaseAndContentList" parameterClass="querFilter" resultClass="java.util.HashMap">
+		   SELECT distinct a.parent_component_id as "marketCaseId",
+		      f.content_par_value as "contentParValue"
+		    from rm_relation_rel a left join rm_relation_rel b on a.rel_id = b.parent_rel_id 
+		    left join rm_relation_rel c on b.rel_id = c.parent_rel_id  
+		    left join rm_relation_rel d on c.rel_id = d.parent_rel_id  ,
+		    rm_marketcase_info e ,rm_contentdetail_info f
+		   WHERE a.parent_component_id = e.market_case_id 
+		    and b.component_type = '03' 
+		    and c.component_type = '04'
+		    and d.component_type = '05'
+		    and d.component_id = f.content_id
+			and e.STATUS_CODE = '04'
+			and <![CDATA[ e.START_TIME <= #sysDate# and e.END_TIME>= #sysDate# ]]>
+			<isNotNull property="contentParCode" prepend="and">
+				<isNotEmpty property="contentParCode">
+					f.content_par_code = #contentParCode#
+				</isNotEmpty>
+			</isNotNull>
+	</select>
+		
+	<insert id="insertRmQuestionNaireInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_questionnaire_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="questionId" prepend=",">
+			<isNotEmpty property="questionId">
+				QUESTION_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productId" prepend=",">
+			<isNotEmpty property="productId">
+				PRODUCT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceName" prepend=",">
+			<isNotEmpty property="produceName">
+				PRODUCE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+			<isNotEmpty property="channelType">
+				CHANNEL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="content" prepend=",">
+			<isNotEmpty property="content">
+				CONTENT
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productNote" prepend=",">
+			<isNotEmpty property="productNote">
+				PRODUCT_NOTE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+			<isNotEmpty property="effTime">
+				EFF_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expTime" prepend=",">
+			<isNotEmpty property="expTime">
+				EXP_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceSrc" prepend=",">
+			<isNotEmpty property="produceSrc">
+				PRODUCE_SRC
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="questionId" prepend=",">
+			<isNotEmpty property="questionId">
+				#questionId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productId" prepend=",">
+			<isNotEmpty property="productId">
+				#productId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceName" prepend=",">
+			<isNotEmpty property="produceName">
+				#produceName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+			<isNotEmpty property="channelType">
+				#channelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="content" prepend=",">
+			<isNotEmpty property="content">
+				#content#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productNote" prepend=",">
+			<isNotEmpty property="productNote">
+				#productNote#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+			<isNotEmpty property="effTime">
+				#effTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expTime" prepend=",">
+			<isNotEmpty property="expTime">
+				#expTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceSrc" prepend=",">
+			<isNotEmpty property="produceSrc">
+				#produceSrc#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+		)
+	</insert>
+	
+	<update id="updateRmQuestionNaireInfo" parameterClass="java.util.Map">
+	UPDATE rm_questionnaire_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="productId" prepend=",">
+			<isNotEmpty property="productId">
+				PRODUCT_ID = #productId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceName" prepend=",">
+			<isNotEmpty property="produceName">
+				PRODUCE_NAME = #produceName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+			<isNotEmpty property="channelType">
+				CHANNEL_TYPE = #channelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="content" prepend=",">
+			<isNotEmpty property="content">
+				CONTENT = #content#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE = #statusCode# 
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productNote" prepend=",">
+			<isNotEmpty property="productNote">
+				PRODUCT_NOTE = #productNote#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+			<isNotEmpty property="effTime">
+				EFF_TIME = #effTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expTime" prepend=",">
+			<isNotEmpty property="expTime">
+				EXP_TIME = #expTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceSrc" prepend=",">
+			<isNotEmpty property="produceSrc">
+				PRODUCE_SRC = #produceSrc#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend="WHERE">
+	<isNotNull property="questionId">
+			<isNotEmpty property="questionId">
+				QUESTION_ID = #questionId#
+			</isNotEmpty>
+	</isNotNull>
+	</dynamic>	
+	</update>
+</sqlMap>

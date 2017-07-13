@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmRolemenuRel">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		DISTINCT
+		ROLE_ID AS "roleId",
+		MENU_ID AS "menuId"	
+	FROM RM_ROLEMENU_REL
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="roleId" prepend="and">
+				<isNotEmpty property="roleId">
+					ROLE_ID = #roleId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="menuId" prepend="and">
+				<isNotEmpty property="menuId">
+					MENU_ID = #menuId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmRoleMenuRel" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="roleId" prepend="and">
+				<isNotEmpty property="roleId">
+					ROLE_ID = #roleId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<insert id="insertRmRoleMenuRel" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_ROLEMENU_REL
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="roleId" prepend=",">
+			<isNotEmpty property="roleId">
+				ROLE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuId" prepend=",">
+			<isNotEmpty property="menuId">
+				MENU_ID
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="roleId" prepend=",">
+			<isNotEmpty property="roleId">
+				#roleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuId" prepend=",">
+			<isNotEmpty property="menuId">
+				#menuId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmRoleMenuRel" parameterClass="java.util.Map">
+	UPDATE RM_ROLEMENU_REL
+	<dynamic prepend=" SET ">
+		<isNotNull property="roleId" prepend=",">
+		    <isNotEmpty property="roleId">
+			    ROLE_ID = #roleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuId" prepend=",">
+		    <isNotEmpty property="menuId">
+			    MENU_ID = #menuId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmRoleMenuRel" parameterClass="java.util.Map">
+	DELETE FROM RM_ROLEMENU_REL
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="roleId" prepend="and">
+				<isNotEmpty property="roleId">
+					ROLE_ID = #roleId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</delete>
+	
+	<select id="selectRmRoleMenuRelParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			ROLE_ID AS roleId,
+			MENU_ID AS menuId
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_ROLEMENU_REL $W$
+	</select>
+</sqlMap>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmChannelBussinessInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+
+	<select id="selectRmChannelBussinessInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT 
+			CHANNEL_TYPE AS "channelType",
+			SUM(TOUCH_NUM) AS "touchNum",
+			SUM(EXEC_NUM) AS "execNum"
+			from RM_CHANNELBUSSINESS_INFO
+		group by CHANNEL_TYPE order by CHANNEL_TYPE
+		
+	</select>
+	
+	
+	<select id="selectRmChannelBussinessInfoByRegionCode" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT 
+			CHANNEL_TYPE AS "channelType",
+			TOUCH_NUM AS "touchNum",
+			EXEC_NUM AS "execNum",
+			REGION_CODE AS "regionCode"
+			from RM_CHANNELBUSSINESS_INFO
+			where REGION_CODE = #regionCode#
+		    
+	
+	</select>
+	
+	
+</sqlMap>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/CRMPD_RTMarket/!svn/ver/10931/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/base
+END
+BaseEventEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/base/BaseEventEntity.java
+END
+BaseEventService.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/base/BaseEventService.java
+END
+BaseClass.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/CRMPD_RTMarket/!svn/ver/10931/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/base/BaseClass.java
+END

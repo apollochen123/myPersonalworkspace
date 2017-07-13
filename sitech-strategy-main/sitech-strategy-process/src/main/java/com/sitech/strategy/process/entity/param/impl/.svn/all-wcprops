@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/CRMPD_RTMarket/!svn/ver/11506/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/param/impl
+END
+CoupleBaceProcessParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/param/impl/CoupleBaceProcessParam.java
+END
+CustGroupProcessParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/param/impl/CustGroupProcessParam.java
+END
+LoadCacheProcessParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/CRMPD_RTMarket/!svn/ver/11499/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/param/impl/LoadCacheProcessParam.java
+END
+CoupleBackReceiverParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/CRMPD_RTMarket/!svn/ver/11506/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/param/impl/CoupleBackReceiverParam.java
+END
+TaskProcessParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/param/impl/TaskProcessParam.java
+END
+QuestionNaireProcessParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/param/impl/QuestionNaireProcessParam.java
+END

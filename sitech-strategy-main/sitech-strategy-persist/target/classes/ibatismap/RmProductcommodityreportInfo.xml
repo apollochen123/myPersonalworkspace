@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmProductCommodityReportInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		PRODUCTCOMMODITY_TYPE AS "productcommodityType",
+		PRODUCTCOMMODITY_ID AS "productCommodityId",
+		PRODUCTCOMMODITY_NAME AS "productCommodityName",
+		EFF_TIME AS "effTime",
+		CITY_ID AS "cityId",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = cityId ) AS "cityIdName",
+		REACH_NUM AS "reachNum",
+		ORDER_NUM_D AS "orderNumD",
+		ORDER_NUM_M AS "orderNumM",
+		REPORT_DATE AS "reportDate"	
+	FROM rm_productcommodityreport_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="productcommodityType" prepend="and">
+				<isNotEmpty property="productcommodityType">
+					PRODUCTCOMMODITY_TYPE = #productcommodityType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="productCommodityId" prepend="and">
+				<isNotEmpty property="productCommodityId">
+					PRODUCTCOMMODITY_ID = #productCommodityId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="productCommodityName" prepend="and">
+				<isNotEmpty property="productCommodityName">
+					PRODUCTCOMMODITY_NAME = #productCommodityName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="effTimeStart" prepend="and">
+				<isNotEmpty property="effTimeStart">
+					<![CDATA[ EFF_TIME >= #effTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="effTimeEnd" prepend="and">
+				<isNotEmpty property="effTimeEnd">
+					<![CDATA[ EFF_TIME <= #effTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="cityId" prepend="and">
+				<isNotEmpty property="cityId">
+					CITY_ID = #cityId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="reachNum" prepend="and">
+				<isNotEmpty property="reachNum">
+					REACH_NUM = #reachNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="orderNumD" prepend="and">
+				<isNotEmpty property="orderNumD">
+					ORDER_NUM_D = #orderNumD#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="orderNumM" prepend="and">
+				<isNotEmpty property="orderNumM">
+					ORDER_NUM_M = #orderNumM#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="reportDate" prepend="and">
+				<isNotEmpty property="reportDate">
+					REPORT_DATE = #reportDate#
+				</isNotEmpty>
+			</isNotNull>
+
+	</dynamic>
+	</sql>
+
+	<select id="selectRmProductCommodityReportInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		PRODUCTCOMMODITY_TYPE AS "productcommodityType",
+		PRODUCTCOMMODITY_ID AS "productCommodityId",
+		PRODUCTCOMMODITY_NAME AS "productCommodityName",
+		EFF_TIME AS "effTime",
+		CITY_ID AS "cityId",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = cityId ) AS "cityIdName",
+		REACH_NUM AS "reachNum",
+		ORDER_NUM_D AS "orderNumD",
+		ORDER_NUM_M AS "orderNumM",
+		REPORT_DATE AS "reportDate"	
+	FROM rm_productcommodityreport_info
+			<dynamic prepend=" WHERE ">
+			<isNull property="keyWords">
+				<isNotNull property="productCommodityId" prepend="OR">
+					<isNotEmpty property="productCommodityId">
+						PRODUCTCOMMODITY_ID = #productCommodityId#
+					</isNotEmpty>
+				</isNotNull>
+				<isNotNull property="productCommodityName" prepend="OR">
+					<isNotEmpty property="productCommodityName">
+						PRODUCTCOMMODITY_NAME = #productCommodityName#
+					</isNotEmpty>
+				</isNotNull>			
+				<isNotNull property="reportDate" prepend="OR">
+					<isNotEmpty property="reportDate">
+						REPORT_DATE = #reportDate#
+					</isNotEmpty>
+				</isNotNull>			
+			</isNull>
+
+			<isNotNull property="keyWords">
+			  <isNotEmpty property="keyWords">
+				<isNotNull property="dbType">
+					<isNotEmpty property="dbType">					
+						<isEqual property="dbType" compareValue="mysql">
+									
+									<isNotNull property="productCommodityId" prepend="AND">
+										<isNotEmpty property="productCommodityId">
+											PRODUCTCOMMODITY_ID like concat('%',#productCommodityId#,'%')
+										</isNotEmpty>
+									</isNotNull>
+									<isNotNull property="productCommodityName" prepend="AND">
+										<isNotEmpty property="productCommodityName">
+											PRODUCTCOMMODITY_NAME like concat('%',#productCommodityName#,'%')
+										</isNotEmpty>
+									</isNotNull>
+					           		<isNotNull property="reportDate" prepend="AND">
+										<isNotEmpty property="reportDate">
+											REPORT_DATE like concat('%',#reportDate#,'%')
+										</isNotEmpty>
+									</isNotNull>
+			            </isEqual>			            		            
+					</isNotEmpty>
+				</isNotNull>			  
+			  </isNotEmpty>
+			</isNotNull>	
+			</dynamic>  
+			
+			
+	</select>
+	
+	
+	<select id="selectRmProductCommodityReportInfoCount"  parameterClass="querFilter" resultClass="java.lang.String">
+		SELECT
+			count(1) as "total"	
+		FROM rm_productcommodityreport_info
+		<dynamic prepend=" WHERE ">
+			<isNull property="keyWords">
+				<isNotNull property="productCommodityId" prepend="OR">
+					<isNotEmpty property="productCommodityId">
+						PRODUCTCOMMODITY_ID = #productCommodityId#
+					</isNotEmpty>
+				</isNotNull>
+				<isNotNull property="productCommodityName" prepend="OR">
+					<isNotEmpty property="productCommodityName">
+						PRODUCTCOMMODITY_NAME = #productCommodityName#
+					</isNotEmpty>
+				</isNotNull>			
+				<isNotNull property="cityId" prepend="OR">
+					<isNotEmpty property="cityId">
+						CITY_ID = #cityId#
+					</isNotEmpty>
+				</isNotNull>		
+				<isNotNull property="reportDate" prepend="OR">
+					<isNotEmpty property="reportDate">
+						REPORT_DATE = #reportDate#
+					</isNotEmpty>
+				</isNotNull>			
+			</isNull>
+			</dynamic>
+	</select>
+	
+	<select id="selectRmProductCommodityReportInfoByProvince"  parameterClass="querFilter" resultClass="java.util.HashMap">
+	SELECT 
+	    PRODUCTCOMMODITY_TYPE AS "productcommodityType",
+		PRODUCTCOMMODITY_ID AS "productCommodityId",
+		PRODUCTCOMMODITY_NAME AS "productCommodityName",
+		'全省' as "cityIdName", 
+		<!-- CITY_ID as "cityId", 
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = cityId ) AS "cityIdName", -->
+		EFF_TIME AS "effTime",
+		REPORT_DATE AS "reportDate"	,
+		SUM(REACH_NUM) As "reachNum", 
+		SUM(ORDER_NUM_D) As "orderNumD",
+		SUM(ORDER_NUM_M) As "orderNumM"
+	FROM rm_productcommodityreport_info
+	<dynamic prepend=" WHERE ">
+			<isNull property="keyWords">
+				<isNotNull property="productCommodityId" prepend="OR">
+					<isNotEmpty property="productCommodityId">
+						PRODUCTCOMMODITY_ID = #productCommodityId#
+					</isNotEmpty>
+				</isNotNull>
+				<isNotNull property="productCommodityName" prepend="OR">
+					<isNotEmpty property="productCommodityName">
+						PRODUCTCOMMODITY_NAME = #productCommodityName#
+					</isNotEmpty>
+				</isNotNull>			
+				<isNotNull property="reportDate" prepend="OR">
+					<isNotEmpty property="reportDate">
+						REPORT_DATE = #reportDate#
+					</isNotEmpty>
+				</isNotNull>			
+			</isNull>
+
+			<isNotNull property="keyWords">
+			  <isNotEmpty property="keyWords">
+				<isNotNull property="dbType">
+					<isNotEmpty property="dbType">					
+						<isEqual property="dbType" compareValue="mysql">
+									
+									<isNotNull property="productCommodityId" prepend="AND">
+										<isNotEmpty property="productCommodityId">
+											PRODUCTCOMMODITY_ID like concat('%',#productCommodityId#,'%')
+										</isNotEmpty>
+									</isNotNull>
+									<isNotNull property="productCommodityName" prepend="AND">
+										<isNotEmpty property="productCommodityName">
+											PRODUCTCOMMODITY_NAME like concat('%',#productCommodityName#,'%')
+										</isNotEmpty>
+									</isNotNull>
+					           		<isNotNull property="reportDate" prepend="AND">
+										<isNotEmpty property="reportDate">
+											REPORT_DATE like concat('%',#reportDate#,'%')
+										</isNotEmpty>
+									</isNotNull>
+			            </isEqual>			            		            
+					</isNotEmpty>
+				</isNotNull>			  
+			  </isNotEmpty>
+			</isNotNull>	
+			</dynamic>  
+	GROUP BY PRODUCTCOMMODITY_TYPE,PRODUCTCOMMODITY_ID,PRODUCTCOMMODITY_NAME,EFF_TIME,REPORT_DATE
+	</select> 
+	
+	
+	<insert id="insertRmProductCommodityReportInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_productcommodityreport_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="productcommodityType" prepend=",">
+			<isNotEmpty property="productcommodityType">
+				PRODUCTCOMMODITY_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityId" prepend=",">
+			<isNotEmpty property="productCommodityId">
+				PRODUCTCOMMODITY_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityName" prepend=",">
+			<isNotEmpty property="productCommodityName">
+				PRODUCTCOMMODITY_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+			<isNotEmpty property="effTime">
+				EFF_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cityId" prepend=",">
+			<isNotEmpty property="cityId">
+				CITY_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reachNum" prepend=",">
+			<isNotEmpty property="reachNum">
+				REACH_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNumD" prepend=",">
+			<isNotEmpty property="orderNumD">
+				ORDER_NUM_D
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNumM" prepend=",">
+			<isNotEmpty property="orderNumM">
+				ORDER_NUM_M
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reportDate" prepend=",">
+			<isNotEmpty property="reportDate">
+				REPORT_DATE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="productcommodityType" prepend=",">
+			<isNotEmpty property="productcommodityType">
+				#productcommodityType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityId" prepend=",">
+			<isNotEmpty property="productCommodityId">
+				#productCommodityId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityName" prepend=",">
+			<isNotEmpty property="productCommodityName">
+				#productCommodityName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+			<isNotEmpty property="effTime">
+				#effTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cityId" prepend=",">
+			<isNotEmpty property="cityId">
+				#cityId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reachNum" prepend=",">
+			<isNotEmpty property="reachNum">
+				#reachNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNumD" prepend=",">
+			<isNotEmpty property="orderNumD">
+				#orderNumD#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNumM" prepend=",">
+			<isNotEmpty property="orderNumM">
+				#orderNumM#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reportDate" prepend=",">
+			<isNotEmpty property="reportDate">
+				#reportDate#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmProductcommodityreportInfo" parameterClass="java.util.Map">
+	UPDATE rm_productcommodityreport_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="productcommodityType" prepend=",">
+		    <isNotEmpty property="productcommodityType">
+			    PRODUCTCOMMODITY_TYPE = #productcommodityType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityId" prepend=",">
+		    <isNotEmpty property="productCommodityId">
+			    PRODUCTCOMMODITY_ID = #productCommodityId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productCommodityName" prepend=",">
+		    <isNotEmpty property="productCommodityName">
+			    PRODUCTCOMMODITY_NAME = #productCommodityName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+		    <isNotEmpty property="effTime">
+			    EFF_TIME = #effTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cityId" prepend=",">
+		    <isNotEmpty property="cityId">
+			    CITY_ID = #cityId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reachNum" prepend=",">
+		    <isNotEmpty property="reachNum">
+			    REACH_NUM = #reachNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNumD" prepend=",">
+		    <isNotEmpty property="orderNumD">
+			    ORDER_NUM_D = #orderNumD#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNumM" prepend=",">
+		    <isNotEmpty property="orderNumM">
+			    ORDER_NUM_M = #orderNumM#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reportDate" prepend=",">
+		    <isNotEmpty property="reportDate">
+			    REPORT_DATE = #reportDate#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmProductcommodityreportInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_productcommodityreport_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmProductcommodityreportInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			PRODUCTCOMMODITY_TYPE AS productcommodityType,
+			PRODUCTCOMMODITY_ID AS productCommodityId,
+			PRODUCTCOMMODITY_NAME AS productCommodityName,
+			EFF_TIME AS effTime,
+			CITY_ID AS cityId,
+			REACH_NUM AS reachNum,
+			ORDER_NUM_D AS orderNumD,
+			ORDER_NUM_M AS orderNumM,
+			REPORT_DATE AS reportDate
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_productcommodityreport_info $W$
+	</select>
+</sqlMap>

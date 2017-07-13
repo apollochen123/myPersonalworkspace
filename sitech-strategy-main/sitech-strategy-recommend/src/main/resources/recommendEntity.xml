@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">	
+	<bean id="batchTaskRecommendEntity" class="${batchTaskRecommendEntity}">
+		<property name = "batchPush" ref = "batchPush"></property>
+	</bean>
+	<bean id="manageRecommendEntity" class="com.sitech.strategy.recommend.entity.impl.ManageRecommendEntity">
+		<property name = "assemblyServiceStructure" ref = "assemblyServiceStructure"></property>
+		<property name = "taskSelector" ref = "taskSelector"></property>
+	</bean>
+	<bean id="parseRecommendEntity" class="${parseRecommendEntity}">
+		<property name = "assemblyServiceStructure" ref = "assemblyServiceStructure"></property>
+		<property name = "channelTask" ref = "channelTask"></property>
+		<property name = "evaluate" ref = "evaluate"></property>
+		<property name = "eventTrigger" ref = "eventTrigger"></property>
+		<property name = "marketCase" ref = "marketCase"></property>
+		<property name = "recommedAlgo" ref = "recommedAlgo"></property>
+		<property name = "rule" ref ="rule"></property>
+		<property name = "user" ref ="user"></property>
+	</bean>
+	<bean id="testRecommendEntity" class="com.sitech.strategy.recommend.entity.impl.test.TestRecommendEntity">
+		<property name = "testInsertor" ref = "testInsertor"></property>
+		<property name = "testSelector" ref = "testSelector"></property>
+	</bean>
+	
+	<bean id="batchEventTaskParam" class="com.sitech.strategy.recommend.entity.param.impl.BatchEventTaskParam">
+	</bean>	
+	<bean id="batchPushProdTaskParam" class="com.sitech.strategy.recommend.entity.param.impl.BatchPushProdTaskParam">
+	</bean>	
+	
+	<bean id="batchPushTaskParam" class="${batchPushTaskParam}">
+	</bean>	
+	<bean id="eventReceiverParam" class="${eventReceiverParam}">
+		<property name = "user" ref ="user"></property>
+	</bean>	 
+	<bean id="manageRecommendParam" class="com.sitech.strategy.recommend.entity.param.impl.ManageRecommendParam">
+	</bean>	 
+	<bean id="parseRecommendParam" class="${parseRecommendParam}">
+		<property name = "channelPojo" ref ="channelPojo"></property>
+		<property name = "user" ref ="user"></property>
+	</bean>
+	<bean id="testRecommendParam" class="com.sitech.strategy.recommend.entity.param.impl.test.TestRecommendParam">
+	</bean>
+	<bean id="strategyAnalysisParam" class="com.sitech.strategy.recommend.entity.param.impl.StrategyAnalysisParam">
+	</bean>
+</beans>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://impl.webservice.service.manage.strategy.sitech.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://impl.webservice.service.manage.strategy.sitech.com">
+	<wsdl:types>
+		<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://impl.webservice.service.manage.strategy.sitech.com">
+			<xs:element name="analysisStrategyForEBUS">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlStr" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="analysisStrategyForEBUSResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="analysisStrategyForEBUSRequest">
+		<wsdl:part name="parameters" element="ns:analysisStrategyForEBUS"/>
+	</wsdl:message>
+	<wsdl:message name="analysisStrategyForEBUSResponse">
+		<wsdl:part name="parameters" element="ns:analysisStrategyForEBUSResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="StrategyAnalysisServicePortType">
+		<wsdl:operation name="analysisStrategyForEBUS">
+			<wsdl:input message="ns:analysisStrategyForEBUSRequest" wsaw:Action="urn:analysisStrategyForEBUS"/>
+			<wsdl:output message="ns:analysisStrategyForEBUSResponse" wsaw:Action="urn:analysisStrategyForEBUSResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="StrategyAnalysisServiceSoap11Binding" type="ns:StrategyAnalysisServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="analysisStrategyForEBUS">
+			<soap:operation soapAction="urn:analysisStrategyForEBUS" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="StrategyAnalysisServiceSoap12Binding" type="ns:StrategyAnalysisServicePortType">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="analysisStrategyForEBUS">
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="StrategyAnalysisServiceHttpBinding" type="ns:StrategyAnalysisServicePortType">
+		<http:binding verb="POST"/>
+		<wsdl:operation name="analysisStrategyForEBUS">
+			<http:operation location="analysisStrategyForEBUS"/>
+			<wsdl:input>
+				<mime:content part="parameters" type="application/xml"/>
+			</wsdl:input>
+			<wsdl:output>
+				<mime:content part="parameters" type="application/xml"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="StrategyAnalysisService">
+		<wsdl:port name="StrategyAnalysisServiceHttpSoap11Endpoint" binding="ns:StrategyAnalysisServiceSoap11Binding">
+			<soap:address location="http://10.31.101.191:8090/sitech-strategy-site/services/StrategyAnalysisService.StrategyAnalysisServiceHttpSoap11Endpoint/"/>
+		</wsdl:port>
+		<wsdl:port name="StrategyAnalysisServiceHttpSoap12Endpoint" binding="ns:StrategyAnalysisServiceSoap12Binding">
+			<soap12:address location="http://10.31.101.191:8090/sitech-strategy-site/services/StrategyAnalysisService.StrategyAnalysisServiceHttpSoap12Endpoint/"/>
+		</wsdl:port>
+		<wsdl:port name="StrategyAnalysisServiceHttpEndpoint" binding="ns:StrategyAnalysisServiceHttpBinding">
+			<http:address location="http://10.31.101.191:8090/sitech-strategy-site/services/StrategyAnalysisService.StrategyAnalysisServiceHttpEndpoint/"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:documentation>StrategyAnalysisService</wsdl:documentation>
+</wsdl:definitions>

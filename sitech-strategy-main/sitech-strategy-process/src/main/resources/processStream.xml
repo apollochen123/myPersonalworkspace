@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="coupleBackReceiver" class="com.sitech.strategy.process.stream.spark.kafka.CoupleBackReceiver">
+		<property name = "coupleBackProcessEntity" ref = "coupleBackProcessEntity"></property>
+		<property name = "coupleBackReceiverParam" ref = "coupleBackReceiverParam"></property>
+		<property name = "sparkAppProp" ref = "sparkAppProp"></property>
+	</bean>
+	
+	<bean id="kafkaTest" class="com.sitech.strategy.process.stream.spark.kafka.test.KafkaTest">
+		<property name = "sparkAppProp" ref = "sparkAppProp"></property>
+	</bean>
+	
+	<bean id="sparkStreamingTest" class="com.sitech.strategy.process.stream.spark.kafka.test.SparkStreamingTest">
+		<property name = "sparkAppProp" ref = "sparkAppProp"></property>
+		<property name = "sparkStreamingTestEntity" ref = "sparkStreamingTestEntity"></property>
+	</bean>
+	
+	<bean id="coupleBackReceiverIdmm" class="com.sitech.strategy.process.stream.idmm.CoupleBackReceiver">
+		<property name = "coupleBackProcessEntity" ref = "coupleBackProcessEntity"></property>
+		<property name = "coupleBackReceiverParam" ref = "coupleBackReceiverParam"></property>
+	</bean>	
+	
+	<bean id="prodChangeReceiverIdmm" class="com.sitech.strategy.process.stream.idmm.ProdChangeReceiver">
+		<property name = "coupleBackProcessEntity" ref = "coupleBackProcessEntity"></property>
+		<property name = "coupleBackReceiverParam" ref = "coupleBackReceiverParam"></property>
+	</bean>
+</beans>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="assemblyMsgStructure" class="${assemblyMsgStructure}">
+		<property name="shortMsgPojo" ref="shortMsgPojo"></property>
+		<property name="routePojo" ref="routePojo"></property>
+		<property name="msgTopic" ref="msgTopic"></property>
+	</bean>
+	<bean id="assemblyServiceStructure" class="com.sitech.strategy.common.pojo.impl.assemblyservicestructure.AssemblyServiceStructureByJson">
+	</bean>
+	<bean id="cacheKey" class="com.sitech.strategy.common.pojo.impl.cache.CacheKey">
+	</bean>
+	<bean id="channelPojo" class="${channelPojo}">
+		<property name="regionCodePojo" ref="regionCodePojo"></property>
+	</bean>
+	<bean id="hbaseQualifier" class="${hbaseQualifier}">
+	</bean>
+	<bean id="hbaseRowKey" class="${hbaseRowKey}">
+	</bean>
+	<bean id="hbaseTableName" class="${hbaseTableName}">
+	</bean>
+	<bean id="hiveDBName" class="${hiveDBName}">
+	</bean>
+	<bean id="hiveStatement" class="${hiveStatement}">
+	</bean>
+	<bean id="iBatisFields" class="com.sitech.strategy.common.pojo.impl.rdbms.IBatisFields">
+	</bean>
+	<bean id="iBatisQueryFilter" class="com.sitech.strategy.common.pojo.impl.rdbms.IBatisQueryFilter">
+	</bean>
+	<bean id="iBatisSqlMap" class="${iBatisSqlMap}">
+	</bean>
+	<bean id="marketCaseDetailPojo" class="com.sitech.strategy.common.pojo.impl.MarketCaseDetailPojo">
+	</bean>
+	<bean id="marketCaseCachePojo" class="com.sitech.strategy.common.pojo.impl.MarketCaseCachePojo">
+	</bean>
+	<bean id="msgTopic" class="${msgTopic}">
+	</bean>
+	<bean id="pagingDevice" class="com.sitech.strategy.common.pojo.impl.PagingDevice">
+	</bean>
+	<bean id="partitionPojo" class="${partitionPojo}">
+	</bean>
+	<bean id="positionPojo" class="com.sitech.strategy.common.pojo.impl.position.PositionPojo">
+	</bean>
+	<bean id="priorityPojo" class="${priorityPojo}">
+	</bean>
+	<bean id="queryFilter" class="com.sitech.strategy.common.pojo.impl.QueryFilter">
+	</bean>
+	<bean id="regionCodePojo" class="${regionCodePojo}">
+	</bean>
+	<bean id="resultItemPojo" class="com.sitech.strategy.common.pojo.impl.ResultItemPojo">
+	</bean>
+	<bean id="routePojo" class="${routePojo}">
+	</bean>
+	<bean id="shortMsgPojo" class="${shortMsgPojo}">
+	</bean>	
+	<bean id="sortParamer" class="com.sitech.strategy.common.pojo.impl.SortParamer">
+	</bean>
+	<bean id="sparkAppProp" class="com.sitech.strategy.common.pojo.impl.SparkAppProp">
+		<property name="msgTopic" ref="msgTopic"></property>
+	</bean>
+	<bean id="sparkStatement" class="${sparkStatement}">
+		<property name="hbaseTableName" ref="hbaseTableName"></property>
+		<property name="hiveDBName" ref="hiveDBName"></property>		
+	</bean>
+
+</beans>

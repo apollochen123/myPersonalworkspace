@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/CRMPD_RTMarket/!svn/ver/11797/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/hbase
+END
+HbaseTableName.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/11483/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/hbase/HbaseTableName.java
+END
+HbaseRowKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/11517/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/hbase/HbaseRowKey.java
+END
+HbaseQualifierByHBMob.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/hbase/HbaseQualifierByHBMob.java
+END
+HbaseTableNameByStraOpr.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/11483/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/hbase/HbaseTableNameByStraOpr.java
+END
+HbaseQualifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/11797/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/hbase/HbaseQualifier.java
+END
+HbaseRowKeyByHBMob.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/hbase/HbaseRowKeyByHBMob.java
+END

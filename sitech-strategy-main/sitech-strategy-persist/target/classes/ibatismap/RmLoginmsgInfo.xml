@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmLoginmsgInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		LOGIN_NO AS "loginNo",
+		LOGIN_NAME AS "loginName",
+		LEVEL_CODE AS "levelCode",
+		REGION_CODE AS "regionCode",
+		USER_ID AS "userId",
+		GROUP_ID AS "groupId",
+		GROUP_CODE AS "groupCode",
+		GROUP_NAME AS "groupName",
+		PHONE AS "phone",
+		PASSWORD AS "password"	
+	FROM RM_LOGINMSG_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+	
+			<isNotNull property="dbType">
+				<isNotEmpty property="dbType">
+				
+					<isEqual property="dbType" compareValue="oracle">
+						<isNotNull property="loginNo" prepend="and">
+							<isNotEmpty property="loginNo">
+								LOGIN_NO like '%'||#loginNo#||'%'
+							</isNotEmpty>
+						</isNotNull>
+						<isNotNull property="loginName" prepend="and">
+							<isNotEmpty property="loginName">
+							    LOGIN_NAME like '%'||#loginName#||'%'
+							</isNotEmpty>
+						</isNotNull>
+		            </isEqual>
+					<isEqual property="dbType" compareValue="mysql">
+						<isNotNull property="loginNo" prepend="and">
+							<isNotEmpty property="loginNo">
+								LOGIN_NO like concat('%',#loginNo#,'%')
+							</isNotEmpty>
+						</isNotNull>
+						<isNotNull property="loginName" prepend="and">
+							<isNotEmpty property="loginName">
+							    LOGIN_NAME like concat('%',#loginName#,'%')
+							</isNotEmpty>
+						</isNotNull>
+		            </isEqual>
+		            		            
+				</isNotEmpty>
+			</isNotNull>
+				
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="oldLoginPassword" prepend="and">
+				<isNotEmpty property="oldLoginPassword">
+					PASSWORD = #oldLoginPassword#
+				</isNotEmpty>
+			</isNotNull>			
+	</dynamic>
+	</sql>
+	<select id="selectRmLoginMsgInfoById" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE LOGIN_NO = #loginNo#
+	</select>
+
+	<select id="selectRmLoginMsgInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmLoginUserInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_LOGINMSG_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="loginNo" prepend=",">
+			<isNotEmpty property="loginNo">
+				LOGIN_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loginName" prepend=",">
+			<isNotEmpty property="loginName">
+				LOGIN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="levelCode" prepend=",">
+			<isNotEmpty property="levelCode">
+				LEVEL_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userId" prepend=",">
+			<isNotEmpty property="userId">
+				USER_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCode" prepend=",">
+			<isNotEmpty property="groupCode">
+				GROUP_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phone" prepend=",">
+			<isNotEmpty property="phone">
+				PHONE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="password" prepend=",">
+			<isNotEmpty property="password">
+				PASSWORD
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="loginNo" prepend=",">
+			<isNotEmpty property="loginNo">
+				#loginNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loginName" prepend=",">
+			<isNotEmpty property="loginName">
+				#loginName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="levelCode" prepend=",">
+			<isNotEmpty property="levelCode">
+				#levelCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userId" prepend=",">
+			<isNotEmpty property="userId">
+				#userId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				#groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCode" prepend=",">
+			<isNotEmpty property="groupCode">
+				#groupCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				#groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phone" prepend=",">
+			<isNotEmpty property="phone">
+				#phone#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="password" prepend=",">
+			<isNotEmpty property="password">
+				#password#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmLoginUserInfo" parameterClass="java.util.Map">
+	UPDATE RM_LOGINMSG_INFO
+	<dynamic prepend=" SET ">
+	   <!-- 注意:不能对 loginNo 主键进行set -->
+		<isNotNull property="loginName" prepend=",">
+		    <isNotEmpty property="loginName">
+			    LOGIN_NAME = #loginName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="levelCode" prepend=",">
+		    <isNotEmpty property="levelCode">
+			    LEVEL_CODE = #levelCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userId" prepend=",">
+		    <isNotEmpty property="userId">
+			    USER_ID = #userId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+		    <isNotEmpty property="groupId">
+			    GROUP_ID = #groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCode" prepend=",">
+		    <isNotEmpty property="groupCode">
+			    GROUP_CODE = #groupCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+		    <isNotEmpty property="groupName">
+			    GROUP_NAME = #groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phone" prepend=",">
+		    <isNotEmpty property="phone">
+			    PHONE = #phone#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loginPassword" prepend=",">
+		    <isNotEmpty property="loginPassword">
+			    PASSWORD = #loginPassword#
+			</isNotEmpty>
+		</isNotNull>		
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmLoginUserInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_LOGINMSG_INFO
+	WHERE LOGIN_NO = #loginNo#
+	</delete>
+
+	<delete id="deleteRmLoginUserInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_LOGINMSG_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmLoginMsgInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			LOGIN_NO AS loginNo,
+			LOGIN_NAME AS loginName,
+			LEVEL_CODE AS levelCode,
+			REGION_CODE AS regionCode,
+			USER_ID AS userId,
+			GROUP_ID AS groupId,
+			GROUP_CODE AS groupCode,
+			GROUP_NAME AS groupName,
+			PHONE AS phone
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_LOGINMSG_INFO $W$
+	</select>
+</sqlMap>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmCustGroupPriorityInfo">
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		MARKET_CASE_ID AS "marketCaseId",
+		CHANNEL_ID AS "channelId",
+		CUST_GROUP_ID AS "custGroupId",
+		CUST_GROUP_NAME AS "custGroupName",
+		CUST_GROUP_PRIORITY_CLASS AS "custGroupPriorityClass"	
+	FROM RM_CUSTGROUPPRIORITY_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGroupId" prepend="and">
+				<isNotEmpty property="custGroupId">
+					CUST_GROUP_ID = #custGroupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGroupName" prepend="and">
+				<isNotEmpty property="custGroupName">
+					CUST_GROUP_NAME = #custGroupName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGroupPriorityClass" prepend="and">
+				<isNotEmpty property="custGroupPriorityClass">
+					CUST_GROUP_PRIORITY_CLASS = #custGroupPriorityClass#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmCustGroupPriorityInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmCustGroupriorityInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmCustGroupPriorityInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+	select a.cust_group_id as "custGroupId",a.cust_group_name as "custGroupName",nvl((select c.CUST_GROUP_PRIORITY_CLASS from rm_custgrouppriority_info c where c.cust_group_id=a.cust_group_id and c.market_case_id = #marketCaseId#),10) 
+	as "custGroupPriorityClass"
+  	from rm_custgroup_info a
+    where exists (select 1 from rm_relation_rel b
+         where b.component_id = a.cust_group_id
+           and b.parent_component_id = #marketCaseId# )
+	  ORDER BY nvl((select c.CUST_GROUP_PRIORITY_CLASS from rm_custgrouppriority_info c where c.cust_group_id=a.cust_group_id and c.market_case_id = #marketCaseId#),10)
+	</select>
+	
+	<insert id="insertRmCustGroupPriorityInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CUSTGROUPPRIORITY_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+			<isNotEmpty property="custGroupName">
+				CUST_GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupPriorityClass" prepend=",">
+			<isNotEmpty property="custGroupPriorityClass">
+				CUST_GROUP_PRIORITY_CLASS
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+			<isNotEmpty property="custGroupName">
+				#custGroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupPriorityClass" prepend=",">
+			<isNotEmpty property="custGroupPriorityClass">
+				#custGroupPriorityClass#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmCustGroupPriorityInfo" parameterClass="java.util.Map">
+	UPDATE RM_CUSTGROUPPRIORITY_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+		    <isNotEmpty property="marketCaseId">
+			    MARKET_CASE_ID = #marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+		    <isNotEmpty property="custGroupId">
+			    CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+		    <isNotEmpty property="custGroupName">
+			    CUST_GROUP_NAME = #custGroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupPriorityClass" prepend=",">
+		    <isNotEmpty property="custGroupPriorityClass">
+			    CUST_GROUP_PRIORITY_CLASS = #custGroupPriorityClass#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmCustGroupPriorityInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_CUSTGROUPPRIORITY_INFO
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmCustGroupPriorityInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_CUSTGROUPPRIORITY_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmCustGroupPriorityInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			MARKET_CASE_ID AS marketCaseId,
+			CHANNEL_ID AS channelId,
+			CUST_GROUP_ID AS custGroupId,
+			CUST_GROUP_NAME AS custGroupName,
+			CUST_GROUP_PRIORITY_CLASS AS custGroupPriorityClass
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_CUSTGROUPPRIORITY_INFO $W$
+	</select>
+</sqlMap>

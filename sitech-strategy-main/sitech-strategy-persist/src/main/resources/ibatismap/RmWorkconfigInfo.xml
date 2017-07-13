@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmWorkconfigInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/>
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		WORK_NAME AS "workName",
+		WORK_CATALOG AS "workCatalog",
+		SPLIT_TYPE AS "splitType",
+		RUN_TIME AS "runTime",
+		FILE_NAME_TYPE AS "fileNameType",
+		WORK_PERIOD AS "workPeriod",
+		NOTE AS "note"	
+	FROM RM_WORKCONFIG_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="workName" prepend="and">
+				<isNotEmpty property="workName">
+					WORK_NAME = #workName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="workCatalog" prepend="and">
+				<isNotEmpty property="workCatalog">
+					WORK_CATALOG = #workCatalog#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="splitType" prepend="and">
+				<isNotEmpty property="splitType">
+					SPLIT_TYPE = #splitType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="runTimeStart" prepend="and">
+				<isNotEmpty property="runTimeStart">
+					<![CDATA[ RUN_TIME >= #runTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="runTimeEnd" prepend="and">
+				<isNotEmpty property="runTimeEnd">
+					<![CDATA[ RUN_TIME <= #runTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fileNameType" prepend="and">
+				<isNotEmpty property="fileNameType">
+					FILE_NAME_TYPE = #fileNameType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="workPeriod" prepend="and">
+				<isNotEmpty property="workPeriod">
+					WORK_PERIOD = #workPeriod#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="note" prepend="and">
+				<isNotEmpty property="note">
+					NOTE = #note#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmWorkConfigInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+	</select>
+	
+	<insert id="insertRmWorkConfigInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_WORKCONFIG_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workName" prepend=",">
+			<isNotEmpty property="workName">
+				WORK_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workCatalog" prepend=",">
+			<isNotEmpty property="workCatalog">
+				WORK_CATALOG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="splitType" prepend=",">
+			<isNotEmpty property="splitType">
+				SPLIT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runTime" prepend=",">
+			<isNotEmpty property="runTime">
+				RUN_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fileNameType" prepend=",">
+			<isNotEmpty property="fileNameType">
+				FILE_NAME_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workPeriod" prepend=",">
+			<isNotEmpty property="workPeriod">
+				WORK_PERIOD
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				NOTE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workName" prepend=",">
+			<isNotEmpty property="workName">
+				#workName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workCatalog" prepend=",">
+			<isNotEmpty property="workCatalog">
+				#workCatalog#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="splitType" prepend=",">
+			<isNotEmpty property="splitType">
+				#splitType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runTime" prepend=",">
+			<isNotEmpty property="runTime">
+				#runTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fileNameType" prepend=",">
+			<isNotEmpty property="fileNameType">
+				#fileNameType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workPeriod" prepend=",">
+			<isNotEmpty property="workPeriod">
+				#workPeriod#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				#note#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmWorkConfigInfo" parameterClass="java.util.Map">
+	UPDATE RM_WORKCONFIG_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workName" prepend=",">
+		    <isNotEmpty property="workName">
+			    WORK_NAME = #workName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workCatalog" prepend=",">
+		    <isNotEmpty property="workCatalog">
+			    WORK_CATALOG = #workCatalog#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="splitType" prepend=",">
+		    <isNotEmpty property="splitType">
+			    SPLIT_TYPE = #splitType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runTime" prepend=",">
+		    <isNotEmpty property="runTime">
+			    RUN_TIME = #runTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fileNameType" prepend=",">
+		    <isNotEmpty property="fileNameType">
+			    FILE_NAME_TYPE = #fileNameType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="workPeriod" prepend=",">
+		    <isNotEmpty property="workPeriod">
+			    WORK_PERIOD = #workPeriod#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+		    <isNotEmpty property="note">
+			    NOTE = #note#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend="WHERE">
+	<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>	
+	</update>
+	
+
+	<delete id="deleteRmWorkConfigInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_WORKCONFIG_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmWorkConfigInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			WORK_NAME AS workName,
+			WORK_CATALOG AS workCatalog,
+			SPLIT_TYPE AS splitType,
+			RUN_TIME AS runTime,
+			FILE_NAME_TYPE AS fileNameType,
+			WORK_PERIOD AS workPeriod,
+			NOTE AS note
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_WORKCONFIG_INFO $W$
+	</select>
+</sqlMap>

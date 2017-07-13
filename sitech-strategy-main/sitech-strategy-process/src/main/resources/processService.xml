@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+		    
+	<bean id="custGroupProcessService" class="com.sitech.strategy.process.service.jcf.impl.CustGroupProcessService">
+		<property name="custGroupProcessEntity" ref="custGroupProcessEntity" />
+		<property name="custGroupProcessParam" ref="custGroupProcessParam" />
+	</bean>
+	<bean id="coupleBackProcessService" class="com.sitech.strategy.process.service.jcf.impl.CoupleBackProcessService">
+		<property name="coupleBackProcessEntity" ref="coupleBackProcessEntity" />
+		<property name="coupleBackProcessParam" ref="coupleBackProcessParam" />
+		<property name="monitor" ref="monitor" />
+	</bean>
+	<bean id="taskProcessServiceSvc" class="com.sitech.strategy.process.service.jcf.impl.TaskProcessService">
+		<property name="taskProcessEntity" ref="taskProcessEntity" />
+		<property name="taskProcessParam" ref="taskProcessParam" />
+	</bean>
+	
+</beans>

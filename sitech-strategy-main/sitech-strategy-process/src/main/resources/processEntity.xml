@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">	
+	
+	<!-- entity配置 -->
+	<bean id="channelProcessEntity" class="com.sitech.strategy.process.entity.impl.ChannelProcessEntity">
+		<property name = "channel" ref = "channel"></property>
+		<property name = "channelInsertor" ref = "channelInsertor"></property>
+		<property name = "channelSelector" ref = "channelSelector"></property>
+	</bean>	    
+	<bean id="coupleBackProcessEntity" class="com.sitech.strategy.process.entity.impl.CoupleBackProcessEntity">
+		<property name = "coupleBack" ref = "coupleBack"></property>
+		<property name = "coupleBackSelector" ref = "coupleBackSelector"></property>
+		<property name = "task" ref = "task"></property>
+	</bean>
+	<bean id="custGroupProcessEntity" class="com.sitech.strategy.process.entity.impl.CustGroupProcessEntity">
+		<property name = "commonSelector" ref = "commonSelector"></property>
+		<property name = "custGroup" ref = "custGroup"></property>
+		<property name = "custGroupInsertor" ref = "custGroupInsertor"></property>
+		<property name = "custGroupSelector" ref = "custGroupSelector"></property>
+		<property name = "custGroupDeleter" ref = "custGroupDeleter"></property>
+		<property name = "custGroupUpdater" ref = "custGroupUpdater"></property>
+		<property name = "loginSelector" ref = "loginSelector"></property>
+		<property name = "systemDealSelector" ref = "systemDealSelector"></property>
+		<property name = "systemDealUpdater" ref = "systemDealUpdater"></property>
+	</bean>
+	<bean id="evaluateStatisticsProcessEntity" class="com.sitech.strategy.process.entity.impl.EvaluateStatisticsProcessEntity">
+		<property name = "evaluate" ref = "evaluate"></property>
+		<property name = "marketCase" ref = "marketCase"></property>
+	</bean>
+	<bean id="eventProcessEntity" class="com.sitech.strategy.process.entity.impl.EventProcessEntity">
+		<property name = "content" ref = "content"></property>	
+		<property name = "event" ref = "event"></property>	
+		<property name = "eventSelector" ref = "eventSelector"></property>
+		<property name = "eventInsertor" ref = "eventInsertor"></property>
+		<property name = "marketCase" ref = "marketCase"></property>
+		<property name = "rule" ref = "rule"></property>	
+	</bean>	
+	<bean id="marketCaseProcessEntity" class="${marketCaseProcessEntity}">
+		<property name = "batchPush" ref = "batchPush"></property>
+		<property name = "callTask" ref = "callTask"></property>
+		<property name = "channelTask" ref = "channelTask"></property>
+		<property name = "channelTrigger" ref = "channelTrigger"></property>
+		<property name = "eventTrigger" ref = "eventTrigger"></property>
+		<property name = "filterAlgorithm" ref = "filterAlgorithm"></property>
+		<property name = "marketCase" ref = "marketCase"></property>
+		<property name = "marketCaseInsertor" ref = "marketCaseInsertor"></property>
+		<property name = "marketCaseSelector" ref = "marketCaseSelector"></property>
+		<property name = "marketCaseCachePojo" ref = "marketCaseCachePojo"></property>
+		<property name = "marketCaseDetailPojo" ref = "marketCaseDetailPojo"></property>
+	</bean>
+	<bean id="questionNaireProcessEntity" class="com.sitech.strategy.process.entity.impl.QuestionNaireProcessEntity">
+	    <property name = "commonSelector" ref = "commonSelector"></property>
+		<property name = "questionNaireInsertor" ref = "questionNaireInsertor"></property>
+		<property name = "questionNaireUpdater" ref = "questionNaireUpdater"></property>
+		<property name = "questionNaireSelector" ref = "questionNaireSelector"></property>
+	</bean>
+	<bean id="ruleProcessEntity" class="com.sitech.strategy.process.entity.impl.RuleProcessEntity">
+		<property name = "content" ref = "content"></property>
+	    <property name = "ruleInsertor" ref = "ruleInsertor"></property>
+		<property name = "ruleSelector" ref = "ruleSelector"></property>
+		<property name = "rule" ref = "rule"></property>
+	</bean>  
+	<bean id="taskProcessEntity" class="${taskProcessEntity}">
+		<property name = "channelTask" ref = "channelTask"></property>
+		<property name = "coupleBackSelector" ref = "coupleBackSelector"></property>
+		<property name = "custGroup" ref = "custGroup"></property>
+		<property name = "marketCase" ref = "marketCase"></property>
+		<property name = "marketCaseSelector" ref = "marketCaseSelector"></property>
+		<property name = "marketCaseDeleter" ref = "marketCaseDeleter"></property>
+		<property name = "rule" ref = "rule"></property>
+		<property name = "systemDealSelector" ref = "systemDealSelector"></property>
+		<property name = "task" ref = "task"></property>
+		<property name = "taskInsertor" ref = "taskInsertor"></property>
+	</bean>
+	<bean id="systemProcessEntity" class="com.sitech.strategy.process.entity.impl.SystemProcessEntity">
+		<property name = "monitor" ref = "monitor"></property>
+	</bean>
+	<bean id="exceptionProcessEntity" class="com.sitech.strategy.process.entity.impl.ExceptionProcessEntity">
+		<property name = "marketCase" ref = "marketCase"></property>
+	</bean>
+	<bean id="sparkStreamingTestEntity" class="com.sitech.strategy.process.entity.impl.test.SparkStreamingTestEntity">
+		<property name = "testHbaseInsertor" ref = "testHbaseInsertor"></property>
+	</bean>
+	<bean id="userProcessEntity" class="com.sitech.strategy.process.entity.impl.UserProcessEntity">
+		<property name = "userUpdater" ref = "userUpdater"></property>
+		<property name = "user" ref = "user"></property>
+	</bean>
+	
+	<!-- param配置 -->
+	<bean id="coupleBackProcessParam" class="com.sitech.strategy.process.entity.param.impl.CoupleBaceProcessParam">
+		<property name = "userSelector" ref = "userSelector"></property>
+	</bean>
+	<bean id="coupleBackReceiverParam" class="com.sitech.strategy.process.entity.param.impl.CoupleBackReceiverParam">
+		<property name = "userSelector" ref = "userSelector"></property>
+	</bean>
+	<bean id="custGroupProcessParam" class="com.sitech.strategy.process.entity.param.impl.CustGroupProcessParam"></bean>
+	<bean id="loadCacheProcessParam" class="com.sitech.strategy.process.entity.param.impl.LoadCacheProcessParam">
+		<property name="commonSelector" ref = "commonSelector"></property>
+		<property name="regionCodePojo" ref = "regionCodePojo"></property>
+	</bean>
+	<bean id="questionNaireProcessParam" class="com.sitech.strategy.process.entity.param.impl.QuestionNaireProcessParam"></bean> 
+	<bean id="taskProcessParam" class="com.sitech.strategy.process.entity.param.impl.TaskProcessParam"></bean> 
+
+</beans>

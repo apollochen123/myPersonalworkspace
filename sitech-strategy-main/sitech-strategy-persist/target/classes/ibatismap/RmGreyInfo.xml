@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmGreyInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	select 
+	ID_NO AS "idNo",
+			   REGION_CODE AS "regionCode",
+			  	(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+			   PHONE_NO AS "phoneNo",
+			   BLACK_TYPE AS "blackType",
+			   (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'greyType' AND FIELD_VALUE = BLACK_TYPE ) AS "blackName",
+			   CHANNEL_ID AS "channelId",
+			   MARKET_CASE_ID AS "marketCaseId",
+			   MARKET_CASE_TYPE AS "marketCaseType",
+			   START_DATE AS "startDate",
+			   END_DATE AS "endDate",
+			   OPER_NAME AS "operName",
+			   OPER_NO AS "operNo",
+			   SERIAL_ID AS "serialId",
+			   FROM_TEL AS "fromTel",
+			   OPER_TIME AS "operTime",
+			   NOTE AS "note"
+	from rm_grey_info B
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="phoneNo" prepend="and">
+				<isNotEmpty property="phoneNo">
+					PHONE_NO = #phoneNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+		
+			<isNotNull property="marketCaseType" prepend="and">
+				<isNotEmpty property="marketCaseType">
+					MARKET_CASE_TYPE = #marketCaseType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelName" prepend="and">
+				<isNotEmpty property="channelName">
+					CHANNEL_NAME = #channelName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="startDateStart" prepend="and">
+				<isNotEmpty property="startDateStart">
+					<![CDATA[ START_DATE >= #startDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="startDateEnd" prepend="and">
+				<isNotEmpty property="startDateEnd">
+					<![CDATA[ START_DATE <= #startDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="endDateStart" prepend="and">
+				<isNotEmpty property="endDateStart">
+					<![CDATA[ END_DATE >= #endDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="endDateEnd" prepend="and">
+				<isNotEmpty property="endDateEnd">
+					<![CDATA[ END_DATE <= #endDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fromTel" prepend="and">
+				<isNotEmpty property="fromTel">
+					FROM_TEL = #fromTel#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="note" prepend="and">
+				<isNotEmpty property="note">
+					NOTE = #note#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO = #idNo#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmGreyDetailInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					 CHANNEL_ID like '%'||#channelId#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="phoneNo" prepend="and">
+				<isNotEmpty property="phoneNo">
+					 PHONE_NO like '%'||#phoneNo#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					 REGION_CODE like '%'||#regionCode#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO = #idNo#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<insert id="insertRmGreyInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_GREY_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="idNo" prepend=",">
+			<isNotEmpty property="idNo">
+				ID_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+			<isNotEmpty property="phoneNo">
+				PHONE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="blackType" prepend=",">
+			<isNotEmpty property="blackType">
+				BLACK_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+			<isNotEmpty property="marketCaseType">
+				MARKET_CASE_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelName" prepend=",">
+			<isNotEmpty property="channelName">
+				CHANNEL_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+			<isNotEmpty property="startDate">
+				START_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				END_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fromTel" prepend=",">
+			<isNotEmpty property="fromTel">
+				FROM_TEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				NOTE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+	    <isNotNull property="idNo" prepend=",">
+			<isNotEmpty property="idNo">
+				#idNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+			<isNotEmpty property="phoneNo">
+				#phoneNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="blackType" prepend=",">
+			<isNotEmpty property="blackType">
+				#blackType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+			<isNotEmpty property="marketCaseType">
+				#marketCaseType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelName" prepend=",">
+			<isNotEmpty property="channelName">
+				#channelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+			<isNotEmpty property="startDate">
+				#startDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				#endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fromTel" prepend=",">
+			<isNotEmpty property="fromTel">
+				#fromTel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				#note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	
+	<update id="updateRmGreyInfo" parameterClass="java.util.Map">
+	UPDATE RM_GREY_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+		    <isNotEmpty property="phoneNo">
+			    PHONE_NO = #phoneNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="blackType" prepend=",">
+		    <isNotEmpty property="blackType">
+			    BLACK_TYPE = #blackType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+		    <isNotEmpty property="marketCaseType">
+			    MARKET_CASE_TYPE = #marketCaseType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelName" prepend=",">
+		    <isNotEmpty property="channelName">
+			    CHANNEL_NAME = #channelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+		    <isNotEmpty property="marketCaseId">
+			    MARKET_CASE_ID = #marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+		    <isNotEmpty property="startDate">
+			    START_DATE = #startDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+		    <isNotEmpty property="endDate">
+			    END_DATE = #endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fromTel" prepend=",">
+		    <isNotEmpty property="fromTel">
+			    FROM_TEL = #fromTel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+		    <isNotEmpty property="note">
+			    NOTE = #note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</update>
+	
+
+	<delete id="deleteRmGreyInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_GREY_INFO
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO = #idNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</delete>
+	
+	<select id="selectRmGreyInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			CHANNEL_ID AS channelId,
+			PHONE_NO AS phoneNo,
+			REGION_CODE AS regionCode,
+			BLACK_TYPE AS blackType,
+			MARKET_CASE_TYPE AS marketCaseType,
+			CHANNEL_NAME AS channelName,
+			MARKET_CASE_ID AS marketCaseId,
+			START_DATE AS startDate,
+			END_DATE AS endDate,
+			FROM_TEL AS fromTel,
+			NOTE AS note,
+			SERIAL_ID AS serialId
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_GREY_INFO $W$
+	</select>
+</sqlMap>

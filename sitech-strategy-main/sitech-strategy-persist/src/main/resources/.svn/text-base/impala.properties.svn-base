@@ -1,0 +1,6 @@
+impala.jdbc.url=${impala.jdbc.url}
+impala.jdbc.driver=${impala.jdbc.driver}
+impala.jdbc.userName=${impala.jdbc.userName}
+impala.jdbc.password=${impala.jdbc.password}
+
+impala.isLoad=${impala.isLoad}

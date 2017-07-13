@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+<service name="StrategyAnalysisService">
+    <description>湖北移动营销中心渠道策略解析服务</description>
+    <parameter name="ServiceObjectSupplier" locked="false">
+        org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+    </parameter>
+    <parameter name="modifyUserWSDLPortAddress">false</parameter> 
+    <parameter name="SpringBeanName">strategyAnalysisService</parameter>
+    <excludeOperations>
+		<operation>setParseRecommendEntity</operation>
+		<operation>setStrategyAnalysisParam</operation>
+	</excludeOperations>
+  	<messageReceivers>
+        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+                         class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+                         class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </messageReceivers>
+</service>
+<service name="questionNaireService">
+    <description>湖北移动营销中心问卷调查同步服务</description>
+    <parameter name="ServiceObjectSupplier" locked="false">
+        org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+    </parameter>
+    <parameter name="modifyUserWSDLPortAddress">false</parameter> 
+    <parameter name="SpringBeanName">questionNaireProcessService</parameter>
+    <excludeOperations>
+		<operation>setQuestionNaireProcessEntity</operation>
+		<operation>setQuestionNaireProcessParam</operation>
+	</excludeOperations>
+  	<messageReceivers>
+        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+                         class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+                         class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </messageReceivers>
+</service>
+</serviceGroup>

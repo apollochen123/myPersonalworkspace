@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="manageRecommendService" class="com.sitech.strategy.recommend.service.jcf.impl.ManageRecommendService">
+		<property name="manageRecommendEntity" ref="manageRecommendEntity" />
+		<property name="manageRecommendParam" ref="manageRecommendParam" />
+		<property name="monitor" ref="monitor" />
+		<property name = "batchPushProdTaskParam" ref = "batchPushProdTaskParam"></property>
+		<property name = "batchTaskRecommendEntity" ref = "batchTaskRecommendEntity"></property>
+	</bean>
+	<bean id="parseRecommendService" class="com.sitech.strategy.recommend.service.jcf.impl.ParseRecommendService">
+		<property name="parseRecommendEntity" ref="parseRecommendEntity" />
+		<property name="parseRecommendParam" ref="parseRecommendParam" />
+		<property name="eventReceiverParam" ref="eventReceiverParam" />
+		<property name="monitor" ref="monitor" />
+	</bean>
+	<bean id="testRecommendService" class="com.sitech.strategy.recommend.service.jcf.impl.test.TestRecommendService">
+		<property name="testRecommendEntity" ref="testRecommendEntity" />
+		<property name="testRecommendParam" ref="testRecommendParam" />
+	</bean>
+
+</beans>

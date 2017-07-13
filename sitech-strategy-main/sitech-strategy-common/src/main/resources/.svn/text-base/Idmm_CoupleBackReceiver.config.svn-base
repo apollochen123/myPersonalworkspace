@@ -1,0 +1,70 @@
+[{
+        "clientID" : "Sub166CBack0",
+        "topic" : "TCoupleBackDest0",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"     
+},
+{
+        "clientID" : "Sub166CBack1",
+        "topic" : "TCoupleBackDest1",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack2",
+        "topic" : "TCoupleBackDest2",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack3",
+        "topic" : "TCoupleBackDest3",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack4",
+        "topic" : "TCoupleBackDest4",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack5",
+        "topic" : "TCoupleBackDest5",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack6",
+        "topic" : "TCoupleBackDest6",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack7",
+        "topic" : "TCoupleBackDest7",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack8",
+        "topic" : "TCoupleBackDest8",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166CBack9",
+        "topic" : "TCoupleBackDest9",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+}]

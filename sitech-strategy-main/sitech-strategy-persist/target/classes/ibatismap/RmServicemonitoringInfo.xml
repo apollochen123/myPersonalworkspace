@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmServicemonitoringInfo">
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		SERVICE_NAME AS "serviceName",
+		SYSTEM_ID AS "systemId",
+		CHANNEL_ID AS "channelId",
+		REGION_CODE AS "regionCode",
+		NUM_TYPE AS "numType",
+		NUM_VALUE AS "numValue",
+		CALL_TIME AS "callTime",
+		RETURN_TIME AS "returnTime",
+		COST_TIME AS "costTime",
+		IN_PARAM AS "inParam",
+		OUT_PARAM AS "outParam"	
+	FROM RM_SERVICEMONITORING_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceName" prepend="and">
+				<isNotEmpty property="serviceName">
+					SERVICE_NAME = #serviceName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="systemId" prepend="and">
+				<isNotEmpty property="systemId">
+					SYSTEM_ID = #systemId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="numType" prepend="and">
+				<isNotEmpty property="numType">
+					NUM_TYPE = #numType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="numValue" prepend="and">
+				<isNotEmpty property="numValue">
+					NUM_VALUE = #numValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="startDate" prepend="and">
+				<isNotEmpty property="startDate">
+					<![CDATA[ CALL_TIME >= #startDate# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="endDate" prepend="and">
+				<isNotEmpty property="endDate">
+					<![CDATA[ CALL_TIME <= #endDate# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="returnTimeStart" prepend="and">
+				<isNotEmpty property="returnTimeStart">
+					<![CDATA[ RETURN_TIME >= #returnTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="returnTimeEnd" prepend="and">
+				<isNotEmpty property="returnTimeEnd">
+					<![CDATA[ RETURN_TIME <= #returnTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="costTime" prepend="and">
+				<isNotEmpty property="costTime">
+					COST_TIME = #costTime#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="inParam" prepend="and">
+				<isNotEmpty property="inParam">
+					IN_PARAM = #inParam#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="outParam" prepend="and">
+				<isNotEmpty property="outParam">
+					OUT_PARAM = #outParam#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmServicemonitoringInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmServicemonitoringInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmServicemonitoringInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_SERVICEMONITORING_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceName" prepend=",">
+			<isNotEmpty property="serviceName">
+				SERVICE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemId" prepend=",">
+			<isNotEmpty property="systemId">
+				SYSTEM_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="numType" prepend=",">
+			<isNotEmpty property="numType">
+				NUM_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="numValue" prepend=",">
+			<isNotEmpty property="numValue">
+				NUM_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="callTime" prepend=",">
+			<isNotEmpty property="callTime">
+				CALL_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="returnTime" prepend=",">
+			<isNotEmpty property="returnTime">
+				RETURN_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="costTime" prepend=",">
+			<isNotEmpty property="costTime">
+				COST_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inParam" prepend=",">
+			<isNotEmpty property="inParam">
+				IN_PARAM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="outParam" prepend=",">
+			<isNotEmpty property="outParam">
+				OUT_PARAM
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceName" prepend=",">
+			<isNotEmpty property="serviceName">
+				#serviceName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemId" prepend=",">
+			<isNotEmpty property="systemId">
+				#systemId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="numType" prepend=",">
+			<isNotEmpty property="numType">
+				#numType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="numValue" prepend=",">
+			<isNotEmpty property="numValue">
+				#numValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="callTime" prepend=",">
+			<isNotEmpty property="callTime">
+				#callTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="returnTime" prepend=",">
+			<isNotEmpty property="returnTime">
+				#returnTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="costTime" prepend=",">
+			<isNotEmpty property="costTime">
+				#costTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inParam" prepend=",">
+			<isNotEmpty property="inParam">
+				#inParam#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="outParam" prepend=",">
+			<isNotEmpty property="outParam">
+				#outParam#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmServicemonitoringInfo" parameterClass="java.util.Map">
+	UPDATE RM_SERVICEMONITORING_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceName" prepend=",">
+		    <isNotEmpty property="serviceName">
+			    SERVICE_NAME = #serviceName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemId" prepend=",">
+		    <isNotEmpty property="systemId">
+			    SYSTEM_ID = #systemId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="numType" prepend=",">
+		    <isNotEmpty property="numType">
+			    NUM_TYPE = #numType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="numValue" prepend=",">
+		    <isNotEmpty property="numValue">
+			    NUM_VALUE = #numValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="callTime" prepend=",">
+		    <isNotEmpty property="callTime">
+			    CALL_TIME = #callTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="returnTime" prepend=",">
+		    <isNotEmpty property="returnTime">
+			    RETURN_TIME = #returnTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="costTime" prepend=",">
+		    <isNotEmpty property="costTime">
+			    COST_TIME = #costTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inParam" prepend=",">
+		    <isNotEmpty property="inParam">
+			    IN_PARAM = #inParam#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="outParam" prepend=",">
+		    <isNotEmpty property="outParam">
+			    OUT_PARAM = #outParam#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmServicemonitoringInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_SERVICEMONITORING_INFO
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmServicemonitoringInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_SERVICEMONITORING_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmServicemonitoringInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			SERVICE_NAME AS serviceName,
+			SYSTEM_ID AS systemId,
+			CHANNEL_ID AS channelId,
+			REGION_CODE AS regionCode,
+			NUM_TYPE AS numType,
+			NUM_VALUE AS numValue,
+			CALL_TIME AS callTime,
+			RETURN_TIME AS returnTime,
+			COST_TIME AS costTime,
+			IN_PARAM AS inParam,
+			OUT_PARAM AS outParam
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_SERVICEMONITORING_INFO $W$
+	</select>
+</sqlMap>

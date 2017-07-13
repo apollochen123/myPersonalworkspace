@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmProductDict">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		PRODUCT_ID AS "productId",
+		PRODUCT_NAME AS "productName",
+		PRODUCT_TYPE AS "productType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'productType' AND FIELD_VALUE = PRODUCT_TYPE ) AS "productTypeName"
+	FROM RM_PRODUCT_DICT
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="productId" prepend="and">
+				<isNotEmpty property="productId">
+					PRODUCT_ID like '%'||#productId#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="productName" prepend="and">
+				<isNotEmpty property="productName">
+					PRODUCT_NAME like '%'||#productName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="productType" prepend="and">
+				<isNotEmpty property="productType">
+					PRODUCT_TYPE = #productType#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmProductDict" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmProductDict" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_PRODUCT_DICT
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="productId" prepend=",">
+			<isNotEmpty property="productId">
+				PRODUCT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productName" prepend=",">
+			<isNotEmpty property="productName">
+				PRODUCT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productType" prepend=",">
+			<isNotEmpty property="productType">
+				PRODUCT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="productId" prepend=",">
+			<isNotEmpty property="productId">
+				#productId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productName" prepend=",">
+			<isNotEmpty property="productName">
+				#productName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productType" prepend=",">
+			<isNotEmpty property="productType">
+				#productType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmProductDict" parameterClass="java.util.Map">
+	UPDATE RM_PRODUCT_DICT
+	<dynamic prepend=" SET ">
+		<isNotNull property="productId" prepend=",">
+		    <isNotEmpty property="productId">
+			    PRODUCT_ID = #productId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productName" prepend=",">
+		    <isNotEmpty property="productName">
+			    PRODUCT_NAME = #productName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productType" prepend=",">
+		    <isNotEmpty property="productType">
+			    PRODUCT_TYPE = #productType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmProductDict" parameterClass="java.util.Map">
+	DELETE FROM RM_PRODUCT_DICT
+	<include refid="where-all-condition"/>
+	</delete>
+</sqlMap>

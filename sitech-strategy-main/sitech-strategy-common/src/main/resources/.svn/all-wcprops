@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/CRMPD_RTMarket/!svn/ver/12192/branches/jlMobile/sitech-strategy-common/src/main/resources
+END
+sequence.properties
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/sequence.properties
+END
+commonBean.xml
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/commonBean.xml
+END
+Idmm_BusiEventReceiver.config
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/Idmm_BusiEventReceiver.config
+END
+idmm.properties
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/idmm.properties
+END
+Idmm_CoupleBackReceiver.config
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/Idmm_CoupleBackReceiver.config
+END
+Idmm_ProdChangeReceiver.config
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/CRMPD_RTMarket/!svn/ver/11665/branches/jlMobile/sitech-strategy-common/src/main/resources/Idmm_ProdChangeReceiver.config
+END
+Idmm_FeeEventReceiver.config
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/Idmm_FeeEventReceiver.config
+END
+Idmm_FlowEventReceiver.config
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/Idmm_FlowEventReceiver.config
+END
+sparkapp.properties
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/CRMPD_RTMarket/!svn/ver/12192/branches/jlMobile/sitech-strategy-common/src/main/resources/sparkapp.properties
+END
+Idmm_EventTriggerReceiver.config
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/resources/Idmm_EventTriggerReceiver.config
+END

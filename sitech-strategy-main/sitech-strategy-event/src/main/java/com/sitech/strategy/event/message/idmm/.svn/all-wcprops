@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/message/idmm
+END
+BusiEventReceiver.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/message/idmm/BusiEventReceiver.java
+END
+FlowEventReceiver.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/message/idmm/FlowEventReceiver.java
+END
+FeeEventReceiver.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/message/idmm/FeeEventReceiver.java
+END

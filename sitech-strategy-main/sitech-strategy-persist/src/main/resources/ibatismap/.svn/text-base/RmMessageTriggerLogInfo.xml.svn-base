@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmMessageTriggerLogInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		MARKET_CASE_ID AS "marketCaseId",
+		(select m.MARKET_CASE_NAME FROM rm_marketcase_info m where m.MARKET_CASE_ID=r.MARKET_CASE_ID) AS "marketCaseName",
+		OPER_NO AS "operNo",
+		(SELECT LOGIN_NAME FROM rm_loginmsg_info B WHERE  B.LOGIN_NO = r.OPER_NO ) AS "operName",
+		TRIGGER_NUMBER AS "triggerNumber",
+		REGION_CODE AS "regionCode",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+		OPER_TIME AS "operTime"
+	FROM rm_messagetriggerlog_info r
+	</sql>
+	
+	<select id="selectRmMessageTriggerLogInfoById" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID=#marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		order by OPER_TIME desc
+	</select>
+	
+	<insert id="insertRmMessageTriggerLogInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_messagetriggerlog_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="triggerNumber" prepend=",">
+			<isNotEmpty property="triggerNumber">
+				TRIGGER_NUMBER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="triggerNumber" prepend=",">
+			<isNotEmpty property="triggerNumber">
+				#triggerNumber#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+			#startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+			#operTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+</sqlMap>

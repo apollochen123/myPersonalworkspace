@@ -1,0 +1,26 @@
+log4j.rootLogger=debug,CON
+
+log4j.logger.com.ibatis=debug,CON
+log4j.logger.com.ibatis.common.jdbc.SimpleDataSource=debug,CON
+log4j.logger.com.ibatis.common.jdbc.ScriptRunner=debug,CON
+log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate=error,CON
+log4j.logger.java.sql.Connection=debug,CON
+log4j.logger.java.sql.Statement=debug,CON
+log4j.logger.java.sql.PreparedStatement=debug,CON
+log4j.logger.java.sql.ResultSet=debug,CON
+log4j.logger.com.sitech.jcf.core.datasource.DataSourceDelegating=debug,CON
+log4j.logger.com.sitech.jcf.core.datasource.JCFConnection=debug,CON
+log4j.logger.com.sitech.jcf.core.dao.BaseDaoDelegating=debug,CON
+
+log4j.logger.CON=debug,CON
+log4j.appender.CON=org.apache.log4j.ConsoleAppender
+log4j.appender.CON.layout=org.apache.log4j.PatternLayout
+log4j.appender.CON.layout.ConversionPattern=[%t]%d{MM-dd HH\:mm\:ss\:SSS} %5p %c{5}\:%l %m%n
+
+log4j.logger.ERROR=ERROR,ERROR
+log4j.appender.ERROR=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.ERROR.File=./logs/error.log
+log4j.appender.ERROR.Append=true
+log4j.appender.ERROR.Threshold=ERROR
+log4j.appender.ERROR.layout=org.apache.log4j.PatternLayout
+log4j.appender.ERROR.layout.ConversionPattern=[%t]%d{MM-dd HH\:mm\:ss\:SSS} %5p %c{5}\:%l %m%n

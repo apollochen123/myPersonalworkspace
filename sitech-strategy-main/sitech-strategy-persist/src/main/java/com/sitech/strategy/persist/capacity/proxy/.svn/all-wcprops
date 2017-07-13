@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/CRMPD_RTMarket/!svn/ver/12206/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/capacity/proxy
+END
+IDataInsertor.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/11520/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/capacity/proxy/IDataInsertor.java
+END
+IMsgSender.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/capacity/proxy/IMsgSender.java
+END
+IDataUpdater.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/capacity/proxy/IDataUpdater.java
+END
+IDataDeleter.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/12206/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/capacity/proxy/IDataDeleter.java
+END
+IDataSelector.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/12206/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/capacity/proxy/IDataSelector.java
+END

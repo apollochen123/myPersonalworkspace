@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmMarketcaseInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		MARKET_CASE_ID AS "marketCaseId",
+		MARKET_CASE_NAME AS "marketCaseName",
+		TRIGGER_MODE AS "triggerMode",
+	    (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'triggerMode' AND FIELD_VALUE = TRIGGER_MODE ) AS "triggerModeName",
+		MARKET_CASE_TYPE AS "marketCaseType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseType' AND FIELD_VALUE = MARKET_CASE_TYPE ) AS "marketCaseTypeName",
+		MARKET_CASE_BUSI_TYPE AS "marketCaseBusiType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseBusiType' AND FIELD_VALUE = MARKET_CASE_BUSI_TYPE ) AS "marketCaseBusiTypeName",
+		START_TIME AS "startTime",
+		END_TIME  AS "endTime",
+		STATUS_CODE AS "statusCode",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'statusCode' AND FIELD_VALUE = STATUS_CODE ) AS "statusName",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+		REGION_CODE AS "regionCode",
+		GROUP_ID AS "groupId",
+		GROUP_NAME AS "groupName",
+		MARKETCASE_DESC AS "marketCaseDesc",
+		OPER_NO AS "operNo",
+		(SELECT PHONE FROM rm_loginmsg_info WHERE LOGIN_NO = OPER_NO) AS "phone",
+		OPER_NAME AS "operName",
+		OPER_TIME AS "operTime",
+		UPDATE_NO AS "updateNo",
+		UPDATE_NAME AS "updateName",
+		UPDATE_TIME AS "updateTime",
+		MARKET_CASE_LEVEL AS "marketCaseLevel",
+		(SELECT a.MARKET_CASE_MARK FROM RM_MARKETCASEATTRIBUTE_INFO a WHERE a.MARKET_CASE_ID = f.MARKET_CASE_ID) AS "marketCaseMark",
+		(SELECT b.PUSH_MODE FROM RM_MARKETCASEATTRIBUTE_INFO b WHERE b.MARKET_CASE_ID = f.MARKET_CASE_ID) AS "pushMode",
+	    (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseMark' AND FIELD_VALUE = (SELECT c.MARKET_CASE_MARK FROM RM_MARKETCASEATTRIBUTE_INFO c WHERE c.MARKET_CASE_ID = f.MARKET_CASE_ID) ) AS "marketCaseMarkName",
+	    (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'pushMode' AND FIELD_VALUE = (SELECT d.PUSH_MODE FROM RM_MARKETCASEATTRIBUTE_INFO d WHERE d.MARKET_CASE_ID = f.MARKET_CASE_ID) )  AS "pushModeName",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseLevel' AND FIELD_VALUE = MARKET_CASE_LEVEL ) AS "marketCaseLevelName",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseClass' AND FIELD_VALUE = MARKET_CASE_CLASS ) AS "marketCaseClassName",
+		MARKET_CASE_CLASS AS "marketCaseClass"
+	FROM rm_marketcase_info f
+	</sql>
+	
+		<sql id="select-all-column1">
+	SELECT
+		MARKET_CASE_ID AS "marketCaseId",
+		MARKET_CASE_NAME AS "marketCaseName",
+		TRIGGER_MODE AS "triggerMode",
+	    (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'triggerMode' AND FIELD_VALUE = TRIGGER_MODE ) AS "triggerModeName",
+		MARKET_CASE_TYPE AS "marketCaseType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseType' AND FIELD_VALUE = MARKET_CASE_TYPE ) AS "marketCaseTypeName",
+		MARKET_CASE_BUSI_TYPE AS "marketCaseBusiType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseBusiType' AND FIELD_VALUE = MARKET_CASE_BUSI_TYPE ) AS "marketCaseBusiTypeName",
+		START_TIME AS "startTime",
+		END_TIME  AS "endTime",
+		STATUS_CODE AS "statusCode",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'statusCode' AND FIELD_VALUE = STATUS_CODE ) AS "statusName",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+		REGION_CODE AS "regionCode",
+		GROUP_ID AS "groupId",
+		GROUP_NAME AS "groupName",
+		
+		MARKETCASE_DESC AS "marketCaseDesc",
+		OPER_NO AS "operNo",
+		'' AS "phone",
+		OPER_NAME AS "operName",
+		OPER_TIME AS "operTime",
+		UPDATE_NO AS "updateNo",
+		UPDATE_NAME AS "updateName",
+		UPDATE_TIME AS "updateTime",
+		MARKET_CASE_LEVEL AS "marketCaseLevel",
+		
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseLevel' AND FIELD_VALUE = MARKET_CASE_LEVEL ) AS "marketCaseLevelName",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'marketCaseClass' AND FIELD_VALUE = MARKET_CASE_CLASS ) AS "marketCaseClassName",
+		MARKET_CASE_CLASS AS "marketCaseClass"
+	FROM rm_marketcase_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	WHERE 1=1
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="dbType">
+				<isNotEmpty property="dbType">
+				
+					<isEqual property="dbType" compareValue="oracle">
+						<isNotNull property="keyWords" prepend="and">
+							<isNotEmpty property="keyWords">
+								(
+								<iterate open="" close="" conjunction="or" property="keyWords" > 
+			            		MARKET_CASE_NAME like	'%'||#keyWords[]#||'%'
+			            		</iterate>
+			            		<iterate open="or" close="" conjunction="," property="keyWords" > 
+			            		OPER_NO like	'%'||#keyWords[]#||'%'
+			            		</iterate>
+			            		<iterate open="or" close="" conjunction="," property="keyWords" > 
+			            		OPER_NAME like	'%'||#keyWords[]#||'%'
+			            		</iterate>
+			            		<iterate open="or" close="" conjunction="," property="keyWords" > 
+			            		MARKET_CASE_ID like	'%'||#keyWords[]#||'%'
+			            		</iterate>
+				           		)
+							</isNotEmpty>
+						</isNotNull>
+		            </isEqual>
+					<isEqual property="dbType" compareValue="mysql">
+						<isNotNull property="keyWords" prepend="and">
+							<isNotEmpty property="keyWords">
+								(
+								<iterate open="" close="" conjunction="or" property="keyWords" > 
+				           		  MARKET_CASE_NAME like concat('%',#keyWords[]#,'%')
+				           		</iterate>
+				           		<iterate open="or" close="" conjunction="or" property="keyWords" > 
+				           		  OPER_NAME like concat('%',#keyWords[]#,'%')
+				           		</iterate>
+				           		<iterate open="or" close="" conjunction="or" property="keyWords" > 
+				           		  OPER_NO like concat('%',#keyWords[]#,'%')
+				           		</iterate>
+				           		)
+							</isNotEmpty>
+						</isNotNull>
+		            </isEqual>
+		            		            
+				</isNotEmpty>
+			</isNotNull>
+						
+			<isNotNull property="marketCaseName" prepend="and">
+				<isNotEmpty property="marketCaseName">
+					MARKET_CASE_NAME = #marketCaseName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="triggerMode" prepend="and">
+				<isNotEmpty property="triggerMode">
+					TRIGGER_MODE = #triggerMode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseType" prepend="and">
+				<isNotEmpty property="marketCaseType">
+					MARKET_CASE_TYPE = #marketCaseType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseBusiType" prepend="and">
+				<isNotEmpty property="marketCaseBusiType">
+					MARKET_CASE_BUSI_TYPE = #marketCaseBusiType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketStatusCode" prepend="and">
+				<isNotEmpty property="marketStatusCode">
+					STATUS_CODE = #marketStatusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseValidDate" prepend="and">
+				<isNotEmpty property="marketCaseValidDate">
+					<![CDATA[ START_TIME <= #sysDate# and END_TIME>= #sysDate# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					exists (select 1 from rm_relation_rel c, rm_relation_rel d
+				         where c.parent_component_id = market_case_id
+				           and d.parent_rel_id = c.rel_id
+				           and d.component_id = #channelId#)
+				</isNotEmpty>
+		    </isNotNull>
+		    and 
+		    (
+			 1=1
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseQueryFlagByPermission" prepend="or">
+				<isNotEmpty property="marketCaseQueryFlagByPermission">
+					MARKET_CASE_LEVEl = #marketCaseQueryFlagByPermission#
+				</isNotEmpty>
+			</isNotNull>
+			)
+		order by OPER_TIME desc
+	</sql>
+	
+	<select id="selectRmMarketcaseInfoById" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+			MARKET_CASE_ID AS "marketCaseId",
+			MARKET_CASE_NAME AS "marketCaseName",
+			
+			TRIGGER_MODE AS "triggerMode",
+			
+			MARKET_CASE_TYPE AS "marketCaseType",
+			MARKET_CASE_BUSI_TYPE AS "marketCaseBusiType",
+			START_TIME AS "startTime",
+			END_TIME AS "endTime",
+			STATUS_CODE AS "statusCode",
+			REGION_CODE AS "regionCode",
+			GROUP_ID AS "groupId",
+			MARKETCASE_DESC AS "marketCaseDesc",
+			OPER_NO AS "operNo",
+			OPER_NAME AS "operName",
+			OPER_TIME AS "operTime",
+			UPDATE_NO AS "updateNo",
+			UPDATE_NAME AS "updateName",
+			UPDATE_TIME AS "updateTime"
+		FROM RM_MARKETCASE_INFO			
+		WHERE MARKET_CASE_ID = #marketCaseId#
+	</select>
+
+	<select id="selectRmMarketcaseInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmMarketcaseInfoByJLMob" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column1"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectMarketCaseId" parameterClass="querFilter" resultClass="java.util.HashMap">
+		select	
+			distinct a.MARKET_CASE_ID AS "marketCaseId"
+		FROM rm_marketcase_info a 
+		<![CDATA[ WHERE UPDATE_TIME > #sysDate# ]]>
+	</select>
+	
+	<select id="selectMarketCaseAndCustGroup" parameterClass="querFilter" resultClass="java.util.HashMap">
+		select a.market_case_id as "marketCaseId",
+			   a.oper_time as "operTime",
+      		   c.cust_group_id as "custGroupId",
+      		   c.cust_group_type as "custGroupType",
+               c.RELATED_DATASOURCE_NAME as "relatedDataSourceName"
+  	     from rm_marketcase_info a, rm_relation_rel b, rm_custgroup_info c
+         where a.market_case_id = b.parent_component_id
+               and b.component_id = c.cust_group_id
+			   and a.STATUS_CODE = #marketStatusCode#
+			   <isNotNull property="triggerMode" prepend="and">
+				<isNotEmpty property="triggerMode">
+					trigger_mode = #triggerMode#
+				</isNotEmpty>
+			</isNotNull>
+			   and <![CDATA[ a.START_TIME <= #sysDate# and a.END_TIME>= #sysDate# ]]>
+	</select>
+	
+	<select id="selectBatchPushMarketCaseAndCustGroup" parameterClass="querFilter" resultClass="java.util.HashMap">
+    select distinct a.market_case_id as "marketCaseId",
+         a.oper_time as "operTime",
+               c.cust_group_id as "custGroupId",
+               c.cust_group_type as "custGroupType",
+               c.RELATED_DATASOURCE_NAME as "relatedDataSourceName",
+               (select d.label_formula from rm_custgrouplabel_info d where d.cust_group_id = c.cust_group_id) as "labelFormula",
+               (select e.label_formula_restrict from rm_custgroupattribute_info e where e.cust_group_id = c.cust_group_id) as "label_formula_restrict"
+         from rm_marketcase_info a,rm_relation_rel b,rm_custgroup_info c,rm_relation_rel f
+         where a.market_case_id = b.parent_component_id
+                  and b.rel_id = f.parent_rel_id
+                  and b.component_id = c.cust_group_id
+                  and a.market_case_type = '01'
+                  and a.STATUS_CODE ='04'
+			      and <![CDATA[ a.START_TIME <= #sysDate# and a.END_TIME + 1>= #sysDate# ]]>
+                  and f.component_type = '03'
+                  and f.component_id in ('02', '01')
+	</select>
+	
+	<select id="selectChannelTriggerMarketCase" parameterClass="querFilter" resultClass="java.util.HashMap">
+		   select distinct a.parent_component_id as "marketCaseId",
+		      e.region_code as "regionCode",
+		      b.component_id as "channelId",
+		      c.component_id as "positionId",
+		      e.oper_time as "operTime"
+		    from rm_relation_rel a left join rm_relation_rel b on a.rel_id = b.parent_rel_id 
+		    left join rm_relation_rel c on b.rel_id = c.parent_rel_id  
+		    left join rm_relation_rel d on c.rel_id = d.parent_rel_id  ,
+		    rm_marketcase_info e where a.parent_component_id = e.market_case_id 
+		    and b.component_type = '03' 
+		    and c.component_type = '04'
+		    and d.component_type = '05'
+			and e.STATUS_CODE = #marketStatusCode#
+			and <![CDATA[ e.START_TIME <= #sysDate# and e.END_TIME + 1>= #sysDate# ]]>
+			and	e.REGION_CODE in 
+			<iterate open="(" close=")" conjunction="," property="regionCodeArray" > 
+	        	#regionCodeArray[]#
+	        </iterate>
+			order by e.region_code desc, e.oper_time desc
+	</select>
+	
+	<select id="selectMarketcaseRelCallTaskCustGroupTypeAndFormula" parameterClass="querFilter" resultClass="java.util.HashMap">
+    select distinct a.market_case_id as "marketCaseId",
+                    c.cust_group_id as "custGroupId",
+                    c.cust_group_type as "custGroupType",
+                    c.RELATED_DATASOURCE_NAME as "relatedDataSourceName",
+                    (select d.label_formula
+                       from rm_custgrouplabel_info d
+                      where d.cust_group_id = c.cust_group_id) as "labelFormula"
+      from rm_marketcase_info a,
+           rm_relation_rel    b,
+           rm_custgroup_info  c,
+           rm_relation_rel    f,
+           rm_relation_rel    g
+     where a.market_case_id = b.parent_component_id
+       and b.rel_id = f.parent_rel_id
+       and f.component_type = '03'
+       and f.rel_id = g.parent_rel_id
+       and g.component_type = '04'
+       and b.component_id = c.cust_group_id
+       and a.STATUS_CODE = #marketStatusCode#
+       and <![CDATA[ a.START_TIME <= #sysDate#  and a.END_TIME>= #sysDate#  ]]>
+       and (f.component_id in ('03') or
+           g.component_id in ('POSITION_03_01'))
+	</select>
+	
+	<select id="selectMarketcaseRelCustGroupTypeAndFormula" parameterClass="querFilter" resultClass="java.util.HashMap">
+		select distinct a.market_case_id as "marketCaseId",
+             c.cust_group_id as "custGroupId",
+             c.cust_group_type as "custGroupType",
+               c.RELATED_DATASOURCE_NAME as "relatedDataSourceName",
+               (select d.label_formula from rm_custgrouplabel_info d where d.cust_group_id = c.cust_group_id) as "labelFormula"
+         from rm_marketcase_info a, rm_relation_rel b, rm_custgroup_info c, rm_shellprocessexecute_info e, rm_relation_rel f,rm_relation_rel g
+         where a.market_case_id = b.parent_component_id
+               and b.rel_id = f.parent_rel_id and f.component_type = '03'
+               and f.rel_id = g.parent_rel_id and g.component_type = '04'
+               and b.component_id = c.cust_group_id
+               and e.busi_id = a.market_case_id
+			   and a.STATUS_CODE = #marketStatusCode#
+			   and <![CDATA[ a.START_TIME <= #sysDate#  and a.END_TIME>= #sysDate#  ]]>
+         and e.process_no = '04' and e.status_code = '00' and e.busi_type = '00'
+         and (f.component_id in ('10', '16', '17','06') or g.component_id in('POSITION_03_99','POSITION_13_02','POSITION_15_02'))
+	</select>
+	
+	<select id="selectRmMarketCaseCount" parameterClass="querFilter" resultClass="java.util.HashMap"> 
+		SELECT 
+			count(*) as "marketCaseCount",
+			status_code as "statusCode" 
+		FROM rm_marketcase_info 
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="operNo" prepend="and"> 
+				<isNotEmpty property="operNo"> 
+					OPER_NO = #operNo# 
+				</isNotEmpty> 
+			</isNotNull> 
+			<isNotNull property="regionCode" prepend="and"> 
+				<isNotEmpty property="regionCode"> 
+					REGION_CODE = #regionCode# 
+				</isNotEmpty> 
+			</isNotNull> 
+		</dynamic>
+		GROUP BY STATUS_CODE
+	</select>
+	
+	
+	<select id="selectRmMarketCaseNum" parameterClass="querFilter" resultClass="java.util.HashMap"> 
+		SELECT 
+			count(*) as "marketCaseNum" 
+		FROM rm_marketcase_info 
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="operNo" prepend="and"> 
+				<isNotEmpty property="operNo"> 
+					OPER_NO = #operNo# 
+				</isNotEmpty> 
+			</isNotNull> 
+			<isNotNull property="marketStatusCode" prepend="and"> 
+				<isNotEmpty property="marketStatusCode"> 
+					STATUS_CODE = #marketStatusCode# 
+				</isNotEmpty> 
+			</isNotNull> 
+			</dynamic>
+	</select>
+	
+	<select id="selectMarketCaseAndWholeRuleDetail" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		    MARKET_CASE_ID AS "marketCaseId",
+		    MARKET_CASE_NAME AS "marketCaseName",
+			SERIAL_ID AS "serialId",
+			RULE_ID AS "ruleId",
+			RULE_DETAIL_ID AS "ruleDetailId",
+			RULE_DETAIL_TYPE AS "ruleDetailType",
+			RULE_PAR_CODE AS "ruleParCode",
+			RULE_PAR_NAME AS "ruleParName",
+			RULE_PAR_VALUE AS "ruleParValue",
+			RULE_PAR_DESC AS "ruleParDesc"
+		FROM
+		    rm_marketcase_info mark,
+			rm_ruledetail_info rule,
+			rm_relation_rel rel
+		WHERE			
+		 rel.component_id = rule.rule_id
+		AND rel.parent_component_id = mark.market_case_id
+		AND component_type = '06'
+		AND <![CDATA[ mark.START_TIME <= #sysDate# and mark.END_TIME>= #sysDate# ]]>
+			<isNotNull property="marketStatusCode" prepend="and">
+				<isNotEmpty property="marketStatusCode">
+					STATUS_CODE = #marketStatusCode#
+				</isNotEmpty>
+			</isNotNull>	
+			<isNotNull property="rangeStartDate" prepend="and">
+				<isNotEmpty property="rangeStartDate">
+					<![CDATA[ START_TIME >= #rangeStartDate# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="rangeEndDate" prepend="and">
+				<isNotEmpty property="rangeEndDate">
+					<![CDATA[ END_TIME <= #rangeEndDate# ]]>
+				</isNotEmpty>
+			</isNotNull>			
+	</select>
+		
+	<select id="selectEventTriggerMarketCase" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		    MARKET_CASE_ID AS "marketCaseId",
+		    MARKET_CASE_NAME AS "marketCaseName",
+		    REGION_CODE AS "regionCode",
+			COMPONENT_ID AS "componentId"
+		FROM
+		    rm_marketcase_info mark,
+			rm_relation_rel rel
+		WHERE			
+		 rel.parent_component_id = mark.market_case_id
+		AND rel.component_type = '07'
+		AND mark.status_code = '04'
+		AND <![CDATA[ mark.START_TIME <= #sysDate# and mark.END_TIME>= #sysDate# ]]>			
+	</select>
+	
+	<select id="selectExecuteMarketCase" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+			MARKET_CASE_ID AS "marketCaseId",
+			MARKET_CASE_NAME AS "marketCaseName",
+			TRIGGER_MODE AS "triggerMode",
+			MARKET_CASE_TYPE AS "marketCaseType",
+			MARKET_CASE_BUSI_TYPE AS "marketCaseBusiType",
+			START_TIME AS "startTime",
+			END_TIME AS "endTime",
+			STATUS_CODE AS "statusCode",
+			(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'statusCode' AND FIELD_VALUE = STATUS_CODE ) AS "statusName",
+			REGION_CODE AS "regionCode",
+			GROUP_ID AS "groupId",
+			MARKETCASE_DESC AS "marketCaseDesc",
+			OPER_NO AS "operNo",
+			OPER_NAME AS "operName",
+			OPER_TIME AS "operTime",
+			UPDATE_NO AS "updateNo",
+			UPDATE_NAME AS "updateName",
+			UPDATE_TIME AS "updateTime"
+		FROM RM_MARKETCASE_INFO			
+		WHERE STATUS_CODE in ('04','05')
+			<isNotNull property="marketCaseName" prepend="and">
+				<isNotEmpty property="marketCaseName">
+					MARKET_CASE_NAME like '%'||#marketCaseName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			order by UPDATE_TIME desc
+	</select>
+	
+	<select id="selectTargetCustCount" parameterClass="querFilter" resultClass="java.util.HashMap">
+		select cust_group_type as "custGroupType",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'custGroupType' AND FIELD_VALUE = CUST_GROUP_TYPE ) AS "custGroupTypeName",
+		cust_group_num as "custGroupNum"
+		  from rm_custgroup_info
+		 where cust_group_id in
+		       (select COMPONENT_ID
+		          from RM_RELATION_REL
+		         where PARENT_COMPONENT_TYPE = '01'
+		           and COMPONENT_TYPE = '02'
+		           and PARENT_COMPONENT_ID = #marketCaseId#)
+	</select>
+	
+		<select id="selectEventTriggerMarketCaseByJLMob" parameterClass="querFilter" resultClass="java.util.HashMap">
+		
+    SELECT mark.MARKET_CASE_ID   AS "marketCaseId",
+           mark.MARKET_CASE_NAME AS "marketCaseName",
+           mark.REGION_CODE      AS "regionCode",
+           rel2.COMPONENT_ID     AS "componentId"
+        FROM rm_marketcase_info mark, 
+        (select parent_component_id,rel_id from rm_relation_rel a where a.component_type = '02' and a.parent_component_type = '01') rel1 ,
+        (select parent_component_id,parent_rel_id,component_id from rm_relation_rel a where a.component_type = '07' and a.parent_component_type = '02') rel2
+    	WHERE rel1.parent_component_id = mark.market_case_id
+    	AND rel1.rel_id = rel2.parent_rel_id
+    	AND mark.status_code = '04'
+		AND <![CDATA[ mark.START_TIME <= #sysDate# and mark.END_TIME>= #sysDate# ]]>			
+	</select>
+			
+	<insert id="insertRmMarketcaseInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_marketcase_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend=",">
+			<isNotEmpty property="marketCaseName">
+				MARKET_CASE_NAME
+			</isNotEmpty>
+		</isNotNull>	
+		<isNotNull property="triggerMode" prepend=",">
+			<isNotEmpty property="triggerMode">
+				TRIGGER_MODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+			<isNotEmpty property="marketCaseType">
+				MARKET_CASE_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseBusiType" prepend=",">
+			<isNotEmpty property="marketCaseBusiType">
+				MARKET_CASE_BUSI_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				START_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				END_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseDesc" prepend=",">
+			<isNotEmpty property="marketCaseDesc">
+				MARKETCASE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				UPDATE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				UPDATE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				UPDATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseLevel" prepend=",">
+			<isNotEmpty property="marketCaseLevel">
+				MARKET_CASE_LEVEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseClass" prepend=",">
+			<isNotEmpty property="marketCaseClass">
+				MARKET_CASE_CLASS
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend=",">
+			<isNotEmpty property="marketCaseName">
+				#marketCaseName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="triggerMode" prepend=",">
+			<isNotEmpty property="triggerMode">
+				#triggerMode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+			<isNotEmpty property="marketCaseType">
+				#marketCaseType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseBusiType" prepend=",">
+			<isNotEmpty property="marketCaseBusiType">
+				#marketCaseBusiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				#startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				#endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				#groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				#groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseDesc" prepend=",">
+			<isNotEmpty property="marketCaseDesc">
+				#marketCaseDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				#updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				#updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				#updateTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseLevel" prepend=",">
+			<isNotEmpty property="marketCaseLevel">
+				#marketCaseLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseClass" prepend=",">
+			<isNotEmpty property="marketCaseClass">
+				#marketCaseClass#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmMarketcaseInfo" parameterClass="java.util.Map">
+	UPDATE rm_marketcase_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="marketCaseId" prepend=",">
+		    <isNotEmpty property="marketCaseId">
+			    MARKET_CASE_ID = #marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseName" prepend=",">
+		    <isNotEmpty property="marketCaseName">
+			    MARKET_CASE_NAME = #marketCaseName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="triggerMode" prepend=",">
+		    <isNotEmpty property="triggerMode">
+			    TRIGGER_MODE = #triggerMode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseType" prepend=",">
+		    <isNotEmpty property="marketCaseType">
+			    MARKET_CASE_TYPE = #marketCaseType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseBusiType" prepend=",">
+		    <isNotEmpty property="marketCaseBusiType">
+			    MARKET_CASE_BUSI_TYPE = #marketCaseBusiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+		    <isNotEmpty property="startTime">
+			    START_TIME = #startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+		    <isNotEmpty property="endTime">
+			    END_TIME = #endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+		    <isNotEmpty property="groupId">
+			    GROUP_ID = #groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+		    <isNotEmpty property="groupName">
+			    GROUP_NAME = #groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseDesc" prepend=",">
+		    <isNotEmpty property="marketCaseDesc">
+			    MARKETCASE_DESC = #marketCaseDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+		    <isNotEmpty property="updateNo">
+			    UPDATE_NO = #updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+		    <isNotEmpty property="updateName">
+			    UPDATE_NAME = #updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+		    <isNotEmpty property="updateTime">
+			    UPDATE_TIME = #updateTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseLevel" prepend=",">
+		    <isNotEmpty property="marketCaseLevel">
+			    MARKET_CASE_LEVEL = #marketCaseLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseClass" prepend=",">
+		    <isNotEmpty property="marketCaseClass">
+			    MARKET_CASE_CLASS = #marketCaseClass#
+			</isNotEmpty>
+		</isNotNull>
+
+	</dynamic>
+	where MARKET_CASE_ID = #marketCaseId#
+	</update>
+	
+	<delete id="deleteRmMarketcaseInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_marketcase_info
+	WHERE MARKET_CASE_ID = #marketCaseId#
+	</delete>
+
+	<delete id="deleteRmMarketcaseInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_marketcase_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmMarketcaseInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			MARKET_CASE_ID AS marketCaseId,
+			MARKET_CASE_NAME AS marketCaseName,
+			
+			TRIGGER_MODE AS triggerMode,
+			
+			MARKET_CASE_TYPE AS marketCaseType,
+			MARKET_CASE_BUSI_TYPE AS marketCaseBusiType,
+			START_TIME AS startTime,
+			END_TIME AS endTime,
+			STATUS_CODE AS statusCode,
+			REGION_CODE AS regionCode,
+			GROUP_ID AS groupId,
+			MARKETCASE_DESC AS marketCaseDesc,
+			OPER_NO AS operNo,
+			OPER_NAME AS operName,
+			OPER_TIME AS operTime,
+			UPDATE_NO AS updateNo,
+			UPDATE_NAME AS updateName,
+			UPDATE_TIME AS updateTime
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_marketcase_info $W$
+	</select>
+</sqlMap>

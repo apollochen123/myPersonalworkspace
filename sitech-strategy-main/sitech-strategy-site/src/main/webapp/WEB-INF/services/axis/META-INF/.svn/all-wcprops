@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-site/src/main/webapp/WEB-INF/services/axis/META-INF
+END
+questionNaireService.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-site/src/main/webapp/WEB-INF/services/axis/META-INF/questionNaireService.wsdl
+END
+services.xml
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-site/src/main/webapp/WEB-INF/services/axis/META-INF/services.xml
+END
+ServiceData.xml
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-site/src/main/webapp/WEB-INF/services/axis/META-INF/ServiceData.xml
+END
+StrategyAnalysisService.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-site/src/main/webapp/WEB-INF/services/axis/META-INF/StrategyAnalysisService.wsdl
+END

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmCustgroupfileInfo">
+
+
+	<sql id="select-all-column">
+	SELECT
+		CUST_GROUP_ID AS "custGroupId",
+		FILE_NAME AS "fileName",
+		CUST_GROUP_STATUS AS "custGroupStatus",
+		OPER_TIME AS "operTime",
+		OPER_TYPE AS "operType"	
+	FROM RM_CUSTGROUPFILE_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="custGroupId" prepend="and">
+				<isNotEmpty property="custGroupId">
+					CUST_GROUP_ID = #custGroupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fileName" prepend="and">
+				<isNotEmpty property="fileName">
+					FILE_NAME = #fileName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGroupStatus" prepend="and">
+				<isNotEmpty property="custGroupStatus">
+					CUST_GROUP_STATUS = #custGroupStatus#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeStart" prepend="and">
+				<isNotEmpty property="operTimeStart">
+					<![CDATA[ OPER_TIME >= #operTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeEnd" prepend="and">
+				<isNotEmpty property="operTimeEnd">
+					<![CDATA[ OPER_TIME <= #operTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operType" prepend="and">
+				<isNotEmpty property="operType">
+					OPER_TYPE = #operType#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmCustgroupfileInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE CUST_GROUP_ID = #custGroupId#
+	</select>
+
+	<select id="selectRmCustgroupfileInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmCustgroupfileInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CUSTGROUPFILE_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fileName" prepend=",">
+			<isNotEmpty property="fileName">
+				FILE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupStatus" prepend=",">
+			<isNotEmpty property="custGroupStatus">
+				CUST_GROUP_STATUS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operType" prepend=",">
+			<isNotEmpty property="operType">
+				OPER_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fileName" prepend=",">
+			<isNotEmpty property="fileName">
+				#fileName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupStatus" prepend=",">
+			<isNotEmpty property="custGroupStatus">
+				#custGroupStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operType" prepend=",">
+			<isNotEmpty property="operType">
+				#operType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmCustgroupfileInfo" parameterClass="java.util.Map">
+	UPDATE RM_CUSTGROUPFILE_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="custGroupId" prepend=",">
+		    <isNotEmpty property="custGroupId">
+			    CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fileName" prepend=",">
+		    <isNotEmpty property="fileName">
+			    FILE_NAME = #fileName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupStatus" prepend=",">
+		    <isNotEmpty property="custGroupStatus">
+			    CUST_GROUP_STATUS = #custGroupStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operType" prepend=",">
+		    <isNotEmpty property="operType">
+			    OPER_TYPE = #operType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmCustgroupfileInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_CUSTGROUPFILE_INFO
+	WHERE CUST_GROUP_ID = #custGroupId#
+	</delete>
+
+	<delete id="deleteRmCustgroupfileInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_CUSTGROUPFILE_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+</sqlMap>

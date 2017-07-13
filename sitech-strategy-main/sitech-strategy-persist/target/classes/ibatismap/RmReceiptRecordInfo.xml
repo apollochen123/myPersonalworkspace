@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RmReceiptRecordInfo">
+	<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter"
+		alias="querFilter" />
+	<select id="selectRmReceiptRecordInfo" parameterClass="queryFilter"
+		resultClass="java.util.HashMap">
+	SELECT 
+		ACCEPT_CODE AS "acceptCode",
+		(SELECT m.MARKET_CASE_NAME FROM RM_MARKETCASE_INFO m WHERE r.ACT_ID=m.MARKET_CASE_ID) AS "activeName",
+		(SELECT b.CHANNEL_NAME from RM_CHANNEL_INFO b where r.CHANNEL_ID=b.CHANNEL_ID) AS "channelName",
+		CONTACT_FLAG AS "contactFlag",
+		ID_NO AS "idNo",
+		METHOD_CODE AS "methodCode",
+		NOTE AS "note",
+		NUM_TYPE AS "numType",
+		NUM_VALUE AS "numValue",
+		OPER_NAME AS "operName",
+		OPER_NO  AS "operNo",
+		(SELECT p.POSITION_NAME FROM rm_position_info p where r.POSITION_ID=p.POSITION_ID) AS "positionName",
+		(SELECT c.FIELD_DESC from rm_codename_dict c where c.FIELD_EN_NAME='regionCode' AND r.REGION_CODE=c.FIELD_VALUE) AS "regionCodeName",
+		RESULTS_CODE AS "resultsCode",
+		SEQ_ID AS "seqId",
+		STATUS_CODE AS "statusCode",
+		SYSTEM_ID AS "systemId",
+		TASK_ID AS "taskId" 
+		FROM RM_RECEIPTRECORD_INFO r
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID=#channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO=#idNo#
+				</isNotEmpty>
+			</isNotNull>
+			</dynamic>
+	</select>
+</sqlMap>
+

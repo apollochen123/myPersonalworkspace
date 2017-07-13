@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/service/jcf/inter
+END
+ICustGroupProcessService.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/service/jcf/inter/ICustGroupProcessService.java
+END
+ICoupleBackProcessService.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/service/jcf/inter/ICoupleBackProcessService.java
+END
+ITaskProcessService.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/service/jcf/inter/ITaskProcessService.java
+END

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+	<bean id="baseClassByPersist" class="com.sitech.strategy.persist.base.BaseClass"></bean>  
+	 
+	<bean id="baseHBaseDB" class="com.sitech.strategy.persist.base.BaseHBaseDB" parent="baseClassByPersist">
+		<property name="hbaseTableName" ref="hbaseTableName"></property>
+	</bean>
+	<bean id="baseHiveDB" class="com.sitech.strategy.persist.base.BaseHiveDB" parent="baseClassByPersist">
+		<property name="hiveStatement" ref="hiveStatement"></property>
+	</bean>
+	<bean id="baseIBatisDB" class="com.sitech.strategy.persist.base.BaseIBatisDB" parent="baseClassByPersist">
+		<property name="baseDao"  ref="baseDao"></property>
+		<property name="iBatisSqlMap"  ref="iBatisSqlMap"></property>
+	</bean>
+	<bean id="baseMessageDB" class="com.sitech.strategy.persist.base.BaseMessageDB" parent="baseClassByPersist"></bean> 
+	<bean id="baseRedisDB" class="com.sitech.strategy.persist.base.BaseRedisDB" parent="baseClassByPersist"></bean>
+	<bean id="baseServiceDB" class="com.sitech.strategy.persist.base.BaseServiceDB" parent="baseClassByPersist"></bean>
+	<bean id="baseSparkSQLDB" class="com.sitech.strategy.persist.base.BaseSparkSQLDB" parent="baseClassByPersist">
+		<property name="sparkStatement" ref="sparkStatement"></property>
+	</bean>
+	
+	<bean id="proceCacheDMLByRedis" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis" parent = "baseRedisDB"></bean>
+	<bean id="proceHiveDML" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML" parent = "baseHiveDB"></bean>
+	<bean id="proceSMPPDML" class="com.sitech.strategy.persist.capacity.impl.ProceSMPPDML" parent = "baseMessageDB"></bean>
+	<bean id="proceMsgDML" class="${proceMsgDML}" parent = "baseMessageDB"></bean>
+	<bean id="proceNosqlDMLByHBase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase" parent = "baseHBaseDB"></bean>
+	<bean id="proceRDBMSDMLByIBatis" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis" parent = "baseIBatisDB"></bean>
+	<bean id="proceServiceDML" class="com.sitech.strategy.persist.capacity.impl.ProceServiceDML" parent = "baseServiceDB"></bean>
+	<bean id="proceSparkSQLDML" class="com.sitech.strategy.persist.capacity.impl.ProceSparkSQLDML" parent = "baseSparkSQLDB"></bean>
+	
+</beans>

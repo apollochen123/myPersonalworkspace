@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmRoleInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		ROLE_ID AS "roleId",
+		ROLE_NAME AS "roleName",
+		ROLE_DESC AS "roleDesc",
+		ROLE_TYPE AS "roleType"	
+	FROM RM_ROLE_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="roleId" prepend="and">
+				<isNotEmpty property="roleId">
+					ROLE_ID = #roleId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="roleName" prepend="and">
+				<isNotEmpty property="roleName">
+					ROLE_NAME = #roleName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="roleType" prepend="and">
+				<isNotEmpty property="roleType">
+					ROLE_TYPE = #roleType#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	
+	<sql id="where-all-conditions">
+	<dynamic prepend=" WHERE ">
+			(
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			or ROLE_TYPE ='2' )
+			<isNotNull property="roleType" prepend="and">
+					<isNotEmpty property="roleType">
+						ROLE_TYPE = #roleType#
+					</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="roleId" prepend="and">
+				<isNotEmpty property="roleId">
+					ROLE_ID = #roleId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="roleName" prepend="and">
+				<isNotEmpty property="roleName">
+					ROLE_NAME like '%'||#roleName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmRoleInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+	SELECT
+		A.ROLE_ID AS "roleId",
+		A.ROLE_NAME AS "roleName",
+		A.ROLE_DESC AS "roleDesc",
+		A.ROLE_TYPE ,
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'roleType' AND FIELD_VALUE = A.ROLE_TYPE ) AS "roleType",
+		A.REGION_CODE,
+		(SELECT c.FIELD_DESC from
+		rm_codename_dict c where c.FIELD_EN_NAME='regionCode' AND
+		A.REGION_CODE=c.FIELD_VALUE) AS "regionCodeName",
+		A.OPER_NO AS "operNo",
+		(SELECT LOGIN_NAME FROM rm_loginmsg_info B WHERE  B.LOGIN_NO = A.OPER_NO ) AS "operName",
+		A.OPER_TIME AS "operTime"
+	FROM RM_ROLE_INFO A
+		<include refid="where-all-conditions"/>
+	</select>
+	
+	<select id="selectRmRoleInfoByLoginNo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		SELECT ROLE_ID AS "roleId",
+			   ROLE_NAME AS "roleName",
+			   ROLE_DESC AS "roleDesc",
+			   ROLE_TYPE AS "roleType"
+			   FROM rm_role_Info
+		WHERE ROLE_ID in (SELECT ROLE_ID FROM RM_ROLEUSER_REL WHERE ROLE_ID IS NOT NULL AND LOGIN_NO = #loginNo#)
+		 AND ROLE_ID IS NOT NULL
+	</select>
+	
+	<select id="selectRmRoleInfoByLoginNumber" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		SELECT ROLE_ID AS "roleId",
+			   ROLE_NAME AS "roleName",
+			   ROLE_DESC AS "roleDesc",
+			   ROLE_TYPE AS "roleType"
+			   FROM rm_role_Info
+		WHERE ROLE_ID  not in (SELECT ROLE_ID FROM RM_ROLEUSER_REL WHERE ROLE_ID IS NOT NULL AND LOGIN_NO = #loginNo#)
+		AND ROLE_ID IS NOT NULL
+	</select>
+	
+	<insert id="insertRmRoleInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_ROLE_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="roleId" prepend=",">
+			<isNotEmpty property="roleId">
+				ROLE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleName" prepend=",">
+			<isNotEmpty property="roleName">
+				ROLE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleDesc" prepend=",">
+			<isNotEmpty property="roleDesc">
+				ROLE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleType" prepend=",">
+			<isNotEmpty property="roleType">
+				ROLE_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="roleId" prepend=",">
+			<isNotEmpty property="roleId">
+				#roleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleName" prepend=",">
+			<isNotEmpty property="roleName">
+				#roleName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleDesc" prepend=",">
+			<isNotEmpty property="roleDesc">
+				#roleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleType" prepend=",">
+			<isNotEmpty property="roleType">
+				#roleType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmRoleInfo" parameterClass="java.util.Map">
+	UPDATE RM_ROLE_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="roleId" prepend=",">
+		    <isNotEmpty property="roleId">
+			    ROLE_ID = #roleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleName" prepend=",">
+		    <isNotEmpty property="roleName">
+			    ROLE_NAME = #roleName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleDesc" prepend=",">
+		    <isNotEmpty property="roleDesc">
+			    ROLE_DESC = #roleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="roleType" prepend=",">
+		    <isNotEmpty property="roleType">
+			    ROLE_TYPE = #roleType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="roleId" prepend="and">
+				<isNotEmpty property="roleId">
+					ROLE_ID = #roleId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</update>
+	
+
+	<delete id="deleteRmRoleInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_ROLE_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+</sqlMap>

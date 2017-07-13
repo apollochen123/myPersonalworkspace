@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/CRMPD_RTMarket/!svn/ver/11971/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter
+END
+ILoginManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/ILoginManageService.java
+END
+IEvaluateManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/CRMPD_RTMarket/!svn/ver/11971/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IEvaluateManageService.java
+END
+ITemplateManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/ITemplateManageService.java
+END
+ICustGroupManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/CRMPD_RTMarket/!svn/ver/11301/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/ICustGroupManageService.java
+END
+IRuleManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IRuleManageService.java
+END
+IProductCommodityManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IProductCommodityManageService.java
+END
+IExecuteManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IExecuteManageService.java
+END
+IConfManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IConfManageService.java
+END
+ITaskManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/ITaskManageService.java
+END
+IContentManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IContentManageService.java
+END
+IDeployManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IDeployManageService.java
+END
+IEventManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/CRMPD_RTMarket/!svn/ver/11009/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IEventManageService.java
+END
+IMonitorManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IMonitorManageService.java
+END
+IAuditManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IAuditManageService.java
+END
+IInventoryManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IInventoryManageService.java
+END
+IShortMessageManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IShortMessageManageService.java
+END
+IUserManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IUserManageService.java
+END
+IActDemandManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IActDemandManageService.java
+END
+ITransferManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/ITransferManageService.java
+END
+ICommonManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/ICommonManageService.java
+END
+IMarketCaseManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IMarketCaseManageService.java
+END
+IWorkBenchManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IWorkBenchManageService.java
+END
+ISystemManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/ISystemManageService.java
+END
+IChannelManageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-manage/src/main/java/com/sitech/strategy/manage/service/jcf/inter/IChannelManageService.java
+END

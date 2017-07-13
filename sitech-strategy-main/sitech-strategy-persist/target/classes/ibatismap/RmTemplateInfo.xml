@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmTemplateInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		template_id AS "templateId",
+		template_type AS "templateType",
+		template_name AS "templateName",
+		template_desc AS "templateDesc",
+		oper_time AS "operTime",
+		oper_no AS "operNo",
+		oper_name AS "operName",
+		template_content AS "templateContent"	
+	FROM rm_template_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="templateId" prepend="and">
+				<isNotEmpty property="templateId">
+					template_id = #templateId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	
+	</sql>
+	<select id="selectRmTemplateInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE template_id = #templateId#
+	</select>
+
+	<select id="selectRmTemplateInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="templateType" prepend="and">
+				<isNotEmpty property="templateType">
+					template_type = #templateType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="templateId" prepend="and">
+				<isNotEmpty property="templateId">
+					template_id = #templateId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="templateName" prepend="and">
+				<isNotEmpty property="templateName">
+				template_name like '%'||#templateName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="keyWords" prepend="and">
+				<isNotEmpty property="keyWords">
+					(
+					<iterate open="" close="" conjunction="or" property="keyWords" > 
+           		  	template_Name like '%'||#keyWords[]#||'%'
+           			</iterate>
+           			)
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</select>
+	
+	<insert id="insertRmTemplateInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_template_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="templateId" prepend=",">
+			<isNotEmpty property="templateId">
+				template_id
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateType" prepend=",">
+			<isNotEmpty property="templateType">
+				template_type
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateName" prepend=",">
+			<isNotEmpty property="templateName">
+				template_name
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				oper_time
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				oper_no
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateContent" prepend=",">
+			<isNotEmpty property="templateContent">
+				template_content
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateDesc" prepend=",">
+			<isNotEmpty property="templateDesc">
+				template_desc
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				oper_name
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="templateId" prepend=",">
+			<isNotEmpty property="templateId">
+				#templateId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateType" prepend=",">
+			<isNotEmpty property="templateType">
+				#templateType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateName" prepend=",">
+			<isNotEmpty property="templateName">
+				#templateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateContent" prepend=",">
+			<isNotEmpty property="templateContent">
+				#templateContent#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateDesc" prepend=",">
+			<isNotEmpty property="templateDesc">
+				#templateDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmTemplateInfo" parameterClass="java.util.Map">
+	UPDATE rm_template_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="templateType" prepend=",">
+		    <isNotEmpty property="templateType">
+			    template_type = #templateType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateName" prepend=",">
+		    <isNotEmpty property="templateName">
+			    template_name = #templateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    oper_time = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    oper_no = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateContent" prepend=",">
+		    <isNotEmpty property="templateContent">
+			    template_content = #templateContent#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="templateDesc" prepend=",">
+			<isNotEmpty property="templateDesc">
+				template_desc = #templateDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				oper_name = #operName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="templateId" prepend="and">
+				<isNotEmpty property="templateId">
+					template_id = #templateId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</update>
+	
+	<delete id="deleteRmTemplateInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_template_info
+	WHERE template_id = #templateId#
+	</delete>
+
+	<delete id="deleteRmTemplateInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_template_info
+	<include refid="where-all-condition"/>
+	</delete>
+</sqlMap>

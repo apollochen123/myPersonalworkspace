@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">	
+	
+	<!-- entity配置 -->	
+	<bean id="testManageEntity" class="com.sitech.strategy.manage.entity.impl.test.TestManageEntity">
+		<property name="testInsertor" ref="testInsertor" />
+	</bean>	
+	<bean id="actDemandManageEntity" class="com.sitech.strategy.manage.entity.impl.ActDemandManageEntity">
+	  	<property name="actDemand" ref="actDemand"></property>
+	  	<property name="resultList" ref="resultList"></property>
+	</bean>
+	<bean id="auditManageEntity" class="com.sitech.strategy.manage.entity.impl.AuditManageEntity">
+	  	<property name="audit" ref="audit"></property>
+	  	<property name="resultList" ref="resultList"></property>
+	  	<property name="batchPushSender" ref="batchPushSender"></property>
+	  	<property name="loginSelector" ref="loginSelector"></property>
+	</bean>
+	<bean id="channelManageEntity" class="com.sitech.strategy.manage.entity.impl.ChannelManageEntity">
+	   	<property name="channel" ref="channel"></property>
+	    <property name="channelSelector" ref="channelSelector"></property>
+	    <property name="channelShowInsertor" ref="channelShowInsertor"></property>
+	    <property name="channelShowDeleter" ref="channelShowDeleter"></property>
+	    <property name="channelShowUpdater" ref="channelShowUpdater"></property>
+	    <property name="channelUpdater" ref="channelUpdater"></property>
+	    <property name="resultList" ref="resultList"></property>
+	    <property name="positionSelector" ref="positionSelector"></property>
+	    <property name="positionDeleter" ref="positionDeleter"></property>
+	    <property name="positionInsertor" ref="positionInsertor"></property>
+	    <property name="positionUpdater" ref="positionUpdater"></property>
+	    <property name="position" ref="position"></property>
+	</bean>
+	<bean id="commonManageEntity" class="com.sitech.strategy.manage.entity.impl.CommonManageEntity">
+	    <property name="commonSelector" ref="commonSelector"></property>
+	    <property name="batchPushSender" ref="batchPushSender"></property>
+	</bean>
+	<bean id="confManageEntity" class="com.sitech.strategy.manage.entity.impl.ConfManageEntity">
+		<property name="resultList" ref="resultList"></property>
+		<property name="priorityInsertor" ref="priorityInsertor"></property>
+		<property name="prioritySelector" ref="prioritySelector"></property>
+		<property name="priorityDeleter" ref="priorityDeleter"></property>	
+		<property name="configDeleter" ref="configDeleter"></property>
+		<property name="configInsertor" ref="configInsertor"></property>
+		<property name="configUpdater" ref="configUpdater"></property>
+	</bean>
+	<bean id="contentManageEntity" class="com.sitech.strategy.manage.entity.impl.ContentManageEntity">
+	    <property name="content" ref="content"></property>
+	    <property name="contentSelector" ref="contentSelector"></property> 
+	    <property name="templateInsertor" ref="templateInsertor"></property>
+	    <property name="resultList" ref="resultList"></property>
+	    <property name="questionNaireSelector" ref="questionNaireSelector"></property> 	    
+	</bean>
+	<bean id="custGroupManageEntity" class="com.sitech.strategy.manage.entity.impl.CustGroupManageEntity">
+	    <property name="custGroup" ref="custGroup"></property>
+	    <property name="custGroupInsertor" ref="custGroupInsertor"></property>
+	    <property name="custGroupSelector" ref="custGroupSelector"></property>
+	    <property name="commonSelecter" ref="commonSelector"></property>
+	    <property name="labelCodeNameSelector" ref="labelCodeNameSelector"></property>
+	    <property name="marketCaseSelector" ref="marketCaseSelector"></property>
+	    <property name="resultList" ref="resultList"></property>
+	    <property name="userSelector" ref="userSelector"></property>
+	    <property name="relationDeleter" ref="relationDeleter"></property>
+	    <property name="task" ref="task"></property>
+	</bean>
+	<bean id="evaluateManageEntity" class="com.sitech.strategy.manage.entity.impl.EvaluateManageEntity">
+		<property name="batchPushTaskSelector"	ref="batchPushTaskSelector"></property>
+		<property name="evaluate" ref="evaluate"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="resultList" ref="resultList"></property>
+		<property name="userSelector" ref="userSelector"></property>
+	</bean>
+	<bean id="eventManageEntity" class="com.sitech.strategy.manage.entity.impl.EventManageEntity">
+		<property name="event" ref="event"></property>
+	</bean>
+	<bean id="executeManageEntity" class="com.sitech.strategy.manage.entity.impl.ExecuteManageEntity">
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="operLogInsertor" ref="operationLogInsertor"></property>
+		<property name="taskInsertor" ref="taskInsertor"></property>
+		<property name="marketCaseDeleter" ref="marketCaseDeleter"></property>
+		<property name="marketCaseInsertor" ref="marketCaseInsertor"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="evaluateManageEntity" ref="evaluateManageEntity"></property>
+		<property name="partitionPojo" ref="partitionPojo"></property>					
+	</bean>
+	<bean id="inventoryManageEntity" class="com.sitech.strategy.manage.entity.impl.InventoryManageEntity">
+		<property name="inventory" ref="inventory"></property>
+	</bean>
+	<bean id="loginManageEntity" class="com.sitech.strategy.manage.entity.impl.LoginManageEntity">
+		<property name="login" ref="login"></property>
+		<property name="loginDeleter" ref="loginDeleter"></property>
+		<property name="loginInsertor" ref="loginInsertor"></property>
+		<property name="loginSelector" ref="loginSelector"></property>
+		<property name="loginUpdater" ref="loginUpdater"></property>
+		<property name="resultList" ref="resultList"></property>
+	</bean>
+	<bean id="marketCaseManageEntity" class="com.sitech.strategy.manage.entity.impl.MarketCaseManageEntity">
+	   <property name="actDemand" ref="actDemand"></property>
+	   <property name="audit" ref="audit"></property>
+	   <property name="auditSelector" ref="auditSelector"></property>
+	   <property name="marketCase" ref="marketCase"></property>
+	   <property name="productSelector" ref="productSelector"></property>
+	   <property name="regionCodePojo" ref="regionCodePojo"></property>
+	   <property name="resultList" ref="resultList"></property>  
+	   <property name="systemDealInsertor" ref="systemDealInsertor"></property>
+	   <property name="template" ref="template"></property>
+	</bean>
+	<bean id="monitorManageEntity" class="com.sitech.strategy.manage.entity.impl.MonitorManageEntity">
+		<property name="monitorDeleter" ref="monitorDeleter"></property>
+		<property name="monitorInsertor" ref="monitorInsertor"></property>
+		<property name="monitorSelector" ref="monitorSelector"></property>
+	</bean>
+	<bean id="productCommodityManageEntity" class="com.sitech.strategy.manage.entity.impl.ProductCommodityManageEntity">
+	   <property name="productCommodity" ref="productCommodity"></property>
+	   <property name="resultList" ref="resultList"></property>
+	</bean>
+	<bean id="ruleManageEntity" class="com.sitech.strategy.manage.entity.impl.RuleManageEntity">
+		<property name="rule" ref="rule"></property>
+	  	<property name="resultList" ref="resultList"></property>
+	</bean>
+	<bean id="shortMessageManageEntity" class="com.sitech.strategy.manage.entity.impl.ShortMessageManageEntity">
+	    <property name="commonSelector" ref="commonSelector"></property>
+	    <property name="resultList" ref="resultList"></property>
+	    <property name="shortMessage" ref="shortMessage"></property>
+	    <property name="shortMessageSelector" ref="shortMessageSelector"></property>
+	    <property name="shortMessageInsertor" ref="shortMessageInsertor"></property>
+	    <property name="shortMessageDeleter" ref="shortMessageDeleter"></property>
+	</bean>
+	<bean id="systemManageEntity" class="com.sitech.strategy.manage.entity.impl.SystemManageEntity">
+	    <property name="resultList" ref="resultList"></property>
+	    <property name="operLogSelector" ref="operLogSelector"></property>
+	    <property name="operLogInsertor" ref="operLogInsertor"></property>
+	    <property name="workConfigDeleter" ref="workConfigDeleter"></property>
+		<property name="workConfigInsertor" ref="workConfigInsertor"></property>
+		<property name="workConfigUpdater" ref="workConfigUpdater"></property>
+		<property name="monitorSelector" ref="monitorSelector"></property>
+	</bean>
+	<bean id="taskManageEntity" class="com.sitech.strategy.manage.entity.impl.TaskManageEntity">
+		<property name="task" ref="task"></property>
+	</bean>
+	<bean id="transferManageEntity" class="com.sitech.strategy.manage.entity.impl.TransferManageEntity"></bean>
+	<bean id="templateManageEntity" class="com.sitech.strategy.manage.entity.impl.TemplateManageEntity">
+	    <property name="template" ref="template"></property>
+	    <property name="resultList" ref="resultList"></property>
+	</bean>
+	<bean id="userManageEntity" class="com.sitech.strategy.manage.entity.impl.UserManageEntity">
+		<property name="user" ref="user"></property>
+		<property name="resultList" ref="resultList"></property>
+		<property name="userInsertor" ref="userInsertor"></property>
+		<property name="userDeleter" ref="userDeleter"></property>
+		<property name="userUpdater" ref="userUpdater"></property>
+		<property name="userSelector" ref="userSelector" ></property>
+	</bean>
+	<bean id="workBenchManageEntity" class="com.sitech.strategy.manage.entity.impl.WorkBenchManageEntity">
+	  	<property name="commonSelector" ref="commonSelector"></property>
+	  	<property name="evaluateSelector" ref="evaluateSelector"></property>
+	  	<property name="evaluate" ref="evaluate"></property> 
+	  	<property name="regionCodePojo" ref="regionCodePojo"></property>	
+	  	<property name="statisticSelector" ref="statisticSelector"></property>
+	  	<property name="workBench" ref="workBench"></property>
+	</bean>
+	<!-- param配置 -->
+	<bean id="actDemandManageParam" class="com.sitech.strategy.manage.entity.param.impl.ActDemandManageParam"></bean>
+	<bean id="auditManageParam" class="com.sitech.strategy.manage.entity.param.impl.AuditManageParam"></bean>
+	<bean id="channelManageParam" class="com.sitech.strategy.manage.entity.param.impl.ChannelManageParam"></bean>
+	<bean id="commonManageParam" class="com.sitech.strategy.manage.entity.param.impl.CommonManageParam"></bean>
+	<bean id="confManageParam" class="com.sitech.strategy.manage.entity.param.impl.ConfManageParam"></bean>
+	<bean id="contentManageParam" class="com.sitech.strategy.manage.entity.param.impl.ContentManageParam"></bean>
+	<bean id="custGroupManageParam" class="${custGroupManageParam}"></bean>
+	<bean id="eventManageParam" class="com.sitech.strategy.manage.entity.param.impl.EventManageParam"></bean>
+	<bean id="executeManageParam" class="com.sitech.strategy.manage.entity.param.impl.ExecuteManageParam"></bean>
+	<bean id="evaluateManageParam" class="com.sitech.strategy.manage.entity.param.impl.EvaluateManageParam"></bean>
+	<bean id="inventoryManageParam" class="com.sitech.strategy.manage.entity.param.impl.InventoryManageParam"></bean>
+	<bean id="loginManageParam" class="com.sitech.strategy.manage.entity.param.impl.LoginManageParam"></bean>
+	<bean id="marketCaseManageParam" class="${marketCaseManageParam}"></bean>
+	<bean id="monitorManageParam" class="com.sitech.strategy.manage.entity.param.impl.MonitorManageParam"></bean>
+	<bean id="productCommodityManageParam" class="com.sitech.strategy.manage.entity.param.impl.ProductCommodityManageParam"></bean>
+	<bean id="ruleManageParam" class="com.sitech.strategy.manage.entity.param.impl.RuleManageParam"></bean>
+	<bean id="shortMessageManageParam" class="com.sitech.strategy.manage.entity.param.impl.ShortMessageManageParam"></bean>
+	<bean id="systemManageParam" class="com.sitech.strategy.manage.entity.param.impl.SystemManageParam"></bean>
+	<bean id="taskManageParam" class="com.sitech.strategy.manage.entity.param.impl.TaskManageParam"></bean>
+	<bean id="templateManageParam" class="com.sitech.strategy.manage.entity.param.impl.TemplateManageParam"></bean>
+	<bean id="userManageParam" class="${userManageParam}">
+		<property name = "userSelector" ref = "userSelector"></property>
+	</bean>
+	<bean id="workBenchManageParam" class="com.sitech.strategy.manage.entity.param.impl.WorkBenchManageParam"></bean>
+</beans>

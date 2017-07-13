@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/CRMPD_RTMarket/!svn/ver/11516/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/hbase
+END
+IHbaseQualifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/CRMPD_RTMarket/!svn/ver/11487/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/hbase/IHbaseQualifier.java
+END
+IHbaseTableName.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/CRMPD_RTMarket/!svn/ver/11487/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/hbase/IHbaseTableName.java
+END
+IHbaseRowKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/11516/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/hbase/IHbaseRowKey.java
+END
+IAssemblyTableStructure.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/hbase/IAssemblyTableStructure.java
+END

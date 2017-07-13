@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmContentInfo">
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		CONTENT_ID AS "contentId",
+		CONTENT_NAME AS "contentName",
+		CONTENT_TYPE AS "contentType",
+		STATUS_CDOE AS "statusCdoe",
+		CONTENT_DESC AS "contentDesc",
+		START_TIME AS "startTime",
+		END_TIME AS "endTime",
+		REGION_CODE AS "regionCode",
+		OPER_NO AS "operNo",
+		OPER_NAME AS "operName",
+		OPER_TIME AS "operTime",
+		UPDATE_NO AS "updateNo",
+		UPDATE_NAME AS "updateName",
+		UPDATE_TIME AS "updateTime"	
+	FROM rm_content_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="contentId" prepend="and">
+				<isNotEmpty property="contentId">
+					CONTENT_ID = #contentId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="contentName" prepend="and">
+				<isNotEmpty property="contentName">
+					CONTENT_NAME = #contentName#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmContentInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmContentInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmContentInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_content_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentId" prepend=",">
+			<isNotEmpty property="contentId">
+				CONTENT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentName" prepend=",">
+			<isNotEmpty property="contentName">
+				CONTENT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentType" prepend=",">
+			<isNotEmpty property="contentType">
+				CONTENT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCdoe" prepend=",">
+			<isNotEmpty property="statusCdoe">
+				STATUS_CDOE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDesc" prepend=",">
+			<isNotEmpty property="contentDesc">
+				CONTENT_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				START_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				END_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				UPDATE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				UPDATE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				UPDATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentId" prepend=",">
+			<isNotEmpty property="contentId">
+				#contentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentName" prepend=",">
+			<isNotEmpty property="contentName">
+				#contentName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentType" prepend=",">
+			<isNotEmpty property="contentType">
+				#contentType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCdoe" prepend=",">
+			<isNotEmpty property="statusCdoe">
+				#statusCdoe#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDesc" prepend=",">
+			<isNotEmpty property="contentDesc">
+				#contentDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				#startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				#endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				#updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				#updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				#updateTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmContentInfo" parameterClass="java.util.Map">
+	UPDATE rm_content_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentId" prepend=",">
+		    <isNotEmpty property="contentId">
+			    CONTENT_ID = #contentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentName" prepend=",">
+		    <isNotEmpty property="contentName">
+			    CONTENT_NAME = #contentName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentType" prepend=",">
+		    <isNotEmpty property="contentType">
+			    CONTENT_TYPE = #contentType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCdoe" prepend=",">
+		    <isNotEmpty property="statusCdoe">
+			    STATUS_CDOE = #statusCdoe#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDesc" prepend=",">
+		    <isNotEmpty property="contentDesc">
+			    CONTENT_DESC = #contentDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+		    <isNotEmpty property="startTime">
+			    START_TIME = #startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+		    <isNotEmpty property="endTime">
+			    END_TIME = #endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+		    <isNotEmpty property="updateNo">
+			    UPDATE_NO = #updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+		    <isNotEmpty property="updateName">
+			    UPDATE_NAME = #updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+		    <isNotEmpty property="updateTime">
+			    UPDATE_TIME = #updateTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmContentInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_content_info
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmContentInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_content_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmContentInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			CONTENT_ID AS contentId,
+			CONTENT_NAME AS contentName,
+			CONTENT_TYPE AS contentType,
+			STATUS_CDOE AS statusCdoe,
+			CONTENT_DESC AS contentDesc,
+			START_TIME AS startTime,
+			END_TIME AS endTime,
+			REGION_CODE AS regionCode,
+			OPER_NO AS operNo,
+			OPER_NAME AS operName,
+			OPER_TIME AS operTime,
+			UPDATE_NO AS updateNo,
+			UPDATE_NAME AS updateName,
+			UPDATE_TIME AS updateTime
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_content_info $W$
+	</select>
+</sqlMap>

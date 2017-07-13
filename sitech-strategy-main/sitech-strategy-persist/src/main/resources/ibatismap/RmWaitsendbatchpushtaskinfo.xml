@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmWaitsendbatchpushInfo">
+
+
+
+	<select id="selectRmWaitSendBatchPushTaskInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		SELECT 
+            count(*) AS "waitSendCount"
+            FROM RM_WAITSENDBATCHPUSHTASK_INFO
+			<dynamic prepend=" WHERE ">
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					KEY like	'%'||#marketCaseId#||'%'
+				</isNotEmpty>
+			</isNotNull>
+           
+	</dynamic>
+		
+	</select>
+	
+	
+	
+	
+</sqlMap>

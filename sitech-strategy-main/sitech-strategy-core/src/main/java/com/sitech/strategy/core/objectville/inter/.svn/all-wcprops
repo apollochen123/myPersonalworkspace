@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/CRMPD_RTMarket/!svn/ver/12204/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter
+END
+ICoupleBack.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/11509/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/ICoupleBack.java
+END
+IContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/11493/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IContent.java
+END
+IDeploy.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IDeploy.java
+END
+ITask.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/11767/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/ITask.java
+END
+IRealTimePush.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IRealTimePush.java
+END
+IAttach.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IAttach.java
+END
+ICallTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/11825/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/ICallTask.java
+END
+IBatchPush.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/11933/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IBatchPush.java
+END
+IProductCommodity.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IProductCommodity.java
+END
+IEventTrigger.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IEventTrigger.java
+END
+IRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/12006/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IRule.java
+END
+ITemplate.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/ITemplate.java
+END
+ICustGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/11947/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/ICustGroup.java
+END
+IEvaluate.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IEvaluate.java
+END
+IEventParse.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IEventParse.java
+END
+ILogin.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/ILogin.java
+END
+IChannelTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/CRMPD_RTMarket/!svn/ver/11693/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IChannelTask.java
+END
+IChannelTrigger.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IChannelTrigger.java
+END
+IChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IChannel.java
+END
+IWorkBench.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IWorkBench.java
+END
+IMarketCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/12204/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IMarketCase.java
+END
+IUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/11493/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IUser.java
+END
+IActDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IActDemand.java
+END
+IComponent.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/11493/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IComponent.java
+END
+IShortMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IShortMessage.java
+END
+IInventory.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IInventory.java
+END
+IAudit.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IAudit.java
+END
+IPosition.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IPosition.java
+END
+IEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/11002/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IEvent.java
+END
+IMonitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/inter/IMonitor.java
+END

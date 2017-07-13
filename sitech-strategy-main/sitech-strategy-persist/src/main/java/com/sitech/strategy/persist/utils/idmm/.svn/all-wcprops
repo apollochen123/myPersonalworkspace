@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/CRMPD_RTMarket/!svn/ver/11498/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/idmm
+END
+DmmQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/idmm/DmmQueue.java
+END
+ResultWriterThread.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/idmm/ResultWriterThread.java
+END
+DmmLogVo.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/idmm/DmmLogVo.java
+END
+DmmProducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/11498/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/idmm/DmmProducer.java
+END
+DmmMultiThreadConsumer.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/idmm/DmmMultiThreadConsumer.java
+END

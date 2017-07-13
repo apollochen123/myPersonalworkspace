@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmAuditnoInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		REGION_CODE AS "regionCode",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+		CHANNEL_ID AS "channelId",
+		(SELECT CHANNEL_NAME FROM rm_channel_info WHERE rm_channel_info.CHANNEL_ID = RM_AUDITNO_INFO.CHANNEL_ID  ) AS "channelName",
+		AUDIT_ORDER AS "auditOrder",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'auditOrderName' AND FIELD_VALUE = AUDIT_ORDER) AS "auditOrderName",
+		AUDIT_NO AS "auditNo",
+		AUDIT_TYPE AS "auditType",
+		GROUP_ID	AS "groupId",
+		DOWNLOAD_NUM AS "downLoadNum"
+	FROM RM_AUDITNO_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelIdArray" prepend="and">
+				CHANNEL_ID IN
+					<iterate open="(" close=")" conjunction="," property="channelIdArray" > 
+            			#channelIdArray[]#
+            		</iterate>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					 CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditType" prepend="and">
+				<isNotEmpty property="auditType">
+					AUDIT_TYPE = #auditType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditOrder" prepend="and">
+				<isNotEmpty property="auditOrder">
+					AUDIT_ORDER = #auditOrder#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupId" prepend="and">
+				<isNotEmpty property="groupId">
+					GROUP_ID = #groupId#
+				</isNotEmpty>
+			</isNotNull>
+
+
+	</dynamic>
+	</sql>
+
+	<select id="selectRmAuditNoInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectBusiAuditNoInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		DISTINCT
+		AUDIT_NO AS "auditNo"
+	FROM RM_AUDITNO_INFO
+	<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmAuditNoInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_AUDITNO_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend=",">
+			<isNotEmpty property="auditOrder">
+				AUDIT_ORDER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend=",">
+			<isNotEmpty property="auditNo">
+				AUDIT_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditType" prepend=",">
+			<isNotEmpty property="auditType">
+				AUDIT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downLoadNum" prepend=",">
+			<isNotEmpty property="downLoadNum">
+				DOWNLOAD_NUM
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend=",">
+			<isNotEmpty property="auditOrder">
+				#auditOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend=",">
+			<isNotEmpty property="auditNo">
+				#auditNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditType" prepend=",">
+			<isNotEmpty property="auditType">
+				#auditType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downLoadNum" prepend=",">
+			<isNotEmpty property="downLoadNum">
+				#downLoadNum#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmAuditNoInfo" parameterClass="java.util.Map">
+	UPDATE RM_AUDITNO_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend=",">
+		    <isNotEmpty property="auditOrder">
+			    AUDIT_ORDER = #auditOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend=",">
+		    <isNotEmpty property="auditNo">
+			    AUDIT_NO = #auditNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditType" prepend=",">
+		    <isNotEmpty property="auditType">
+			    AUDIT_TYPE = #auditType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmAuditNoInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_AUDITNO_INFO
+	<dynamic prepend=" WHERE ">
+		<isNotNull property="regionCode" prepend="and">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend="and">
+		    <isNotEmpty property="auditOrder">
+			    AUDIT_ORDER = #auditOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditType" prepend="and">
+		    <isNotEmpty property="auditType">
+			    AUDIT_TYPE = #auditType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downLoadNum" prepend="and">
+		    <isNotEmpty property="downLoadNum">
+			    DOWNLOAD_NUM = #downLoadNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend="and">
+		    <isNotEmpty property="auditNo">
+			    AUDIT_NO = #auditNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend="and">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	</delete>
+	
+</sqlMap>

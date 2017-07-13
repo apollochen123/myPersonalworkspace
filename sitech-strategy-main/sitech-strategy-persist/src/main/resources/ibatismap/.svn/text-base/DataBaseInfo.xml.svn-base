@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="DataBaseInfo">
+
+	<select id="selectSysTimeFromOracle"  resultClass="java.lang.String">
+		<![CDATA[select to_char(sysdate, 'yyyymmddhh24miss')  from dual where 1 = 1]]>
+	</select>
+
+	<select id="selectSysTimeFromMysql"  resultClass="java.lang.String">
+		<![CDATA[select date_format(now(),'%Y%m%d%H%i%s')  from dual where 1 = 1]]>
+	</select>
+
+</sqlMap>

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/CRMPD_RTMarket/!svn/ver/12194/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl
+END
+IdmmProducerProp.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/IdmmProducerProp.java
+END
+QueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/11882/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/QueryFilter.java
+END
+SortParamer.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/SortParamer.java
+END
+MarketCaseCachePojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/MarketCaseCachePojo.java
+END
+MarketCasePacketPojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/MarketCasePacketPojo.java
+END
+SparkAppProp.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/12194/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/SparkAppProp.java
+END
+IdmmTopicConfig.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/IdmmTopicConfig.java
+END
+ResultItemPojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/ResultItemPojo.java
+END
+IdmmConsumerProp.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/IdmmConsumerProp.java
+END
+PagingDevice.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/PagingDevice.java
+END
+MarketCaseDetailPojo.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/impl/MarketCaseDetailPojo.java
+END

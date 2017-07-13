@@ -1,0 +1,18 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: root
+    password: 123456
+server:
+  port: 8080
+eureka:
+  client:
+    healthcheck:
+       enabled: true #健康检查
+    register-with-eureka: false
+    fetch-registry: false  #单机模拟，不当client
+    service-url:
+      defaultZone: http://user:password@localhost:8080/eureka/
+      
+       

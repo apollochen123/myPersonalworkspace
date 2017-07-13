@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmTaskadjustInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		TASKADJUST_ID AS "taskadjustId",
+		TASKADJUST_TYPE AS "taskadjustType",
+		TASKADJUST_CONTENT AS "taskadjustContent",
+		TASKADJUST_CONDITION AS "taskadjustCondition",
+		OPER_NO AS "operNo",
+		OPER_TIME AS "operTime",
+		UPDATE_TIME AS "updateTime",
+		STATUS_CODE AS "statusCode"
+	FROM RM_TASKADJUST_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="taskadjustId" prepend="and">
+				<isNotEmpty property="taskadjustId">
+					TASKADJUST_ID = #taskadjustId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmTaskadjustInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE TASKADJUST_ID = #taskadjustId#
+	</select>
+
+	<select id="selectRmTaskadjustInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmTaskadjustInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_TASKADJUST_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="taskadjustId" prepend=",">
+			<isNotEmpty property="taskadjustId">
+				TASKADJUST_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustType" prepend=",">
+			<isNotEmpty property="taskadjustType">
+				TASKADJUST_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustContent" prepend=",">
+			<isNotEmpty property="taskadjustContent">
+				TASKADJUST_CONTENT
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustCondition" prepend=",">
+			<isNotEmpty property="taskadjustCondition">
+				TASKADJUST_CONDITION
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				UPDATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="taskadjustId" prepend=",">
+			<isNotEmpty property="taskadjustId">
+				#taskadjustId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustType" prepend=",">
+			<isNotEmpty property="taskadjustType">
+				#taskadjustType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustContent" prepend=",">
+			<isNotEmpty property="taskadjustContent">
+				#taskadjustContent#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustCondition" prepend=",">
+			<isNotEmpty property="taskadjustCondition">
+				#taskadjustCondition#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				#updateTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmTaskadjustInfo" parameterClass="java.util.Map">
+	UPDATE RM_TASKADJUST_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="taskadjustId" prepend=",">
+		    <isNotEmpty property="taskadjustId">
+			    TASKADJUST_ID = #taskadjustId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustType" prepend=",">
+		    <isNotEmpty property="taskadjustType">
+			    TASKADJUST_TYPE = #taskadjustType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustContent" prepend=",">
+		    <isNotEmpty property="taskadjustContent">
+			    TASKADJUST_CONTENT = #taskadjustContent#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskadjustCondition" prepend=",">
+		    <isNotEmpty property="taskadjustCondition">
+			    TASKADJUST_CONDITION = #taskadjustCondition#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+		    <isNotEmpty property="updateTime">
+			    UPDATE_TIME = #updateTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmTaskadjustInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_TASKADJUST_INFO
+	WHERE TASKADJUST_ID = #taskadjustId#
+	</delete>
+
+	<delete id="deleteRmTaskadjustInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_TASKADJUST_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmTaskadjustInfoParam" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="taskadjustId" prepend="and">
+				<isNotEmpty property="taskadjustId">
+					TASKADJUST_ID in ($taskadjustId$)
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</select>
+</sqlMap>

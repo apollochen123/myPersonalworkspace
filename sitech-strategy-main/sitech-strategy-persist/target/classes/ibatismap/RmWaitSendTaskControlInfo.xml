@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmWaitSendTaskControlInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		MARKET_CASE_ID AS "marketCaseId",
+		SEND_TIME AS "sendTime"
+	FROM rm_waitsendtaskcontrol_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="sendTime" prepend="and">
+				<isNotEmpty property="sendTime">
+					SEND_TIME = #sendTime#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	
+	<select id="selectRmWaitSendTaskControlInfoBySendTime" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SEND_TIME = #sendTime#
+	</select>
+
+
+	<insert id="insertRmWaitSendTaskControlInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_waitsendtaskcontrol_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sendTime" prepend=",">
+			<isNotEmpty property="sendTime">
+				SEND_TIME
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sendTime" prepend=",">
+			<isNotEmpty property="sendTime">
+				#sendTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+		)
+	</insert>
+</sqlMap>

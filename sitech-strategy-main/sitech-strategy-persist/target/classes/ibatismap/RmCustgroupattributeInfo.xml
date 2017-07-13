@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmCustGroupAttributeInfo">
+   <sql id="select-all-column">
+	SELECT
+		CUST_GROUP_ID AS "custGroupId",
+		SQL_SCRIPT AS "sqlScript",
+		PERIOD AS "period",
+		TABEL_NAME AS "tabelName",
+		DATA_SOURCE AS "dataSource",
+		EXE_TIME AS "exeTime",
+		USER_TYPE AS "userType",
+		LABEL_FORMULA_RESTRICT AS "label_formula_restrict",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'userType' AND FIELD_VALUE = USER_TYPE) AS "userTypeName",
+     	(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'dataBaseFrom' AND FIELD_VALUE = DATA_SOURCE) AS "dataSourceName",
+     	(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'period' AND FIELD_VALUE = PERIOD) AS "periodName"
+        
+	FROM rm_custgroupattribute_info
+	</sql>
+	
+	<sql id="where-all-condition">
+		<dynamic prepend=" WHERE ">
+				<isNotNull property="custGroupId" prepend="and">
+					<isNotEmpty property="custGroupId">
+						CUST_GROUP_ID = #custGroupId#
+					</isNotEmpty>
+				</isNotNull>
+			
+		</dynamic>
+	</sql>
+	
+	<select id="selectRmCustgroupattributeInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+
+
+
+	<insert id="insertRmCustgroupattributeInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CUSTGROUPATTRIBUTE_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sqlScript" prepend=",">
+			<isNotEmpty property="sqlScript">
+				SQL_SCRIPT
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="period" prepend=",">
+			<isNotEmpty property="period">
+				PERIOD
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="tabelName" prepend=",">
+			<isNotEmpty property="tabelName">
+				TABEL_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dataSource" prepend=",">
+			<isNotEmpty property="dataSource">
+				DATA_SOURCE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="exeTime" prepend=",">
+			<isNotEmpty property="exeTime">
+				EXE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userType" prepend=",">
+			<isNotEmpty property="userType">
+				USER_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="label_formula_restrict" prepend=",">
+			<isNotEmpty property="label_formula_restrict">
+				label_formula_restrict
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sqlScript" prepend=",">
+			<isNotEmpty property="sqlScript">
+				#sqlScript#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="period" prepend=",">
+			<isNotEmpty property="period">
+				#period#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="tabelName" prepend=",">
+			<isNotEmpty property="tabelName">
+				#tabelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dataSource" prepend=",">
+			<isNotEmpty property="dataSource">
+				#dataSource#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="exeTime" prepend=",">
+			<isNotEmpty property="exeTime">
+				#exeTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userType" prepend=",">
+			<isNotEmpty property="userType">
+				#userType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="label_formula_restrict" prepend=",">
+			<isNotEmpty property="label_formula_restrict">
+				#label_formula_restrict#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	
+		<update id="updateRmCustgroupattributeInfo" parameterClass="java.util.Map">
+	UPDATE RM_CUSTGROUPATTRIBUTE_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="custGroupId" prepend=",">
+		    <isNotEmpty property="custGroupId">
+			    CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sqlScript" prepend=",">
+		    <isNotEmpty property="sqlScript">
+			    SQL_SCRIPT = #sqlScript#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="period" prepend=",">
+		    <isNotEmpty property="period">
+			    PERIOD = #period#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="tabelName" prepend=",">
+		    <isNotEmpty property="tabelName">
+			    TABEL_NAME = #tabelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dataSource" prepend=",">
+		    <isNotEmpty property="dataSource">
+			    DATA_SOURCE = #dataSource#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="exeTime" prepend=",">
+		    <isNotEmpty property="exeTime">
+			    EXE_TIME = #exeTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userType" prepend=",">
+		    <isNotEmpty property="userType">
+			    USER_TYPE = #userType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="label_formula_restrict" prepend=",">
+			<isNotEmpty property="label_formula_restrict">
+				LABEL_FORMULA_RESTRICT = #label_formula_restrict#
+			</isNotEmpty>
+		</isNotNull>
+
+	</dynamic>
+      where CUST_GROUP_ID = #custGroupId#
+	</update>
+	
+	<delete id="deleteRmCustgroupattributeInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_CUSTGROUPATTRIBUTE_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+
+</sqlMap>

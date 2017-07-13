@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmAuditinventoryInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		CUST_GROUP_ID AS "custGroupId",
+		CUST_GROUP_NAME AS "custGroupName",
+		SERIAL_ID AS "serialId",
+		OPER_NO AS "operNo",
+		OPER_NAME AS "operName",
+		OPER_TIME AS "operTime",
+		TASK_TYPE AS "taskType",
+		TASK_NAME AS "taskName",
+		REGION_CODE AS "regionCode",
+		GROUP_ID AS "groupId",
+		DOWNLOAD_NUM AS "downloadNum",
+		INVENTORY_NUM AS "inventoryNum",
+		AUDIT_NO AS "auditNo",
+		AUDIT_TIME AS "auditTime",
+		AUDIT_CODE AS "auditCode",
+		SYSTEM_NAME AS "systemName"	
+	FROM RM_AUDITINVENTORY_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="custGroupId" prepend="and">
+				<isNotEmpty property="custGroupId">
+					CUST_GROUP_ID = #custGroupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGroupName" prepend="and">
+				<isNotEmpty property="custGroupName">
+					CUST_GROUP_NAME = #custGroupName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operName" prepend="and">
+				<isNotEmpty property="operName">
+					OPER_NAME = #operName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeStart" prepend="and">
+				<isNotEmpty property="operTimeStart">
+					<![CDATA[ OPER_TIME >= #operTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeEnd" prepend="and">
+				<isNotEmpty property="operTimeEnd">
+					<![CDATA[ OPER_TIME <= #operTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="taskType" prepend="and">
+				<isNotEmpty property="taskType">
+					TASK_TYPE = #taskType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="taskName" prepend="and">
+				<isNotEmpty property="taskName">
+					TASK_NAME = #taskName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupId" prepend="and">
+				<isNotEmpty property="groupId">
+					GROUP_ID = #groupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="downloadNum" prepend="and">
+				<isNotEmpty property="downloadNum">
+					DOWNLOAD_NUM = #downloadNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="inventoryNum" prepend="and">
+				<isNotEmpty property="inventoryNum">
+					INVENTORY_NUM = #inventoryNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditNo" prepend="and">
+				<isNotEmpty property="auditNo">
+					AUDIT_NO = #auditNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditTimeStart" prepend="and">
+				<isNotEmpty property="auditTimeStart">
+					<![CDATA[ AUDIT_TIME >= #auditTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditTimeEnd" prepend="and">
+				<isNotEmpty property="auditTimeEnd">
+					<![CDATA[ AUDIT_TIME <= #auditTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditCode" prepend="and">
+				<isNotEmpty property="auditCode">
+					AUDIT_CODE = #auditCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="systemName" prepend="and">
+				<isNotEmpty property="systemName">
+					SYSTEM_NAME = #systemName#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmAuditinventoryInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="operTimeStart" prepend="and">
+				<isNotEmpty property="operTimeStart">
+					<![CDATA[ OPER_TIME >= #operTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operTimeEnd" prepend="and">
+				<isNotEmpty property="operTimeEnd">
+					<![CDATA[ OPER_TIME <= #operTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGroupDetailFileName" prepend="and">
+				<isNotEmpty property="custGroupDetailFileName">
+				TASK_NAME like '%'||#custGroupDetailFileName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			 
+		</dynamic>
+		order by OPER_TIME desc
+	</select>
+	
+	<insert id="insertRmAuditinventoryInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_AUDITINVENTORY_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+			<isNotEmpty property="custGroupName">
+				CUST_GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskType" prepend=",">
+			<isNotEmpty property="taskType">
+				TASK_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskName" prepend=",">
+			<isNotEmpty property="taskName">
+				TASK_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downloadNum" prepend=",">
+			<isNotEmpty property="downloadNum">
+				DOWNLOAD_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryNum" prepend=",">
+			<isNotEmpty property="inventoryNum">
+				INVENTORY_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend=",">
+			<isNotEmpty property="auditNo">
+				AUDIT_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditTime" prepend=",">
+			<isNotEmpty property="auditTime">
+				AUDIT_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditCode" prepend=",">
+			<isNotEmpty property="auditCode">
+				AUDIT_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemName" prepend=",">
+			<isNotEmpty property="systemName">
+				SYSTEM_NAME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+			<isNotEmpty property="custGroupName">
+				#custGroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskType" prepend=",">
+			<isNotEmpty property="taskType">
+				#taskType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskName" prepend=",">
+			<isNotEmpty property="taskName">
+				#taskName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				#groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downloadNum" prepend=",">
+			<isNotEmpty property="downloadNum">
+				#downloadNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryNum" prepend=",">
+			<isNotEmpty property="inventoryNum">
+				#inventoryNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend=",">
+			<isNotEmpty property="auditNo">
+				#auditNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditTime" prepend=",">
+			<isNotEmpty property="auditTime">
+				#auditTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditCode" prepend=",">
+			<isNotEmpty property="auditCode">
+				#auditCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemName" prepend=",">
+			<isNotEmpty property="systemName">
+				#systemName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmAuditinventoryInfo" parameterClass="java.util.Map">
+	UPDATE RM_AUDITINVENTORY_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="custGroupId" prepend=",">
+		    <isNotEmpty property="custGroupId">
+			    CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupName" prepend=",">
+		    <isNotEmpty property="custGroupName">
+			    CUST_GROUP_NAME = #custGroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskType" prepend=",">
+		    <isNotEmpty property="taskType">
+			    TASK_TYPE = #taskType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskName" prepend=",">
+		    <isNotEmpty property="taskName">
+			    TASK_NAME = #taskName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+		    <isNotEmpty property="groupId">
+			    GROUP_ID = #groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downloadNum" prepend=",">
+		    <isNotEmpty property="downloadNum">
+			    DOWNLOAD_NUM = #downloadNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryNum" prepend=",">
+		    <isNotEmpty property="inventoryNum">
+			    INVENTORY_NUM = #inventoryNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend=",">
+		    <isNotEmpty property="auditNo">
+			    AUDIT_NO = #auditNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditTime" prepend=",">
+		    <isNotEmpty property="auditTime">
+			    AUDIT_TIME = #auditTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditCode" prepend=",">
+		    <isNotEmpty property="auditCode">
+			    AUDIT_CODE = #auditCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemName" prepend=",">
+		    <isNotEmpty property="systemName">
+			    SYSTEM_NAME = #systemName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmAuditinventoryInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_AUDITINVENTORY_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmAuditinventoryInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			CUST_GROUP_ID AS custGroupId,
+			CUST_GROUP_NAME AS custGroupName,
+			SERIAL_ID AS serialId,
+			OPER_NO AS operNo,
+			OPER_NAME AS operName,
+			OPER_TIME AS operTime,
+			TASK_TYPE AS taskType,
+			TASK_NAME AS taskName,
+			REGION_CODE AS regionCode,
+			GROUP_ID AS groupId,
+			DOWNLOAD_NUM AS downloadNum,
+			INVENTORY_NUM AS inventoryNum,
+			AUDIT_NO AS auditNo,
+			AUDIT_TIME AS auditTime,
+			AUDIT_CODE AS auditCode,
+			SYSTEM_NAME AS systemName
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_AUDITINVENTORY_INFO $W$
+	</select>
+</sqlMap>

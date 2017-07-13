@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/CRMPD_RTMarket/!svn/ver/11938/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl
+END
+StrategyAnalysisParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl/StrategyAnalysisParam.java
+END
+BatchPushProdTaskParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/CRMPD_RTMarket/!svn/ver/11938/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl/BatchPushProdTaskParam.java
+END
+BatchEventTaskParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl/BatchEventTaskParam.java
+END
+ManageRecommendParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl/ManageRecommendParam.java
+END
+EventReceiverParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl/EventReceiverParam.java
+END
+BatchPushTaskParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl/BatchPushTaskParam.java
+END
+ParseRecommendParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/param/impl/ParseRecommendParam.java
+END

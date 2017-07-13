@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/CRMPD_RTMarket/!svn/ver/10302/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/kafka
+END
+KafkaProducerUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/CRMPD_RTMarket/!svn/ver/10302/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/kafka/KafkaProducerUtil.java
+END
+SimplePartitioner.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/kafka/SimplePartitioner.java
+END
+ProducerPartion.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/kafka/ProducerPartion.java
+END
+Producer.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/java/com/sitech/strategy/persist/utils/kafka/Producer.java
+END

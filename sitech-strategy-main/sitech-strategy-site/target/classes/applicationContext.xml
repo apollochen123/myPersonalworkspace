@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<import resource="classpath:jcf-config.xml"/>
+	<import resource="classpath:db.xml"/>
+	<import resource="classpath:commonBean.xml"/>
+	<import resource="classpath:persistByBaseIBatis.xml"/>
+	<import resource="classpath:persist.xml"/>
+	<import resource="classpath:coreBean.xml"/>
+	<import resource="classpath:processEntity.xml"/>
+	<import resource="classpath:processService.xml"/>
+	<import resource="classpath:manageEntity.xml"/>
+	<import resource="classpath:manageService.xml"/>
+	<import resource="classpath:eventEntity.xml"/>
+	<import resource="classpath:eventService.xml"/>
+	<import resource="classpath:recommendEntity.xml"/>
+	<import resource="classpath:recommendService.xml"/>
+	<bean id="applicationContext" class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
+	<bean id="strategyAnalysisService" class="com.sitech.strategy.recommend.service.ws.impl.StrategyAnalysisService">
+		<property name="parseRecommendEntity" ref="parseRecommendEntity" />
+		<property name="strategyAnalysisParam" ref="strategyAnalysisParam" />
+	</bean>
+	<bean id="questionNaireProcessService" class="com.sitech.strategy.process.service.ws.impl.QuestionNaireProcessService">
+		<property name="questionNaireProcessEntity" ref="questionNaireProcessEntity" />
+		<property name="questionNaireProcessParam" ref="questionNaireProcessParam" />
+	</bean>
+</beans>

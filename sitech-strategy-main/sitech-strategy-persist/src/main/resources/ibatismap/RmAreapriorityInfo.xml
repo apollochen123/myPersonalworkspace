@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmAreaPriorityInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		MARKET_CASE_ID AS "marketCaseId",
+		CHANNEL_ID AS "channelId",
+		REGION_CODE AS "regionCode",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+		REGION_PRIORITY_CLASS AS "regionPriorityClass"	
+	FROM RM_AREAPRIORITY_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+		
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionPriorityClass" prepend="and">
+				<isNotEmpty property="regionPriorityClass">
+					REGION_PRIORITY_CLASS = #regionPriorityClass#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmAreaPriorityInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmAreaPriorityInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+		ORDER BY REGION_PRIORITY_CLASS
+	</select>
+	
+	<select id="selectRmAreaPriorityInfoByMarketCaseId" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		SELECT
+		SERIAL_ID AS "serialId",
+		MARKET_CASE_ID AS "marketCaseId",
+		CHANNEL_ID AS "channelId",
+		REGION_CODE AS "regionCode",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+		REGION_PRIORITY_CLASS AS "regionPriorityClass"	
+	FROM RM_AREAPRIORITY_INFO
+				<dynamic prepend=" WHERE ">
+		
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					MARKET_CASE_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</select>
+
+	<select id="selectRmAreaPriorityRelMarketCaseInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+  select 
+        A.MARKET_CASE_ID AS "marketCaseId",
+        A.MARKET_CASE_NAME AS "marketCaseName",
+        A.MARKET_CASE_TYPE AS "marketCaseType",
+         (SELECT b.FIELD_DESC FROM rm_codename_dict b WHERE b.FIELD_EN_NAME = 'marketCaseType' AND b.FIELD_VALUE = a.MARKET_CASE_TYPE ) AS "marketCaseTypeName",
+        A.MARKET_CASE_BUSI_TYPE AS "marketCaseBusiType",
+        (SELECT b.FIELD_DESC FROM rm_codename_dict b WHERE b.FIELD_EN_NAME = 'marketCaseBusiType' AND b.FIELD_VALUE = a.MARKET_CASE_BUSI_TYPE ) AS "marketCaseBusiTypeName",
+       
+		A.START_TIME AS "startTime",
+        A.END_TIME  AS "endTime",
+        A.STATUS_CODE AS "statusCode",
+        (SELECT b.FIELD_DESC FROM rm_codename_dict b WHERE b.FIELD_EN_NAME = 'statusCode' AND b.FIELD_VALUE = a.STATUS_CODE ) AS "statusName",
+        (SELECT b.FIELD_DESC FROM rm_codename_dict b WHERE b.FIELD_EN_NAME = 'regionCode' AND b.FIELD_VALUE = a.REGION_CODE ) AS "regionName",
+
+				
+		A.REGION_CODE AS "regionCode",
+        A.GROUP_ID AS "groupId",
+        A.GROUP_NAME AS "groupName",
+        A.MARKETCASE_DESC AS "marketcaseDesc",
+        A.OPER_NO AS "operNo",
+        A.OPER_NAME AS "operName",
+        A.OPER_TIME AS "operTime",
+        A.UPDATE_NO AS "updateNo",
+        A.UPDATE_NAME AS "updateName",
+        A.UPDATE_TIME AS "updateTime",
+        A.MARKET_CASE_LEVEL AS "marketCaseLevel",
+          (SELECT b.FIELD_DESC FROM rm_codename_dict b WHERE b.FIELD_EN_NAME = 'marketCaseLevel' AND b.FIELD_VALUE = a.MARKET_CASE_LEVEL ) AS "marketCaseLevelName", 
+          (SELECT b.FIELD_DESC FROM rm_codename_dict b WHERE b.FIELD_EN_NAME = 'marketCaseClass' AND b.FIELD_VALUE = a.MARKET_CASE_CLASS ) AS "marketCaseClassName",
+          (SELECT b.FIELD_DESC FROM rm_codename_dict b WHERE b.FIELD_EN_NAME = 'marketCaseClass' AND b.FIELD_VALUE = a.MARKET_CASE_CLASS ) AS "marketCaseClassName",
+       A.MARKET_CASE_CLASS AS "marketCaseClass" ,
+       
+      <isEqual property="dbType" compareValue="mysql">
+        ifnull((select C.REGION_PRIORITY_CLASS 
+        from  rm_areapriority_info C where  A.market_case_id = C.market_case_id 
+  		and A.region_code = C.region_code limit 1),10)  as "regionPriorityClass",
+  		(select C.PRIORITY_TYPE 
+        from  rm_areapriority_info C where  A.market_case_id = C.market_case_id 
+  		and A.region_code = C.region_code limit 1) as "priorityType"
+  		
+  from  rm_marketcase_info A 
+   	  </isEqual>
+   	  <isEqual property="dbType" compareValue="oracle">
+   	   nvl((select C.REGION_PRIORITY_CLASS 
+        from  rm_areapriority_info C where  A.market_case_id = C.market_case_id 
+  		and A.region_code = C.region_code and rownum=1),10)  as "regionPriorityClass"
+  from  rm_marketcase_info A 
+   	   </isEqual>
+  where 
+  A.STATUS_CODE = '04'
+
+     	<isNotNull property="marketCaseType" prepend="and">
+			<isNotEmpty property="marketCaseType">
+				A.market_case_type = #marketCaseType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseBusiType" prepend="and">
+			<isNotEmpty property="marketCaseBusiType">
+				A.market_case_busi_type = #marketCaseBusiType#
+			</isNotEmpty>
+		</isNotNull>
+     	<isNotNull property="channelId" prepend="and">
+			<isNotEmpty property="channelId">
+				exists (select 1 from rm_relation_rel c, rm_relation_rel d
+			         where c.parent_component_id = a.market_case_id
+			          	and d.parent_rel_id = c.rel_id
+			           and d.component_id = #channelId#)
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventChannelId" prepend="and">
+			<isNotEmpty property="eventChannelId">
+				exists (select 1 from rm_relation_rel c, rm_relation_rel d
+			         where c.parent_component_id = a.market_case_id
+			          	and d.parent_rel_id = c.rel_id
+			           and d.component_id not in('03','01'))
+			</isNotEmpty>
+		</isNotNull>
+		
+		<isEqual property="dbType" compareValue="oracle">
+		<isNotNull property="marketCaseName" prepend="and">
+			<isNotEmpty property="marketCaseName">
+				A.MARKET_CASE_NAME like '%'||#marketCaseName#||'%'
+			</isNotEmpty>
+		</isNotNull>
+		</isEqual>
+		
+		<isEqual property="dbType" compareValue="mysql">
+		<isNotNull property="marketCaseName" prepend="and">
+			<isNotEmpty property="marketCaseName">
+				A.MARKET_CASE_NAME like concat('%',#marketCaseName#,'%')
+			</isNotEmpty>
+		</isNotNull>
+		</isEqual>
+		<isEqual property="dbType" compareValue="oracle">
+		ORDER BY TO_NUMBER(nvl((select C.REGION_PRIORITY_CLASS 
+        from  rm_areapriority_info C where  A.market_case_id = C.market_case_id 
+  		and A.region_code = C.region_code and rownum=1),10))
+  		</isEqual>
+  		<isEqual property="dbType" compareValue="mysql">
+  		ORDER BY cast(ifnull((select C.REGION_PRIORITY_CLASS 
+        from  rm_areapriority_info C where  A.market_case_id = C.market_case_id 
+  		and A.region_code = C.region_code limit 1),10)AS SIGNED INTEGER)
+  		</isEqual>
+	</select>
+	
+	
+	<insert id="insertRmAreaPriorityInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_AREAPRIORITY_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				MARKET_CASE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionPriorityClass" prepend=",">
+			<isNotEmpty property="regionPriorityClass">
+				REGION_PRIORITY_CLASS
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+			<isNotEmpty property="marketCaseId">
+				#marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionPriorityClass" prepend=",">
+			<isNotEmpty property="regionPriorityClass">
+				#regionPriorityClass#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmAreaPriorityInfo" parameterClass="java.util.Map">
+	UPDATE RM_AREAPRIORITY_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="marketCaseId" prepend=",">
+		    <isNotEmpty property="marketCaseId">
+			    MARKET_CASE_ID = #marketCaseId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionPriorityClass" prepend=",">
+		    <isNotEmpty property="regionPriorityClass">
+			    REGION_PRIORITY_CLASS = #regionPriorityClass#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmAreaPriorityInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_AREAPRIORITY_INFO
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmAreaPriorityInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_AREAPRIORITY_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmAreaPriorityInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			MARKET_CASE_ID AS marketCaseId,
+			CHANNEL_ID AS channelId,
+			REGION_CODE AS regionCode,
+			REGION_PRIORITY_CLASS AS regionPriorityClass
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_AREAPRIORITY_INFO $W$
+	</select>
+</sqlMap>

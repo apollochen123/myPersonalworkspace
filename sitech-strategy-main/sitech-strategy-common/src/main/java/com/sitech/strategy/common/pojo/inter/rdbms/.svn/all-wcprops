@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/CRMPD_RTMarket/!svn/ver/11966/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/rdbms
+END
+IIBatisSqlMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/11966/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/rdbms/IIBatisSqlMap.java
+END
+IIBatisFields.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/rdbms/IIBatisFields.java
+END
+IIBatisQueryFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/CRMPD_RTMarket/!svn/ver/11965/branches/jlMobile/sitech-strategy-common/src/main/java/com/sitech/strategy/common/pojo/inter/rdbms/IIBatisQueryFilter.java
+END

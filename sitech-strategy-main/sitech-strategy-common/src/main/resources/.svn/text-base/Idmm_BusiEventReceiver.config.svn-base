@@ -1,0 +1,70 @@
+[{
+        "clientID" : "Sub166Busi0",
+        "topic" : "T106BusiSynDest0",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"     
+},
+{
+        "clientID" : "Sub166Busi1",
+        "topic" : "T106BusiSynDest1",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi2",
+        "topic" : "T106BusiSynDest2",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi3",
+        "topic" : "T106BusiSynDest3",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi4",
+        "topic" : "T106BusiSynDest4",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi5",
+        "topic" : "T106BusiSynDest5",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi6",
+        "topic" : "T106BusiSynDest6",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi7",
+        "topic" : "T106BusiSynDest7",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi8",
+        "topic" : "T106BusiSynDest8",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+},
+{
+        "clientID" : "Sub166Busi9",
+        "topic" : "T106BusiSynDest9",
+        "userName" : "",
+        "password" : "",
+        "fluxNum" : "40"          
+}]

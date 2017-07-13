@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/CRMPD_RTMarket/!svn/ver/12211/branches/jlMobile/sitech-strategy-process/src/main/resources
+END
+processBatch.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/CRMPD_RTMarket/!svn/ver/12211/branches/jlMobile/sitech-strategy-process/src/main/resources/processBatch.xml
+END
+processStream.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/CRMPD_RTMarket/!svn/ver/11761/branches/jlMobile/sitech-strategy-process/src/main/resources/processStream.xml
+END
+processEntity.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/CRMPD_RTMarket/!svn/ver/12211/branches/jlMobile/sitech-strategy-process/src/main/resources/processEntity.xml
+END
+processService.xml
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/resources/processService.xml
+END

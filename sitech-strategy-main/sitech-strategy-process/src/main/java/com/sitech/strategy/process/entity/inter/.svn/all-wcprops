@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/CRMPD_RTMarket/!svn/ver/12210/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter
+END
+ICustGroupProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/10216/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/ICustGroupProcessEntity.java
+END
+IUserProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IUserProcessEntity.java
+END
+IRuleProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/CRMPD_RTMarket/!svn/ver/11846/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IRuleProcessEntity.java
+END
+IMarketCaseProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/11470/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IMarketCaseProcessEntity.java
+END
+IEvaluateStatisticsProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IEvaluateStatisticsProcessEntity.java
+END
+IExceptionProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/12210/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IExceptionProcessEntity.java
+END
+ISystemProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/ISystemProcessEntity.java
+END
+IQuestionNaireProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IQuestionNaireProcessEntity.java
+END
+IChannelProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IChannelProcessEntity.java
+END
+ITaskProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/CRMPD_RTMarket/!svn/ver/12210/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/ITaskProcessEntity.java
+END
+ICoupleBackProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/CRMPD_RTMarket/!svn/ver/11507/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/ICoupleBackProcessEntity.java
+END
+IEventProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/entity/inter/IEventProcessEntity.java
+END

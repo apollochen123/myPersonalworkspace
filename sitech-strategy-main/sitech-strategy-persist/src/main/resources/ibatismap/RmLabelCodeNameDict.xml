@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmLabelCodeNameDict">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+		SELECT
+		FIELD_EN_NAME AS "fieldEnName",
+		FIELD_CN_NAME AS "fieldCnName",
+		FIELD_VALUE AS "fieldValue",
+		FIELD_DESC AS "fieldDesc",
+		ASSI_FIELD_EN_NAME AS "assiFieldEnName",
+		ASSI_FIELD_VALUE AS "assiFieldValue",
+		FIELD_ORDER AS "fieldOrder"	
+	FROM RM_LABELCODENAME_DICT
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="fieldEnName" prepend="and">
+				<isNotEmpty property="fieldEnName">
+				   FIELD_EN_NAME = #fieldEnName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fieldDesc" prepend="and">
+				<isNotEmpty property="fieldDesc">
+				   FIELD_DESC like '%'||#fieldDesc#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fieldValueDesc" prepend="and">
+				<isNotEmpty property="fieldValueDesc">
+				   (FIELD_VALUE like '%'||#fieldValueDesc#||'%' OR FIELD_DESC like '%'||#fieldValueDesc#||'%')
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmLabelCodeNameDict" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+</sqlMap>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmTouchCountInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<select id="selectRmTouchCountInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT 
+			SUM(TOUCH_COUNT) AS "touchNum",
+			SUM(TOUCH_DAY) AS "touchDay",
+			SUM(EXEC_COUNT) AS "execNum"
+			from RM_TOUCHCOUNT_INFO
+		
+	</select>
+	
+	
+	<select id="selectRmTouchCountInfoByRegionCode" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT 
+			SUM(TOUCH_COUNT) AS "touchNum",
+			SUM(TOUCH_DAY) AS "touchDay",
+			SUM(EXEC_COUNT) AS "execNum"
+			from RM_TOUCHCOUNT_INFO
+			where REGION_CODE = #regionCode#
+		
+	</select>
+	
+	
+	<select id="selectRmTouchCountInfoConvertRate" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT 
+			TOUCH_COUNT AS "touchNum",
+			TOUCH_DAY AS "touchDay",
+			EXEC_COUNT AS "execNum",
+			REGION_CODE AS "regionCode"
+			from RM_TOUCHCOUNT_INFO
+			
+		
+	</select>
+	
+</sqlMap>

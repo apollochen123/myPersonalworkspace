@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmChannelInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		CHANNEL_ID AS "channelId",
+		CHANNEL_TYPE AS "channelType",
+		CHANNEL_NAME AS "channelName",
+		CHANNEL_DESC AS "channelDesc",
+		SCENE_TYPE AS "sceneType",
+		OPER_NO AS "operNo",
+		OPER_TIME AS "operTime",
+		OPER_NAME AS "operName",
+		UPDATE_NO AS "updateNo",
+		UPDATE_NAME AS "updateName",
+		UPDATE_TIME AS "updateTime"	,
+		CHANNEL_IMAGE_URL AS "channelImageUrl",
+		ORDER_NO AS "orderNo",
+		CHANNEL_STATUS AS "channelStatus"
+	FROM rm_channel_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelType" prepend="and">
+				<isNotEmpty property="channelType">
+					CHANNEL_TYPE = #channelType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelName" prepend="and">
+				<isNotEmpty property="channelName">
+					CHANNEL_NAME = #channelName#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	ORDER BY ORDER_NO
+	</sql>
+	<select id="selectRmChannelInfoById" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE CHANNEL_ID = #channelId#
+	</select>
+
+	<select id="selectRmChannelInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmChannelInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_channel_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+			<isNotEmpty property="channelType">
+				CHANNEL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelName" prepend=",">
+			<isNotEmpty property="channelName">
+				CHANNEL_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelDesc" prepend=",">
+			<isNotEmpty property="channelDesc">
+				CHANNEL_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				UPDATE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				UPDATE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				UPDATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelImageUrl" prepend=",">
+			<isNotEmpty property="channelImageUrl">
+				CHANNEL_IMAGE_URL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				ORDER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				CHANNEL_STATUS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sceneType" prepend=",">
+			<isNotEmpty property="sceneType">
+				SCENE_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+			<isNotEmpty property="channelType">
+				#channelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelName" prepend=",">
+			<isNotEmpty property="channelName">
+				#channelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelDesc" prepend=",">
+			<isNotEmpty property="channelDesc">
+				#channelDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				#updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				#updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				#updateTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelImageUrl" prepend=",">
+			<isNotEmpty property="channelImageUrl">
+				#channelImageUrl#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="orderNo" prepend=",">
+			<isNotEmpty property="orderNo">
+				#orderNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelStatus" prepend=",">
+			<isNotEmpty property="channelStatus">
+				#channelStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sceneType" prepend=",">
+			<isNotEmpty property="sceneType">
+				#sceneType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	)
+	</insert>
+	
+	<update id="updateRmChannelInfo" parameterClass="java.util.Map">
+	UPDATE rm_channel_info
+	<dynamic prepend=" SET ">
+	    <isNotNull property="sceneType" prepend=",">
+		    <isNotEmpty property="sceneType">
+			    SCENE_TYPE = #sceneType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+		    <isNotEmpty property="channelType">
+			    CHANNEL_TYPE = #channelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelName" prepend=",">
+		    <isNotEmpty property="channelName">
+			    CHANNEL_NAME = #channelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelDesc" prepend=",">
+		    <isNotEmpty property="channelDesc">
+			    CHANNEL_DESC = #channelDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+		    <isNotEmpty property="updateNo">
+			    UPDATE_NO = #updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+		    <isNotEmpty property="updateName">
+			    UPDATE_NAME = #updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+		    <isNotEmpty property="updateTime">
+			    UPDATE_TIME = #updateTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+    WHERE CHANNEL_ID = #channelId#
+			<isNotNull property="sceneType" prepend="and">
+				<isNotEmpty property="sceneType">
+					SCENE_TYPE = #sceneType#
+				</isNotEmpty>
+			</isNotNull>
+    <!-- 
+	<include refid="where-all-condition"/>
+	 -->
+	</update>
+	
+	<delete id="deleteRmChannelInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_channel_info
+	WHERE CHANNEL_ID = #channelId#
+	</delete>
+
+	<delete id="deleteRmChannelInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_channel_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmChannelInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			CHANNEL_ID AS channelId,
+			CHANNEL_TYPE AS channelType,
+			CHANNEL_NAME AS channelName,
+			CHANNEL_DESC AS channelDesc,
+			OPER_NO AS operNo,
+			OPER_TIME AS operTime,
+			OPER_NAME AS operName,
+			UPDATE_NO AS updateNo,
+			UPDATE_NAME AS updateName,
+			UPDATE_TIME AS updateTime
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_channel_info $W$
+	</select>
+</sqlMap>

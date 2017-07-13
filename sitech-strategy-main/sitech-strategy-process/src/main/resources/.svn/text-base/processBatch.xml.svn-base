@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="evaluateStatistics" class="com.sitech.strategy.process.batch.EvaluateStatistics">
+		<property name = "evaluateStatisticsProcessEntity" ref = "evaluateStatisticsProcessEntity"></property>
+	</bean> 
+	
+	<bean id="generateTask" class="com.sitech.strategy.process.batch.GenerateTask">
+		<property name = "hiveDBName" ref = "hiveDBName"></property>
+		<property name = "sparkAppProp" ref = "sparkAppProp"></property>
+		<property name = "taskProcessEntity" ref = "taskProcessEntity"></property>
+	</bean>
+	
+	<bean id="loadCache" class="com.sitech.strategy.process.batch.LoadCache">
+		<property name = "channelProcessEntity" ref = "channelProcessEntity"></property>
+		<property name = "custGroupProcessEntity" ref = "custGroupProcessEntity"></property>
+		<property name = "eventProcessEntity" ref = "eventProcessEntity"></property>
+		<property name = "loadCacheProcessParam" ref = "loadCacheProcessParam"></property>
+		<property name = "marketCaseProcessEntity" ref = "marketCaseProcessEntity"></property>
+		<property name = "questionNaireProcessEntity" ref = "questionNaireProcessEntity"></property>	
+		<property name = "ruleProcessEntity" ref = "ruleProcessEntity"></property>	
+	</bean>
+	
+	<bean id="loadCoupleBack" class="com.sitech.strategy.process.batch.LoadCoupleBack">
+		<property name = "hbaseTableName" ref = "hbaseTableName"></property>
+		<property name = "sparkAppProp" ref = "sparkAppProp"></property>
+	</bean>
+	
+	<bean id="systemProcess" class="com.sitech.strategy.process.batch.SystemProcess">
+		<property name = "systemProcessEntity" ref = "systemProcessEntity"></property>
+	</bean>
+	<bean id="exceptionProcess" class="com.sitech.strategy.process.batch.ExceptionProcess">
+	    <property name = "exceptionProcessEntity" ref = "exceptionProcessEntity"></property>
+	</bean>
+	<bean id="sparkSQLTest" class="com.sitech.strategy.process.batch.test.SparkSQLTest">
+		<property name = "sparkStreamingTestEntity" ref = "sparkStreamingTestEntity"></property>
+	</bean>
+	
+	<bean id="updateTask" class="com.sitech.strategy.process.batch.UpdateTask">
+		<property name = "taskProcessEntity" ref = "taskProcessEntity"></property>
+	</bean>
+</beans>

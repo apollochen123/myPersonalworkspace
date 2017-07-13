@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+		    
+	<bean id="batchEventTask" class="com.sitech.strategy.recommend.batch.BatchEventTask">
+		<property name = "batchEventTaskParam" ref = "batchEventTaskParam"></property>
+		<property name = "batchTaskRecommendEntity" ref = "batchTaskRecommendEntity"></property>
+	</bean>
+	<bean id="batchPushTask" class="com.sitech.strategy.recommend.batch.BatchPushTask">
+		<property name = "batchPushTaskParam" ref = "batchPushTaskParam"></property>
+		<property name = "batchTaskRecommendEntity" ref = "batchTaskRecommendEntity"></property>
+	</bean>
+	<bean id="batchPushProdTask" class="com.sitech.strategy.recommend.batch.BatchPushProdTask">
+		<property name = "batchPushProdTaskParam" ref = "batchPushProdTaskParam"></property>
+		<property name = "batchTaskRecommendEntity" ref = "batchTaskRecommendEntity"></property>
+	</bean>
+	
+</beans>

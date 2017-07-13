@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/stream/spark/kafka/test
+END
+KafkaTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/stream/spark/kafka/test/KafkaTest.java
+END
+SparkStreamingTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/stream/spark/kafka/test/SparkStreamingTest.java
+END

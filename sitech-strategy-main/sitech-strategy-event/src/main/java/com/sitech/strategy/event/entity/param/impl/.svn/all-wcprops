@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/CRMPD_RTMarket/!svn/ver/10449/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/param/impl
+END
+BusiEventReceiverParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/10449/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/param/impl/BusiEventReceiverParam.java
+END
+ProdEventReceiverParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/param/impl/ProdEventReceiverParam.java
+END
+FeeEventReceiverParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/param/impl/FeeEventReceiverParam.java
+END
+GroupMsgEventReceiverParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/param/impl/GroupMsgEventReceiverParam.java
+END
+FlowEventReceiverParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/CRMPD_RTMarket/!svn/ver/10449/branches/jlMobile/sitech-strategy-event/src/main/java/com/sitech/strategy/event/entity/param/impl/FlowEventReceiverParam.java
+END

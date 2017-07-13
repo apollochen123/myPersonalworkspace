@@ -1,0 +1,4518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmUserInfo">
+	<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/>
+
+	<sql id="select-all-column">
+	SELECT
+		ID_NO AS "idNo",
+		DEAL_DATE AS "dealDate",
+		LATN_ID AS "latnId",
+		REGION_CODE AS "regionCode",
+		LATN_NAME AS "latnName",
+		PRD_INST_NAME AS "prdInstName",
+		CUST_NAME AS "custName",
+		PRD_INST_ID AS "prdInstId",
+		CUST_ID AS "custId",
+		ACCT_ID AS "acctId",
+		OFR_INST_ID AS "ofrInstId",
+		SERVICE_NBR AS "serviceNbr",
+		USER_ACCOUNT AS "userAccount",
+		PRD_INST_STAS_ID AS "prdInstStasId",
+		PRD_INST_STAS_NAME AS "prdInstStasName",
+		OFR_INST_STAS_ID AS "ofrInstStasId",
+		OFR_INST_STAS_NAME AS "ofrInstStasName",
+		PRD_ID AS "prdId",
+		OFR_ID AS "ofrId",
+		OFR_NAME AS "ofrName",
+		OFR_BIG_TYPE AS "ofrBigType",
+		OFR_TYPE AS "ofrType",
+		GROUP_ID AS "groupId",
+		GROUP_NAME AS "groupName",
+		CHRG_LEVEL AS "chrgLevel",
+		SPEED_ID AS "speedId",
+		INNER_MONTH AS "innerMonth",
+		CRT_DATE AS "crtDate",
+		INSTALL_DATE AS "installDate",
+		COMPLETE_DATE AS "completeDate",
+		EXP_DATE AS "expDate",
+		EFF_DATE AS "effDate",
+		OFR_CRT_DATE AS "ofrCrtDate",
+		OFR_EFF_DATE AS "ofrEffDate",
+		OFR_EXP_DATE AS "ofrExpDate",
+		PROTOCOL_EFF_DATE AS "protocolEffDate",
+		PROTOCOL_EXP_DATE AS "protocolExpDate",
+		IF_PREPAY AS "ifPrepay",
+		EMPEE_ID AS "empeeId",
+		DEVELOPER AS "developer",
+		DEV_NAME AS "devName",
+		OFR_DEV_CODE AS "ofrDevCode",
+		EXTEND_PAYMETHOD_TYPE AS "extendPaymethodType",
+		EXTEND_PAYMETHOD_NAME AS "extendPaymethodName",
+		PAY_METH_ID AS "payMethId",
+		PAY_METH_NAME AS "payMethName",
+		MIN_BILLING_CYCLE_ID AS "minBillingCycleId",
+		OWE_CHARGE AS "oweCharge",
+		OWE_SURE_CHARGE AS "oweSureCharge",
+		DEV_NUM AS "devNum",
+		NET_NUM AS "netNum",
+		LOS_NUM AS "losNum",
+		REQ_OFFLINE_NUM AS "reqOfflineNum",
+		CAL_NUM AS "calNum",
+		ACT_NUM AS "actNum",
+		INSTALL_ADDR AS "installAddr",
+		GRID_ID AS "gridId",
+		CUST_REGION_ID AS "custRegionId",
+		EDW_MKT_AREA_ID AS "edwMktAreaId",
+		EDW_MKT_AREA_NAME AS "edwMktAreaName",
+		EDW_DEPT_ID AS "edwDeptId",
+		EDW_DEPT_NAME AS "edwDeptName",
+		EDW_GROUP_ID AS "edwGroupId",
+		EDW_GROUP_NAME AS "edwGroupName",
+		EDW_DUTY_ZONE_ID AS "edwDutyZoneId",
+		EDW_DUTY_ZONE_NAME AS "edwDutyZoneName",
+		EDW_REGION_NAME AS "edwRegionName",
+		MKT_CHANNEL AS "mktChannel",
+		URBAN_RURAL AS "urbanRural",
+		AREA_NAME AS "areaName",
+		TOWN_NAME AS "townName",
+		CRM_AREA_ID AS "crmAreaId",
+		CRM_AREA_NAME AS "crmAreaName",
+		CRM_URBAN_RURAL_ID AS "crmUrbanRuralId",
+		CRM_URBAN_RURAL_NAME AS "crmUrbanRuralName",
+		CRM_MKT_AREA_ID AS "crmMktAreaId",
+		CRM_MKT_AREA_NAME AS "crmMktAreaName",
+		CRM_DEPT_ID AS "crmDeptId",
+		CRM_DEPT_NAME AS "crmDeptName",
+		CRM_DUTY_ZONE_ID AS "crmDutyZoneId",
+		CRM_DUTY_ZONE_NAME AS "crmDutyZoneName",
+		CRM_REGION_NAME AS "crmRegionName",
+		ZZB_FLAG AS "zzbFlag",
+		ZZB_OFR_ID AS "zzbOfrId",
+		ZZB_OFR_TYPE_ID AS "zzbOfrTypeId",
+		ZS_CHRG_LEVEL AS "zsChrgLevel",
+		ZZB_CHRG_LEVEL AS "zzbChrgLevel",
+		CERTI_TYPE_ID AS "certiTypeId",
+		CERTI_NBR AS "certiNbr",
+		CONTACT_NAME AS "contactName",
+		CONTACT_NBR AS "contactNbr",
+		OFR_DETAIL_DESC AS "ofrDetailDesc",
+		ZFK_FLAG AS "zfkFlag",
+		ITV_FLAG AS "itvFlag",
+		WIDE_TER AS "wideTer",
+		WLAN_FLAG AS "wlanFlag",
+		MKT_CHANNEL_ID AS "mktChannelId",
+		GROUP_CODE_NBR AS "groupCodeNbr",
+		GRADE_CODE AS "gradeCode",
+		GRADE_NAME AS "gradeName",
+		BRAND_NAME AS "brandName",
+		TERM_TYPE AS "termType",
+		SMART_FLAG AS "smartFlag",
+		TERM_FLAG AS "termFlag",
+		DEV_DAY AS "devDay",
+		TERM_DEV_CODE AS "termDevCode",
+		GEN_DEV_CODE AS "genDevCode",
+		REG_DATE AS "regDate",
+		SCREEN_SIZE AS "screenSize",
+		VIP_FLAG AS "vipFlag",
+		WX_VPN_FLAG AS "wxVpnFlag",
+		CARRY_MODE AS "carryMode",
+		CONTRACT_NO AS "contractNo",
+		USER_NAME AS "userName",
+		PHONE_NO AS "phoneNo",
+		BILL_ADDR AS "billAddr",
+		CERTI_CODE AS "certiCode",
+		BIG_FLAG AS "bigFlag",
+		BIG_DATE AS "bigDate",
+		BIG_ACTIVE_FLAG AS "bigActiveFlag",
+		STATUS_CODE AS "statusCode",
+		STATUS_DATE AS "statusDate",
+		CARD_CODE AS "cardCode",
+		CARD_NO AS "cardNo",
+		SERVICE_NO AS "serviceNo",
+		SERVICE_ACCESS AS "serviceAccess",
+		SHORT_PHONENO AS "shortPhoneno",
+		SM_NAME AS "smName",
+		PAY_CODE AS "payCode",
+		BILL_CODE AS "billCode",
+		STOP_FLAG AS "stopFlag",
+		RUN_CODE AS "runCode",
+		RUN_TIME AS "runTime",
+		UNIT_ID AS "unitId",
+		INDB_DATE AS "indbDate",
+		LOAD_DATE AS "loadDate",
+		PREPARE_FEE AS "prepareFee",
+		NOT_OUT_FEE AS "notOutFee",
+		LAST_FEE AS "lastFee",
+		CREDIT_VALUE AS "creditValue",
+		PHOTO_CODE AS "photoCode",
+		NOTE AS "note",
+		OPEN_TIME AS "openTime",
+		RENT_CODE AS "rentCode",
+		DIS_DATE AS "disDate",
+		OWE AS "owe",
+		UPDATE_DATE AS "updateDate",
+		DIS_UPDATE_BY AS "disUpdateBy",
+		PRODUCT_TYPE AS "productType",
+		OFFER_ID AS "offerId",
+		OFGROUP_ID AS "ofgroupId",
+		OFFER_NAME AS "offerName",
+		OFGROUP_NAME AS "ofgroupName",
+		PAY_TYPE AS "payType",
+		RED_FLAG AS "redFlag",
+		HOLD_GRADE AS "holdGrade",
+		HOLD_GRADE_TIME AS "holdGradeTime",
+		GRAY_FLAG AS "grayFlag",
+		KEYMAN_FLAG AS "keymanFlag",
+		HOLD_CHN AS "holdChn",
+		PHOTO_CODE_LAST_YEAR AS "photoCodeLastYear",
+		GRADE_CHAGE_DATE AS "gradeChageDate",
+		GRID_SERVICE_DESC AS "gridServiceDesc",
+		CUST_CD AS "custCd",
+		PHOTO_CUST_CODE AS "photoCustCode",
+		PHOTO_CHANNEL_NAME AS "photoChannelName",
+		PHOTO_CUST_CHANNEL_NAME AS "photoCustChannelName",
+		IP5_FLAG AS "ip5Flag",
+		HIGH_FLAG AS "highFlag",
+		STAR_FLAG AS "starFlag",
+		PHOTO_GROUP_CODE AS "photoGroupCode",
+		LOAD_CODE AS "loadCode",
+		PHOTO_VPN_CODE AS "photoVpnCode",
+		SOFC_CODE AS "sofcCode",
+		LENT_CODE AS "lentCode",
+		LENT_DESC AS "lentDesc",
+		MKT_AREA_CODE AS "mktAreaCode",
+		MKT_AREA_NAME AS "mktAreaName",
+		DEPT_CODE AS "deptCode",
+		DEPT_NAME AS "deptName",
+		GROUP_CODE AS "groupCode",
+		GROUP_DESC AS "groupDesc",
+		DUTY_ZONE_CODE AS "dutyZoneCode",
+		DUTY_ZONE_NAME AS "dutyZoneName",
+		GRID_CODE AS "gridCode",
+		GRID_NAME AS "gridName",
+		URBAN_RURAL_CODE AS "urbanRuralCode",
+		URBAN_RURAL_DESC AS "urbanRuralDesc",
+		SPEC_AREA_ID AS "specAreaId",
+		SPEC_AREA_DESC AS "specAreaDesc",
+		LENT_SERVICE_NO AS "lentServiceNo",
+		MKT_AREA_SERVICE_NO AS "mktAreaServiceNo",
+		DEPT_SERVICE_NO AS "deptServiceNo",
+		GROUP_SERVICE_NO AS "groupServiceNo",
+		DUTY_ZONE_SERVICE_NO AS "dutyZoneServiceNo",
+		GRID_SERVICE_NO AS "gridServiceNo",
+		USER_ACCOUNTANDCERTI_NBR AS "userAccountandcertiNbr"	
+	FROM RM_USER_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO = #idNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="dealDate" prepend="and">
+				<isNotEmpty property="dealDate">
+					DEAL_DATE = #dealDate#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="latnId" prepend="and">
+				<isNotEmpty property="latnId">
+					LATN_ID = #latnId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="latnName" prepend="and">
+				<isNotEmpty property="latnName">
+					LATN_NAME = #latnName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="prdInstName" prepend="and">
+				<isNotEmpty property="prdInstName">
+					PRD_INST_NAME = #prdInstName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custName" prepend="and">
+				<isNotEmpty property="custName">
+					CUST_NAME = #custName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="prdInstId" prepend="and">
+				<isNotEmpty property="prdInstId">
+					PRD_INST_ID = #prdInstId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custId" prepend="and">
+				<isNotEmpty property="custId">
+					CUST_ID = #custId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="acctId" prepend="and">
+				<isNotEmpty property="acctId">
+					ACCT_ID = #acctId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrInstId" prepend="and">
+				<isNotEmpty property="ofrInstId">
+					OFR_INST_ID = #ofrInstId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNbr" prepend="and">
+				<isNotEmpty property="serviceNbr">
+					SERVICE_NBR = #serviceNbr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="userAccount" prepend="and">
+				<isNotEmpty property="userAccount">
+					USER_ACCOUNT = #userAccount#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="prdInstStasId" prepend="and">
+				<isNotEmpty property="prdInstStasId">
+					PRD_INST_STAS_ID = #prdInstStasId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="prdInstStasName" prepend="and">
+				<isNotEmpty property="prdInstStasName">
+					PRD_INST_STAS_NAME = #prdInstStasName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrInstStasId" prepend="and">
+				<isNotEmpty property="ofrInstStasId">
+					OFR_INST_STAS_ID = #ofrInstStasId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrInstStasName" prepend="and">
+				<isNotEmpty property="ofrInstStasName">
+					OFR_INST_STAS_NAME = #ofrInstStasName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="prdId" prepend="and">
+				<isNotEmpty property="prdId">
+					PRD_ID = #prdId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrId" prepend="and">
+				<isNotEmpty property="ofrId">
+					OFR_ID = #ofrId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrName" prepend="and">
+				<isNotEmpty property="ofrName">
+					OFR_NAME = #ofrName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrBigType" prepend="and">
+				<isNotEmpty property="ofrBigType">
+					OFR_BIG_TYPE = #ofrBigType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrType" prepend="and">
+				<isNotEmpty property="ofrType">
+					OFR_TYPE = #ofrType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupId" prepend="and">
+				<isNotEmpty property="groupId">
+					GROUP_ID = #groupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupName" prepend="and">
+				<isNotEmpty property="groupName">
+					GROUP_NAME = #groupName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="chrgLevel" prepend="and">
+				<isNotEmpty property="chrgLevel">
+					CHRG_LEVEL = #chrgLevel#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="speedId" prepend="and">
+				<isNotEmpty property="speedId">
+					SPEED_ID = #speedId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="innerMonth" prepend="and">
+				<isNotEmpty property="innerMonth">
+					INNER_MONTH = #innerMonth#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crtDateStart" prepend="and">
+				<isNotEmpty property="crtDateStart">
+					<![CDATA[ CRT_DATE >= #crtDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crtDateEnd" prepend="and">
+				<isNotEmpty property="crtDateEnd">
+					<![CDATA[ CRT_DATE <= #crtDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="installDateStart" prepend="and">
+				<isNotEmpty property="installDateStart">
+					<![CDATA[ INSTALL_DATE >= #installDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="installDateEnd" prepend="and">
+				<isNotEmpty property="installDateEnd">
+					<![CDATA[ INSTALL_DATE <= #installDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="completeDateStart" prepend="and">
+				<isNotEmpty property="completeDateStart">
+					<![CDATA[ COMPLETE_DATE >= #completeDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="completeDateEnd" prepend="and">
+				<isNotEmpty property="completeDateEnd">
+					<![CDATA[ COMPLETE_DATE <= #completeDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="expDateStart" prepend="and">
+				<isNotEmpty property="expDateStart">
+					<![CDATA[ EXP_DATE >= #expDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="expDateEnd" prepend="and">
+				<isNotEmpty property="expDateEnd">
+					<![CDATA[ EXP_DATE <= #expDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="effDateStart" prepend="and">
+				<isNotEmpty property="effDateStart">
+					<![CDATA[ EFF_DATE >= #effDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="effDateEnd" prepend="and">
+				<isNotEmpty property="effDateEnd">
+					<![CDATA[ EFF_DATE <= #effDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrCrtDateStart" prepend="and">
+				<isNotEmpty property="ofrCrtDateStart">
+					<![CDATA[ OFR_CRT_DATE >= #ofrCrtDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrCrtDateEnd" prepend="and">
+				<isNotEmpty property="ofrCrtDateEnd">
+					<![CDATA[ OFR_CRT_DATE <= #ofrCrtDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrEffDateStart" prepend="and">
+				<isNotEmpty property="ofrEffDateStart">
+					<![CDATA[ OFR_EFF_DATE >= #ofrEffDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrEffDateEnd" prepend="and">
+				<isNotEmpty property="ofrEffDateEnd">
+					<![CDATA[ OFR_EFF_DATE <= #ofrEffDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrExpDateStart" prepend="and">
+				<isNotEmpty property="ofrExpDateStart">
+					<![CDATA[ OFR_EXP_DATE >= #ofrExpDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrExpDateEnd" prepend="and">
+				<isNotEmpty property="ofrExpDateEnd">
+					<![CDATA[ OFR_EXP_DATE <= #ofrExpDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="protocolEffDateStart" prepend="and">
+				<isNotEmpty property="protocolEffDateStart">
+					<![CDATA[ PROTOCOL_EFF_DATE >= #protocolEffDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="protocolEffDateEnd" prepend="and">
+				<isNotEmpty property="protocolEffDateEnd">
+					<![CDATA[ PROTOCOL_EFF_DATE <= #protocolEffDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="protocolExpDateStart" prepend="and">
+				<isNotEmpty property="protocolExpDateStart">
+					<![CDATA[ PROTOCOL_EXP_DATE >= #protocolExpDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="protocolExpDateEnd" prepend="and">
+				<isNotEmpty property="protocolExpDateEnd">
+					<![CDATA[ PROTOCOL_EXP_DATE <= #protocolExpDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ifPrepay" prepend="and">
+				<isNotEmpty property="ifPrepay">
+					IF_PREPAY = #ifPrepay#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="empeeId" prepend="and">
+				<isNotEmpty property="empeeId">
+					EMPEE_ID = #empeeId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="developer" prepend="and">
+				<isNotEmpty property="developer">
+					DEVELOPER = #developer#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="devName" prepend="and">
+				<isNotEmpty property="devName">
+					DEV_NAME = #devName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrDevCode" prepend="and">
+				<isNotEmpty property="ofrDevCode">
+					OFR_DEV_CODE = #ofrDevCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="extendPaymethodType" prepend="and">
+				<isNotEmpty property="extendPaymethodType">
+					EXTEND_PAYMETHOD_TYPE = #extendPaymethodType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="extendPaymethodName" prepend="and">
+				<isNotEmpty property="extendPaymethodName">
+					EXTEND_PAYMETHOD_NAME = #extendPaymethodName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="payMethId" prepend="and">
+				<isNotEmpty property="payMethId">
+					PAY_METH_ID = #payMethId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="payMethName" prepend="and">
+				<isNotEmpty property="payMethName">
+					PAY_METH_NAME = #payMethName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="minBillingCycleId" prepend="and">
+				<isNotEmpty property="minBillingCycleId">
+					MIN_BILLING_CYCLE_ID = #minBillingCycleId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="oweCharge" prepend="and">
+				<isNotEmpty property="oweCharge">
+					OWE_CHARGE = #oweCharge#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="oweSureCharge" prepend="and">
+				<isNotEmpty property="oweSureCharge">
+					OWE_SURE_CHARGE = #oweSureCharge#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="devNum" prepend="and">
+				<isNotEmpty property="devNum">
+					DEV_NUM = #devNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="netNum" prepend="and">
+				<isNotEmpty property="netNum">
+					NET_NUM = #netNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="losNum" prepend="and">
+				<isNotEmpty property="losNum">
+					LOS_NUM = #losNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="reqOfflineNum" prepend="and">
+				<isNotEmpty property="reqOfflineNum">
+					REQ_OFFLINE_NUM = #reqOfflineNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="calNum" prepend="and">
+				<isNotEmpty property="calNum">
+					CAL_NUM = #calNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actNum" prepend="and">
+				<isNotEmpty property="actNum">
+					ACT_NUM = #actNum#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="installAddr" prepend="and">
+				<isNotEmpty property="installAddr">
+					INSTALL_ADDR = #installAddr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridId" prepend="and">
+				<isNotEmpty property="gridId">
+					GRID_ID = #gridId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custRegionId" prepend="and">
+				<isNotEmpty property="custRegionId">
+					CUST_REGION_ID = #custRegionId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwMktAreaId" prepend="and">
+				<isNotEmpty property="edwMktAreaId">
+					EDW_MKT_AREA_ID = #edwMktAreaId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwMktAreaName" prepend="and">
+				<isNotEmpty property="edwMktAreaName">
+					EDW_MKT_AREA_NAME = #edwMktAreaName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwDeptId" prepend="and">
+				<isNotEmpty property="edwDeptId">
+					EDW_DEPT_ID = #edwDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwDeptName" prepend="and">
+				<isNotEmpty property="edwDeptName">
+					EDW_DEPT_NAME = #edwDeptName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwGroupId" prepend="and">
+				<isNotEmpty property="edwGroupId">
+					EDW_GROUP_ID = #edwGroupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwGroupName" prepend="and">
+				<isNotEmpty property="edwGroupName">
+					EDW_GROUP_NAME = #edwGroupName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwDutyZoneId" prepend="and">
+				<isNotEmpty property="edwDutyZoneId">
+					EDW_DUTY_ZONE_ID = #edwDutyZoneId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwDutyZoneName" prepend="and">
+				<isNotEmpty property="edwDutyZoneName">
+					EDW_DUTY_ZONE_NAME = #edwDutyZoneName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwRegionName" prepend="and">
+				<isNotEmpty property="edwRegionName">
+					EDW_REGION_NAME = #edwRegionName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="mktChannel" prepend="and">
+				<isNotEmpty property="mktChannel">
+					MKT_CHANNEL = #mktChannel#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="urbanRural" prepend="and">
+				<isNotEmpty property="urbanRural">
+					URBAN_RURAL = #urbanRural#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="areaName" prepend="and">
+				<isNotEmpty property="areaName">
+					AREA_NAME = #areaName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="townName" prepend="and">
+				<isNotEmpty property="townName">
+					TOWN_NAME = #townName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmAreaId" prepend="and">
+				<isNotEmpty property="crmAreaId">
+					CRM_AREA_ID = #crmAreaId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmAreaName" prepend="and">
+				<isNotEmpty property="crmAreaName">
+					CRM_AREA_NAME = #crmAreaName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmUrbanRuralId" prepend="and">
+				<isNotEmpty property="crmUrbanRuralId">
+					CRM_URBAN_RURAL_ID = #crmUrbanRuralId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmUrbanRuralName" prepend="and">
+				<isNotEmpty property="crmUrbanRuralName">
+					CRM_URBAN_RURAL_NAME = #crmUrbanRuralName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmMktAreaId" prepend="and">
+				<isNotEmpty property="crmMktAreaId">
+					CRM_MKT_AREA_ID = #crmMktAreaId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmMktAreaName" prepend="and">
+				<isNotEmpty property="crmMktAreaName">
+					CRM_MKT_AREA_NAME = #crmMktAreaName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmDeptId" prepend="and">
+				<isNotEmpty property="crmDeptId">
+					CRM_DEPT_ID = #crmDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmDeptName" prepend="and">
+				<isNotEmpty property="crmDeptName">
+					CRM_DEPT_NAME = #crmDeptName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmDutyZoneId" prepend="and">
+				<isNotEmpty property="crmDutyZoneId">
+					CRM_DUTY_ZONE_ID = #crmDutyZoneId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmDutyZoneName" prepend="and">
+				<isNotEmpty property="crmDutyZoneName">
+					CRM_DUTY_ZONE_NAME = #crmDutyZoneName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="crmRegionName" prepend="and">
+				<isNotEmpty property="crmRegionName">
+					CRM_REGION_NAME = #crmRegionName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="zzbFlag" prepend="and">
+				<isNotEmpty property="zzbFlag">
+					ZZB_FLAG = #zzbFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="zzbOfrId" prepend="and">
+				<isNotEmpty property="zzbOfrId">
+					ZZB_OFR_ID = #zzbOfrId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="zzbOfrTypeId" prepend="and">
+				<isNotEmpty property="zzbOfrTypeId">
+					ZZB_OFR_TYPE_ID = #zzbOfrTypeId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="zsChrgLevel" prepend="and">
+				<isNotEmpty property="zsChrgLevel">
+					ZS_CHRG_LEVEL = #zsChrgLevel#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="zzbChrgLevel" prepend="and">
+				<isNotEmpty property="zzbChrgLevel">
+					ZZB_CHRG_LEVEL = #zzbChrgLevel#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="certiTypeId" prepend="and">
+				<isNotEmpty property="certiTypeId">
+					CERTI_TYPE_ID = #certiTypeId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="certiNbr" prepend="and">
+				<isNotEmpty property="certiNbr">
+					CERTI_NBR = #certiNbr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="contactName" prepend="and">
+				<isNotEmpty property="contactName">
+					CONTACT_NAME = #contactName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="contactNbr" prepend="and">
+				<isNotEmpty property="contactNbr">
+					CONTACT_NBR = #contactNbr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofrDetailDesc" prepend="and">
+				<isNotEmpty property="ofrDetailDesc">
+					OFR_DETAIL_DESC = #ofrDetailDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="zfkFlag" prepend="and">
+				<isNotEmpty property="zfkFlag">
+					ZFK_FLAG = #zfkFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="itvFlag" prepend="and">
+				<isNotEmpty property="itvFlag">
+					ITV_FLAG = #itvFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="wideTer" prepend="and">
+				<isNotEmpty property="wideTer">
+					WIDE_TER = #wideTer#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="wlanFlag" prepend="and">
+				<isNotEmpty property="wlanFlag">
+					WLAN_FLAG = #wlanFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="mktChannelId" prepend="and">
+				<isNotEmpty property="mktChannelId">
+					MKT_CHANNEL_ID = #mktChannelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupCodeNbr" prepend="and">
+				<isNotEmpty property="groupCodeNbr">
+					GROUP_CODE_NBR = #groupCodeNbr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gradeCode" prepend="and">
+				<isNotEmpty property="gradeCode">
+					GRADE_CODE = #gradeCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gradeName" prepend="and">
+				<isNotEmpty property="gradeName">
+					GRADE_NAME = #gradeName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="brandName" prepend="and">
+				<isNotEmpty property="brandName">
+					BRAND_NAME = #brandName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="termType" prepend="and">
+				<isNotEmpty property="termType">
+					TERM_TYPE = #termType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="smartFlag" prepend="and">
+				<isNotEmpty property="smartFlag">
+					SMART_FLAG = #smartFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="termFlag" prepend="and">
+				<isNotEmpty property="termFlag">
+					TERM_FLAG = #termFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="devDay" prepend="and">
+				<isNotEmpty property="devDay">
+					DEV_DAY = #devDay#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="termDevCode" prepend="and">
+				<isNotEmpty property="termDevCode">
+					TERM_DEV_CODE = #termDevCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="genDevCode" prepend="and">
+				<isNotEmpty property="genDevCode">
+					GEN_DEV_CODE = #genDevCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regDateStart" prepend="and">
+				<isNotEmpty property="regDateStart">
+					<![CDATA[ REG_DATE >= #regDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regDateEnd" prepend="and">
+				<isNotEmpty property="regDateEnd">
+					<![CDATA[ REG_DATE <= #regDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="screenSize" prepend="and">
+				<isNotEmpty property="screenSize">
+					SCREEN_SIZE = #screenSize#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="vipFlag" prepend="and">
+				<isNotEmpty property="vipFlag">
+					VIP_FLAG = #vipFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="wxVpnFlag" prepend="and">
+				<isNotEmpty property="wxVpnFlag">
+					WX_VPN_FLAG = #wxVpnFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="carryMode" prepend="and">
+				<isNotEmpty property="carryMode">
+					CARRY_MODE = #carryMode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="contractNo" prepend="and">
+				<isNotEmpty property="contractNo">
+					CONTRACT_NO = #contractNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="userName" prepend="and">
+				<isNotEmpty property="userName">
+					USER_NAME = #userName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="phoneNo" prepend="and">
+				<isNotEmpty property="phoneNo">
+					PHONE_NO = #phoneNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="billAddr" prepend="and">
+				<isNotEmpty property="billAddr">
+					BILL_ADDR = #billAddr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="certiCode" prepend="and">
+				<isNotEmpty property="certiCode">
+					CERTI_CODE = #certiCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="bigFlag" prepend="and">
+				<isNotEmpty property="bigFlag">
+					BIG_FLAG = #bigFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="bigDateStart" prepend="and">
+				<isNotEmpty property="bigDateStart">
+					<![CDATA[ BIG_DATE >= #bigDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="bigDateEnd" prepend="and">
+				<isNotEmpty property="bigDateEnd">
+					<![CDATA[ BIG_DATE <= #bigDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="bigActiveFlag" prepend="and">
+				<isNotEmpty property="bigActiveFlag">
+					BIG_ACTIVE_FLAG = #bigActiveFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusDateStart" prepend="and">
+				<isNotEmpty property="statusDateStart">
+					<![CDATA[ STATUS_DATE >= #statusDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusDateEnd" prepend="and">
+				<isNotEmpty property="statusDateEnd">
+					<![CDATA[ STATUS_DATE <= #statusDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="cardCode" prepend="and">
+				<isNotEmpty property="cardCode">
+					CARD_CODE = #cardCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="cardNo" prepend="and">
+				<isNotEmpty property="cardNo">
+					CARD_NO = #cardNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNo" prepend="and">
+				<isNotEmpty property="serviceNo">
+					SERVICE_NO = #serviceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceAccess" prepend="and">
+				<isNotEmpty property="serviceAccess">
+					SERVICE_ACCESS = #serviceAccess#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="shortPhoneno" prepend="and">
+				<isNotEmpty property="shortPhoneno">
+					SHORT_PHONENO = #shortPhoneno#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="smName" prepend="and">
+				<isNotEmpty property="smName">
+					SM_NAME = #smName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="payCode" prepend="and">
+				<isNotEmpty property="payCode">
+					PAY_CODE = #payCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="billCode" prepend="and">
+				<isNotEmpty property="billCode">
+					BILL_CODE = #billCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="stopFlag" prepend="and">
+				<isNotEmpty property="stopFlag">
+					STOP_FLAG = #stopFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="runCode" prepend="and">
+				<isNotEmpty property="runCode">
+					RUN_CODE = #runCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="runTimeStart" prepend="and">
+				<isNotEmpty property="runTimeStart">
+					<![CDATA[ RUN_TIME >= #runTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="runTimeEnd" prepend="and">
+				<isNotEmpty property="runTimeEnd">
+					<![CDATA[ RUN_TIME <= #runTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="unitId" prepend="and">
+				<isNotEmpty property="unitId">
+					UNIT_ID = #unitId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="indbDateStart" prepend="and">
+				<isNotEmpty property="indbDateStart">
+					<![CDATA[ INDB_DATE >= #indbDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="indbDateEnd" prepend="and">
+				<isNotEmpty property="indbDateEnd">
+					<![CDATA[ INDB_DATE <= #indbDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="loadDateStart" prepend="and">
+				<isNotEmpty property="loadDateStart">
+					<![CDATA[ LOAD_DATE >= #loadDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="loadDateEnd" prepend="and">
+				<isNotEmpty property="loadDateEnd">
+					<![CDATA[ LOAD_DATE <= #loadDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="prepareFee" prepend="and">
+				<isNotEmpty property="prepareFee">
+					PREPARE_FEE = #prepareFee#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="notOutFee" prepend="and">
+				<isNotEmpty property="notOutFee">
+					NOT_OUT_FEE = #notOutFee#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="lastFee" prepend="and">
+				<isNotEmpty property="lastFee">
+					LAST_FEE = #lastFee#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="creditValue" prepend="and">
+				<isNotEmpty property="creditValue">
+					CREDIT_VALUE = #creditValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoCode" prepend="and">
+				<isNotEmpty property="photoCode">
+					PHOTO_CODE = #photoCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="note" prepend="and">
+				<isNotEmpty property="note">
+					NOTE = #note#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="openTimeStart" prepend="and">
+				<isNotEmpty property="openTimeStart">
+					<![CDATA[ OPEN_TIME >= #openTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="openTimeEnd" prepend="and">
+				<isNotEmpty property="openTimeEnd">
+					<![CDATA[ OPEN_TIME <= #openTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="rentCode" prepend="and">
+				<isNotEmpty property="rentCode">
+					RENT_CODE = #rentCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="disDateStart" prepend="and">
+				<isNotEmpty property="disDateStart">
+					<![CDATA[ DIS_DATE >= #disDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="disDateEnd" prepend="and">
+				<isNotEmpty property="disDateEnd">
+					<![CDATA[ DIS_DATE <= #disDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="owe" prepend="and">
+				<isNotEmpty property="owe">
+					OWE = #owe#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="updateDateStart" prepend="and">
+				<isNotEmpty property="updateDateStart">
+					<![CDATA[ UPDATE_DATE >= #updateDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="updateDateEnd" prepend="and">
+				<isNotEmpty property="updateDateEnd">
+					<![CDATA[ UPDATE_DATE <= #updateDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="disUpdateBy" prepend="and">
+				<isNotEmpty property="disUpdateBy">
+					DIS_UPDATE_BY = #disUpdateBy#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="productType" prepend="and">
+				<isNotEmpty property="productType">
+					PRODUCT_TYPE = #productType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="offerId" prepend="and">
+				<isNotEmpty property="offerId">
+					OFFER_ID = #offerId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofgroupId" prepend="and">
+				<isNotEmpty property="ofgroupId">
+					OFGROUP_ID = #ofgroupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="offerName" prepend="and">
+				<isNotEmpty property="offerName">
+					OFFER_NAME = #offerName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ofgroupName" prepend="and">
+				<isNotEmpty property="ofgroupName">
+					OFGROUP_NAME = #ofgroupName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="payType" prepend="and">
+				<isNotEmpty property="payType">
+					PAY_TYPE = #payType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="redFlag" prepend="and">
+				<isNotEmpty property="redFlag">
+					RED_FLAG = #redFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="holdGrade" prepend="and">
+				<isNotEmpty property="holdGrade">
+					HOLD_GRADE = #holdGrade#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="holdGradeTimeStart" prepend="and">
+				<isNotEmpty property="holdGradeTimeStart">
+					<![CDATA[ HOLD_GRADE_TIME >= #holdGradeTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="holdGradeTimeEnd" prepend="and">
+				<isNotEmpty property="holdGradeTimeEnd">
+					<![CDATA[ HOLD_GRADE_TIME <= #holdGradeTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="grayFlag" prepend="and">
+				<isNotEmpty property="grayFlag">
+					GRAY_FLAG = #grayFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="keymanFlag" prepend="and">
+				<isNotEmpty property="keymanFlag">
+					KEYMAN_FLAG = #keymanFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="holdChn" prepend="and">
+				<isNotEmpty property="holdChn">
+					HOLD_CHN = #holdChn#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoCodeLastYear" prepend="and">
+				<isNotEmpty property="photoCodeLastYear">
+					PHOTO_CODE_LAST_YEAR = #photoCodeLastYear#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gradeChageDateStart" prepend="and">
+				<isNotEmpty property="gradeChageDateStart">
+					<![CDATA[ GRADE_CHAGE_DATE >= #gradeChageDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gradeChageDateEnd" prepend="and">
+				<isNotEmpty property="gradeChageDateEnd">
+					<![CDATA[ GRADE_CHAGE_DATE <= #gradeChageDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridServiceDesc" prepend="and">
+				<isNotEmpty property="gridServiceDesc">
+					GRID_SERVICE_DESC = #gridServiceDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custCd" prepend="and">
+				<isNotEmpty property="custCd">
+					CUST_CD = #custCd#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoCustCode" prepend="and">
+				<isNotEmpty property="photoCustCode">
+					PHOTO_CUST_CODE = #photoCustCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoChannelName" prepend="and">
+				<isNotEmpty property="photoChannelName">
+					PHOTO_CHANNEL_NAME = #photoChannelName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoCustChannelName" prepend="and">
+				<isNotEmpty property="photoCustChannelName">
+					PHOTO_CUST_CHANNEL_NAME = #photoCustChannelName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="ip5Flag" prepend="and">
+				<isNotEmpty property="ip5Flag">
+					IP5_FLAG = #ip5Flag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="highFlag" prepend="and">
+				<isNotEmpty property="highFlag">
+					HIGH_FLAG = #highFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="starFlag" prepend="and">
+				<isNotEmpty property="starFlag">
+					STAR_FLAG = #starFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoGroupCode" prepend="and">
+				<isNotEmpty property="photoGroupCode">
+					PHOTO_GROUP_CODE = #photoGroupCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="loadCode" prepend="and">
+				<isNotEmpty property="loadCode">
+					LOAD_CODE = #loadCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoVpnCode" prepend="and">
+				<isNotEmpty property="photoVpnCode">
+					PHOTO_VPN_CODE = #photoVpnCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="sofcCode" prepend="and">
+				<isNotEmpty property="sofcCode">
+					SOFC_CODE = #sofcCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="lentCode" prepend="and">
+				<isNotEmpty property="lentCode">
+					LENT_CODE = #lentCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="lentDesc" prepend="and">
+				<isNotEmpty property="lentDesc">
+					LENT_DESC = #lentDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="mktAreaCode" prepend="and">
+				<isNotEmpty property="mktAreaCode">
+					MKT_AREA_CODE = #mktAreaCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="mktAreaName" prepend="and">
+				<isNotEmpty property="mktAreaName">
+					MKT_AREA_NAME = #mktAreaName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="deptCode" prepend="and">
+				<isNotEmpty property="deptCode">
+					DEPT_CODE = #deptCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="deptName" prepend="and">
+				<isNotEmpty property="deptName">
+					DEPT_NAME = #deptName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupCode" prepend="and">
+				<isNotEmpty property="groupCode">
+					GROUP_CODE = #groupCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupDesc" prepend="and">
+				<isNotEmpty property="groupDesc">
+					GROUP_DESC = #groupDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="dutyZoneCode" prepend="and">
+				<isNotEmpty property="dutyZoneCode">
+					DUTY_ZONE_CODE = #dutyZoneCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="dutyZoneName" prepend="and">
+				<isNotEmpty property="dutyZoneName">
+					DUTY_ZONE_NAME = #dutyZoneName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridCode" prepend="and">
+				<isNotEmpty property="gridCode">
+					GRID_CODE = #gridCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridName" prepend="and">
+				<isNotEmpty property="gridName">
+					GRID_NAME = #gridName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="urbanRuralCode" prepend="and">
+				<isNotEmpty property="urbanRuralCode">
+					URBAN_RURAL_CODE = #urbanRuralCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="urbanRuralDesc" prepend="and">
+				<isNotEmpty property="urbanRuralDesc">
+					URBAN_RURAL_DESC = #urbanRuralDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="specAreaId" prepend="and">
+				<isNotEmpty property="specAreaId">
+					SPEC_AREA_ID = #specAreaId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="specAreaDesc" prepend="and">
+				<isNotEmpty property="specAreaDesc">
+					SPEC_AREA_DESC = #specAreaDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="lentServiceNo" prepend="and">
+				<isNotEmpty property="lentServiceNo">
+					LENT_SERVICE_NO = #lentServiceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="mktAreaServiceNo" prepend="and">
+				<isNotEmpty property="mktAreaServiceNo">
+					MKT_AREA_SERVICE_NO = #mktAreaServiceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="deptServiceNo" prepend="and">
+				<isNotEmpty property="deptServiceNo">
+					DEPT_SERVICE_NO = #deptServiceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="groupServiceNo" prepend="and">
+				<isNotEmpty property="groupServiceNo">
+					GROUP_SERVICE_NO = #groupServiceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="dutyZoneServiceNo" prepend="and">
+				<isNotEmpty property="dutyZoneServiceNo">
+					DUTY_ZONE_SERVICE_NO = #dutyZoneServiceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridServiceNo" prepend="and">
+				<isNotEmpty property="gridServiceNo">
+					GRID_SERVICE_NO = #gridServiceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="userAccountandcertiNbr" prepend="and">
+				<isNotEmpty property="userAccountandcertiNbr">
+					USER_ACCOUNTANDCERTI_NBR = #userAccountandcertiNbr#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmUserInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE ID_NO = #idNo#
+	</select>
+
+	<select id="selectRmUserInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="custNameOrServiceNbr" prepend="and">
+				<isNotEmpty property="custNameOrServiceNbr">
+					SERVICE_NBR = #custNameOrServiceNbr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNbr" prepend="and">
+				<isNotEmpty property="serviceNbr">
+					SERVICE_NBR = #serviceNbr#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<insert id="insertRmUserInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_USER_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="idNo" prepend=",">
+			<isNotEmpty property="idNo">
+				ID_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dealDate" prepend=",">
+			<isNotEmpty property="dealDate">
+				DEAL_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="latnId" prepend=",">
+			<isNotEmpty property="latnId">
+				LATN_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="latnName" prepend=",">
+			<isNotEmpty property="latnName">
+				LATN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstName" prepend=",">
+			<isNotEmpty property="prdInstName">
+				PRD_INST_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custName" prepend=",">
+			<isNotEmpty property="custName">
+				CUST_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstId" prepend=",">
+			<isNotEmpty property="prdInstId">
+				PRD_INST_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custId" prepend=",">
+			<isNotEmpty property="custId">
+				CUST_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="acctId" prepend=",">
+			<isNotEmpty property="acctId">
+				ACCT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstId" prepend=",">
+			<isNotEmpty property="ofrInstId">
+				OFR_INST_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNbr" prepend=",">
+			<isNotEmpty property="serviceNbr">
+				SERVICE_NBR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userAccount" prepend=",">
+			<isNotEmpty property="userAccount">
+				USER_ACCOUNT
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstStasId" prepend=",">
+			<isNotEmpty property="prdInstStasId">
+				PRD_INST_STAS_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstStasName" prepend=",">
+			<isNotEmpty property="prdInstStasName">
+				PRD_INST_STAS_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstStasId" prepend=",">
+			<isNotEmpty property="ofrInstStasId">
+				OFR_INST_STAS_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstStasName" prepend=",">
+			<isNotEmpty property="ofrInstStasName">
+				OFR_INST_STAS_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdId" prepend=",">
+			<isNotEmpty property="prdId">
+				PRD_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrId" prepend=",">
+			<isNotEmpty property="ofrId">
+				OFR_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrName" prepend=",">
+			<isNotEmpty property="ofrName">
+				OFR_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrBigType" prepend=",">
+			<isNotEmpty property="ofrBigType">
+				OFR_BIG_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrType" prepend=",">
+			<isNotEmpty property="ofrType">
+				OFR_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="chrgLevel" prepend=",">
+			<isNotEmpty property="chrgLevel">
+				CHRG_LEVEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="speedId" prepend=",">
+			<isNotEmpty property="speedId">
+				SPEED_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="innerMonth" prepend=",">
+			<isNotEmpty property="innerMonth">
+				INNER_MONTH
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crtDate" prepend=",">
+			<isNotEmpty property="crtDate">
+				CRT_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="installDate" prepend=",">
+			<isNotEmpty property="installDate">
+				INSTALL_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="completeDate" prepend=",">
+			<isNotEmpty property="completeDate">
+				COMPLETE_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expDate" prepend=",">
+			<isNotEmpty property="expDate">
+				EXP_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effDate" prepend=",">
+			<isNotEmpty property="effDate">
+				EFF_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrCrtDate" prepend=",">
+			<isNotEmpty property="ofrCrtDate">
+				OFR_CRT_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrEffDate" prepend=",">
+			<isNotEmpty property="ofrEffDate">
+				OFR_EFF_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrExpDate" prepend=",">
+			<isNotEmpty property="ofrExpDate">
+				OFR_EXP_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="protocolEffDate" prepend=",">
+			<isNotEmpty property="protocolEffDate">
+				PROTOCOL_EFF_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="protocolExpDate" prepend=",">
+			<isNotEmpty property="protocolExpDate">
+				PROTOCOL_EXP_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ifPrepay" prepend=",">
+			<isNotEmpty property="ifPrepay">
+				IF_PREPAY
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="empeeId" prepend=",">
+			<isNotEmpty property="empeeId">
+				EMPEE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="developer" prepend=",">
+			<isNotEmpty property="developer">
+				DEVELOPER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devName" prepend=",">
+			<isNotEmpty property="devName">
+				DEV_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrDevCode" prepend=",">
+			<isNotEmpty property="ofrDevCode">
+				OFR_DEV_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="extendPaymethodType" prepend=",">
+			<isNotEmpty property="extendPaymethodType">
+				EXTEND_PAYMETHOD_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="extendPaymethodName" prepend=",">
+			<isNotEmpty property="extendPaymethodName">
+				EXTEND_PAYMETHOD_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payMethId" prepend=",">
+			<isNotEmpty property="payMethId">
+				PAY_METH_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payMethName" prepend=",">
+			<isNotEmpty property="payMethName">
+				PAY_METH_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="minBillingCycleId" prepend=",">
+			<isNotEmpty property="minBillingCycleId">
+				MIN_BILLING_CYCLE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="oweCharge" prepend=",">
+			<isNotEmpty property="oweCharge">
+				OWE_CHARGE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="oweSureCharge" prepend=",">
+			<isNotEmpty property="oweSureCharge">
+				OWE_SURE_CHARGE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devNum" prepend=",">
+			<isNotEmpty property="devNum">
+				DEV_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="netNum" prepend=",">
+			<isNotEmpty property="netNum">
+				NET_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="losNum" prepend=",">
+			<isNotEmpty property="losNum">
+				LOS_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reqOfflineNum" prepend=",">
+			<isNotEmpty property="reqOfflineNum">
+				REQ_OFFLINE_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="calNum" prepend=",">
+			<isNotEmpty property="calNum">
+				CAL_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actNum" prepend=",">
+			<isNotEmpty property="actNum">
+				ACT_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="installAddr" prepend=",">
+			<isNotEmpty property="installAddr">
+				INSTALL_ADDR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridId" prepend=",">
+			<isNotEmpty property="gridId">
+				GRID_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custRegionId" prepend=",">
+			<isNotEmpty property="custRegionId">
+				CUST_REGION_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwMktAreaId" prepend=",">
+			<isNotEmpty property="edwMktAreaId">
+				EDW_MKT_AREA_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwMktAreaName" prepend=",">
+			<isNotEmpty property="edwMktAreaName">
+				EDW_MKT_AREA_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptId" prepend=",">
+			<isNotEmpty property="edwDeptId">
+				EDW_DEPT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptName" prepend=",">
+			<isNotEmpty property="edwDeptName">
+				EDW_DEPT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwGroupId" prepend=",">
+			<isNotEmpty property="edwGroupId">
+				EDW_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwGroupName" prepend=",">
+			<isNotEmpty property="edwGroupName">
+				EDW_GROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDutyZoneId" prepend=",">
+			<isNotEmpty property="edwDutyZoneId">
+				EDW_DUTY_ZONE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDutyZoneName" prepend=",">
+			<isNotEmpty property="edwDutyZoneName">
+				EDW_DUTY_ZONE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwRegionName" prepend=",">
+			<isNotEmpty property="edwRegionName">
+				EDW_REGION_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktChannel" prepend=",">
+			<isNotEmpty property="mktChannel">
+				MKT_CHANNEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRural" prepend=",">
+			<isNotEmpty property="urbanRural">
+				URBAN_RURAL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaName" prepend=",">
+			<isNotEmpty property="areaName">
+				AREA_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="townName" prepend=",">
+			<isNotEmpty property="townName">
+				TOWN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmAreaId" prepend=",">
+			<isNotEmpty property="crmAreaId">
+				CRM_AREA_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmAreaName" prepend=",">
+			<isNotEmpty property="crmAreaName">
+				CRM_AREA_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmUrbanRuralId" prepend=",">
+			<isNotEmpty property="crmUrbanRuralId">
+				CRM_URBAN_RURAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmUrbanRuralName" prepend=",">
+			<isNotEmpty property="crmUrbanRuralName">
+				CRM_URBAN_RURAL_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmMktAreaId" prepend=",">
+			<isNotEmpty property="crmMktAreaId">
+				CRM_MKT_AREA_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmMktAreaName" prepend=",">
+			<isNotEmpty property="crmMktAreaName">
+				CRM_MKT_AREA_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDeptId" prepend=",">
+			<isNotEmpty property="crmDeptId">
+				CRM_DEPT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDeptName" prepend=",">
+			<isNotEmpty property="crmDeptName">
+				CRM_DEPT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDutyZoneId" prepend=",">
+			<isNotEmpty property="crmDutyZoneId">
+				CRM_DUTY_ZONE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDutyZoneName" prepend=",">
+			<isNotEmpty property="crmDutyZoneName">
+				CRM_DUTY_ZONE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmRegionName" prepend=",">
+			<isNotEmpty property="crmRegionName">
+				CRM_REGION_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbFlag" prepend=",">
+			<isNotEmpty property="zzbFlag">
+				ZZB_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbOfrId" prepend=",">
+			<isNotEmpty property="zzbOfrId">
+				ZZB_OFR_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbOfrTypeId" prepend=",">
+			<isNotEmpty property="zzbOfrTypeId">
+				ZZB_OFR_TYPE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zsChrgLevel" prepend=",">
+			<isNotEmpty property="zsChrgLevel">
+				ZS_CHRG_LEVEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbChrgLevel" prepend=",">
+			<isNotEmpty property="zzbChrgLevel">
+				ZZB_CHRG_LEVEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiTypeId" prepend=",">
+			<isNotEmpty property="certiTypeId">
+				CERTI_TYPE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiNbr" prepend=",">
+			<isNotEmpty property="certiNbr">
+				CERTI_NBR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactName" prepend=",">
+			<isNotEmpty property="contactName">
+				CONTACT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNbr" prepend=",">
+			<isNotEmpty property="contactNbr">
+				CONTACT_NBR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrDetailDesc" prepend=",">
+			<isNotEmpty property="ofrDetailDesc">
+				OFR_DETAIL_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zfkFlag" prepend=",">
+			<isNotEmpty property="zfkFlag">
+				ZFK_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="itvFlag" prepend=",">
+			<isNotEmpty property="itvFlag">
+				ITV_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wideTer" prepend=",">
+			<isNotEmpty property="wideTer">
+				WIDE_TER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wlanFlag" prepend=",">
+			<isNotEmpty property="wlanFlag">
+				WLAN_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktChannelId" prepend=",">
+			<isNotEmpty property="mktChannelId">
+				MKT_CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCodeNbr" prepend=",">
+			<isNotEmpty property="groupCodeNbr">
+				GROUP_CODE_NBR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeCode" prepend=",">
+			<isNotEmpty property="gradeCode">
+				GRADE_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeName" prepend=",">
+			<isNotEmpty property="gradeName">
+				GRADE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="brandName" prepend=",">
+			<isNotEmpty property="brandName">
+				BRAND_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termType" prepend=",">
+			<isNotEmpty property="termType">
+				TERM_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smartFlag" prepend=",">
+			<isNotEmpty property="smartFlag">
+				SMART_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termFlag" prepend=",">
+			<isNotEmpty property="termFlag">
+				TERM_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devDay" prepend=",">
+			<isNotEmpty property="devDay">
+				DEV_DAY
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termDevCode" prepend=",">
+			<isNotEmpty property="termDevCode">
+				TERM_DEV_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="genDevCode" prepend=",">
+			<isNotEmpty property="genDevCode">
+				GEN_DEV_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regDate" prepend=",">
+			<isNotEmpty property="regDate">
+				REG_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="screenSize" prepend=",">
+			<isNotEmpty property="screenSize">
+				SCREEN_SIZE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="vipFlag" prepend=",">
+			<isNotEmpty property="vipFlag">
+				VIP_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wxVpnFlag" prepend=",">
+			<isNotEmpty property="wxVpnFlag">
+				WX_VPN_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="carryMode" prepend=",">
+			<isNotEmpty property="carryMode">
+				CARRY_MODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contractNo" prepend=",">
+			<isNotEmpty property="contractNo">
+				CONTRACT_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userName" prepend=",">
+			<isNotEmpty property="userName">
+				USER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+			<isNotEmpty property="phoneNo">
+				PHONE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="billAddr" prepend=",">
+			<isNotEmpty property="billAddr">
+				BILL_ADDR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiCode" prepend=",">
+			<isNotEmpty property="certiCode">
+				CERTI_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigFlag" prepend=",">
+			<isNotEmpty property="bigFlag">
+				BIG_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigDate" prepend=",">
+			<isNotEmpty property="bigDate">
+				BIG_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigActiveFlag" prepend=",">
+			<isNotEmpty property="bigActiveFlag">
+				BIG_ACTIVE_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusDate" prepend=",">
+			<isNotEmpty property="statusDate">
+				STATUS_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cardCode" prepend=",">
+			<isNotEmpty property="cardCode">
+				CARD_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cardNo" prepend=",">
+			<isNotEmpty property="cardNo">
+				CARD_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNo" prepend=",">
+			<isNotEmpty property="serviceNo">
+				SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceAccess" prepend=",">
+			<isNotEmpty property="serviceAccess">
+				SERVICE_ACCESS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="shortPhoneno" prepend=",">
+			<isNotEmpty property="shortPhoneno">
+				SHORT_PHONENO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smName" prepend=",">
+			<isNotEmpty property="smName">
+				SM_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payCode" prepend=",">
+			<isNotEmpty property="payCode">
+				PAY_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="billCode" prepend=",">
+			<isNotEmpty property="billCode">
+				BILL_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="stopFlag" prepend=",">
+			<isNotEmpty property="stopFlag">
+				STOP_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runCode" prepend=",">
+			<isNotEmpty property="runCode">
+				RUN_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runTime" prepend=",">
+			<isNotEmpty property="runTime">
+				RUN_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="unitId" prepend=",">
+			<isNotEmpty property="unitId">
+				UNIT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="indbDate" prepend=",">
+			<isNotEmpty property="indbDate">
+				INDB_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loadDate" prepend=",">
+			<isNotEmpty property="loadDate">
+				LOAD_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prepareFee" prepend=",">
+			<isNotEmpty property="prepareFee">
+				PREPARE_FEE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="notOutFee" prepend=",">
+			<isNotEmpty property="notOutFee">
+				NOT_OUT_FEE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lastFee" prepend=",">
+			<isNotEmpty property="lastFee">
+				LAST_FEE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="creditValue" prepend=",">
+			<isNotEmpty property="creditValue">
+				CREDIT_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCode" prepend=",">
+			<isNotEmpty property="photoCode">
+				PHOTO_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				NOTE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="openTime" prepend=",">
+			<isNotEmpty property="openTime">
+				OPEN_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="rentCode" prepend=",">
+			<isNotEmpty property="rentCode">
+				RENT_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disDate" prepend=",">
+			<isNotEmpty property="disDate">
+				DIS_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="owe" prepend=",">
+			<isNotEmpty property="owe">
+				OWE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateDate" prepend=",">
+			<isNotEmpty property="updateDate">
+				UPDATE_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disUpdateBy" prepend=",">
+			<isNotEmpty property="disUpdateBy">
+				DIS_UPDATE_BY
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productType" prepend=",">
+			<isNotEmpty property="productType">
+				PRODUCT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="offerId" prepend=",">
+			<isNotEmpty property="offerId">
+				OFFER_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofgroupId" prepend=",">
+			<isNotEmpty property="ofgroupId">
+				OFGROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="offerName" prepend=",">
+			<isNotEmpty property="offerName">
+				OFFER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofgroupName" prepend=",">
+			<isNotEmpty property="ofgroupName">
+				OFGROUP_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payType" prepend=",">
+			<isNotEmpty property="payType">
+				PAY_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="redFlag" prepend=",">
+			<isNotEmpty property="redFlag">
+				RED_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdGrade" prepend=",">
+			<isNotEmpty property="holdGrade">
+				HOLD_GRADE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdGradeTime" prepend=",">
+			<isNotEmpty property="holdGradeTime">
+				HOLD_GRADE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="grayFlag" prepend=",">
+			<isNotEmpty property="grayFlag">
+				GRAY_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="keymanFlag" prepend=",">
+			<isNotEmpty property="keymanFlag">
+				KEYMAN_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdChn" prepend=",">
+			<isNotEmpty property="holdChn">
+				HOLD_CHN
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCodeLastYear" prepend=",">
+			<isNotEmpty property="photoCodeLastYear">
+				PHOTO_CODE_LAST_YEAR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeChageDate" prepend=",">
+			<isNotEmpty property="gradeChageDate">
+				GRADE_CHAGE_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridServiceDesc" prepend=",">
+			<isNotEmpty property="gridServiceDesc">
+				GRID_SERVICE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custCd" prepend=",">
+			<isNotEmpty property="custCd">
+				CUST_CD
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCustCode" prepend=",">
+			<isNotEmpty property="photoCustCode">
+				PHOTO_CUST_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoChannelName" prepend=",">
+			<isNotEmpty property="photoChannelName">
+				PHOTO_CHANNEL_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCustChannelName" prepend=",">
+			<isNotEmpty property="photoCustChannelName">
+				PHOTO_CUST_CHANNEL_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ip5Flag" prepend=",">
+			<isNotEmpty property="ip5Flag">
+				IP5_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="highFlag" prepend=",">
+			<isNotEmpty property="highFlag">
+				HIGH_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="starFlag" prepend=",">
+			<isNotEmpty property="starFlag">
+				STAR_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoGroupCode" prepend=",">
+			<isNotEmpty property="photoGroupCode">
+				PHOTO_GROUP_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loadCode" prepend=",">
+			<isNotEmpty property="loadCode">
+				LOAD_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoVpnCode" prepend=",">
+			<isNotEmpty property="photoVpnCode">
+				PHOTO_VPN_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sofcCode" prepend=",">
+			<isNotEmpty property="sofcCode">
+				SOFC_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentCode" prepend=",">
+			<isNotEmpty property="lentCode">
+				LENT_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentDesc" prepend=",">
+			<isNotEmpty property="lentDesc">
+				LENT_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaCode" prepend=",">
+			<isNotEmpty property="mktAreaCode">
+				MKT_AREA_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaName" prepend=",">
+			<isNotEmpty property="mktAreaName">
+				MKT_AREA_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptCode" prepend=",">
+			<isNotEmpty property="deptCode">
+				DEPT_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptName" prepend=",">
+			<isNotEmpty property="deptName">
+				DEPT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCode" prepend=",">
+			<isNotEmpty property="groupCode">
+				GROUP_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupDesc" prepend=",">
+			<isNotEmpty property="groupDesc">
+				GROUP_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneCode" prepend=",">
+			<isNotEmpty property="dutyZoneCode">
+				DUTY_ZONE_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneName" prepend=",">
+			<isNotEmpty property="dutyZoneName">
+				DUTY_ZONE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridCode" prepend=",">
+			<isNotEmpty property="gridCode">
+				GRID_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridName" prepend=",">
+			<isNotEmpty property="gridName">
+				GRID_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRuralCode" prepend=",">
+			<isNotEmpty property="urbanRuralCode">
+				URBAN_RURAL_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRuralDesc" prepend=",">
+			<isNotEmpty property="urbanRuralDesc">
+				URBAN_RURAL_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="specAreaId" prepend=",">
+			<isNotEmpty property="specAreaId">
+				SPEC_AREA_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="specAreaDesc" prepend=",">
+			<isNotEmpty property="specAreaDesc">
+				SPEC_AREA_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentServiceNo" prepend=",">
+			<isNotEmpty property="lentServiceNo">
+				LENT_SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaServiceNo" prepend=",">
+			<isNotEmpty property="mktAreaServiceNo">
+				MKT_AREA_SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptServiceNo" prepend=",">
+			<isNotEmpty property="deptServiceNo">
+				DEPT_SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupServiceNo" prepend=",">
+			<isNotEmpty property="groupServiceNo">
+				GROUP_SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneServiceNo" prepend=",">
+			<isNotEmpty property="dutyZoneServiceNo">
+				DUTY_ZONE_SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridServiceNo" prepend=",">
+			<isNotEmpty property="gridServiceNo">
+				GRID_SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userAccountandcertiNbr" prepend=",">
+			<isNotEmpty property="userAccountandcertiNbr">
+				USER_ACCOUNTANDCERTI_NBR
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="idNo" prepend=",">
+			<isNotEmpty property="idNo">
+				#idNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dealDate" prepend=",">
+			<isNotEmpty property="dealDate">
+				#dealDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="latnId" prepend=",">
+			<isNotEmpty property="latnId">
+				#latnId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="latnName" prepend=",">
+			<isNotEmpty property="latnName">
+				#latnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstName" prepend=",">
+			<isNotEmpty property="prdInstName">
+				#prdInstName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custName" prepend=",">
+			<isNotEmpty property="custName">
+				#custName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstId" prepend=",">
+			<isNotEmpty property="prdInstId">
+				#prdInstId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custId" prepend=",">
+			<isNotEmpty property="custId">
+				#custId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="acctId" prepend=",">
+			<isNotEmpty property="acctId">
+				#acctId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstId" prepend=",">
+			<isNotEmpty property="ofrInstId">
+				#ofrInstId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNbr" prepend=",">
+			<isNotEmpty property="serviceNbr">
+				#serviceNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userAccount" prepend=",">
+			<isNotEmpty property="userAccount">
+				#userAccount#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstStasId" prepend=",">
+			<isNotEmpty property="prdInstStasId">
+				#prdInstStasId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstStasName" prepend=",">
+			<isNotEmpty property="prdInstStasName">
+				#prdInstStasName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstStasId" prepend=",">
+			<isNotEmpty property="ofrInstStasId">
+				#ofrInstStasId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstStasName" prepend=",">
+			<isNotEmpty property="ofrInstStasName">
+				#ofrInstStasName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdId" prepend=",">
+			<isNotEmpty property="prdId">
+				#prdId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrId" prepend=",">
+			<isNotEmpty property="ofrId">
+				#ofrId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrName" prepend=",">
+			<isNotEmpty property="ofrName">
+				#ofrName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrBigType" prepend=",">
+			<isNotEmpty property="ofrBigType">
+				#ofrBigType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrType" prepend=",">
+			<isNotEmpty property="ofrType">
+				#ofrType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				#groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+			<isNotEmpty property="groupName">
+				#groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="chrgLevel" prepend=",">
+			<isNotEmpty property="chrgLevel">
+				#chrgLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="speedId" prepend=",">
+			<isNotEmpty property="speedId">
+				#speedId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="innerMonth" prepend=",">
+			<isNotEmpty property="innerMonth">
+				#innerMonth#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crtDate" prepend=",">
+			<isNotEmpty property="crtDate">
+				#crtDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="installDate" prepend=",">
+			<isNotEmpty property="installDate">
+				#installDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="completeDate" prepend=",">
+			<isNotEmpty property="completeDate">
+				#completeDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expDate" prepend=",">
+			<isNotEmpty property="expDate">
+				#expDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effDate" prepend=",">
+			<isNotEmpty property="effDate">
+				#effDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrCrtDate" prepend=",">
+			<isNotEmpty property="ofrCrtDate">
+				#ofrCrtDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrEffDate" prepend=",">
+			<isNotEmpty property="ofrEffDate">
+				#ofrEffDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrExpDate" prepend=",">
+			<isNotEmpty property="ofrExpDate">
+				#ofrExpDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="protocolEffDate" prepend=",">
+			<isNotEmpty property="protocolEffDate">
+				#protocolEffDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="protocolExpDate" prepend=",">
+			<isNotEmpty property="protocolExpDate">
+				#protocolExpDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ifPrepay" prepend=",">
+			<isNotEmpty property="ifPrepay">
+				#ifPrepay#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="empeeId" prepend=",">
+			<isNotEmpty property="empeeId">
+				#empeeId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="developer" prepend=",">
+			<isNotEmpty property="developer">
+				#developer#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devName" prepend=",">
+			<isNotEmpty property="devName">
+				#devName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrDevCode" prepend=",">
+			<isNotEmpty property="ofrDevCode">
+				#ofrDevCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="extendPaymethodType" prepend=",">
+			<isNotEmpty property="extendPaymethodType">
+				#extendPaymethodType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="extendPaymethodName" prepend=",">
+			<isNotEmpty property="extendPaymethodName">
+				#extendPaymethodName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payMethId" prepend=",">
+			<isNotEmpty property="payMethId">
+				#payMethId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payMethName" prepend=",">
+			<isNotEmpty property="payMethName">
+				#payMethName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="minBillingCycleId" prepend=",">
+			<isNotEmpty property="minBillingCycleId">
+				#minBillingCycleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="oweCharge" prepend=",">
+			<isNotEmpty property="oweCharge">
+				#oweCharge#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="oweSureCharge" prepend=",">
+			<isNotEmpty property="oweSureCharge">
+				#oweSureCharge#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devNum" prepend=",">
+			<isNotEmpty property="devNum">
+				#devNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="netNum" prepend=",">
+			<isNotEmpty property="netNum">
+				#netNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="losNum" prepend=",">
+			<isNotEmpty property="losNum">
+				#losNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reqOfflineNum" prepend=",">
+			<isNotEmpty property="reqOfflineNum">
+				#reqOfflineNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="calNum" prepend=",">
+			<isNotEmpty property="calNum">
+				#calNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actNum" prepend=",">
+			<isNotEmpty property="actNum">
+				#actNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="installAddr" prepend=",">
+			<isNotEmpty property="installAddr">
+				#installAddr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridId" prepend=",">
+			<isNotEmpty property="gridId">
+				#gridId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custRegionId" prepend=",">
+			<isNotEmpty property="custRegionId">
+				#custRegionId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwMktAreaId" prepend=",">
+			<isNotEmpty property="edwMktAreaId">
+				#edwMktAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwMktAreaName" prepend=",">
+			<isNotEmpty property="edwMktAreaName">
+				#edwMktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptId" prepend=",">
+			<isNotEmpty property="edwDeptId">
+				#edwDeptId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptName" prepend=",">
+			<isNotEmpty property="edwDeptName">
+				#edwDeptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwGroupId" prepend=",">
+			<isNotEmpty property="edwGroupId">
+				#edwGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwGroupName" prepend=",">
+			<isNotEmpty property="edwGroupName">
+				#edwGroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDutyZoneId" prepend=",">
+			<isNotEmpty property="edwDutyZoneId">
+				#edwDutyZoneId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDutyZoneName" prepend=",">
+			<isNotEmpty property="edwDutyZoneName">
+				#edwDutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwRegionName" prepend=",">
+			<isNotEmpty property="edwRegionName">
+				#edwRegionName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktChannel" prepend=",">
+			<isNotEmpty property="mktChannel">
+				#mktChannel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRural" prepend=",">
+			<isNotEmpty property="urbanRural">
+				#urbanRural#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaName" prepend=",">
+			<isNotEmpty property="areaName">
+				#areaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="townName" prepend=",">
+			<isNotEmpty property="townName">
+				#townName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmAreaId" prepend=",">
+			<isNotEmpty property="crmAreaId">
+				#crmAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmAreaName" prepend=",">
+			<isNotEmpty property="crmAreaName">
+				#crmAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmUrbanRuralId" prepend=",">
+			<isNotEmpty property="crmUrbanRuralId">
+				#crmUrbanRuralId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmUrbanRuralName" prepend=",">
+			<isNotEmpty property="crmUrbanRuralName">
+				#crmUrbanRuralName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmMktAreaId" prepend=",">
+			<isNotEmpty property="crmMktAreaId">
+				#crmMktAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmMktAreaName" prepend=",">
+			<isNotEmpty property="crmMktAreaName">
+				#crmMktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDeptId" prepend=",">
+			<isNotEmpty property="crmDeptId">
+				#crmDeptId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDeptName" prepend=",">
+			<isNotEmpty property="crmDeptName">
+				#crmDeptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDutyZoneId" prepend=",">
+			<isNotEmpty property="crmDutyZoneId">
+				#crmDutyZoneId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDutyZoneName" prepend=",">
+			<isNotEmpty property="crmDutyZoneName">
+				#crmDutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmRegionName" prepend=",">
+			<isNotEmpty property="crmRegionName">
+				#crmRegionName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbFlag" prepend=",">
+			<isNotEmpty property="zzbFlag">
+				#zzbFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbOfrId" prepend=",">
+			<isNotEmpty property="zzbOfrId">
+				#zzbOfrId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbOfrTypeId" prepend=",">
+			<isNotEmpty property="zzbOfrTypeId">
+				#zzbOfrTypeId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zsChrgLevel" prepend=",">
+			<isNotEmpty property="zsChrgLevel">
+				#zsChrgLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbChrgLevel" prepend=",">
+			<isNotEmpty property="zzbChrgLevel">
+				#zzbChrgLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiTypeId" prepend=",">
+			<isNotEmpty property="certiTypeId">
+				#certiTypeId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiNbr" prepend=",">
+			<isNotEmpty property="certiNbr">
+				#certiNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactName" prepend=",">
+			<isNotEmpty property="contactName">
+				#contactName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNbr" prepend=",">
+			<isNotEmpty property="contactNbr">
+				#contactNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrDetailDesc" prepend=",">
+			<isNotEmpty property="ofrDetailDesc">
+				#ofrDetailDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zfkFlag" prepend=",">
+			<isNotEmpty property="zfkFlag">
+				#zfkFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="itvFlag" prepend=",">
+			<isNotEmpty property="itvFlag">
+				#itvFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wideTer" prepend=",">
+			<isNotEmpty property="wideTer">
+				#wideTer#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wlanFlag" prepend=",">
+			<isNotEmpty property="wlanFlag">
+				#wlanFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktChannelId" prepend=",">
+			<isNotEmpty property="mktChannelId">
+				#mktChannelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCodeNbr" prepend=",">
+			<isNotEmpty property="groupCodeNbr">
+				#groupCodeNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeCode" prepend=",">
+			<isNotEmpty property="gradeCode">
+				#gradeCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeName" prepend=",">
+			<isNotEmpty property="gradeName">
+				#gradeName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="brandName" prepend=",">
+			<isNotEmpty property="brandName">
+				#brandName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termType" prepend=",">
+			<isNotEmpty property="termType">
+				#termType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smartFlag" prepend=",">
+			<isNotEmpty property="smartFlag">
+				#smartFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termFlag" prepend=",">
+			<isNotEmpty property="termFlag">
+				#termFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devDay" prepend=",">
+			<isNotEmpty property="devDay">
+				#devDay#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termDevCode" prepend=",">
+			<isNotEmpty property="termDevCode">
+				#termDevCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="genDevCode" prepend=",">
+			<isNotEmpty property="genDevCode">
+				#genDevCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regDate" prepend=",">
+			<isNotEmpty property="regDate">
+				#regDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="screenSize" prepend=",">
+			<isNotEmpty property="screenSize">
+				#screenSize#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="vipFlag" prepend=",">
+			<isNotEmpty property="vipFlag">
+				#vipFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wxVpnFlag" prepend=",">
+			<isNotEmpty property="wxVpnFlag">
+				#wxVpnFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="carryMode" prepend=",">
+			<isNotEmpty property="carryMode">
+				#carryMode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contractNo" prepend=",">
+			<isNotEmpty property="contractNo">
+				#contractNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userName" prepend=",">
+			<isNotEmpty property="userName">
+				#userName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+			<isNotEmpty property="phoneNo">
+				#phoneNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="billAddr" prepend=",">
+			<isNotEmpty property="billAddr">
+				#billAddr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiCode" prepend=",">
+			<isNotEmpty property="certiCode">
+				#certiCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigFlag" prepend=",">
+			<isNotEmpty property="bigFlag">
+				#bigFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigDate" prepend=",">
+			<isNotEmpty property="bigDate">
+				#bigDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigActiveFlag" prepend=",">
+			<isNotEmpty property="bigActiveFlag">
+				#bigActiveFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusDate" prepend=",">
+			<isNotEmpty property="statusDate">
+				#statusDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cardCode" prepend=",">
+			<isNotEmpty property="cardCode">
+				#cardCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cardNo" prepend=",">
+			<isNotEmpty property="cardNo">
+				#cardNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNo" prepend=",">
+			<isNotEmpty property="serviceNo">
+				#serviceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceAccess" prepend=",">
+			<isNotEmpty property="serviceAccess">
+				#serviceAccess#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="shortPhoneno" prepend=",">
+			<isNotEmpty property="shortPhoneno">
+				#shortPhoneno#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smName" prepend=",">
+			<isNotEmpty property="smName">
+				#smName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payCode" prepend=",">
+			<isNotEmpty property="payCode">
+				#payCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="billCode" prepend=",">
+			<isNotEmpty property="billCode">
+				#billCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="stopFlag" prepend=",">
+			<isNotEmpty property="stopFlag">
+				#stopFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runCode" prepend=",">
+			<isNotEmpty property="runCode">
+				#runCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runTime" prepend=",">
+			<isNotEmpty property="runTime">
+				#runTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="unitId" prepend=",">
+			<isNotEmpty property="unitId">
+				#unitId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="indbDate" prepend=",">
+			<isNotEmpty property="indbDate">
+				#indbDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loadDate" prepend=",">
+			<isNotEmpty property="loadDate">
+				#loadDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prepareFee" prepend=",">
+			<isNotEmpty property="prepareFee">
+				#prepareFee#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="notOutFee" prepend=",">
+			<isNotEmpty property="notOutFee">
+				#notOutFee#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lastFee" prepend=",">
+			<isNotEmpty property="lastFee">
+				#lastFee#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="creditValue" prepend=",">
+			<isNotEmpty property="creditValue">
+				#creditValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCode" prepend=",">
+			<isNotEmpty property="photoCode">
+				#photoCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				#note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="openTime" prepend=",">
+			<isNotEmpty property="openTime">
+				#openTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="rentCode" prepend=",">
+			<isNotEmpty property="rentCode">
+				#rentCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disDate" prepend=",">
+			<isNotEmpty property="disDate">
+				#disDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="owe" prepend=",">
+			<isNotEmpty property="owe">
+				#owe#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateDate" prepend=",">
+			<isNotEmpty property="updateDate">
+				#updateDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disUpdateBy" prepend=",">
+			<isNotEmpty property="disUpdateBy">
+				#disUpdateBy#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productType" prepend=",">
+			<isNotEmpty property="productType">
+				#productType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="offerId" prepend=",">
+			<isNotEmpty property="offerId">
+				#offerId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofgroupId" prepend=",">
+			<isNotEmpty property="ofgroupId">
+				#ofgroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="offerName" prepend=",">
+			<isNotEmpty property="offerName">
+				#offerName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofgroupName" prepend=",">
+			<isNotEmpty property="ofgroupName">
+				#ofgroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payType" prepend=",">
+			<isNotEmpty property="payType">
+				#payType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="redFlag" prepend=",">
+			<isNotEmpty property="redFlag">
+				#redFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdGrade" prepend=",">
+			<isNotEmpty property="holdGrade">
+				#holdGrade#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdGradeTime" prepend=",">
+			<isNotEmpty property="holdGradeTime">
+				#holdGradeTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="grayFlag" prepend=",">
+			<isNotEmpty property="grayFlag">
+				#grayFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="keymanFlag" prepend=",">
+			<isNotEmpty property="keymanFlag">
+				#keymanFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdChn" prepend=",">
+			<isNotEmpty property="holdChn">
+				#holdChn#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCodeLastYear" prepend=",">
+			<isNotEmpty property="photoCodeLastYear">
+				#photoCodeLastYear#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeChageDate" prepend=",">
+			<isNotEmpty property="gradeChageDate">
+				#gradeChageDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridServiceDesc" prepend=",">
+			<isNotEmpty property="gridServiceDesc">
+				#gridServiceDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custCd" prepend=",">
+			<isNotEmpty property="custCd">
+				#custCd#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCustCode" prepend=",">
+			<isNotEmpty property="photoCustCode">
+				#photoCustCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoChannelName" prepend=",">
+			<isNotEmpty property="photoChannelName">
+				#photoChannelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCustChannelName" prepend=",">
+			<isNotEmpty property="photoCustChannelName">
+				#photoCustChannelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ip5Flag" prepend=",">
+			<isNotEmpty property="ip5Flag">
+				#ip5Flag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="highFlag" prepend=",">
+			<isNotEmpty property="highFlag">
+				#highFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="starFlag" prepend=",">
+			<isNotEmpty property="starFlag">
+				#starFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoGroupCode" prepend=",">
+			<isNotEmpty property="photoGroupCode">
+				#photoGroupCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loadCode" prepend=",">
+			<isNotEmpty property="loadCode">
+				#loadCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoVpnCode" prepend=",">
+			<isNotEmpty property="photoVpnCode">
+				#photoVpnCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sofcCode" prepend=",">
+			<isNotEmpty property="sofcCode">
+				#sofcCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentCode" prepend=",">
+			<isNotEmpty property="lentCode">
+				#lentCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentDesc" prepend=",">
+			<isNotEmpty property="lentDesc">
+				#lentDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaCode" prepend=",">
+			<isNotEmpty property="mktAreaCode">
+				#mktAreaCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaName" prepend=",">
+			<isNotEmpty property="mktAreaName">
+				#mktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptCode" prepend=",">
+			<isNotEmpty property="deptCode">
+				#deptCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptName" prepend=",">
+			<isNotEmpty property="deptName">
+				#deptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCode" prepend=",">
+			<isNotEmpty property="groupCode">
+				#groupCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupDesc" prepend=",">
+			<isNotEmpty property="groupDesc">
+				#groupDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneCode" prepend=",">
+			<isNotEmpty property="dutyZoneCode">
+				#dutyZoneCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneName" prepend=",">
+			<isNotEmpty property="dutyZoneName">
+				#dutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridCode" prepend=",">
+			<isNotEmpty property="gridCode">
+				#gridCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridName" prepend=",">
+			<isNotEmpty property="gridName">
+				#gridName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRuralCode" prepend=",">
+			<isNotEmpty property="urbanRuralCode">
+				#urbanRuralCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRuralDesc" prepend=",">
+			<isNotEmpty property="urbanRuralDesc">
+				#urbanRuralDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="specAreaId" prepend=",">
+			<isNotEmpty property="specAreaId">
+				#specAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="specAreaDesc" prepend=",">
+			<isNotEmpty property="specAreaDesc">
+				#specAreaDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentServiceNo" prepend=",">
+			<isNotEmpty property="lentServiceNo">
+				#lentServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaServiceNo" prepend=",">
+			<isNotEmpty property="mktAreaServiceNo">
+				#mktAreaServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptServiceNo" prepend=",">
+			<isNotEmpty property="deptServiceNo">
+				#deptServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupServiceNo" prepend=",">
+			<isNotEmpty property="groupServiceNo">
+				#groupServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneServiceNo" prepend=",">
+			<isNotEmpty property="dutyZoneServiceNo">
+				#dutyZoneServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridServiceNo" prepend=",">
+			<isNotEmpty property="gridServiceNo">
+				#gridServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userAccountandcertiNbr" prepend=",">
+			<isNotEmpty property="userAccountandcertiNbr">
+				#userAccountandcertiNbr#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmUserInfo" parameterClass="java.util.Map">
+	UPDATE RM_USER_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="idNo" prepend=",">
+		    <isNotEmpty property="idNo">
+			    ID_NO = #idNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dealDate" prepend=",">
+		    <isNotEmpty property="dealDate">
+			    DEAL_DATE = #dealDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="latnId" prepend=",">
+		    <isNotEmpty property="latnId">
+			    LATN_ID = #latnId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="latnName" prepend=",">
+		    <isNotEmpty property="latnName">
+			    LATN_NAME = #latnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstName" prepend=",">
+		    <isNotEmpty property="prdInstName">
+			    PRD_INST_NAME = #prdInstName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custName" prepend=",">
+		    <isNotEmpty property="custName">
+			    CUST_NAME = #custName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstId" prepend=",">
+		    <isNotEmpty property="prdInstId">
+			    PRD_INST_ID = #prdInstId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custId" prepend=",">
+		    <isNotEmpty property="custId">
+			    CUST_ID = #custId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="acctId" prepend=",">
+		    <isNotEmpty property="acctId">
+			    ACCT_ID = #acctId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstId" prepend=",">
+		    <isNotEmpty property="ofrInstId">
+			    OFR_INST_ID = #ofrInstId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNbr" prepend=",">
+		    <isNotEmpty property="serviceNbr">
+			    SERVICE_NBR = #serviceNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userAccount" prepend=",">
+		    <isNotEmpty property="userAccount">
+			    USER_ACCOUNT = #userAccount#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstStasId" prepend=",">
+		    <isNotEmpty property="prdInstStasId">
+			    PRD_INST_STAS_ID = #prdInstStasId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstStasName" prepend=",">
+		    <isNotEmpty property="prdInstStasName">
+			    PRD_INST_STAS_NAME = #prdInstStasName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstStasId" prepend=",">
+		    <isNotEmpty property="ofrInstStasId">
+			    OFR_INST_STAS_ID = #ofrInstStasId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrInstStasName" prepend=",">
+		    <isNotEmpty property="ofrInstStasName">
+			    OFR_INST_STAS_NAME = #ofrInstStasName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdId" prepend=",">
+		    <isNotEmpty property="prdId">
+			    PRD_ID = #prdId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrId" prepend=",">
+		    <isNotEmpty property="ofrId">
+			    OFR_ID = #ofrId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrName" prepend=",">
+		    <isNotEmpty property="ofrName">
+			    OFR_NAME = #ofrName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrBigType" prepend=",">
+		    <isNotEmpty property="ofrBigType">
+			    OFR_BIG_TYPE = #ofrBigType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrType" prepend=",">
+		    <isNotEmpty property="ofrType">
+			    OFR_TYPE = #ofrType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+		    <isNotEmpty property="groupId">
+			    GROUP_ID = #groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupName" prepend=",">
+		    <isNotEmpty property="groupName">
+			    GROUP_NAME = #groupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="chrgLevel" prepend=",">
+		    <isNotEmpty property="chrgLevel">
+			    CHRG_LEVEL = #chrgLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="speedId" prepend=",">
+		    <isNotEmpty property="speedId">
+			    SPEED_ID = #speedId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="innerMonth" prepend=",">
+		    <isNotEmpty property="innerMonth">
+			    INNER_MONTH = #innerMonth#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crtDate" prepend=",">
+		    <isNotEmpty property="crtDate">
+			    CRT_DATE = #crtDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="installDate" prepend=",">
+		    <isNotEmpty property="installDate">
+			    INSTALL_DATE = #installDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="completeDate" prepend=",">
+		    <isNotEmpty property="completeDate">
+			    COMPLETE_DATE = #completeDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expDate" prepend=",">
+		    <isNotEmpty property="expDate">
+			    EXP_DATE = #expDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effDate" prepend=",">
+		    <isNotEmpty property="effDate">
+			    EFF_DATE = #effDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrCrtDate" prepend=",">
+		    <isNotEmpty property="ofrCrtDate">
+			    OFR_CRT_DATE = #ofrCrtDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrEffDate" prepend=",">
+		    <isNotEmpty property="ofrEffDate">
+			    OFR_EFF_DATE = #ofrEffDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrExpDate" prepend=",">
+		    <isNotEmpty property="ofrExpDate">
+			    OFR_EXP_DATE = #ofrExpDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="protocolEffDate" prepend=",">
+		    <isNotEmpty property="protocolEffDate">
+			    PROTOCOL_EFF_DATE = #protocolEffDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="protocolExpDate" prepend=",">
+		    <isNotEmpty property="protocolExpDate">
+			    PROTOCOL_EXP_DATE = #protocolExpDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ifPrepay" prepend=",">
+		    <isNotEmpty property="ifPrepay">
+			    IF_PREPAY = #ifPrepay#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="empeeId" prepend=",">
+		    <isNotEmpty property="empeeId">
+			    EMPEE_ID = #empeeId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="developer" prepend=",">
+		    <isNotEmpty property="developer">
+			    DEVELOPER = #developer#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devName" prepend=",">
+		    <isNotEmpty property="devName">
+			    DEV_NAME = #devName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrDevCode" prepend=",">
+		    <isNotEmpty property="ofrDevCode">
+			    OFR_DEV_CODE = #ofrDevCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="extendPaymethodType" prepend=",">
+		    <isNotEmpty property="extendPaymethodType">
+			    EXTEND_PAYMETHOD_TYPE = #extendPaymethodType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="extendPaymethodName" prepend=",">
+		    <isNotEmpty property="extendPaymethodName">
+			    EXTEND_PAYMETHOD_NAME = #extendPaymethodName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payMethId" prepend=",">
+		    <isNotEmpty property="payMethId">
+			    PAY_METH_ID = #payMethId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payMethName" prepend=",">
+		    <isNotEmpty property="payMethName">
+			    PAY_METH_NAME = #payMethName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="minBillingCycleId" prepend=",">
+		    <isNotEmpty property="minBillingCycleId">
+			    MIN_BILLING_CYCLE_ID = #minBillingCycleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="oweCharge" prepend=",">
+		    <isNotEmpty property="oweCharge">
+			    OWE_CHARGE = #oweCharge#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="oweSureCharge" prepend=",">
+		    <isNotEmpty property="oweSureCharge">
+			    OWE_SURE_CHARGE = #oweSureCharge#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devNum" prepend=",">
+		    <isNotEmpty property="devNum">
+			    DEV_NUM = #devNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="netNum" prepend=",">
+		    <isNotEmpty property="netNum">
+			    NET_NUM = #netNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="losNum" prepend=",">
+		    <isNotEmpty property="losNum">
+			    LOS_NUM = #losNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="reqOfflineNum" prepend=",">
+		    <isNotEmpty property="reqOfflineNum">
+			    REQ_OFFLINE_NUM = #reqOfflineNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="calNum" prepend=",">
+		    <isNotEmpty property="calNum">
+			    CAL_NUM = #calNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actNum" prepend=",">
+		    <isNotEmpty property="actNum">
+			    ACT_NUM = #actNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="installAddr" prepend=",">
+		    <isNotEmpty property="installAddr">
+			    INSTALL_ADDR = #installAddr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridId" prepend=",">
+		    <isNotEmpty property="gridId">
+			    GRID_ID = #gridId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custRegionId" prepend=",">
+		    <isNotEmpty property="custRegionId">
+			    CUST_REGION_ID = #custRegionId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwMktAreaId" prepend=",">
+		    <isNotEmpty property="edwMktAreaId">
+			    EDW_MKT_AREA_ID = #edwMktAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwMktAreaName" prepend=",">
+		    <isNotEmpty property="edwMktAreaName">
+			    EDW_MKT_AREA_NAME = #edwMktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptId" prepend=",">
+		    <isNotEmpty property="edwDeptId">
+			    EDW_DEPT_ID = #edwDeptId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptName" prepend=",">
+		    <isNotEmpty property="edwDeptName">
+			    EDW_DEPT_NAME = #edwDeptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwGroupId" prepend=",">
+		    <isNotEmpty property="edwGroupId">
+			    EDW_GROUP_ID = #edwGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwGroupName" prepend=",">
+		    <isNotEmpty property="edwGroupName">
+			    EDW_GROUP_NAME = #edwGroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDutyZoneId" prepend=",">
+		    <isNotEmpty property="edwDutyZoneId">
+			    EDW_DUTY_ZONE_ID = #edwDutyZoneId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDutyZoneName" prepend=",">
+		    <isNotEmpty property="edwDutyZoneName">
+			    EDW_DUTY_ZONE_NAME = #edwDutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwRegionName" prepend=",">
+		    <isNotEmpty property="edwRegionName">
+			    EDW_REGION_NAME = #edwRegionName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktChannel" prepend=",">
+		    <isNotEmpty property="mktChannel">
+			    MKT_CHANNEL = #mktChannel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRural" prepend=",">
+		    <isNotEmpty property="urbanRural">
+			    URBAN_RURAL = #urbanRural#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="areaName" prepend=",">
+		    <isNotEmpty property="areaName">
+			    AREA_NAME = #areaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="townName" prepend=",">
+		    <isNotEmpty property="townName">
+			    TOWN_NAME = #townName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmAreaId" prepend=",">
+		    <isNotEmpty property="crmAreaId">
+			    CRM_AREA_ID = #crmAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmAreaName" prepend=",">
+		    <isNotEmpty property="crmAreaName">
+			    CRM_AREA_NAME = #crmAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmUrbanRuralId" prepend=",">
+		    <isNotEmpty property="crmUrbanRuralId">
+			    CRM_URBAN_RURAL_ID = #crmUrbanRuralId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmUrbanRuralName" prepend=",">
+		    <isNotEmpty property="crmUrbanRuralName">
+			    CRM_URBAN_RURAL_NAME = #crmUrbanRuralName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmMktAreaId" prepend=",">
+		    <isNotEmpty property="crmMktAreaId">
+			    CRM_MKT_AREA_ID = #crmMktAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmMktAreaName" prepend=",">
+		    <isNotEmpty property="crmMktAreaName">
+			    CRM_MKT_AREA_NAME = #crmMktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDeptId" prepend=",">
+		    <isNotEmpty property="crmDeptId">
+			    CRM_DEPT_ID = #crmDeptId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDeptName" prepend=",">
+		    <isNotEmpty property="crmDeptName">
+			    CRM_DEPT_NAME = #crmDeptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDutyZoneId" prepend=",">
+		    <isNotEmpty property="crmDutyZoneId">
+			    CRM_DUTY_ZONE_ID = #crmDutyZoneId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmDutyZoneName" prepend=",">
+		    <isNotEmpty property="crmDutyZoneName">
+			    CRM_DUTY_ZONE_NAME = #crmDutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="crmRegionName" prepend=",">
+		    <isNotEmpty property="crmRegionName">
+			    CRM_REGION_NAME = #crmRegionName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbFlag" prepend=",">
+		    <isNotEmpty property="zzbFlag">
+			    ZZB_FLAG = #zzbFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbOfrId" prepend=",">
+		    <isNotEmpty property="zzbOfrId">
+			    ZZB_OFR_ID = #zzbOfrId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbOfrTypeId" prepend=",">
+		    <isNotEmpty property="zzbOfrTypeId">
+			    ZZB_OFR_TYPE_ID = #zzbOfrTypeId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zsChrgLevel" prepend=",">
+		    <isNotEmpty property="zsChrgLevel">
+			    ZS_CHRG_LEVEL = #zsChrgLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zzbChrgLevel" prepend=",">
+		    <isNotEmpty property="zzbChrgLevel">
+			    ZZB_CHRG_LEVEL = #zzbChrgLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiTypeId" prepend=",">
+		    <isNotEmpty property="certiTypeId">
+			    CERTI_TYPE_ID = #certiTypeId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiNbr" prepend=",">
+		    <isNotEmpty property="certiNbr">
+			    CERTI_NBR = #certiNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactName" prepend=",">
+		    <isNotEmpty property="contactName">
+			    CONTACT_NAME = #contactName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNbr" prepend=",">
+		    <isNotEmpty property="contactNbr">
+			    CONTACT_NBR = #contactNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofrDetailDesc" prepend=",">
+		    <isNotEmpty property="ofrDetailDesc">
+			    OFR_DETAIL_DESC = #ofrDetailDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="zfkFlag" prepend=",">
+		    <isNotEmpty property="zfkFlag">
+			    ZFK_FLAG = #zfkFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="itvFlag" prepend=",">
+		    <isNotEmpty property="itvFlag">
+			    ITV_FLAG = #itvFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wideTer" prepend=",">
+		    <isNotEmpty property="wideTer">
+			    WIDE_TER = #wideTer#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wlanFlag" prepend=",">
+		    <isNotEmpty property="wlanFlag">
+			    WLAN_FLAG = #wlanFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktChannelId" prepend=",">
+		    <isNotEmpty property="mktChannelId">
+			    MKT_CHANNEL_ID = #mktChannelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCodeNbr" prepend=",">
+		    <isNotEmpty property="groupCodeNbr">
+			    GROUP_CODE_NBR = #groupCodeNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeCode" prepend=",">
+		    <isNotEmpty property="gradeCode">
+			    GRADE_CODE = #gradeCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeName" prepend=",">
+		    <isNotEmpty property="gradeName">
+			    GRADE_NAME = #gradeName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="brandName" prepend=",">
+		    <isNotEmpty property="brandName">
+			    BRAND_NAME = #brandName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termType" prepend=",">
+		    <isNotEmpty property="termType">
+			    TERM_TYPE = #termType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smartFlag" prepend=",">
+		    <isNotEmpty property="smartFlag">
+			    SMART_FLAG = #smartFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termFlag" prepend=",">
+		    <isNotEmpty property="termFlag">
+			    TERM_FLAG = #termFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="devDay" prepend=",">
+		    <isNotEmpty property="devDay">
+			    DEV_DAY = #devDay#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="termDevCode" prepend=",">
+		    <isNotEmpty property="termDevCode">
+			    TERM_DEV_CODE = #termDevCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="genDevCode" prepend=",">
+		    <isNotEmpty property="genDevCode">
+			    GEN_DEV_CODE = #genDevCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regDate" prepend=",">
+		    <isNotEmpty property="regDate">
+			    REG_DATE = #regDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="screenSize" prepend=",">
+		    <isNotEmpty property="screenSize">
+			    SCREEN_SIZE = #screenSize#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="vipFlag" prepend=",">
+		    <isNotEmpty property="vipFlag">
+			    VIP_FLAG = #vipFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="wxVpnFlag" prepend=",">
+		    <isNotEmpty property="wxVpnFlag">
+			    WX_VPN_FLAG = #wxVpnFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="carryMode" prepend=",">
+		    <isNotEmpty property="carryMode">
+			    CARRY_MODE = #carryMode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contractNo" prepend=",">
+		    <isNotEmpty property="contractNo">
+			    CONTRACT_NO = #contractNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userName" prepend=",">
+		    <isNotEmpty property="userName">
+			    USER_NAME = #userName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="phoneNo" prepend=",">
+		    <isNotEmpty property="phoneNo">
+			    PHONE_NO = #phoneNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="billAddr" prepend=",">
+		    <isNotEmpty property="billAddr">
+			    BILL_ADDR = #billAddr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="certiCode" prepend=",">
+		    <isNotEmpty property="certiCode">
+			    CERTI_CODE = #certiCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigFlag" prepend=",">
+		    <isNotEmpty property="bigFlag">
+			    BIG_FLAG = #bigFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigDate" prepend=",">
+		    <isNotEmpty property="bigDate">
+			    BIG_DATE = #bigDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bigActiveFlag" prepend=",">
+		    <isNotEmpty property="bigActiveFlag">
+			    BIG_ACTIVE_FLAG = #bigActiveFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusDate" prepend=",">
+		    <isNotEmpty property="statusDate">
+			    STATUS_DATE = #statusDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cardCode" prepend=",">
+		    <isNotEmpty property="cardCode">
+			    CARD_CODE = #cardCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cardNo" prepend=",">
+		    <isNotEmpty property="cardNo">
+			    CARD_NO = #cardNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNo" prepend=",">
+		    <isNotEmpty property="serviceNo">
+			    SERVICE_NO = #serviceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceAccess" prepend=",">
+		    <isNotEmpty property="serviceAccess">
+			    SERVICE_ACCESS = #serviceAccess#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="shortPhoneno" prepend=",">
+		    <isNotEmpty property="shortPhoneno">
+			    SHORT_PHONENO = #shortPhoneno#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smName" prepend=",">
+		    <isNotEmpty property="smName">
+			    SM_NAME = #smName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payCode" prepend=",">
+		    <isNotEmpty property="payCode">
+			    PAY_CODE = #payCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="billCode" prepend=",">
+		    <isNotEmpty property="billCode">
+			    BILL_CODE = #billCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="stopFlag" prepend=",">
+		    <isNotEmpty property="stopFlag">
+			    STOP_FLAG = #stopFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runCode" prepend=",">
+		    <isNotEmpty property="runCode">
+			    RUN_CODE = #runCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="runTime" prepend=",">
+		    <isNotEmpty property="runTime">
+			    RUN_TIME = #runTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="unitId" prepend=",">
+		    <isNotEmpty property="unitId">
+			    UNIT_ID = #unitId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="indbDate" prepend=",">
+		    <isNotEmpty property="indbDate">
+			    INDB_DATE = #indbDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loadDate" prepend=",">
+		    <isNotEmpty property="loadDate">
+			    LOAD_DATE = #loadDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prepareFee" prepend=",">
+		    <isNotEmpty property="prepareFee">
+			    PREPARE_FEE = #prepareFee#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="notOutFee" prepend=",">
+		    <isNotEmpty property="notOutFee">
+			    NOT_OUT_FEE = #notOutFee#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lastFee" prepend=",">
+		    <isNotEmpty property="lastFee">
+			    LAST_FEE = #lastFee#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="creditValue" prepend=",">
+		    <isNotEmpty property="creditValue">
+			    CREDIT_VALUE = #creditValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCode" prepend=",">
+		    <isNotEmpty property="photoCode">
+			    PHOTO_CODE = #photoCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+		    <isNotEmpty property="note">
+			    NOTE = #note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="openTime" prepend=",">
+		    <isNotEmpty property="openTime">
+			    OPEN_TIME = #openTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="rentCode" prepend=",">
+		    <isNotEmpty property="rentCode">
+			    RENT_CODE = #rentCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disDate" prepend=",">
+		    <isNotEmpty property="disDate">
+			    DIS_DATE = #disDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="owe" prepend=",">
+		    <isNotEmpty property="owe">
+			    OWE = #owe#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateDate" prepend=",">
+		    <isNotEmpty property="updateDate">
+			    UPDATE_DATE = #updateDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disUpdateBy" prepend=",">
+		    <isNotEmpty property="disUpdateBy">
+			    DIS_UPDATE_BY = #disUpdateBy#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="productType" prepend=",">
+		    <isNotEmpty property="productType">
+			    PRODUCT_TYPE = #productType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="offerId" prepend=",">
+		    <isNotEmpty property="offerId">
+			    OFFER_ID = #offerId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofgroupId" prepend=",">
+		    <isNotEmpty property="ofgroupId">
+			    OFGROUP_ID = #ofgroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="offerName" prepend=",">
+		    <isNotEmpty property="offerName">
+			    OFFER_NAME = #offerName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ofgroupName" prepend=",">
+		    <isNotEmpty property="ofgroupName">
+			    OFGROUP_NAME = #ofgroupName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="payType" prepend=",">
+		    <isNotEmpty property="payType">
+			    PAY_TYPE = #payType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="redFlag" prepend=",">
+		    <isNotEmpty property="redFlag">
+			    RED_FLAG = #redFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdGrade" prepend=",">
+		    <isNotEmpty property="holdGrade">
+			    HOLD_GRADE = #holdGrade#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdGradeTime" prepend=",">
+		    <isNotEmpty property="holdGradeTime">
+			    HOLD_GRADE_TIME = #holdGradeTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="grayFlag" prepend=",">
+		    <isNotEmpty property="grayFlag">
+			    GRAY_FLAG = #grayFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="keymanFlag" prepend=",">
+		    <isNotEmpty property="keymanFlag">
+			    KEYMAN_FLAG = #keymanFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="holdChn" prepend=",">
+		    <isNotEmpty property="holdChn">
+			    HOLD_CHN = #holdChn#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCodeLastYear" prepend=",">
+		    <isNotEmpty property="photoCodeLastYear">
+			    PHOTO_CODE_LAST_YEAR = #photoCodeLastYear#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gradeChageDate" prepend=",">
+		    <isNotEmpty property="gradeChageDate">
+			    GRADE_CHAGE_DATE = #gradeChageDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridServiceDesc" prepend=",">
+		    <isNotEmpty property="gridServiceDesc">
+			    GRID_SERVICE_DESC = #gridServiceDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custCd" prepend=",">
+		    <isNotEmpty property="custCd">
+			    CUST_CD = #custCd#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCustCode" prepend=",">
+		    <isNotEmpty property="photoCustCode">
+			    PHOTO_CUST_CODE = #photoCustCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoChannelName" prepend=",">
+		    <isNotEmpty property="photoChannelName">
+			    PHOTO_CHANNEL_NAME = #photoChannelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoCustChannelName" prepend=",">
+		    <isNotEmpty property="photoCustChannelName">
+			    PHOTO_CUST_CHANNEL_NAME = #photoCustChannelName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ip5Flag" prepend=",">
+		    <isNotEmpty property="ip5Flag">
+			    IP5_FLAG = #ip5Flag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="highFlag" prepend=",">
+		    <isNotEmpty property="highFlag">
+			    HIGH_FLAG = #highFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="starFlag" prepend=",">
+		    <isNotEmpty property="starFlag">
+			    STAR_FLAG = #starFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoGroupCode" prepend=",">
+		    <isNotEmpty property="photoGroupCode">
+			    PHOTO_GROUP_CODE = #photoGroupCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loadCode" prepend=",">
+		    <isNotEmpty property="loadCode">
+			    LOAD_CODE = #loadCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoVpnCode" prepend=",">
+		    <isNotEmpty property="photoVpnCode">
+			    PHOTO_VPN_CODE = #photoVpnCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="sofcCode" prepend=",">
+		    <isNotEmpty property="sofcCode">
+			    SOFC_CODE = #sofcCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentCode" prepend=",">
+		    <isNotEmpty property="lentCode">
+			    LENT_CODE = #lentCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentDesc" prepend=",">
+		    <isNotEmpty property="lentDesc">
+			    LENT_DESC = #lentDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaCode" prepend=",">
+		    <isNotEmpty property="mktAreaCode">
+			    MKT_AREA_CODE = #mktAreaCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaName" prepend=",">
+		    <isNotEmpty property="mktAreaName">
+			    MKT_AREA_NAME = #mktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptCode" prepend=",">
+		    <isNotEmpty property="deptCode">
+			    DEPT_CODE = #deptCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptName" prepend=",">
+		    <isNotEmpty property="deptName">
+			    DEPT_NAME = #deptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupCode" prepend=",">
+		    <isNotEmpty property="groupCode">
+			    GROUP_CODE = #groupCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupDesc" prepend=",">
+		    <isNotEmpty property="groupDesc">
+			    GROUP_DESC = #groupDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneCode" prepend=",">
+		    <isNotEmpty property="dutyZoneCode">
+			    DUTY_ZONE_CODE = #dutyZoneCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneName" prepend=",">
+		    <isNotEmpty property="dutyZoneName">
+			    DUTY_ZONE_NAME = #dutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridCode" prepend=",">
+		    <isNotEmpty property="gridCode">
+			    GRID_CODE = #gridCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridName" prepend=",">
+		    <isNotEmpty property="gridName">
+			    GRID_NAME = #gridName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRuralCode" prepend=",">
+		    <isNotEmpty property="urbanRuralCode">
+			    URBAN_RURAL_CODE = #urbanRuralCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="urbanRuralDesc" prepend=",">
+		    <isNotEmpty property="urbanRuralDesc">
+			    URBAN_RURAL_DESC = #urbanRuralDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="specAreaId" prepend=",">
+		    <isNotEmpty property="specAreaId">
+			    SPEC_AREA_ID = #specAreaId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="specAreaDesc" prepend=",">
+		    <isNotEmpty property="specAreaDesc">
+			    SPEC_AREA_DESC = #specAreaDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="lentServiceNo" prepend=",">
+		    <isNotEmpty property="lentServiceNo">
+			    LENT_SERVICE_NO = #lentServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaServiceNo" prepend=",">
+		    <isNotEmpty property="mktAreaServiceNo">
+			    MKT_AREA_SERVICE_NO = #mktAreaServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptServiceNo" prepend=",">
+		    <isNotEmpty property="deptServiceNo">
+			    DEPT_SERVICE_NO = #deptServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupServiceNo" prepend=",">
+		    <isNotEmpty property="groupServiceNo">
+			    GROUP_SERVICE_NO = #groupServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneServiceNo" prepend=",">
+		    <isNotEmpty property="dutyZoneServiceNo">
+			    DUTY_ZONE_SERVICE_NO = #dutyZoneServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridServiceNo" prepend=",">
+		    <isNotEmpty property="gridServiceNo">
+			    GRID_SERVICE_NO = #gridServiceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="userAccountandcertiNbr" prepend=",">
+		    <isNotEmpty property="userAccountandcertiNbr">
+			    USER_ACCOUNTANDCERTI_NBR = #userAccountandcertiNbr#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmUserInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_USER_INFO
+	WHERE ID_NO = #idNo#
+	</delete>
+
+	<delete id="deleteRmUserInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_USER_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmUserInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			ID_NO AS idNo,
+			DEAL_DATE AS dealDate,
+			LATN_ID AS latnId,
+			REGION_CODE AS regionCode,
+			LATN_NAME AS latnName,
+			PRD_INST_NAME AS prdInstName,
+			CUST_NAME AS custName,
+			PRD_INST_ID AS prdInstId,
+			CUST_ID AS custId,
+			ACCT_ID AS acctId,
+			OFR_INST_ID AS ofrInstId,
+			SERVICE_NBR AS serviceNbr,
+			USER_ACCOUNT AS userAccount,
+			PRD_INST_STAS_ID AS prdInstStasId,
+			PRD_INST_STAS_NAME AS prdInstStasName,
+			OFR_INST_STAS_ID AS ofrInstStasId,
+			OFR_INST_STAS_NAME AS ofrInstStasName,
+			PRD_ID AS prdId,
+			OFR_ID AS ofrId,
+			OFR_NAME AS ofrName,
+			OFR_BIG_TYPE AS ofrBigType,
+			OFR_TYPE AS ofrType,
+			GROUP_ID AS groupId,
+			GROUP_NAME AS groupName,
+			CHRG_LEVEL AS chrgLevel,
+			SPEED_ID AS speedId,
+			INNER_MONTH AS innerMonth,
+			CRT_DATE AS crtDate,
+			INSTALL_DATE AS installDate,
+			COMPLETE_DATE AS completeDate,
+			EXP_DATE AS expDate,
+			EFF_DATE AS effDate,
+			OFR_CRT_DATE AS ofrCrtDate,
+			OFR_EFF_DATE AS ofrEffDate,
+			OFR_EXP_DATE AS ofrExpDate,
+			PROTOCOL_EFF_DATE AS protocolEffDate,
+			PROTOCOL_EXP_DATE AS protocolExpDate,
+			IF_PREPAY AS ifPrepay,
+			EMPEE_ID AS empeeId,
+			DEVELOPER AS developer,
+			DEV_NAME AS devName,
+			OFR_DEV_CODE AS ofrDevCode,
+			EXTEND_PAYMETHOD_TYPE AS extendPaymethodType,
+			EXTEND_PAYMETHOD_NAME AS extendPaymethodName,
+			PAY_METH_ID AS payMethId,
+			PAY_METH_NAME AS payMethName,
+			MIN_BILLING_CYCLE_ID AS minBillingCycleId,
+			OWE_CHARGE AS oweCharge,
+			OWE_SURE_CHARGE AS oweSureCharge,
+			DEV_NUM AS devNum,
+			NET_NUM AS netNum,
+			LOS_NUM AS losNum,
+			REQ_OFFLINE_NUM AS reqOfflineNum,
+			CAL_NUM AS calNum,
+			ACT_NUM AS actNum,
+			INSTALL_ADDR AS installAddr,
+			GRID_ID AS gridId,
+			CUST_REGION_ID AS custRegionId,
+			EDW_MKT_AREA_ID AS edwMktAreaId,
+			EDW_MKT_AREA_NAME AS edwMktAreaName,
+			EDW_DEPT_ID AS edwDeptId,
+			EDW_DEPT_NAME AS edwDeptName,
+			EDW_GROUP_ID AS edwGroupId,
+			EDW_GROUP_NAME AS edwGroupName,
+			EDW_DUTY_ZONE_ID AS edwDutyZoneId,
+			EDW_DUTY_ZONE_NAME AS edwDutyZoneName,
+			EDW_REGION_NAME AS edwRegionName,
+			MKT_CHANNEL AS mktChannel,
+			URBAN_RURAL AS urbanRural,
+			AREA_NAME AS areaName,
+			TOWN_NAME AS townName,
+			CRM_AREA_ID AS crmAreaId,
+			CRM_AREA_NAME AS crmAreaName,
+			CRM_URBAN_RURAL_ID AS crmUrbanRuralId,
+			CRM_URBAN_RURAL_NAME AS crmUrbanRuralName,
+			CRM_MKT_AREA_ID AS crmMktAreaId,
+			CRM_MKT_AREA_NAME AS crmMktAreaName,
+			CRM_DEPT_ID AS crmDeptId,
+			CRM_DEPT_NAME AS crmDeptName,
+			CRM_DUTY_ZONE_ID AS crmDutyZoneId,
+			CRM_DUTY_ZONE_NAME AS crmDutyZoneName,
+			CRM_REGION_NAME AS crmRegionName,
+			ZZB_FLAG AS zzbFlag,
+			ZZB_OFR_ID AS zzbOfrId,
+			ZZB_OFR_TYPE_ID AS zzbOfrTypeId,
+			ZS_CHRG_LEVEL AS zsChrgLevel,
+			ZZB_CHRG_LEVEL AS zzbChrgLevel,
+			CERTI_TYPE_ID AS certiTypeId,
+			CERTI_NBR AS certiNbr,
+			CONTACT_NAME AS contactName,
+			CONTACT_NBR AS contactNbr,
+			OFR_DETAIL_DESC AS ofrDetailDesc,
+			ZFK_FLAG AS zfkFlag,
+			ITV_FLAG AS itvFlag,
+			WIDE_TER AS wideTer,
+			WLAN_FLAG AS wlanFlag,
+			MKT_CHANNEL_ID AS mktChannelId,
+			GROUP_CODE_NBR AS groupCodeNbr,
+			GRADE_CODE AS gradeCode,
+			GRADE_NAME AS gradeName,
+			BRAND_NAME AS brandName,
+			TERM_TYPE AS termType,
+			SMART_FLAG AS smartFlag,
+			TERM_FLAG AS termFlag,
+			DEV_DAY AS devDay,
+			TERM_DEV_CODE AS termDevCode,
+			GEN_DEV_CODE AS genDevCode,
+			REG_DATE AS regDate,
+			SCREEN_SIZE AS screenSize,
+			VIP_FLAG AS vipFlag,
+			WX_VPN_FLAG AS wxVpnFlag,
+			CARRY_MODE AS carryMode,
+			CONTRACT_NO AS contractNo,
+			USER_NAME AS userName,
+			PHONE_NO AS phoneNo,
+			BILL_ADDR AS billAddr,
+			CERTI_CODE AS certiCode,
+			BIG_FLAG AS bigFlag,
+			BIG_DATE AS bigDate,
+			BIG_ACTIVE_FLAG AS bigActiveFlag,
+			STATUS_CODE AS statusCode,
+			STATUS_DATE AS statusDate,
+			CARD_CODE AS cardCode,
+			CARD_NO AS cardNo,
+			SERVICE_NO AS serviceNo,
+			SERVICE_ACCESS AS serviceAccess,
+			SHORT_PHONENO AS shortPhoneno,
+			SM_NAME AS smName,
+			PAY_CODE AS payCode,
+			BILL_CODE AS billCode,
+			STOP_FLAG AS stopFlag,
+			RUN_CODE AS runCode,
+			RUN_TIME AS runTime,
+			UNIT_ID AS unitId,
+			INDB_DATE AS indbDate,
+			LOAD_DATE AS loadDate,
+			PREPARE_FEE AS prepareFee,
+			NOT_OUT_FEE AS notOutFee,
+			LAST_FEE AS lastFee,
+			CREDIT_VALUE AS creditValue,
+			PHOTO_CODE AS photoCode,
+			NOTE AS note,
+			OPEN_TIME AS openTime,
+			RENT_CODE AS rentCode,
+			DIS_DATE AS disDate,
+			OWE AS owe,
+			UPDATE_DATE AS updateDate,
+			DIS_UPDATE_BY AS disUpdateBy,
+			PRODUCT_TYPE AS productType,
+			OFFER_ID AS offerId,
+			OFGROUP_ID AS ofgroupId,
+			OFFER_NAME AS offerName,
+			OFGROUP_NAME AS ofgroupName,
+			PAY_TYPE AS payType,
+			RED_FLAG AS redFlag,
+			HOLD_GRADE AS holdGrade,
+			HOLD_GRADE_TIME AS holdGradeTime,
+			GRAY_FLAG AS grayFlag,
+			KEYMAN_FLAG AS keymanFlag,
+			HOLD_CHN AS holdChn,
+			PHOTO_CODE_LAST_YEAR AS photoCodeLastYear,
+			GRADE_CHAGE_DATE AS gradeChageDate,
+			GRID_SERVICE_DESC AS gridServiceDesc,
+			CUST_CD AS custCd,
+			PHOTO_CUST_CODE AS photoCustCode,
+			PHOTO_CHANNEL_NAME AS photoChannelName,
+			PHOTO_CUST_CHANNEL_NAME AS photoCustChannelName,
+			IP5_FLAG AS ip5Flag,
+			HIGH_FLAG AS highFlag,
+			STAR_FLAG AS starFlag,
+			PHOTO_GROUP_CODE AS photoGroupCode,
+			LOAD_CODE AS loadCode,
+			PHOTO_VPN_CODE AS photoVpnCode,
+			SOFC_CODE AS sofcCode,
+			LENT_CODE AS lentCode,
+			LENT_DESC AS lentDesc,
+			MKT_AREA_CODE AS mktAreaCode,
+			MKT_AREA_NAME AS mktAreaName,
+			DEPT_CODE AS deptCode,
+			DEPT_NAME AS deptName,
+			GROUP_CODE AS groupCode,
+			GROUP_DESC AS groupDesc,
+			DUTY_ZONE_CODE AS dutyZoneCode,
+			DUTY_ZONE_NAME AS dutyZoneName,
+			GRID_CODE AS gridCode,
+			GRID_NAME AS gridName,
+			URBAN_RURAL_CODE AS urbanRuralCode,
+			URBAN_RURAL_DESC AS urbanRuralDesc,
+			SPEC_AREA_ID AS specAreaId,
+			SPEC_AREA_DESC AS specAreaDesc,
+			LENT_SERVICE_NO AS lentServiceNo,
+			MKT_AREA_SERVICE_NO AS mktAreaServiceNo,
+			DEPT_SERVICE_NO AS deptServiceNo,
+			GROUP_SERVICE_NO AS groupServiceNo,
+			DUTY_ZONE_SERVICE_NO AS dutyZoneServiceNo,
+			GRID_SERVICE_NO AS gridServiceNo,
+			USER_ACCOUNTANDCERTI_NBR AS userAccountandcertiNbr
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_USER_INFO $W$
+	</select>
+</sqlMap>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmCustGroupLabelInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		CUST_GROUP_ID AS "custGroupId",
+		LABEL_FORMULA AS "labelFormula",
+		CALCULATE_FORMULA AS "calculateFormula",
+		LABEL_DESC AS "labelDesc",
+		LABEL_TYPE AS "labelType",
+		LABEL_FORMULA_CN AS "labelFormulaCN"
+	FROM rm_custgrouplabel_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="custGroupId" prepend="and">
+				<isNotEmpty property="custGroupId">
+					CUST_GROUP_ID = #custGroupId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmCustGroupLabelInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmCustgrouplabelInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CUSTGROUPLABEL_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelFormula" prepend=",">
+			<isNotEmpty property="labelFormula">
+				LABEL_FORMULA
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="calculateFormula" prepend=",">
+			<isNotEmpty property="calculateFormula">
+				CALCULATE_FORMULA
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelDesc" prepend=",">
+			<isNotEmpty property="labelDesc">
+				LABEL_DESC
+			</isNotEmpty>
+		</isNotNull>		
+		<isNotNull property="labelType" prepend=",">
+			<isNotEmpty property="labelType">
+				LABEL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelFormulaCN" prepend=",">
+			<isNotEmpty property="labelFormulaCN">
+				LABEL_FORMULA_CN
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelFormula" prepend=",">
+			<isNotEmpty property="labelFormula">
+				#labelFormula#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="calculateFormula" prepend=",">
+			<isNotEmpty property="calculateFormula">
+				#calculateFormula#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelDesc" prepend=",">
+			<isNotEmpty property="labelDesc">
+				#labelDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelType" prepend=",">
+			<isNotEmpty property="labelType">
+				#labelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelFormulaCN" prepend=",">
+			<isNotEmpty property="labelFormulaCN">
+				#labelFormulaCN#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmCustgrouplabelInfo" parameterClass="java.util.Map">
+	UPDATE RM_CUSTGROUPLABEL_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="custGroupId" prepend=",">
+		    <isNotEmpty property="custGroupId">
+			    CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelFormula" prepend=",">
+		    <isNotEmpty property="labelFormula">
+			    LABEL_FORMULA = #labelFormula#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="calculateFormula" prepend=",">
+		    <isNotEmpty property="calculateFormula">
+			    CALCULATE_FORMULA = #calculateFormula#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelDesc" prepend=",">
+		    <isNotEmpty property="labelDesc">
+			    LABEL_DESC = #labelDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelType" prepend=",">
+		    <isNotEmpty property="labelType">
+			    LABEL_TYPE = #labelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="labelFormulaCN" prepend=",">
+			<isNotEmpty property="labelFormulaCN">
+				LABEL_FORMULA_CN = #labelFormulaCN#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmCustgrouplabelInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_CUSTGROUPLABEL_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+</sqlMap>

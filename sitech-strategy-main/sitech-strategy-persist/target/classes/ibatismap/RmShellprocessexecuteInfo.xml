@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmShellprocessexecuteInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		BUSI_ID AS "busiId",
+		BUSI_TYPE AS "busiType",
+		PROCESS_NO AS "processNo",
+		PROCESS_NAME AS "processName",
+		STATUS_CODE AS "statusCode",
+		UPDATE_TIME AS "updateTime"	
+	FROM RM_SHELLPROCESSEXECUTE_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiType" prepend="and">
+				<isNotEmpty property="busiType">
+					BUSI_TYPE = #busiType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="processNo" prepend="and">
+				<isNotEmpty property="processNo">
+					PROCESS_NO = #processNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="processName" prepend="and">
+				<isNotEmpty property="processName">
+					PROCESS_NAME = #processName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="updateTimeStart" prepend="and">
+				<isNotEmpty property="updateTimeStart">
+					<![CDATA[ UPDATE_TIME >= #updateTimeStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="updateTimeEnd" prepend="and">
+				<isNotEmpty property="updateTimeEnd">
+					<![CDATA[ UPDATE_TIME <= #updateTimeEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmShellprocessexecuteInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiType" prepend="and">
+				<isNotEmpty property="busiType">
+					BUSI_TYPE = #busiType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="processNo" prepend="and">
+				<isNotEmpty property="processNo">
+					PROCESS_NO = #processNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and">
+				<isNotEmpty property="updateTime">
+					UPDATE_TIME = #updateTime#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</select>
+	
+	<insert id="insertRmShellprocessexecuteInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_SHELLPROCESSEXECUTE_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				BUSI_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				BUSI_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="processNo" prepend=",">
+			<isNotEmpty property="processNo">
+				PROCESS_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="processName" prepend=",">
+			<isNotEmpty property="processName">
+				PROCESS_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				UPDATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				#busiId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				#busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="processNo" prepend=",">
+			<isNotEmpty property="processNo">
+				#processNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="processName" prepend=",">
+			<isNotEmpty property="processName">
+				#processName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				#updateTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmShellprocessexecuteInfo" parameterClass="java.util.Map">
+	UPDATE RM_SHELLPROCESSEXECUTE_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+		    <isNotEmpty property="busiId">
+			    BUSI_ID = #busiId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+		    <isNotEmpty property="busiType">
+			    BUSI_TYPE = #busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="processNo" prepend=",">
+		    <isNotEmpty property="processNo">
+			    PROCESS_NO = #processNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="processName" prepend=",">
+		    <isNotEmpty property="processName">
+			    PROCESS_NAME = #processName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+		    <isNotEmpty property="updateTime">
+			    UPDATE_TIME = #updateTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiType" prepend="and">
+				<isNotEmpty property="busiType">
+					BUSI_TYPE = #busiType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="processNo" prepend="and">
+				<isNotEmpty property="processNo">
+					PROCESS_NO = #processNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="processName" prepend="and">
+				<isNotEmpty property="processName">
+					PROCESS_NAME = #processName#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	
+	</update>
+	
+
+	<delete id="deleteRmShellprocessexecuteInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_SHELLPROCESSEXECUTE_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmShellprocessexecuteInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			BUSI_ID AS busiId,
+			BUSI_TYPE AS busiType,
+			PROCESS_NO AS processNo,
+			PROCESS_NAME AS processName,
+			STATUS_CODE AS statusCode,
+			UPDATE_TIME AS updateTime
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_SHELLPROCESSEXECUTE_INFO $W$
+	</select>
+	<select id="selectTodayData" parameterClass="querFilter" resultClass="java.util.HashMap">
+       SELECT SERIAL_ID    AS "serialId",
+       BUSI_ID      AS "busiId",
+       BUSI_TYPE    AS "busiType",
+       PROCESS_NO   AS "processNo",
+       PROCESS_NAME AS "processName",
+       STATUS_CODE  AS "statusCode",
+       UPDATE_TIME  AS "updateTime"
+       FROM RM_SHELLPROCESSEXECUTE_INFO
+       WHERE trunc(UPDATE_TIME) = trunc(sysDate)
+	</select>
+</sqlMap>

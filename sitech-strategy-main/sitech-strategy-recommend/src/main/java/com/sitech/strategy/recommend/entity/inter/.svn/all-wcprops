@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/CRMPD_RTMarket/!svn/ver/11938/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/inter
+END
+IBatchTaskRecommendEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/CRMPD_RTMarket/!svn/ver/11938/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/inter/IBatchTaskRecommendEntity.java
+END
+IParseRecommendEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/inter/IParseRecommendEntity.java
+END
+IManageRecommendEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-recommend/src/main/java/com/sitech/strategy/recommend/entity/inter/IManageRecommendEntity.java
+END

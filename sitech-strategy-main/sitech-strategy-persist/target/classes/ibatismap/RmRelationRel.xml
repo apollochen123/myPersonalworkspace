@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmRelationRel">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		PARENT_COMPONENT_TYPE AS "parentComponentType",
+		COMPONENT_TYPE AS "componentType",
+		PARENT_REL_ID AS "parentRelId",
+		REL_ID AS "relId",
+		PARENT_COMPONENT_ID AS "parentComponentId",
+		COMPONENT_ID AS "componentId",
+		BATCH_NO AS "batchNo",
+		GRADE AS "grade"	
+	FROM rm_relation_rel
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="parentRelId" prepend="and">
+				<isNotEmpty property="parentRelId">
+					PARENT_REL_ID = #parentRelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="relId" prepend="and">
+				<isNotEmpty property="relId">
+					REL_ID = #relId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="parentComponentId" prepend="and">
+				<isNotEmpty property="parentComponentId">
+					PARENT_COMPONENT_ID = #parentComponentId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="componentId" prepend="and">
+				<isNotEmpty property="componentId">
+					COMPONENT_ID = #componentId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="parentComponentType" prepend="and">
+				<isNotEmpty property="parentComponentType">
+					PARENT_COMPONENT_TYPE = #parentComponentType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="componentType" prepend="and">
+				<isNotEmpty property="componentType">
+					COMPONENT_TYPE = #componentType#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmRelationRel" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmCustGroupRelation" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT a.component_id as "componentId",b.cust_group_name as "custGroupName",a.parent_rel_id as "parentRelId"
+		from rm_relation_rel a , rm_custgroup_info b
+		where a.component_id = b.cust_group_id 
+		<dynamic prepend=" AND ">
+			<isNotNull property="parentComponentId" prepend="and">
+				<isNotEmpty property="parentComponentId">
+					a.parent_component_id = #parentComponentId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="componentId" prepend="and">
+				<isNotEmpty property="componentId">
+					a.component_id = #componentId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="componentType" prepend="and">
+				<isNotEmpty property="componentType">
+					a.component_type = #componentType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="parentComponentType" prepend="and">
+				<isNotEmpty property="parentComponentType">
+					a.parent_component_type = #parentComponentType#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	
+	<insert id="insertRmRelationRel" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_relation_rel
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="parentComponentType" prepend=",">
+			<isNotEmpty property="parentComponentType">
+				PARENT_COMPONENT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="componentType" prepend=",">
+			<isNotEmpty property="componentType">
+				COMPONENT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentRelId" prepend=",">
+			<isNotEmpty property="parentRelId">
+				PARENT_REL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="relId" prepend=",">
+			<isNotEmpty property="relId">
+				REL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentComponentId" prepend=",">
+			<isNotEmpty property="parentComponentId">
+				PARENT_COMPONENT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="componentId" prepend=",">
+			<isNotEmpty property="componentId">
+				COMPONENT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				BATCH_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="grade" prepend=",">
+			<isNotEmpty property="grade">
+				GRADE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="parentComponentType" prepend=",">
+			<isNotEmpty property="parentComponentType">
+				#parentComponentType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="componentType" prepend=",">
+			<isNotEmpty property="componentType">
+				#componentType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentRelId" prepend=",">
+			<isNotEmpty property="parentRelId">
+				#parentRelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="relId" prepend=",">
+			<isNotEmpty property="relId">
+				#relId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentComponentId" prepend=",">
+			<isNotEmpty property="parentComponentId">
+				#parentComponentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="componentId" prepend=",">
+			<isNotEmpty property="componentId">
+				#componentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				#batchNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="grade" prepend=",">
+			<isNotEmpty property="grade">
+				#grade#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmRelationRel" parameterClass="java.util.Map">
+	UPDATE rm_relation_rel
+	<dynamic prepend=" SET ">
+		<isNotNull property="parentComponentType" prepend=",">
+		    <isNotEmpty property="parentComponentType">
+			    PARENT_COMPONENT_TYPE = #parentComponentType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="componentType" prepend=",">
+		    <isNotEmpty property="componentType">
+			    COMPONENT_TYPE = #componentType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentRelId" prepend=",">
+		    <isNotEmpty property="parentRelId">
+			    PARENT_REL_ID = #parentRelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="relId" prepend=",">
+		    <isNotEmpty property="relId">
+			    REL_ID = #relId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentComponentId" prepend=",">
+		    <isNotEmpty property="parentComponentId">
+			    PARENT_COMPONENT_ID = #parentComponentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="componentId" prepend=",">
+		    <isNotEmpty property="componentId">
+			    COMPONENT_ID = #componentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+		    <isNotEmpty property="batchNo">
+			    BATCH_NO = #batchNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="grade" prepend=",">
+		    <isNotEmpty property="grade">
+			    GRADE = #grade#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmRelationRel" parameterClass="java.util.Map">
+	DELETE FROM rm_relation_rel
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmRelationRelParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			PARENT_COMPONENT_TYPE AS parentComponentType,
+			COMPONENT_TYPE AS componentType,
+			PARENT_REL_ID AS parentRelId,
+			REL_ID AS relId,
+			PARENT_COMPONENT_ID AS parentComponentId,
+			COMPONENT_ID AS componentId,
+			BATCH_NO AS batchNo,
+			GRADE AS grade
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_relation_rel $W$
+	</select>
+	
+	<select id="selectRmMarketCaseRelation" parameterClass="querFilter" resultClass="java.util.HashMap">
+		select t.eventId "eventId",mark.marketCaseId "marketCaseId"
+ 		from (select cust.custGroupId custGroupId, cust.parentRelId parnetRelId,event.eventId eventId
+         from (select r1.parent_component_id eventId,
+                      r1.parent_rel_id       parentRelId
+                 from rm_relation_rel r1
+                where r1.parent_component_type = '07') event,
+              (select r2.parent_component_id custGroupId,
+                      r2.rel_id              relId,
+                      r2.parent_rel_id       parentRelId
+                 from rm_relation_rel r2
+                where r2.component_type = '07') cust
+        where event.parentRelId = cust.relId
+          and event.eventid = #eventId#) t,
+      	(select r3.parent_component_id marketCaseId, r3.rel_id relId
+         from rm_relation_rel r3
+        where r3.component_type = '02') mark,
+        rm_marketcase_info m 
+		where t.parnetRelId = mark.relId and m.market_case_id = mark.marketcaseid and m.status_code = '04'
+	</select>
+	
+	<select id="selectRmMarketCaseRelationByRuleId" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT a.parent_component_type AS "parentComponentType",
+			   a.component_type AS "componentType",
+			   a.parent_rel_id AS "parentRelId",
+       		   a.rel_id AS "relId",
+       		   a.parent_component_id AS "parentComponentId",
+       		   a.component_id AS "componentId",
+       		   a.batch_no AS "batch",
+       		   a.grade AS "grade"
+		FROM rm_relation_rel a,rm_relation_rel b ,rm_relation_rel c
+		WHERE a.rel_id=b.parent_rel_id AND b.rel_id=c.parent_rel_id 
+			   AND c.component_id=#componentId# 
+			   AND c.component_type=#componentType# 
+	</select>
+	
+	<select id="selectRmMarketCaseRelationByChannelRel" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT a.parent_component_type AS "parentComponentType",
+			   a.component_type AS "componentType",
+			   a.parent_rel_id AS "parentRelId",
+       		   a.rel_id AS "relId",
+       		   a.parent_component_id AS "parentComponentId",
+       		   a.component_id AS "componentId",
+       		   a.batch_no AS "batch",
+       		   a.grade AS "grade"
+		FROM rm_relation_rel a,rm_relation_rel b 
+		WHERE a.rel_id=b.parent_rel_id AND b.rel_id=#relId#
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,12 @@
+redis.host=${redis.host}
+redis.pass=foobared
+redis.timeout=60000
+redis.pool.maxTotal=1000
+redis.pool.maxIdle=1000
+redis.pool.minIdl=0
+redis.pool.minTotal=0
+redis.pool.maxWaitMillis=60000
+redis.pool.timeBetweenEvictionRunsMillis=600
+redis.pool.minEvictableIdleTimeMillis=10
+redis.pool.maxRedirections=100
+redis.pool.testOnBorrow=false

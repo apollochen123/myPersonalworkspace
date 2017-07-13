@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">	
+		    
+		    		    
+	<bean id="prodEventReceiver" class="com.sitech.strategy.event.message.spark.kafka.ProdEventReceiver">
+		<property name="prodEventEntity" ref="prodEventEntity"></property>
+		<property name="prodEventReceiverParam" ref="prodEventReceiverParam"></property>
+		<property name="sparkAppProp" ref="sparkAppProp"></property>
+	</bean>
+	<bean id="groupMsgEventReceiver" class="com.sitech.strategy.event.message.spark.kafka.GroupMsgEventReceiver">
+	    <property name="groupMsgEventEntity" ref="groupMsgEventEntity"></property>
+	    <property name="groupMsgEventReceiverParam" ref="groupMsgEventReceiverParam"></property>
+	    <property name="sparkAppProp" ref="sparkAppProp"></property>
+	</bean>
+	<bean id="feeEventReceiverIdmm" class="com.sitech.strategy.event.message.idmm.FeeEventReceiver">
+	    <property name="feeEventReceiverParam" ref="feeEventReceiverParam"></property>
+	    <property name="feeEventEntity" ref="feeEventEntity"></property>
+	</bean>	
+	<bean id="flowEventReceiverIdmm" class="com.sitech.strategy.event.message.idmm.FlowEventReceiver">
+	    <property name="flowEventReceiverParam" ref="flowEventReceiverParam"></property>
+	    <property name="flowEventEntity" ref="flowEventEntity"></property>
+	</bean>	
+	<bean id="busiEventReceiverIdmm" class="com.sitech.strategy.event.message.idmm.BusiEventReceiver">
+	    <property name="busiEventReceiverParam" ref="busiEventReceiverParam"></property>
+	    <property name="busiEventEntity" ref="busiEventEntity"></property>
+	</bean>	
+	
+</beans>

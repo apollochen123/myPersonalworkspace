@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/CRMPD_RTMarket/!svn/ver/12207/branches/jlMobile/sitech-strategy-persist/src/main/resources
+END
+filePath.properties
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/filePath.properties
+END
+spark.properties
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/spark.properties
+END
+db.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/db.xml
+END
+hbase.properties
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/hbase.properties
+END
+rm_redis.properties
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/CRMPD_RTMarket/!svn/ver/11034/branches/jlMobile/sitech-strategy-persist/src/main/resources/rm_redis.properties
+END
+hive.properties
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/hive.properties
+END
+smppsender.properties
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/smppsender.properties
+END
+impala.properties
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/impala.properties
+END
+tmpServiceData.properties
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/tmpServiceData.properties
+END
+SqlMapConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/SqlMapConfig.xml
+END
+persistByBaseNosql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/persistByBaseNosql.xml
+END
+kafka.properties
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/kafka.properties
+END
+persistByBaseIBatis.xml
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/persistByBaseIBatis.xml
+END
+datasource.properties
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/datasource.properties
+END
+conf.properties
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-persist/src/main/resources/conf.properties
+END
+persist.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/CRMPD_RTMarket/!svn/ver/12207/branches/jlMobile/sitech-strategy-persist/src/main/resources/persist.xml
+END

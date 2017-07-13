@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmAttachInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		BUSI_ID AS "busiId",
+		BUSI_TYPE AS "busiType",
+		ATTACH_NAME AS "attachName",
+		ATTACH_TYPE AS "attachType",
+		NOTE AS "note",
+		SYSTEM_NAME AS "systemName",
+		OPER_NO AS "operNo",
+		OPER_NAME AS "operName",
+		OPER_DATE AS "operDate"	
+	FROM RM_ATTACH_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiType" prepend="and">
+				<isNotEmpty property="busiType">
+					BUSI_TYPE = #busiType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="attachType" prepend="and">
+				<isNotEmpty property="attachType">
+					ATTACH_TYPE = #attachType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="attachName" prepend="and">
+				<isNotEmpty property="attachName">
+					ATTACH_NAME = #attachName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="note" prepend="and">
+				<isNotEmpty property="note">
+					NOTE = #note#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operName" prepend="and">
+				<isNotEmpty property="operName">
+					OPER_NAME = #operName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operDateStart" prepend="and">
+				<isNotEmpty property="operDateStart">
+					<![CDATA[ OPER_DATE >= #operDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operDateEnd" prepend="and">
+				<isNotEmpty property="operDateEnd">
+					<![CDATA[ OPER_DATE <= #operDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmAttachInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>	
+	</select>
+	
+	<insert id="insertRmAttachInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_ATTACH_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				BUSI_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				BUSI_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attachName" prepend=",">
+			<isNotEmpty property="attachName">
+				ATTACH_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attachType" prepend=",">
+			<isNotEmpty property="attachType">
+				ATTACH_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				NOTE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operDate" prepend=",">
+			<isNotEmpty property="operDate">
+				OPER_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemName" prepend=",">
+			<isNotEmpty property="systemName">
+				SYSTEM_NAME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				#busiId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				#busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attachName" prepend=",">
+			<isNotEmpty property="attachName">
+				#attachName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attachType" prepend=",">
+			<isNotEmpty property="attachType">
+				#attachType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				#note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operDate" prepend=",">
+			<isNotEmpty property="operDate">
+				#operDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemName" prepend=",">
+			<isNotEmpty property="systemName">
+				#systemName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	)
+	</insert>
+	
+	<update id="updateRmAttachInfo" parameterClass="java.util.Map">
+	UPDATE RM_ATTACH_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+		    <isNotEmpty property="busiId">
+			    BUSI_ID = #busiId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+		    <isNotEmpty property="busiType">
+			    BUSI_TYPE = #busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attachName" prepend=",">
+		    <isNotEmpty property="attachName">
+			    ATTACH_NAME = #attachName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="attachType" prepend=",">
+			<isNotEmpty property="attachType">
+				ATTACH_TYPE = #attachType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+		    <isNotEmpty property="note">
+			    NOTE = #note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operDate" prepend=",">
+		    <isNotEmpty property="operDate">
+			    OPER_DATE = #operDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="systemName" prepend=",">
+		    <isNotEmpty property="systemName">
+			    SYSTEM_NAME = #systemName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmAttachInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_ATTACH_INFO
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>	
+	</delete>
+	
+</sqlMap>

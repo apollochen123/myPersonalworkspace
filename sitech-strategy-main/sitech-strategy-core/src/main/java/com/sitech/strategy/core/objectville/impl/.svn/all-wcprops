@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/CRMPD_RTMarket/!svn/ver/12203/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl
+END
+CustGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/11944/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/CustGroup.java
+END
+MarketCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/12202/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/MarketCase.java
+END
+ShortMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/11491/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/ShortMessage.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/CRMPD_RTMarket/!svn/ver/11803/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/User.java
+END
+Position.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10447/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Position.java
+END
+Login.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Login.java
+END
+ChannelTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/11693/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/ChannelTask.java
+END
+Deploy.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Deploy.java
+END
+CoupleBack.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/11831/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/CoupleBack.java
+END
+Task.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/CRMPD_RTMarket/!svn/ver/11766/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Task.java
+END
+RealTimePush.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/RealTimePush.java
+END
+Attach.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Attach.java
+END
+Channel.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Channel.java
+END
+CallTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/11826/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/CallTask.java
+END
+WorkBench.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/WorkBench.java
+END
+ProductCommodity.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/ProductCommodity.java
+END
+EventTrigger.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/12064/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/EventTrigger.java
+END
+Component.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/11800/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Component.java
+END
+ActDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/ActDemand.java
+END
+Inventory.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Inventory.java
+END
+Rule.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/CRMPD_RTMarket/!svn/ver/12214/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Rule.java
+END
+Template.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Template.java
+END
+Event.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/CRMPD_RTMarket/!svn/ver/11909/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Event.java
+END
+Monitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Monitor.java
+END
+Evaluate.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/11807/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Evaluate.java
+END
+Content.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/11491/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/Content.java
+END
+EventParse.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/11491/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/EventParse.java
+END
+ChannelTrigger.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/CRMPD_RTMarket/!svn/ver/11799/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/ChannelTrigger.java
+END
+BatchPush.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/12006/branches/jlMobile/sitech-strategy-core/src/main/java/com/sitech/strategy/core/objectville/impl/BatchPush.java
+END

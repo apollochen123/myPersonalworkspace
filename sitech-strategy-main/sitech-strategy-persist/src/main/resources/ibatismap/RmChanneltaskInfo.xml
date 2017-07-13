@@ -1,0 +1,1458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmChanneltaskInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		KEY AS "key",
+		ACCT_ID AS "acctId",
+		ACT_DESC AS "actDesc",
+		ACT_ID AS "actId",
+		ACT_NAME AS "actName",
+		ACT_TYPE AS "actType",
+		BIND_FLAG AS "bindFlag",
+		BUSI_TYPE AS "busiType",
+		CALL_FLAG AS "callFlag",
+		CHANNEL_ID AS "channelId",
+		CONTACT_NBR AS "contactNbr",
+		CUST_GRADE AS "custGrade",
+		CUST_ID AS "custId",
+		CUST_NAME AS "custName",
+		CUST_GROUP_ID AS "custGroupId",
+		DEPT_CODE AS "deptCode",
+		DEPT_NAME AS "deptName",
+		DUTY_ZONE_NAME AS "dutyZoneName",
+		EDW_DEPT_ID AS "edwDeptId",
+		END_DATE AS "endDate",
+		ENJOY_FLAG AS "enjoyFlag",
+		GRID_CODE AS "gridCode",
+		GRID_ID AS "gridId",
+		GRID_NAME AS "gridName",
+		ID_NO AS "idNo",
+		ISNT_4GCARD AS "isnt4gcard",
+		MKT_AREA_NAME AS "mktAreaName",
+		NOTE AS "note",
+		PHOTO_FLAG AS "photoFlag",
+		POSITION_ID AS "positionId",
+		PRD_INST_ID AS "prdInstId",
+		REGION_CODE AS "regionCode",
+		RISK_FLAG AS "riskFlag",
+		SERVICE_NAME AS "serviceName",
+		SERVICE_NBR AS "serviceNbr",
+		SERVICE_NO AS "serviceNo",
+		SM_NAME AS "smName",
+		START_DATE AS "startDate",
+		STATUS_CODE AS "statusCode",
+		STATUS_NAME AS "statusName",
+		TASK_ID AS "taskId",
+		CREATE_TIME AS "createTime",
+		CREATE_SEQ AS "createSeq"	
+	FROM RM_CHANNELTASK_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="key" prepend="and">
+				<isNotEmpty property="key">
+					KEY = #key#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="acctId" prepend="and">
+				<isNotEmpty property="acctId">
+					ACCT_ID = #acctId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actDesc" prepend="and">
+				<isNotEmpty property="actDesc">
+					ACT_DESC = #actDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actId" prepend="and">
+				<isNotEmpty property="actId">
+					ACT_ID = #actId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actName" prepend="and">
+				<isNotEmpty property="actName">
+					ACT_NAME = #actName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="actType" prepend="and">
+				<isNotEmpty property="actType">
+					ACT_TYPE = #actType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="bindFlag" prepend="and">
+				<isNotEmpty property="bindFlag">
+					BIND_FLAG = #bindFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="busiType" prepend="and">
+				<isNotEmpty property="busiType">
+					BUSI_TYPE = #busiType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="callFlag" prepend="and">
+				<isNotEmpty property="callFlag">
+					CALL_FLAG = #callFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="contactNbr" prepend="and">
+				<isNotEmpty property="contactNbr">
+					CONTACT_NBR = #contactNbr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGrade" prepend="and">
+				<isNotEmpty property="custGrade">
+					CUST_GRADE = #custGrade#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custId" prepend="and">
+				<isNotEmpty property="custId">
+					CUST_ID = #custId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custName" prepend="and">
+				<isNotEmpty property="custName">
+					CUST_NAME = #custName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="custGroupId" prepend="and">
+				<isNotEmpty property="custGroupId">
+					CUST_GROUP_ID = #custGroupId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="deptCode" prepend="and">
+				<isNotEmpty property="deptCode">
+					DEPT_CODE = #deptCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="deptName" prepend="and">
+				<isNotEmpty property="deptName">
+					DEPT_NAME = #deptName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="dutyZoneName" prepend="and">
+				<isNotEmpty property="dutyZoneName">
+					DUTY_ZONE_NAME = #dutyZoneName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="edwDeptId" prepend="and">
+				<isNotEmpty property="edwDeptId">
+					EDW_DEPT_ID = #edwDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="endDate" prepend="and">
+				<isNotEmpty property="endDate">
+					END_DATE = #endDate#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="enjoyFlag" prepend="and">
+				<isNotEmpty property="enjoyFlag">
+					ENJOY_FLAG = #enjoyFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridCode" prepend="and">
+				<isNotEmpty property="gridCode">
+					GRID_CODE = #gridCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridId" prepend="and">
+				<isNotEmpty property="gridId">
+					GRID_ID = #gridId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridName" prepend="and">
+				<isNotEmpty property="gridName">
+					GRID_NAME = #gridName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO = #idNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="isnt4gcard" prepend="and">
+				<isNotEmpty property="isnt4gcard">
+					ISNT_4GCARD = #isnt4gcard#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="mktAreaName" prepend="and">
+				<isNotEmpty property="mktAreaName">
+					MKT_AREA_NAME = #mktAreaName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="note" prepend="and">
+				<isNotEmpty property="note">
+					NOTE = #note#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="photoFlag" prepend="and">
+				<isNotEmpty property="photoFlag">
+					PHOTO_FLAG = #photoFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="positionId" prepend="and">
+				<isNotEmpty property="positionId">
+					POSITION_ID = #positionId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="prdInstId" prepend="and">
+				<isNotEmpty property="prdInstId">
+					PRD_INST_ID = #prdInstId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="riskFlag" prepend="and">
+				<isNotEmpty property="riskFlag">
+					RISK_FLAG = #riskFlag#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceName" prepend="and">
+				<isNotEmpty property="serviceName">
+					SERVICE_NAME = #serviceName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNbr" prepend="and">
+				<isNotEmpty property="serviceNbr">
+					SERVICE_NBR = #serviceNbr#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNo" prepend="and">
+				<isNotEmpty property="serviceNo">
+					SERVICE_NO = #serviceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="smName" prepend="and">
+				<isNotEmpty property="smName">
+					SM_NAME = #smName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="startDate" prepend="and">
+				<isNotEmpty property="startDate">
+					START_DATE = #startDate#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusName" prepend="and">
+				<isNotEmpty property="statusName">
+					STATUS_NAME = #statusName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="taskId" prepend="and">
+				<isNotEmpty property="taskId">
+					TASK_ID = #taskId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and">
+				<isNotEmpty property="createTime">
+					CREATE_TIME = #createTime#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="createSeq" prepend="and">
+				<isNotEmpty property="createSeq">
+					CREATE_SEQ = #createSeq#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmChanneltaskInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE KEY = #key#
+	</select>
+
+	<select id="selectRmChanneltaskInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectTaskCountGroupByLoginNo" parameterClass="querFilter" resultClass="java.util.HashMap">
+	  select service_no as "serviceNo",
+	  (SELECT LOGIN_NAME FROM RM_LOGINMSG_INFO WHERE LOGIN_NO = service_no) AS "serviceName",
+       count(1) as "totalNum",
+       sum(case
+             when a.status_code = '04' then
+              1
+             else
+              0
+           end)  as "existNum",
+       sum(case
+             when a.status_code = '06' then
+              1
+             else
+              0
+           end)  as "countNum" 
+  from rm_channeltask_info a
+ where a.dept_code = #groupCode#
+ and exists (select 1
+          from RM_SERVICE_NO_TMP b
+         where b.duty_zone_service_no = a.service_no)
+   
+ group by a.service_no
+       
+	</select>
+	
+	<select id="selectTaskCountGroupByLoginNoByJLMob" parameterClass="querFilter" resultClass="java.util.HashMap">
+	  select service_no as "serviceNo",
+	  '' AS "serviceName",
+       count(1) as "totalNum",
+       sum(case
+             when a.status_code = '04' then
+              1
+             else
+              0
+           end)  as "existNum",
+       sum(case
+             when a.status_code = '06' then
+              1
+             else
+              0
+           end)  as "countNum" 
+  from rm_channeltask_info a
+ where a.dept_code = #groupCode#
+ and exists (select 1
+          from RM_SERVICE_NO_TMP b
+         where b.duty_zone_service_no = a.service_no)
+   
+ group by a.service_no
+       
+	</select>
+	
+	<select id="selectWaitSendChannelTaskList" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		
+		WHERE CHANNEL_ID = '06' AND STATUS_CODE IN ('00','11') 
+		<isNotNull property="dbType" prepend="and">
+			<isNotEmpty property="dbType">
+				<isEqual property="dbType" compareValue="oracle">
+					<![CDATA[
+					ROWNUM < 8000
+					]]>
+				</isEqual>
+				<isEqual property="dbType" compareValue="mysql">
+					<![CDATA[
+					LIMIT 8000
+					]]>
+				</isEqual>
+			</isNotEmpty>
+		</isNotNull>
+		
+	</select>
+	
+	<select id="selectCustList" parameterClass="querFilter" resultClass="java.util.HashMap">
+		select REGION_CODE as "regionCode",
+		 	   CUST_ID as "custId", 
+		 	   CUST_NAME as "custName",
+		 	   SERVICE_NBR as "serviceNbr",
+		 	   DUTY_ZONE_NAME as "dutyZoneName",
+		 	   GRID_NAME as "gridName",
+		 	   TASK_ID as "taskId",
+		 	   count(1) as "taskNum"
+		 	   from rm_channelTask_info
+		 <dynamic prepend=" WHERE ">
+		 	<isNotNull property="edwDeptId" prepend="and">
+				<isNotEmpty property="edwDeptId">
+					EDW_DEPT_ID = #edwDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridId" prepend="and">
+				<isNotEmpty property="gridId">
+					GRID_ID = #gridId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNo" prepend="and">
+				<isNotEmpty property="serviceNo">
+					SERVICE_NO = #serviceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					ACT_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="positionId" prepend="and">
+				<isNotEmpty property="positionId">
+					POSITION_ID = #positionId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+		  </dynamic>
+		  group by REGION_CODE, CUST_ID, CUST_NAME, SERVICE_NBR, DUTY_ZONE_NAME, GRID_NAME,TASK_ID
+	</select>
+	<select id="selectMarketCaseList" parameterClass="querFilter" resultClass="java.util.HashMap">
+		select ACT_ID as "actId", 
+			   ACT_NAME as "actName", 
+			   ACT_TYPE as "actType", 
+			   BUSI_TYPE as "busiType", 
+			   START_DATE as "startDate", 
+			   END_DATE as "endDate", 
+			   ACT_DESC as "actDesc",
+		 	   count(1) as "taskNum"
+		 	   from rm_channelTask_info
+		 <dynamic prepend=" WHERE ">
+		 	<isNotNull property="edwDeptId" prepend="and">
+				<isNotEmpty property="edwDeptId">
+					EDW_DEPT_ID = #edwDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridId" prepend="and">
+				<isNotEmpty property="gridId">
+					GRID_ID = #gridId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNo" prepend="and">
+				<isNotEmpty property="serviceNo">
+					SERVICE_NO = #serviceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					ACT_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="positionId" prepend="and">
+				<isNotEmpty property="positionId">
+					POSITION_ID = #positionId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+		  </dynamic>
+		  group by ACT_ID, ACT_NAME, ACT_TYPE, BUSI_TYPE, START_DATE, END_DATE, ACT_DESC
+	</select>
+	<select id="selectTaskList" parameterClass="querFilter" resultClass="java.util.HashMap">
+	  select TASK_ID as "taskId",
+			 ACT_ID as "actId",
+			 ACT_NAME as "actName",
+			 CUST_NAME as "custName",
+			 PRD_INST_ID as "prdInstId",
+			 CHANNEL_ID AS "channelId",
+			 (select c.channel_name from rm_channel_info c where c.channel_id=rm_channelTask_info.channel_id) AS "channelName",
+			 CUST_ID as "custId",
+			 ACCT_ID as "acctId",
+			 REGION_CODE as "regionCode",
+			 (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+			 SERVICE_NBR as "serviceNbr",
+			 SM_NAME as "smName",
+			 START_DATE as "startDate",
+			 END_DATE as "endDate",
+			 ISNT_4GCARD as "isnt_4gcard",
+			 SERVICE_NO as "serviceNo",
+			 SERVICE_NAME as "serviceName",
+			 STATUS_NAME as "statusName",
+			 PHOTO_FLAG as "photoFlag",
+			 CUST_GRADE as "custGrade",
+			 ENJOY_FLAG as "enjoyFlag",
+			 BIND_FLAG as "bindFlag",
+			 RISK_FLAG as "riskFlag",
+			 NOTE as "note",
+			 MKT_AREA_NAME as "mktAreaName",
+			 DEPT_NAME as "deptName",
+			 DUTY_ZONE_NAME as "dutyZoneName",
+			 GRID_NAME as "gridName"
+			 from rm_channelTask_info
+		 <dynamic prepend=" WHERE ">
+		 	<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+		 	<isNotNull property="custId" prepend="and">
+				<isNotEmpty property="custId">
+					CUST_ID = #custId#
+				</isNotEmpty>
+			</isNotNull>
+		 	<isNotNull property="edwDeptId" prepend="and">
+				<isNotEmpty property="edwDeptId">
+					EDW_DEPT_ID = #edwDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridId" prepend="and">
+				<isNotEmpty property="gridId">
+					GRID_ID = #gridId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNo" prepend="and">
+				<isNotEmpty property="serviceNo">
+					SERVICE_NO = #serviceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="acctId" prepend="and">
+				<isNotEmpty property="acctId">
+					ACCT_ID = #acctId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					ACT_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="positionId" prepend="and">
+				<isNotEmpty property="positionId">
+					POSITION_ID = #positionId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNbr" prepend="and">
+				<isNotEmpty property="serviceNbr">
+					SERVICE_NBR = #serviceNbr#
+				</isNotEmpty>
+			</isNotNull>
+		  </dynamic>
+	</select>
+	
+	<select id="selectChannelTaskCount" parameterClass="querFilter" resultClass="java.util.HashMap">
+	  select count(1) AS "total"
+			 from rm_channelTask_info
+		 <dynamic prepend=" WHERE ">
+		 	<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+		 	<isNotNull property="custId" prepend="and">
+				<isNotEmpty property="custId">
+					CUST_ID = #custId#
+				</isNotEmpty>
+			</isNotNull>
+		 	<isNotNull property="edwDeptId" prepend="and">
+				<isNotEmpty property="edwDeptId">
+					EDW_DEPT_ID = #edwDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridId" prepend="and">
+				<isNotEmpty property="gridId">
+					GRID_ID = #gridId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNo" prepend="and">
+				<isNotEmpty property="serviceNo">
+					SERVICE_NO = #serviceNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					ACT_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="positionId" prepend="and">
+				<isNotEmpty property="positionId">
+					POSITION_ID = #positionId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+		  </dynamic>
+	</select>
+	
+	<insert id="insertRmChanneltaskInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CHANNELTASK_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="key" prepend=",">
+			<isNotEmpty property="key">
+				KEY
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="acctId" prepend=",">
+			<isNotEmpty property="acctId">
+				ACCT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDesc" prepend=",">
+			<isNotEmpty property="actDesc">
+				ACT_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actId" prepend=",">
+			<isNotEmpty property="actId">
+				ACT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actName" prepend=",">
+			<isNotEmpty property="actName">
+				ACT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actType" prepend=",">
+			<isNotEmpty property="actType">
+				ACT_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bindFlag" prepend=",">
+			<isNotEmpty property="bindFlag">
+				BIND_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				BUSI_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="callFlag" prepend=",">
+			<isNotEmpty property="callFlag">
+				CALL_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				CHANNEL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNbr" prepend=",">
+			<isNotEmpty property="contactNbr">
+				CONTACT_NBR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGrade" prepend=",">
+			<isNotEmpty property="custGrade">
+				CUST_GRADE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custId" prepend=",">
+			<isNotEmpty property="custId">
+				CUST_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custName" prepend=",">
+			<isNotEmpty property="custName">
+				CUST_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptCode" prepend=",">
+			<isNotEmpty property="deptCode">
+				DEPT_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptName" prepend=",">
+			<isNotEmpty property="deptName">
+				DEPT_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneName" prepend=",">
+			<isNotEmpty property="dutyZoneName">
+				DUTY_ZONE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptId" prepend=",">
+			<isNotEmpty property="edwDeptId">
+				EDW_DEPT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				END_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="enjoyFlag" prepend=",">
+			<isNotEmpty property="enjoyFlag">
+				ENJOY_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridCode" prepend=",">
+			<isNotEmpty property="gridCode">
+				GRID_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridId" prepend=",">
+			<isNotEmpty property="gridId">
+				GRID_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridName" prepend=",">
+			<isNotEmpty property="gridName">
+				GRID_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="idNo" prepend=",">
+			<isNotEmpty property="idNo">
+				ID_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="isnt4gcard" prepend=",">
+			<isNotEmpty property="isnt4gcard">
+				ISNT_4GCARD
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaName" prepend=",">
+			<isNotEmpty property="mktAreaName">
+				MKT_AREA_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				NOTE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoFlag" prepend=",">
+			<isNotEmpty property="photoFlag">
+				PHOTO_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="positionId" prepend=",">
+			<isNotEmpty property="positionId">
+				POSITION_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstId" prepend=",">
+			<isNotEmpty property="prdInstId">
+				PRD_INST_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="riskFlag" prepend=",">
+			<isNotEmpty property="riskFlag">
+				RISK_FLAG
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceName" prepend=",">
+			<isNotEmpty property="serviceName">
+				SERVICE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNbr" prepend=",">
+			<isNotEmpty property="serviceNbr">
+				SERVICE_NBR
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNo" prepend=",">
+			<isNotEmpty property="serviceNo">
+				SERVICE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smName" prepend=",">
+			<isNotEmpty property="smName">
+				SM_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+			<isNotEmpty property="startDate">
+				START_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusName" prepend=",">
+			<isNotEmpty property="statusName">
+				STATUS_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskId" prepend=",">
+			<isNotEmpty property="taskId">
+				TASK_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createTime" prepend=",">
+			<isNotEmpty property="createTime">
+				CREATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createSeq" prepend=",">
+			<isNotEmpty property="createSeq">
+				CREATE_SEQ
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="key" prepend=",">
+			<isNotEmpty property="key">
+				#key#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="acctId" prepend=",">
+			<isNotEmpty property="acctId">
+				#acctId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDesc" prepend=",">
+			<isNotEmpty property="actDesc">
+				#actDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actId" prepend=",">
+			<isNotEmpty property="actId">
+				#actId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actName" prepend=",">
+			<isNotEmpty property="actName">
+				#actName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actType" prepend=",">
+			<isNotEmpty property="actType">
+				#actType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bindFlag" prepend=",">
+			<isNotEmpty property="bindFlag">
+				#bindFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				#busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="callFlag" prepend=",">
+			<isNotEmpty property="callFlag">
+				#callFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+			<isNotEmpty property="channelId">
+				#channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNbr" prepend=",">
+			<isNotEmpty property="contactNbr">
+				#contactNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGrade" prepend=",">
+			<isNotEmpty property="custGrade">
+				#custGrade#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custId" prepend=",">
+			<isNotEmpty property="custId">
+				#custId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custName" prepend=",">
+			<isNotEmpty property="custName">
+				#custName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptCode" prepend=",">
+			<isNotEmpty property="deptCode">
+				#deptCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptName" prepend=",">
+			<isNotEmpty property="deptName">
+				#deptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneName" prepend=",">
+			<isNotEmpty property="dutyZoneName">
+				#dutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptId" prepend=",">
+			<isNotEmpty property="edwDeptId">
+				#edwDeptId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				#endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="enjoyFlag" prepend=",">
+			<isNotEmpty property="enjoyFlag">
+				#enjoyFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridCode" prepend=",">
+			<isNotEmpty property="gridCode">
+				#gridCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridId" prepend=",">
+			<isNotEmpty property="gridId">
+				#gridId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridName" prepend=",">
+			<isNotEmpty property="gridName">
+				#gridName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="idNo" prepend=",">
+			<isNotEmpty property="idNo">
+				#idNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="isnt4gcard" prepend=",">
+			<isNotEmpty property="isnt4gcard">
+				#isnt4gcard#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaName" prepend=",">
+			<isNotEmpty property="mktAreaName">
+				#mktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				#note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoFlag" prepend=",">
+			<isNotEmpty property="photoFlag">
+				#photoFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="positionId" prepend=",">
+			<isNotEmpty property="positionId">
+				#positionId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstId" prepend=",">
+			<isNotEmpty property="prdInstId">
+				#prdInstId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="riskFlag" prepend=",">
+			<isNotEmpty property="riskFlag">
+				#riskFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceName" prepend=",">
+			<isNotEmpty property="serviceName">
+				#serviceName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNbr" prepend=",">
+			<isNotEmpty property="serviceNbr">
+				#serviceNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNo" prepend=",">
+			<isNotEmpty property="serviceNo">
+				#serviceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smName" prepend=",">
+			<isNotEmpty property="smName">
+				#smName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+			<isNotEmpty property="startDate">
+				#startDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusName" prepend=",">
+			<isNotEmpty property="statusName">
+				#statusName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskId" prepend=",">
+			<isNotEmpty property="taskId">
+				#taskId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createTime" prepend=",">
+			<isNotEmpty property="createTime">
+				#createTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createSeq" prepend=",">
+			<isNotEmpty property="createSeq">
+				#createSeq#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateChannelTask" parameterClass="java.util.Map">
+		UPDATE RM_CHANNELTASK_INFO
+		set status_code = #statusCode#
+		 <dynamic prepend=" WHERE ">
+		 	<isNotNull property="taskId" prepend="and">
+				<isNotEmpty property="taskId">
+					TASK_ID = #taskId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</update>
+	
+	<update id="updateTaskStatus" parameterClass="java.util.Map">
+		UPDATE RM_CHANNELTASK_INFO
+		set status_code = #statusCode#
+		 <dynamic prepend=" WHERE ">
+		 	<isNotNull property="idNo" prepend="and">
+				<isNotEmpty property="idNo">
+					ID_NO = #idNo#
+				</isNotEmpty>
+			</isNotNull>
+		 	<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					ACT_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</update>
+	
+	<update id="updateTaskServiceNo" parameterClass="java.util.Map">
+		UPDATE RM_CHANNELTASK_INFO A
+   			SET SERVICE_NO =
+       (SELECT B.$serviceNoType$
+          FROM RM_USER_INFO B
+         WHERE A.ID_NO = B.ID_NO
+           )
+ 		WHERE 1=1 
+ 		 <isNotNull property="taskIds" prepend="and">
+			<isNotEmpty property="taskIds">
+					TASK_ID IN ($taskIds$)
+			</isNotEmpty>
+		 </isNotNull>
+		 <isNotNull property="condition" prepend="and">
+			<isNotEmpty property="condition">
+					$condition$
+			</isNotEmpty>
+		 </isNotNull>
+	</update>
+	
+	
+	<update id="updateRmChanneltaskInfo" parameterClass="java.util.Map">
+	UPDATE RM_CHANNELTASK_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="key" prepend=",">
+		    <isNotEmpty property="key">
+			    KEY = #key#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="acctId" prepend=",">
+		    <isNotEmpty property="acctId">
+			    ACCT_ID = #acctId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actDesc" prepend=",">
+		    <isNotEmpty property="actDesc">
+			    ACT_DESC = #actDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actId" prepend=",">
+		    <isNotEmpty property="actId">
+			    ACT_ID = #actId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actName" prepend=",">
+		    <isNotEmpty property="actName">
+			    ACT_NAME = #actName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="actType" prepend=",">
+		    <isNotEmpty property="actType">
+			    ACT_TYPE = #actType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="bindFlag" prepend=",">
+		    <isNotEmpty property="bindFlag">
+			    BIND_FLAG = #bindFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+		    <isNotEmpty property="busiType">
+			    BUSI_TYPE = #busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="callFlag" prepend=",">
+		    <isNotEmpty property="callFlag">
+			    CALL_FLAG = #callFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelId" prepend=",">
+		    <isNotEmpty property="channelId">
+			    CHANNEL_ID = #channelId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contactNbr" prepend=",">
+		    <isNotEmpty property="contactNbr">
+			    CONTACT_NBR = #contactNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGrade" prepend=",">
+		    <isNotEmpty property="custGrade">
+			    CUST_GRADE = #custGrade#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custId" prepend=",">
+		    <isNotEmpty property="custId">
+			    CUST_ID = #custId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custName" prepend=",">
+		    <isNotEmpty property="custName">
+			    CUST_NAME = #custName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="custGroupId" prepend=",">
+		    <isNotEmpty property="custGroupId">
+			    CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptCode" prepend=",">
+		    <isNotEmpty property="deptCode">
+			    DEPT_CODE = #deptCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="deptName" prepend=",">
+		    <isNotEmpty property="deptName">
+			    DEPT_NAME = #deptName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dutyZoneName" prepend=",">
+		    <isNotEmpty property="dutyZoneName">
+			    DUTY_ZONE_NAME = #dutyZoneName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="edwDeptId" prepend=",">
+		    <isNotEmpty property="edwDeptId">
+			    EDW_DEPT_ID = #edwDeptId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+		    <isNotEmpty property="endDate">
+			    END_DATE = #endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="enjoyFlag" prepend=",">
+		    <isNotEmpty property="enjoyFlag">
+			    ENJOY_FLAG = #enjoyFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridCode" prepend=",">
+		    <isNotEmpty property="gridCode">
+			    GRID_CODE = #gridCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridId" prepend=",">
+		    <isNotEmpty property="gridId">
+			    GRID_ID = #gridId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="gridName" prepend=",">
+		    <isNotEmpty property="gridName">
+			    GRID_NAME = #gridName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="idNo" prepend=",">
+		    <isNotEmpty property="idNo">
+			    ID_NO = #idNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="isnt4gcard" prepend=",">
+		    <isNotEmpty property="isnt4gcard">
+			    ISNT_4GCARD = #isnt4gcard#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="mktAreaName" prepend=",">
+		    <isNotEmpty property="mktAreaName">
+			    MKT_AREA_NAME = #mktAreaName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+		    <isNotEmpty property="note">
+			    NOTE = #note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="photoFlag" prepend=",">
+		    <isNotEmpty property="photoFlag">
+			    PHOTO_FLAG = #photoFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="positionId" prepend=",">
+		    <isNotEmpty property="positionId">
+			    POSITION_ID = #positionId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="prdInstId" prepend=",">
+		    <isNotEmpty property="prdInstId">
+			    PRD_INST_ID = #prdInstId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="riskFlag" prepend=",">
+		    <isNotEmpty property="riskFlag">
+			    RISK_FLAG = #riskFlag#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceName" prepend=",">
+		    <isNotEmpty property="serviceName">
+			    SERVICE_NAME = #serviceName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNbr" prepend=",">
+		    <isNotEmpty property="serviceNbr">
+			    SERVICE_NBR = #serviceNbr#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serviceNo" prepend=",">
+		    <isNotEmpty property="serviceNo">
+			    SERVICE_NO = #serviceNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="smName" prepend=",">
+		    <isNotEmpty property="smName">
+			    SM_NAME = #smName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+		    <isNotEmpty property="startDate">
+			    START_DATE = #startDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusName" prepend=",">
+		    <isNotEmpty property="statusName">
+			    STATUS_NAME = #statusName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskId" prepend=",">
+		    <isNotEmpty property="taskId">
+			    TASK_ID = #taskId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createTime" prepend=",">
+		    <isNotEmpty property="createTime">
+			    CREATE_TIME = #createTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="createSeq" prepend=",">
+		    <isNotEmpty property="createSeq">
+			    CREATE_SEQ = #createSeq#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmChanneltaskInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_CHANNELTASK_INFO
+	WHERE KEY = #key#
+	</delete>
+
+	<delete id="deleteRmChanneltaskInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_CHANNELTASK_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmChanneltaskInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			KEY AS key,
+			ACCT_ID AS acctId,
+			ACT_DESC AS actDesc,
+			ACT_ID AS actId,
+			ACT_NAME AS actName,
+			ACT_TYPE AS actType,
+			BIND_FLAG AS bindFlag,
+			BUSI_TYPE AS busiType,
+			CALL_FLAG AS callFlag,
+			CHANNEL_ID AS channelId,
+			CONTACT_NBR AS contactNbr,
+			CUST_GRADE AS custGrade,
+			CUST_ID AS custId,
+			CUST_NAME AS custName,
+			CUST_GROUP_ID AS custGroupId,
+			DEPT_CODE AS deptCode,
+			DEPT_NAME AS deptName,
+			DUTY_ZONE_NAME AS dutyZoneName,
+			EDW_DEPT_ID AS edwDeptId,
+			END_DATE AS endDate,
+			ENJOY_FLAG AS enjoyFlag,
+			GRID_CODE AS gridCode,
+			GRID_ID AS gridId,
+			GRID_NAME AS gridName,
+			ID_NO AS idNo,
+			ISNT_4GCARD AS isnt4gcard,
+			MKT_AREA_NAME AS mktAreaName,
+			NOTE AS note,
+			PHOTO_FLAG AS photoFlag,
+			POSITION_ID AS positionId,
+			PRD_INST_ID AS prdInstId,
+			REGION_CODE AS regionCode,
+			RISK_FLAG AS riskFlag,
+			SERVICE_NAME AS serviceName,
+			SERVICE_NBR AS serviceNbr,
+			SERVICE_NO AS serviceNo,
+			SM_NAME AS smName,
+			START_DATE AS startDate,
+			STATUS_CODE AS statusCode,
+			STATUS_NAME AS statusName,
+			TASK_ID AS taskId,
+			CREATE_TIME AS createTime,
+			CREATE_SEQ AS createSeq
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_CHANNELTASK_INFO $W$
+	</select>
+	
+	<select id="selectTaskListCondition" parameterClass="querFilter" resultClass="java.util.HashMap">
+	  select TASK_ID as "taskId",
+			 ACT_ID as "actId",
+			 ACT_NAME as "actName",
+			 CUST_NAME as "custName",
+			 PRD_INST_ID as "prdInstId",
+			 CHANNEL_ID AS "channelId",
+			 (select c.channel_name from rm_channel_info c where c.channel_id=rm_channelTask_info.channel_id) AS "channelName",
+			 CUST_ID as "custId",
+			 ACCT_ID as "acctId",
+			 REGION_CODE as "regionCode",
+			 (SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'regionCode' AND FIELD_VALUE = REGION_CODE ) AS "regionName",
+			 SERVICE_NBR as "serviceNbr",
+			 SM_NAME as "smName",
+			 START_DATE as "startDate",
+			 END_DATE as "endDate",
+			 ISNT_4GCARD as "isnt_4gcard",
+			 SERVICE_NO as "serviceNo",
+			 SERVICE_NAME as "serviceName",
+			 STATUS_NAME as "statusName",
+			 PHOTO_FLAG as "photoFlag",
+			 CUST_GRADE as "custGrade",
+			 ENJOY_FLAG as "enjoyFlag",
+			 BIND_FLAG as "bindFlag",
+			 RISK_FLAG as "riskFlag",
+			 NOTE as "note",
+			 MKT_AREA_NAME as "mktAreaName",
+			 DEPT_NAME as "deptName",
+			 DUTY_ZONE_NAME as "dutyZoneName",
+			 GRID_NAME as "gridName"
+			 from rm_channelTask_info
+		 <dynamic prepend=" WHERE ">
+		 	<isNotNull property="regionCode" prepend="and">
+				<isNotEmpty property="regionCode">
+					REGION_CODE = #regionCode#
+				</isNotEmpty>
+			</isNotNull>
+		 	<isNotNull property="custId" prepend="and">
+				<isNotEmpty property="custId">
+					CUST_ID = #custId#
+				</isNotEmpty>
+			</isNotNull>
+		 	<isNotNull property="edwDeptId" prepend="and">
+				<isNotEmpty property="edwDeptId">
+					EDW_DEPT_ID = #edwDeptId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="gridId" prepend="and">
+				<isNotEmpty property="gridId">
+					GRID_ID = #gridId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serviceNo" prepend="and">
+				<isNotEmpty property="serviceNo">
+					SERVICE_NO $serviceNo$
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					ACT_ID = #marketCaseId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="positionId" prepend="and">
+				<isNotEmpty property="positionId">
+					POSITION_ID = #positionId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="channelId" prepend="and">
+				<isNotEmpty property="channelId">
+					CHANNEL_ID = #channelId#
+				</isNotEmpty>
+			</isNotNull>
+		  </dynamic>
+	</select>
+</sqlMap>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmlabelArchivesTmp">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		DAY_ID AS "daiId",
+		LABEL_ID AS "labelId",
+		LABEL_NAME AS "labelName",
+		LABEL_CYCLE AS "labelCycle",
+		LABEL_VALUE_DESC AS "labelValue",
+		LABEL_VALUE_UNITS AS  "labelValueUnits",
+		RULE_DESCRIBE AS "ruleDescribe",
+		LABEL_ITEM_SUB AS "labelItemSub",
+		ENCODE_TABLE AS "encodeTable",
+		ENCODE_COLUMN AS "encodeColumn",
+		IS_ACTIVE AS "isActive",
+		IS_SENSITIVE AS "isSensitive",
+		VERSION_ID AS "versionId",
+		APPLY_NO AS "applyNo",
+		SUPPORTER_NO AS "supporterNo",
+		START_DATE AS "startDate",
+		END_DATE AS "endDate",
+		UPDATE_DATE AS "updateDate",
+		FIRST_LEVEL_ID AS "firstLevelId",
+		FIRST_LEVEL_NAME AS "firstLevelName",
+		SECOND_LEVEL_ID AS "secondLevelId",
+		SECOND_LEVEL_NAME AS "secondLevelName",
+		REMARK AS "remark"
+	FROM rm_labelarchives_dict
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="userLabelName" prepend="and">
+				<isNotEmpty property="userLabelName">
+				    LABEL_NAME like '%'||#userLabelName#||'%'
+				    or
+				    LABEL_ID like '%'||#userLabelName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmlabelArchivesTmp" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+</sqlMap>

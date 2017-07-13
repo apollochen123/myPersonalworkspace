@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/CRMPD_RTMarket/!svn/ver/10934/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/base
+END
+BaseProcessBatch.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/base/BaseProcessBatch.java
+END
+BaseProcessService.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/base/BaseProcessService.java
+END
+BaseClass.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/CRMPD_RTMarket/!svn/ver/10934/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/base/BaseClass.java
+END
+BaseProcessEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/base/BaseProcessEntity.java
+END

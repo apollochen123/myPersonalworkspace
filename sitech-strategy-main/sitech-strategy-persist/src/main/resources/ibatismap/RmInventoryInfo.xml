@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmInventoryInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		TASK_NAME AS "taskName",
+		BUSI_TYPE AS "busiType",
+		BUSI_ID AS "busiId",
+		OPER_NO AS "operNo",
+		OPER_NAME AS "operName",
+		OPER_TIME AS "operTime",
+		APPLY_REGION_CODE AS "applyRegionCode",
+		DOWNLOAD_NUM AS "downloadNum",
+		INVENTORY_NUM AS "inventoryNum",
+		APPLY_INVENTORY_NUM AS "applyInventoryNum",
+		STATUS_CODE AS "statusCode",
+		INVENTORY_NAME AS "inventoryName"	
+	FROM RM_INVENTORY_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="taskName" prepend="and">
+				<isNotEmpty property="taskName">
+					TASK_NAME like '%'||#taskName#||'%'
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="startDate" prepend="and">
+				<isNotEmpty property="startDate">
+					<![CDATA[ OPER_TIME >= #startDate# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="endDate" prepend="and">
+				<isNotEmpty property="endDate">
+					<![CDATA[ OPER_TIME <= #endDate# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="applyRegionCode" prepend="and">
+				<isNotEmpty property="applyRegionCode">
+					APPLY_REGION_CODE = #applyRegionCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="statusCode" prepend="and">
+				<isNotEmpty property="statusCode">
+					STATUS_CODE = #statusCode#
+				</isNotEmpty>
+			</isNotNull>
+				<isNotNull property="busiId" prepend="and">
+			<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmInventoryInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmInventoryInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+		order by OPER_TIME desc
+	</select>
+	
+	<insert id="insertRmInventoryInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_INVENTORY_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskName" prepend=",">
+			<isNotEmpty property="taskName">
+				TASK_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				BUSI_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				BUSI_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="applyRegionCode" prepend=",">
+			<isNotEmpty property="applyRegionCode">
+				APPLY_REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downloadNum" prepend=",">
+			<isNotEmpty property="downloadNum">
+				DOWNLOAD_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryNum" prepend=",">
+			<isNotEmpty property="inventoryNum">
+				INVENTORY_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="applyInventoryNum" prepend=",">
+			<isNotEmpty property="applyInventoryNum">
+				APPLY_INVENTORY_NUM
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryName" prepend=",">
+			<isNotEmpty property="inventoryName">
+				INVENTORY_NAME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskName" prepend=",">
+			<isNotEmpty property="taskName">
+				#taskName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				#busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				#busiId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="applyRegionCode" prepend=",">
+			<isNotEmpty property="applyRegionCode">
+				#applyRegionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downloadNum" prepend=",">
+			<isNotEmpty property="downloadNum">
+				#downloadNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryNum" prepend=",">
+			<isNotEmpty property="inventoryNum">
+				#inventoryNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="applyInventoryNum" prepend=",">
+			<isNotEmpty property="applyInventoryNum">
+				#applyInventoryNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryName" prepend=",">
+			<isNotEmpty property="inventoryName">
+				#inventoryName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmInventoryInfo" parameterClass="java.util.Map">
+	UPDATE RM_INVENTORY_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="taskName" prepend=",">
+		    <isNotEmpty property="taskName">
+			    TASK_NAME = #taskName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+		    <isNotEmpty property="busiType">
+			    BUSI_TYPE = #busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+		    <isNotEmpty property="busiId">
+			    BUSI_ID = #busiId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="applyRegionCode" prepend=",">
+		    <isNotEmpty property="applyRegionCode">
+			    APPLY_REGION_CODE = #applyRegionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="downloadNum" prepend=",">
+		    <isNotEmpty property="downloadNum">
+			    DOWNLOAD_NUM = #downloadNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryNum" prepend=",">
+		    <isNotEmpty property="inventoryNum">
+			    INVENTORY_NUM = #inventoryNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="applyInventoryNum" prepend=",">
+		    <isNotEmpty property="applyInventoryNum">
+			    APPLY_INVENTORY_NUM = #applyInventoryNum#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="inventoryName" prepend=",">
+		    <isNotEmpty property="inventoryName">
+			    INVENTORY_NAME = #inventoryName#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmInventoryInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_INVENTORY_INFO
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmInventoryInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_INVENTORY_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmInventoryInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			TASK_NAME AS taskName,
+			BUSI_TYPE AS busiType,
+			BUSI_ID AS busiId,
+			OPER_NO AS operNo,
+			OPER_NAME AS operName,
+			OPER_TIME AS operTime,
+			APPLY_REGION_CODE AS applyRegionCode,
+			DOWNLOAD_NUM AS downloadNum,
+			INVENTORY_NUM AS inventoryNum,
+			APPLY_INVENTORY_NUM AS applyInventoryNum,
+			STATUS_CODE AS statusCode,
+			INVENTORY_NAME AS inventoryName
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_INVENTORY_INFO $W$
+	</select>
+</sqlMap>

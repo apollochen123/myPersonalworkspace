@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+		    
+
+	<!-- *******************************************数据代理层 start************************************************* -->
+	
+	<!-- 接口配置 -->
+	<bean id="proxyDataDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter">
+		<property name="hbaseRowKey" ref="hbaseRowKey"></property>
+	</bean>
+	<bean id="proxyDataInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor">
+		<property name="cacheKey" ref="cacheKey"></property>
+		<property name="hbaseQualifier" ref="hbaseQualifier"></property>
+		<property name="hbaseRowKey" ref="hbaseRowKey"></property>
+		<property name="iBatisFields" ref="iBatisFields"></property>
+	</bean>
+	<bean id="proxyDataSelector" class="${proxyDataSelector}">
+		<property name="cacheKey" ref="cacheKey"></property>
+		<property name="iBatisQueryFilter" ref="iBatisQueryFilter"></property>
+		<property name="hbaseRowKey" ref="hbaseRowKey"></property>
+		<property name="hbaseQualifier" ref="hbaseQualifier"></property>
+	</bean>
+	<bean id="proxyDataUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater"></bean>
+	<bean id="proxyMsgSender" class="com.sitech.strategy.persist.capacity.impl.ProxyMsgSender">
+		<property name="assemblyMsgStructure" ref="assemblyMsgStructure"></property>
+		<property name="msgDML" ref="proceMsgDML"></property>
+		<property name="SMPPDML" ref="proceSMPPDML"></property>
+		<property name="msgTopic" ref="msgTopic"></property>
+	</bean>
+	
+	<!-- insert实现配置 -->
+	<bean id="attachInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$AttachInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmAttachInfo" ref="rmAttachInfo"></property>
+	</bean>
+	<bean id="actDemandInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$ActDemandInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmActDemandInfo" ref="rmActDemandInfo"></property>
+	</bean>
+	<bean id="auditInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$AuditInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmAuditRecordInfo" ref="rmAuditRecordInfo"></property>
+		<property name="rmAuditNoInfo" ref="rmAuditNoInfo"></property>
+	</bean> 
+	<bean id="contentInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$ContentInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmContentInfo" ref = "rmContentInfo"></property>
+		<property name="rmContentDetailInfo" ref = "rmContentDetailInfo"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+	</bean>
+	<bean id="channelInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$ChannelInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="channelShowNumCache" ref = "channelShowNumCache"></property>
+		<property name ="rmChannelInfo" ref = "rmChannelInfo"></property>
+	</bean>
+	<bean id="channelShowInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$ChannelShowInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmChannelShowInfo" ref="rmChannelShowInfo"></property>
+	</bean>
+	<bean id="commonInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$CommonInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="resultListCache" ref = "resultListCache"></property>
+	</bean>
+	<bean id="configInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$ConfigInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmCodeNameDict" ref="rmCodeNameDict"></property>
+	</bean>
+	<bean id="coupleBackInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$CoupleBackInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="marketCaseRecommonedCloseCache" ref="marketCaseRecommonedCloseCache"></property>
+		<property name="rmAcceptRecordInfo" ref="rmAcceptRecordInfo"></property>
+		<property name="rmChannelCallContactInfo" ref="rmChannelCallContactInfo"></property>
+		<property name="rmChannelSMSContactInfo" ref="rmChannelSMSContactInfo"></property>
+		<property name="rmClickRecordInfoHbase" ref="rmClickRecordInfoHbase"></property>
+		<property name="rmContactRecordInfoHbase" ref="rmContactRecordInfoHbase"></property>
+		<property name="rmPushArriveInfoHbase" ref="rmPushArriveInfoHbase"></property>
+		<property name="rmReceiptRecordInfoHbase" ref="rmReceiptRecordInfoHbase"></property>
+		<property name="rmRecommendCloseInfoHbase" ref="rmRecommendCloseInfoHbase"></property>
+		<property name="rmRecommendRecordInfoHbase" ref="rmRecommendRecordInfoHbase"></property>
+		<property name="rmSMSAcceptRecordInfoHbase" ref="rmSMSAcceptRecordInfoHbase"></property>
+		<property name="rmSMSPullInfoHbase" ref="rmSMSPullInfoHbase"></property>
+		<property name="rmUserAcceptMarketCaseInfo" ref="rmUserAcceptMarketCaseInfo"></property>
+	</bean>
+	<bean id="custGroupInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$CustGroupInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+	    <property name="rmCustGroupAttributeInfo" ref="rmCustGroupAttributeInfo"></property>
+		<property name ="rmCustGroupInfo" ref = "rmCustGroupInfo"></property>
+		<property name ="rmCustGroupLabelInfo" ref = "rmCustGroupLabelInfo"></property>
+		<property name ="custGroupLabelFormulaCache" ref = "custGroupLabelFormulaCache"></property>
+		<property name ="rmCustGroupDetailInfoHive" ref = "rmCustGroupDetailInfoHive"></property>
+		<property name ="rmCustGroupLabelInfoHive" ref = "rmCustGroupLabelInfoHive"></property>
+		<property name="rmRelationRel" ref="rmRelationRel"></property>
+		<property name="rmCustgroupDetailInfoSpark" ref="rmCustgroupDetailInfoSpark"></property> 
+		<property name="rmCustGroupDetailInfoHbase" ref="rmCustGroupDetailInfoHbase"></property> 
+		<property name="rmCustGroupCustomLabelInfoHbase" ref="rmCustGroupCustomLabelInfoHbase"></property> 
+	</bean>
+	<bean id="evaluateInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$EvaluateInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="rmMarketCaseOrderReportInfo" ref = "rmMarketCaseOrderReportInfo"></property>
+		<property name ="rmProductCommodityReportInfo" ref = "rmProductCommodityReportInfo"></property>
+	</bean>
+	<bean id="eventInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$EventInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="feeAndEventRelCache" ref = "feeAndEventRelCache"></property>		
+		<property name ="productAndEventRelCache" ref = "productAndEventRelCache"></property>		
+		<property name ="rmEventInfo" ref = "rmEventInfo"></property>
+		<property name ="rmEventDetailInfo" ref = "rmEventDetailInfo"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>		
+	</bean>
+	<bean id="inventoryInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$InventoryInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="rmInventoryInfo" ref = "rmInventoryInfo"></property>		
+	</bean>
+	<bean id="loginInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$LoginInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="rmMenuInfo" ref = "rmMenuInfo"></property>
+		<property name ="rmRoleInfo" ref = "rmRoleInfo"></property>
+		<property name ="rmRoleUserRel" ref = "rmRoleUserRel"></property>
+		<property name ="rmRoleMenuRel" ref = "rmRoleMenuRel"></property>
+		<property name ="rmLoginMsgInfo" ref = "rmLoginMsgInfo"></property>
+	</bean>
+	<bean id="marketCaseInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$MarketCaseInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="channelTriggerMarketCaseCache" ref = "channelTriggerMarketCaseCache"></property>
+		<property name ="eventTriggerMarketCaseCache" ref = "eventTriggerMarketCaseCache"></property>
+		<property name ="marketCaseDetailCache" ref = "marketCaseDetailCache"></property>
+		<property name ="marketCaseRecommendStatusCache" ref = "marketCaseRecommendStatusCache"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+		<property name="rmMarketCaseAttributeInfo" ref="rmMarketCaseAttributeInfo"></property>
+		<property name ="rmMarketCaseInfo" ref = "rmMarketCaseInfo"></property>
+		<property name ="statisticCache" ref = "statisticCache"></property>
+		<property name ="waitCreateBatchPushMarketCaseCache" ref = "waitCreateBatchPushMarketCaseCache"></property>
+		<property name ="waitCreateCallTaskMarketCaseCache" ref = "waitCreateCallTaskMarketCaseCache"></property>
+		<property name ="waitCreateChannelTaskMarketCaseCache" ref = "waitCreateChannelTaskMarketCaseCache"></property>
+		<property name ="waitSendBatchPushMarketCaseCache" ref = "waitSendBatchPushMarketCaseCache"></property>		
+	</bean>
+	<bean id="operationLogInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$OperationLogInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmMessageTriggerLogInfo" ref="rmMessageTriggerLogInfo"></property>
+	</bean>
+	<bean id="monitorInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$MonitorInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmMonitorWarningInfo" ref="rmMonitorWarningInfo"></property>
+		<property name="rmServicemonitoringInfo" ref="rmServicemonitoringInfo"></property>
+		<property name="serviceMonitoringCache" ref="serviceMonitoringCache"></property>
+	</bean>
+	<bean id="positionInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$PositionInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name = "rmAttributeInfo" ref ="rmAttributeInfo" ></property>
+		<property name = "rmPositionInfo" ref ="rmPositionInfo" ></property>
+	</bean>
+	<bean id="priorityInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$PriorityInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmAreaPriorityInfo" ref="rmAreaPriorityInfo"></property>
+		<property name="rmCustGroupPriorityInfo" ref="rmCustGroupPriorityInfo"></property>
+	</bean>
+	<bean id="ruleInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$RuleInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="closeRuleCache" ref = "closeRuleCache"></property>
+		<property name ="evaluateRuleCache" ref = "evaluateRuleCache"></property>
+		<property name ="globalRuleCache" ref = "globalRuleCache"></property>
+		<property name ="mutexRuleCache" ref = "mutexRuleCache"></property>
+		<property name ="rmRuleInfo" ref = "rmRuleInfo"></property>
+		<property name ="rmRuleDetailInfo" ref = "rmRuleDetailInfo"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+		<property name ="rmWaitSendTaskControlInfo" ref = "rmWaitSendTaskControlInfo"></property>
+	</bean>
+	<bean id="systemDealInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$SystemDealInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmShellProcessExecuteInfo" ref = "rmShellProcessExecuteInfo"></property>
+	</bean>
+	<bean id="shortMessageInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$ShortMessageInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmShortMessageInfo" ref = "rmShortMessageInfo"></property>
+		<property name="rmRoleUserRel" ref="rmRoleUserRel"></property>
+	</bean>
+	<bean id="statisticInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$StatisticInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="statisticCache" ref="statisticCache"></property>
+		<property name="rmNoticeInfo" ref="rmNoticeInfo"></property>
+	</bean>
+	<bean id="taskInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$TaskInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmBatchPushTaskInfoHbase" ref = "rmBatchPushTaskInfoHbase"></property>		
+		<property name="rmBatchPushTaskExcepInfoHbase" ref = "rmBatchPushTaskExcepInfoHbase"></property>	
+		<property name="rmBatchPushTaskSuccInfoHbase" ref = "rmBatchPushTaskSuccInfoHbase"></property>	
+		<property name="rmChannelTaskInfo" ref = "rmChannelTaskInfo"></property>
+		<property name="rmChannelTaskInfoHbase" ref = "rmChannelTaskInfoHbase"></property>
+		<property name="rmChannelTaskInfoHive" ref = "rmChannelTaskInfoHive"></property>		
+		<property name="rmRecommonedCloseInfoSpark" ref = "rmRecommonedCloseInfoSpark"></property>		
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>			
+		<property name="rmTaskAdjustInfo" ref = "rmTaskAdjustInfo"></property>		
+		<property name="rmWaitSendBatchPushTaskInfoHbase" ref = "rmWaitSendBatchPushTaskInfoHbase"></property>		
+		<property name="statisticCache" ref = "statisticCache"></property>
+		<property name="waitSynChannelTaskCache" ref = "waitSynChannelTaskCache"></property>		
+	</bean>
+	<bean id="templateInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$TemplateInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name ="rmTemplateInfo" ref = "rmTemplateInfo"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+	</bean>
+	<bean id="testInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$TestInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmHbaseTestInfoHbase" ref = "rmHbaseTestInfoHbase"></property>
+		<property name="testTable" ref = "testTable"></property>
+	</bean>
+	<bean id="testHbaseInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$TestHbaseInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmHbaseTestInfoHbase" ref = "rmHbaseTestInfoHbase"></property>
+	</bean>
+	<bean id="userInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$UserInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmGreyInfo" ref="rmGreyInfo"></property>
+		<property name="rmGreyInfoHbase" ref="rmGreyInfoHbase"></property>
+		<property name="rmUserAcceptMarketCaseInfoHbase" ref="rmUserAcceptMarketCaseInfoHbase"></property>
+		<property name="rmUserLabelTmp" ref="rmUserLabelTmp"></property>
+		<property name="rmDifferentNetPhonePoolInfo" ref="rmDifferentNetPhonePoolInfo"></property>
+		<property name="rmUserRecommendControlInfoHbase" ref="rmUserRecommendControlInfoHbase"></property>
+		<property name="rmUserRecommendMarketCaseInfoHbase" ref="rmUserRecommendMarketCaseInfoHbase"></property>
+	</bean>
+	<bean id="operLogInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$OperLogInsertor">
+	    <constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmOperLogInfoHbase" ref="rmOperLogInfoHbase"></property>
+	</bean>
+	<bean id="workConfigInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$WorkConfigInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmWorkCofigInfo" ref="rmWorkCofigInfo"></property>
+	</bean>
+	<bean id="questionNaireInsertor" class="com.sitech.strategy.persist.capacity.impl.ProxyDataInsertor$QuestionNaireInsertor">
+		<constructor-arg ref="proxyDataInsertor"></constructor-arg>
+		<property name="rmQuestionNaireInfo" ref="rmQuestionNaireInfo"></property>
+		<property name="marketCaseQuestionCache" ref="marketCaseQuestionCache"></property>
+	</bean>
+
+	<!-- select实现配置 -->
+	<bean id="attachSelector" class="${proxyDataSelector}$AttachSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmAttachInfo" ref="rmAttachInfo"></property>
+	</bean>
+	<bean id="actDemandSelector" class="${proxyDataSelector}$ActDemandSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmActDemandInfo" ref="rmActDemandInfo"></property>
+	</bean>
+	<bean id="auditSelector" class="${proxyDataSelector}$AuditSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmAuditRecordInfo" ref = "rmAuditRecordInfo"></property>
+		<property name ="rmAuditNoInfo" ref = "rmAuditNoInfo"></property>
+	</bean>
+	<bean id="batchPushTaskSelector" class="${proxyDataSelector}$BatchPushTaskSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmBatchPushTaskInfoHbase" ref="rmBatchPushTaskInfoHbase"></property>
+		<property name="rmWaitSendBatchPushTaskInfoHbase" ref="rmWaitSendBatchPushTaskInfoHbase"></property>
+		<property name="statisticCache" ref="statisticCache"></property>
+		<property name="proceServiceDML" ref="proceServiceDML"></property>
+	</bean> 
+	<bean id="channelSelector" class="${proxyDataSelector}$ChannelSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmChannelShowInfo" ref = "rmChannelShowInfo"></property>
+		<property name ="channelShowNumCache" ref = "channelShowNumCache"></property>
+		<property name ="rmChannelInfo" ref = "rmChannelInfo"></property>
+	</bean>
+	<bean id="commonSelector" class="${proxyDataSelector}$CommonSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="resultListCache" ref = "resultListCache"></property>
+		<property name ="commonInfo" ref = "commonInfo"></property>
+		<property name ="commonInfoHive" ref = "commonInfoHive"></property>
+	</bean>
+	<bean id="contentSelector" class="${proxyDataSelector}$ContentSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmContentInfo" ref = "rmContentInfo"></property>
+		<property name="rmContentDetailInfo" ref = "rmContentDetailInfo"></property>
+		<property name="rmRelationRel" ref = "rmRelationRel"></property>
+	</bean>
+	<bean id="configSelector" class="${proxyDataSelector}$ConfigSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmCodeNameDict" ref="rmCodeNameDict"></property>
+	</bean>
+	<bean id="coupleBackSelector" class="${proxyDataSelector}$CoupleBackSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="marketCaseRecommonedCloseCache" ref="marketCaseRecommonedCloseCache"></property>
+		<property name="rmRecommendRecordInfoHbase" ref="rmRecommendRecordInfoHbase"></property>
+		<property name="rmUserRecommendMarketCaseInfo" ref="rmUserRecommendMarketCaseInfo"></property>
+	</bean>
+	<bean id="custGroupSelector" class="${proxyDataSelector}$CustGroupSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="cocCustomerGroupHbase" ref = "cocCustomerGroupHbase"></property>
+		<property name ="rmCustGroupDetailInfoHbase" ref = "rmCustGroupDetailInfoHbase"></property>
+		<property name ="rmCustGroupCustomLabelInfoHbase" ref = "rmCustGroupCustomLabelInfoHbase"></property>
+		<property name ="rmCustGroupAttributeInfo" ref= "rmCustGroupAttributeInfo"></property>
+		<property name ="rmCustGroupInfo" ref = "rmCustGroupInfo"></property>
+		<property name ="rmCustGroupHandleRecordInfo" ref="rmCustGroupHandleRecordInfo"></property>
+		<property name ="rmCustGroupLabelInfo" ref = "rmCustGroupLabelInfo"></property>
+		<property name ="custGroupLabelFormulaCache" ref = "custGroupLabelFormulaCache"></property>
+		<property name ="rmCustGroupDetailInfoHive" ref = "rmCustGroupDetailInfoHive"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+		<property name ="rmUserLabelInfoSpark" ref = "rmUserLabelInfoSpark"></property>
+		<property name ="rmCustgroupDetailInfoSpark" ref = "rmCustgroupDetailInfoSpark"></property>
+	</bean>
+	<bean id="eventSelector" class="${proxyDataSelector}$EventSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="feeAndEventRelCache" ref = "feeAndEventRelCache"></property>
+		<property name ="productAndEventRelCache" ref = "productAndEventRelCache"></property>
+		<property name="proceServiceDML" ref="proceServiceDML"></property>
+		<property name ="rmEventInfo" ref = "rmEventInfo"></property>
+		<property name ="rmEventDetailInfo" ref = "rmEventDetailInfo"></property>
+		<property name ="rmAreaPriorityInfo" ref = "rmAreaPriorityInfo"></property>
+		<property name="rmRelationRel" ref="rmRelationRel"></property>
+	</bean>
+	<bean id="evaluateSelector" class="${proxyDataSelector}$EvaluateSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmBatchPushTaskSuccInfo" ref="rmBatchPushTaskSuccInfo"></property>
+		<property name="rmBatchPushTaskExcepInfo" ref="rmBatchPushTaskExcepInfo"></property>
+		<property name="rmBatchPushTaskInfo" ref="rmBatchPushTaskInfo"></property>
+		<property name="rmWaitSendBatchPushTaskInfo" ref="rmWaitSendBatchPushTaskInfo"></property>
+	    <property name="rmChannelBussinessInfo" ref="rmChannelBussinessInfo"></property>
+	    <property name="rmMarketCaseBussinessInfo" ref="rmMarketCaseBussinessInfo"></property>
+	 	<property name ="rmMarketCaseOrderReportInfo" ref = "rmMarketCaseOrderReportInfo"></property>
+	    <property name="rmTouchCountInfo" ref="rmTouchCountInfo"></property>
+	    <property name="rmEvaluateStatisticsInfoHive" ref="rmEvaluateStatisticsInfoHive"></property>
+	    <property name="rmProductCommodityReportInfo" ref="rmProductCommodityReportInfo"></property>	    
+	</bean>
+	<bean id="inventorySelector" class="${proxyDataSelector}$InventorySelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+	    <property name="rmInventoryInfo" ref="rmInventoryInfo"></property>
+	</bean>
+	<bean id="labelCodeNameSelector" class="${proxyDataSelector}$LabelCodeNameSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+	    <property name="rmLabelCodeNameDict" ref="rmLabelCodeNameDict"></property>
+	</bean>
+	<bean id="loginSelector" class="${proxyDataSelector}$LoginSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmLoginMsgInfo" ref = "rmLoginMsgInfo"></property>
+		<property name ="rmLoginMsgInfoHbase" ref = "rmLoginMsgInfoHbase"></property>
+		<property name ="rmMenuInfo" ref = "rmMenuInfo"></property>
+		<property name ="rmRoleInfo" ref = "rmRoleInfo"></property>
+		<property name ="rmRoleUserRel" ref = "rmRoleUserRel"></property>
+		<property name ="rmRoleMenuRel" ref = "rmRoleMenuRel"></property>
+	</bean>
+	<bean id="marketCaseSelector" class="${proxyDataSelector}$MarketCaseSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="channelTriggerMarketCaseCache" ref = "channelTriggerMarketCaseCache"></property>
+		<property name ="eventTriggerMarketCaseCache" ref = "eventTriggerMarketCaseCache"></property>
+		<property name ="marketCaseDetailCache" ref = "marketCaseDetailCache"></property>
+		<property name ="marketCaseRecommendStatusCache" ref = "marketCaseRecommendStatusCache"></property>
+		<property name ="proceServiceDML" ref = "proceServiceDML"></property>
+		<property name ="rmMarketCaseInfo" ref="rmMarketCaseInfo"></property>
+		<property name ="rmRecommendCloseInfoHbase" ref = "rmRecommendCloseInfoHbase"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+		<property name ="statisticCache" ref="statisticCache"></property>
+		<property name ="waitCreateBatchPushMarketCaseCache" ref = "waitCreateBatchPushMarketCaseCache"></property>
+		<property name ="waitCreateCallTaskMarketCaseCache" ref = "waitCreateCallTaskMarketCaseCache"></property>
+		<property name ="waitCreateChannelTaskMarketCaseCache" ref = "waitCreateChannelTaskMarketCaseCache"></property>
+		<property name ="waitSendBatchPushMarketCaseCache" ref = "waitSendBatchPushMarketCaseCache"></property>
+		<property name ="evaluateRuleCache" ref = "evaluateRuleCache"></property>
+		<property name ="closeRuleCache" ref = "closeRuleCache"></property>
+	</bean>
+	<bean id="monitorSelector" class="${proxyDataSelector}$MonitorSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmServicemonitoringInfo" ref="rmServicemonitoringInfo"></property>
+		<property name="rmMonitorWarningInfo" ref="rmMonitorWarningInfo"></property>
+		<property name="serviceMonitoringCache" ref="serviceMonitoringCache"></property>
+	</bean>
+	<bean id="operLogSelector" class="${proxyDataSelector}$OperLogSelector">
+	    <constructor-arg ref="proxyDataSelector"></constructor-arg>
+	    <property name="rmOperLogInfo" ref="rmOperLogInfo"></property>
+	    <property name="rmMessageTriggerLogInfo" ref="rmMessageTriggerLogInfo"></property>
+	</bean>
+	<bean id="productCommoditySelector" class="${proxyDataSelector}$ProductCommoditySelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmProductCommodityInfo" ref = "rmProductCommodityInfo"></property>
+	</bean> 
+	<bean id="productSelector" class="${proxyDataSelector}$ProductSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmProductInfo" ref = "rmProductInfo"></property>
+		<property name ="proceServiceDML" ref = "proceServiceDML"></property>
+	</bean> 
+	<bean id="positionSelector" class="${proxyDataSelector}$PositionSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name = "rmAttributeInfo" ref ="rmAttributeInfo" ></property>
+		<property name = "rmPositionInfo" ref ="rmPositionInfo" ></property>
+	</bean>
+	<bean id="prioritySelector" class="${proxyDataSelector}$PrioritySelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmAreaPriorityInfo" ref="rmAreaPriorityInfo"></property>
+		<property  name="rmCustGroupPriorityInfo" ref="rmCustGroupPriorityInfo"></property>
+	</bean>
+	<bean id="ruleSelector" class="${proxyDataSelector}$RuleSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="globalRuleCache" ref = "globalRuleCache"></property>
+		<property name ="mutexRuleCache" ref = "mutexRuleCache"></property>
+		<property name ="rmRuleInfo" ref = "rmRuleInfo"></property>
+		<property name ="rmRuleDetailInfo" ref = "rmRuleDetailInfo"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+		<property name ="rmWaitSendTaskControlInfo" ref = "rmWaitSendTaskControlInfo"></property>
+	</bean>
+	<bean id="shortMessageSelector" class="${proxyDataSelector}$ShortMessageSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmShortMessageInfo" ref = "rmShortMessageInfo"></property>
+	</bean>
+	<bean id="statisticSelector" class="${proxyDataSelector}$StatisticSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmNoticeInfo" ref="rmNoticeInfo"></property>
+		<property name="statisticCache" ref = "statisticCache"></property>
+	</bean>
+	<bean id="systemDealSelector" class="${proxyDataSelector}$SystemDealSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmShellProcessExecuteInfo" ref = "rmShellProcessExecuteInfo"></property>
+	</bean>
+	<bean id="taskSelector" class="${proxyDataSelector}$TaskSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmChannelTaskInfo" ref = "rmChannelTaskInfo"></property>
+		<property name ="rmChannelTaskInfoSpark" ref = "rmChannelTaskInfoSpark"></property>
+		<property name ="rmChannelTaskInfoHbase" ref = "rmChannelTaskInfoHbase"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+		<property name ="rmTaskAdjustInfo" ref = "rmTaskAdjustInfo"></property>
+		<property name ="waitSynChannelTaskCache" ref = "waitSynChannelTaskCache"></property>
+	</bean>
+	<bean id="templateSelector" class="${proxyDataSelector}$TemplateSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmTemplateInfo" ref = "rmTemplateInfo"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+	</bean>
+	<bean id="testSelector" class="${proxyDataSelector}$TestSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name ="rmHbaseTestInfoHbase" ref = "rmHbaseTestInfoHbase"></property>
+		<property name ="rmHiveTestInfoHive" ref = "rmHiveTestInfoHive"></property>
+		<property name ="rmHiveTestHbaseInfoHive" ref = "rmHiveTestHbaseInfoHive"></property>
+		<property name ="rmHiveTestInfoSpark" ref = "rmHiveTestInfoSpark"></property>
+		<property name ="rmHiveTestHbaseInfoSpark" ref = "rmHiveTestHbaseInfoSpark"></property>
+	</bean>
+	<bean id="userSelector" class="${proxyDataSelector}$UserSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="commonInfo" ref="commonInfo"></property>
+		<property name ="rmUserLabelInfoHbase" ref = "rmUserLabelInfoHbase"></property>
+		<property name="rmGreyInfo" ref="rmGreyInfo"></property>
+		<property name="rmGreyInfoHbase" ref="rmGreyInfoHbase"></property>
+		<property name="rmlabelArchivesTmp" ref="rmlabelArchivesTmp"></property>
+		<property name="rmUserInfoHbase" ref="rmUserInfoHbase"></property>
+		<property name="rmUserAcceptMarketCaseInfoHbase" ref="rmUserAcceptMarketCaseInfoHbase"></property>
+		<property name="rmUserLabelTmp" ref="rmUserLabelTmp"></property>
+		<property name="rmDifferentNetPhonePoolInfo" ref="rmDifferentNetPhonePoolInfo"></property>
+		<property name="rmUserInfo" ref="rmUserInfo"></property>
+		<property name="rmUserRecommendControlInfoHbase" ref="rmUserRecommendControlInfoHbase"></property>
+		<property name="rmUserRelInfoHbase" ref="rmUserRelInfoHbase"></property>
+		<property name="rmRecommendRecordInfo" ref="rmRecommendRecordInfo"></property>
+		<property name="rmReceiptRecordInfo" ref="rmReceiptRecordInfo"></property>
+	</bean>
+	<bean id="workConfigSelector" class="${proxyDataSelector}$WorkConfigSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmWorkCofigInfo" ref="rmWorkCofigInfo"></property>
+	</bean>
+	<bean id="questionNaireSelector" class="${proxyDataSelector}$QuestionNaireSelector">
+		<constructor-arg ref="proxyDataSelector"></constructor-arg>
+		<property name="rmQuestionNaireInfo" ref="rmQuestionNaireInfo"></property>
+		<property name="marketCaseQuestionCache" ref="marketCaseQuestionCache"></property>
+	</bean>
+	<!-- update实现配置 -->
+	<bean id="actDemandUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$ActDemandUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmActDemandInfo" ref="rmActDemandInfo"></property>
+	</bean>
+	<bean id="auditUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$AuditUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name ="rmAuditRecordInfo" ref = "rmAuditRecordInfo"></property>
+	</bean>
+	<bean id="channelUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$ChannelUpdater">
+	    <constructor-arg ref="proxyDataUpdater"></constructor-arg>
+	    <property name ="rmChannelInfo" ref = "rmChannelInfo"></property>
+	</bean>
+	<bean id="channelShowUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$ChannelShowUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmChannelShowInfo" ref="rmChannelShowInfo"></property>
+	</bean>
+	<bean id="configUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$ConfigUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name ="rmCodeNameDict" ref = "rmCodeNameDict"></property>
+	</bean>
+	<bean id="custGroupUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$CustGroupUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+	    <property name ="rmCustGroupAttributeInfo" ref="rmCustGroupAttributeInfo"></property>
+		<property name ="rmCustGroupInfo" ref = "rmCustGroupInfo"></property>
+		<property name ="rmCustGroupLabelInfo" ref = "rmCustGroupLabelInfo"></property>
+	</bean>
+	<bean id="eventUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$EventUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name ="rmEventInfo" ref = "rmEventInfo"></property>
+		<property name ="rmEventDetailInfo" ref = "rmEventDetailInfo"></property>
+	</bean>
+	<bean id="loginUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$LoginUpdater">
+	    <constructor-arg ref="proxyDataUpdater"></constructor-arg>
+	    <property name="rmRoleInfo" ref="rmRoleInfo"></property>
+	    <property name="rmMenuInfo" ref="rmMenuInfo"></property>
+	    <property name="rmLoginMsgInfo" ref="rmLoginMsgInfo"></property>  
+	</bean>
+	<bean id="marketCaseUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$MarketCaseUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmMarketCaseAttributeInfo" ref="rmMarketCaseAttributeInfo"></property>
+		<property name ="rmMarketCaseInfo" ref = "rmMarketCaseInfo"></property>
+	</bean>
+	<bean id="positionUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$PositionUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmPositionInfo" ref="rmPositionInfo"></property>
+	</bean>
+	<bean id="systemDealUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$SystemDealUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name ="rmShellProcessExecuteInfo" ref = "rmShellProcessExecuteInfo"></property>
+	</bean>
+	<bean id="shortMessageUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$ShortMessageUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmShortMessageInfo" ref = "rmShortMessageInfo"></property>
+	</bean>
+	<bean id="statisticUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$StatisticUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmNoticeInfo" ref = "rmNoticeInfo"></property>
+	</bean>
+	<bean id="taskUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$TaskUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmChannelTaskInfo" ref="rmChannelTaskInfo"></property>
+	</bean>
+	<bean id="templateUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$TemplateUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmTemplateInfo" ref="rmTemplateInfo"></property>
+	</bean>
+	<bean id="userUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$UserUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmGreyInfo" ref="rmGreyInfo"></property>
+		<property name="rmUserLabelTmp" ref="rmUserLabelTmp"></property>
+		<property name="rmDifferentNetPhonePoolInfo" ref="rmDifferentNetPhonePoolInfo"></property>
+	</bean>
+	<bean id="workConfigUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$WorkConfigUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmWorkCofigInfo" ref="rmWorkCofigInfo"></property>
+	</bean>
+	<bean id="questionNaireUpdater" class="com.sitech.strategy.persist.capacity.impl.ProxyDataUpdater$QuestionNaireUpdater">
+		<constructor-arg ref="proxyDataUpdater"></constructor-arg>
+		<property name="rmQuestionNaireInfo" ref="rmQuestionNaireInfo"></property>
+	</bean>
+	<!-- delete实现配置 -->
+	<bean id="actDemandDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$ActDemandDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmActDemandInfo" ref="rmActDemandInfo"></property>
+	</bean>
+	<bean id="attachDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$AttachDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmAttachInfo" ref="rmAttachInfo"></property>
+	</bean>
+	<bean id="auditDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$AuditDeleter">
+	    <constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name="rmAuditNoInfo" ref="rmAuditNoInfo"></property>
+	</bean>
+	<bean id="channelDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$ChannelDeleter">
+	    <constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name="rmChannelInfo" ref="rmChannelInfo"></property>
+	    <property name="rmRelationRel" ref="rmRelationRel"></property>
+	</bean>
+	<bean id="contentDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$ContentDeleter">
+	    <constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name="rmContentDetailInfo" ref="rmContentDetailInfo"></property>
+	    <property name="rmContentInfo" ref="rmContentInfo"></property>
+	   	<property name="rmRelationRel" ref="rmRelationRel"></property>
+	</bean>
+	<bean id="channelShowDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$ChannelShowDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmChannelShowInfo" ref="rmChannelShowInfo"></property>
+	</bean>
+	<bean id="configDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$ConfigDeleter">
+	    <constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name="rmCodeNameDict" ref="rmCodeNameDict"></property>
+	</bean>
+	<bean id="custGroupDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$CustGroupDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name ="staticLabelCustGroupCache" ref = "staticLabelCustGroupCache"></property>
+		<property name ="rmCustGroupInfo" ref = "rmCustGroupInfo"></property>
+		<property name ="rmCustGroupLabelInfo" ref = "rmCustGroupLabelInfo"></property>
+		<property name ="rmCustGroupDetailInfoHive" ref = "rmCustGroupDetailInfoHive"></property>
+		<property name ="rmCustGroupAttributeInfo" ref = "rmCustGroupAttributeInfo"></property>
+	</bean>
+	<bean id="inventoryDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$InventoryDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name ="rmInventoryInfo" ref = "rmInventoryInfo"></property>		
+	</bean>
+	<bean id="loginDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$LoginDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmMenuInfo" ref="rmMenuInfo"></property>
+		<property name="rmRoleInfo" ref="rmRoleInfo"></property>
+		<property name="rmRoleUserRel" ref="rmRoleUserRel"></property>
+		<property name="rmRoleMenuRel" ref="rmRoleMenuRel"></property>
+	</bean>
+	<bean id="marketCaseDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$MarketCaseDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name="rmMarketCaseAttributeInfo" ref="rmMarketCaseAttributeInfo"></property>
+		<property name ="rmMarketCaseInfo" ref = "rmMarketCaseInfo"></property>
+		<property name ="rmActDemandInfo" ref = "rmActDemandInfo"></property>
+		<property name ="marketCaseRecommendStatusCache" ref = "marketCaseRecommendStatusCache"></property>
+		<property name ="rmRelationRel" ref = "rmRelationRel"></property>
+		<property name ="waitSendBatchPushMarketCaseCache" ref = "waitSendBatchPushMarketCaseCache"></property>
+		<property name ="waitCreateBatchPushMarketCaseCache" ref = "waitCreateBatchPushMarketCaseCache"></property>
+	</bean>
+	<bean id="monitorDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$MonitorDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmMonitorWarningInfo" ref="rmMonitorWarningInfo"></property>
+	</bean>
+	<bean id="positionDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$PositionDeleter">
+	    <constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name ="rmAttributeInfo" ref ="rmAttributeInfo" ></property>
+	    <property name="rmPositionInfo" ref="rmPositionInfo"></property>
+	</bean>
+	<bean id="priorityDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$PriorityDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmAreaPriorityInfo" ref="rmAreaPriorityInfo"></property>
+		<property name="rmCustGroupPriorityInfo" ref="rmCustGroupPriorityInfo"></property>
+	</bean>
+	<bean id="relationDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$RelationDeleter">
+	    <constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name="rmRelationRel" ref="rmRelationRel"></property>
+	</bean>
+	<bean id="ruleDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$RuleDeleter">
+	    <constructor-arg ref="proxyDataDeleter"></constructor-arg>
+	    <property name="rmRuleDetailInfo" ref="rmRuleDetailInfo"></property>
+	    <property name="rmRuleInfo" ref="rmRuleInfo"></property>
+	</bean>
+	<bean id="statisticDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$StatisticDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmNoticeInfo" ref = "rmNoticeInfo"></property>
+	</bean>
+	<bean id="shortMessageDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$ShortMessageDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmShortMessageInfo" ref = "rmShortMessageInfo"></property>
+		<property name="rmRoleUserRel" ref="rmRoleUserRel"></property>
+	</bean>
+	<bean id="taskDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$TaskDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmWaitSendBatchPushTaskInfoHbase" ref="rmWaitSendBatchPushTaskInfoHbase"></property>
+	</bean>
+	<bean id="templateDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$TemplateDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmTemplateInfo" ref="rmTemplateInfo"></property>
+	</bean>
+	<bean id="userDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$UserDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmGreyInfo" ref="rmGreyInfo"></property>
+		<property name="rmGreyInfoHbase" ref="rmGreyInfoHbase"></property>
+		<property name="rmUserLabelTmp" ref="rmUserLabelTmp"></property>
+		<property name="rmDifferentNetPhonePoolInfo" ref="rmDifferentNetPhonePoolInfo"></property>
+	</bean>
+	<bean id="workConfigDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$WorkConfigDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmWorkCofigInfo" ref="rmWorkCofigInfo"></property>
+	</bean>
+	<bean id="eventDeleter" class="com.sitech.strategy.persist.capacity.impl.ProxyDataDeleter$EventDeleter">
+		<constructor-arg ref="proxyDataDeleter"></constructor-arg>
+		<property name="rmEventDetailInfo" ref="rmEventDetailInfo"></property>
+		<property name="rmEventInfo" ref="rmEventInfo"></property>
+	</bean>
+	
+	<!-- 消息发送器 -->
+	<bean id="batchPushSender" class="${batchPushSender}">
+		<constructor-arg ref="proxyMsgSender"></constructor-arg>
+	</bean>
+	<bean id="channelTaskSender" class="com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$ChannelTaskSender">
+		<constructor-arg ref="proxyMsgSender"></constructor-arg>
+	</bean>
+	<bean id="giveFeeSender" class="com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$GiveFeeSender">
+		<constructor-arg ref="proxyMsgSender"></constructor-arg>
+	</bean>
+	<bean id="giveProdSender" class="com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$GiveProdSender">
+		<constructor-arg ref="proxyMsgSender"></constructor-arg>
+	</bean>
+	<bean id="groupMsgEventSender" class="com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$GroupMsgEventSender">
+		<constructor-arg ref="proxyMsgSender"></constructor-arg>
+	</bean>
+	<bean id="recommendMsgSender" class="com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$RecommendMsgSender">
+		<constructor-arg ref="proxyMsgSender"></constructor-arg>
+	</bean>
+	<bean id="triggerMsgEventSender" class="com.sitech.strategy.persist.capacity.impl.ProxyMsgSender$TriggerMsgEventSender">
+		<constructor-arg ref="proxyMsgSender"></constructor-arg>
+	</bean>
+	
+	<!-- *******************************************数据代理层  end*************************************************** -->
+
+	
+	<!-- *******************************************数据操作层 start************************************************* -->
+	<!-- ibatis实现类配置 -->
+	<bean id="commonInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$CommonInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="testTable" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$TestTable">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmAttachInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmAttachInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmActDemandInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmActDemandInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmAuditRecordInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmAuditRecordInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmAuditNoInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmAuditNoInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmAreaPriorityInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmAreaPriorityInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmAttributeInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmAttributeInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmBatchPushTaskSuccInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmBatchPushTaskSuccInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmWaitSendBatchPushTaskInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmWaitSendBatchPushTaskInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmBatchPushTaskExcepInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmBatchPushTaskExcepInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmBatchPushTaskInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmBatchPushTaskInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmChannelBussinessInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmChannelBussinessInfo">
+	    <constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmChannelInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmChannelInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmChannelShowInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmChannelShowInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmChannelTaskInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmChannelTaskInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmContentDetailInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmContentDetailInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmContentInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmContentInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupPriorityInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmCustGroupPriorityInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupAttributeInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmCustGroupAttributeInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmCustGroupInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupHandleRecordInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RMCustGroupHandleRecordInfo">
+	    <constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupLabelInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmCustGroupLabelInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmCustgroupDetailInfoSpark" class="com.sitech.strategy.persist.capacity.impl.ProceSparkSQLDML$RmCustgroupDetailInfoSpark"> 
+		<constructor-arg ref="proceSparkSQLDML"></constructor-arg> 
+		<property name="hiveDBName" ref="hiveDBName"></property> 
+	</bean>
+	<bean id="rmCodeNameDict" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmCodeNameDict">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmDifferentNetPhonePoolInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmDifferentNetPhonePoolInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmEventDetailInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmEventDetailInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmEventInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmEventInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmInventoryInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmInventoryInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmGreyInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmGreyInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmLabelCodeNameDict" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmLabelCodeNameDict">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmlabelArchivesTmp" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmlabelArchivesTmp">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmLoginMsgInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmLoginMsgInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmMarketCaseBussinessInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmMarketCaseBussinessInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmMarketCaseAttributeInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmMarketCaseAttributeInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmMarketCaseInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmMarketCaseInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmMarketCaseOrderReportInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmMarketCaseOrderReportInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmMenuInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmMenuInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmMonitorWarningInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmMonitorWarningInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmMessageTriggerLogInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmMessageTriggerLogInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmNoticeInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmNoticeInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmOperLogInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmOperLogInfo">
+	     <constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmProductCommodityInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmProductCommodityInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmProductCommodityReportInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmProductCommodityReportInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmProductInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmProductInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>  
+	<bean id="rmPositionInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmPositionInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmRecommendRecordInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmRecommendRecordInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmRelationRel" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmRelationRel">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmReceiptRecordInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmReceiptRecordInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmRoleInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmRoleInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmRoleMenuRel" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmRoleMenuRel">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmRoleUserRel" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmRoleUserRel">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmRuleDetailInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmRuleDetailInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmWaitSendTaskControlInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmWaitSendTaskControlInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmRuleInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmRuleInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmServicemonitoringInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmServicemonitoringInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmShellProcessExecuteInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmShellProcessExecuteInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmShortMessageInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmShortMessageInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmTaskAdjustInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmTaskAdjustInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmTemplateInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmTemplateInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmTouchCountInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmTouchCountInfo">
+	    <constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmUserLabelTmp" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmUserLabelTmp">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmUserInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmUserInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmWorkCofigInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmWorkConfigInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<bean id="rmQuestionNaireInfo" class="com.sitech.strategy.persist.capacity.impl.ProceRDBMSDMLByIBatis$RmQuestionNaireInfo">
+		<constructor-arg ref="proceRDBMSDMLByIBatis"></constructor-arg>
+	</bean>
+	<!-- cache实现类配置 -->
+	<bean id="custGroupLabelFormulaCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$CustGroupLableFormulaCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="channelShowNumCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$ChannelShowNumCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="channelTriggerMarketCaseCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$ChannelTriggerMarketCaseCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="evaluateRuleCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$EvaluateRuleCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="closeRuleCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$CloseRuleCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="eventTriggerMarketCaseCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$EventTriggerMarketCaseCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="feeAndEventRelCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$FeeAndEventRelCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="globalRuleCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$GlobalRuleCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="mutexRuleCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$MutexRuleCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="marketCaseDetailCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$MarketCaseDetailCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="marketCaseQuestionCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$MarketCaseQuestionCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>		
+	<bean id="marketCaseRecommonedCloseCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$MarketCaseRecommonedCloseCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="marketCaseRecommendStatusCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$MarketCaseRecommendStatusCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="productAndEventRelCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$ProductAndEventRelCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="resultListCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$ResultListCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="serviceMonitoringCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$ServiceMonitoringCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="statisticCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$StatisticCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>	
+	<bean id="staticLabelCustGroupCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$StaticLabelCustGroupCache"> 
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg> 
+	</bean>
+	<bean id="waitCreateBatchPushMarketCaseCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$WaitCreateBatchPushMarketCaseCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="waitCreateCallTaskMarketCaseCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$WaitCreateCallTaskMarketCaseCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="waitCreateChannelTaskMarketCaseCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$WaitCreateChannelTaskMarketCaseCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="waitSendBatchPushMarketCaseCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$WaitSendBatchPushMarketCaseCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<bean id="waitSynChannelTaskCache" class="com.sitech.strategy.persist.capacity.impl.ProceCacheDMLByRedis$WaitSynChannelTaskCache">
+		<constructor-arg ref="proceCacheDMLByRedis"></constructor-arg>
+	</bean>
+	<!-- nosql实现类配置 -->
+	<bean id="cocCustomerGroupHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$CocCustomerGroup">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmAcceptRecordInfo" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmAcceptRecordInfo">
+	    <constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmBatchPushTaskInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmBatchPushTaskInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmBatchPushTaskExcepInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmBatchPushTaskExcepInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmBatchPushTaskSuccInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmBatchPushTaskSuccInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmChannelCallContactInfo" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmChannelCallContactInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmChannelSMSContactInfo" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmChannelSMSContactInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmChannelTaskInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmChannelTaskInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmClickRecordInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmClickRecordInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmContactRecordInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmContactRecordInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupDetailInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmCustGroupDetailInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupCustomLabelInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmCustGroupCustomLabelInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmGreyInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmGreyInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmHbaseTestInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmHbaseTestInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmLoginMsgInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmLoginMsgInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmOperLogInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmOperLogInfo">
+	    <constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmPushArriveInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmPushArriveInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmReceiptRecordInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmReceiptRecordInfoHbase">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmRecommendCloseInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmRecommendCloseInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmRecommendRecordInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmRecommendRecordInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserRecommendMarketCaseInfo" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserRecommendMarketCaseInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmSMSAcceptRecordInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmSMSAcceptRecordInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmSMSPullInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmSMSPullInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserAcceptMarketCaseInfo" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserAcceptMarketCaseInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserLabelInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserLabelInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserAcceptMarketCaseInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserAcceptMarketCaseInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserRecommendControlInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserRecommendControlInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserRecommendMarketCaseInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserRecommendMarketCaseInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmUserRelInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmUserRelInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	<bean id="rmWaitSendBatchPushTaskInfoHbase" class="com.sitech.strategy.persist.capacity.impl.ProceNosqlDMLByHBase$RmWaitSendBatchPushTaskInfo">
+		<constructor-arg ref="proceNosqlDMLByHBase"></constructor-arg>
+	</bean>
+	
+	<!-- hive实现类配置 -->
+	<bean id="commonInfoHive" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML$CommonInfoHive">
+		<constructor-arg ref="proceHiveDML"></constructor-arg>
+	</bean>
+	<bean id="rmChannelTaskInfoHive" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML$RmChannelTaskInfoHive">
+		<constructor-arg ref="proceHiveDML"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupDetailInfoHive" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML$RmCustGroupDetailInfoHive">
+		<constructor-arg ref="proceHiveDML"></constructor-arg>
+	</bean>
+	<bean id="rmCustGroupLabelInfoHive" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML$RmCustGroupLabelInfoHive">
+		<constructor-arg ref="proceHiveDML"></constructor-arg>
+	</bean>
+	<bean id="rmEvaluateStatisticsInfoHive" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML$RmEvaluateStatisticsInfoHive">
+		<constructor-arg ref="proceHiveDML"></constructor-arg>
+	</bean>
+	<bean id="rmHiveTestInfoHive" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML$RmHiveTestInfoHive">
+		<constructor-arg ref="proceHiveDML"></constructor-arg>
+	</bean>
+	<bean id="rmHiveTestHbaseInfoHive" class="com.sitech.strategy.persist.capacity.impl.ProceHiveDML$RmHiveTestHbaseInfoHive">
+		<constructor-arg ref="proceHiveDML"></constructor-arg>
+	</bean>
+	
+	<!-- spark实现类配置 -->
+	<bean id="rmChannelTaskInfoSpark" class="com.sitech.strategy.persist.capacity.impl.ProceSparkSQLDML$RmChannelTaskInfoSpark">
+		<constructor-arg ref="proceSparkSQLDML"></constructor-arg>
+	</bean>
+	<bean id="rmRecommonedCloseInfoSpark" class="com.sitech.strategy.persist.capacity.impl.ProceSparkSQLDML$RmRecommonedCloseInfoSpark">
+		<constructor-arg ref="proceSparkSQLDML"></constructor-arg>
+	</bean>
+	<bean id="rmHiveTestInfoSpark" class="com.sitech.strategy.persist.capacity.impl.ProceSparkSQLDML$RmHiveTestInfoSpark">
+		<constructor-arg ref="proceSparkSQLDML"></constructor-arg>
+	</bean>
+	<bean id="rmHiveTestHbaseInfoSpark" class="com.sitech.strategy.persist.capacity.impl.ProceSparkSQLDML$RmHiveTestHbaseInfoSpark">
+	<constructor-arg ref="proceSparkSQLDML"></constructor-arg>
+	</bean>
+	<bean id="rmUserLabelInfoSpark" class="com.sitech.strategy.persist.capacity.impl.ProceSparkSQLDML$RmUserLabelInfo">
+	<constructor-arg ref="proceSparkSQLDML"></constructor-arg>
+	</bean>
+	
+
+</beans>

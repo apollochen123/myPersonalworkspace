@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmMsgaccesscodeserInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		SER_NAME AS "serName",
+		SER_TYPE AS "serType",
+		ACCESS_CODE AS "accessCode",
+		ACCESS_NAME AS "accessName",
+		START_DATE AS "startDate",
+		END_DATE AS "endDate",
+		NOTE AS "note",
+		STATUS_CODE AS "statusCode"	
+	FROM RM_MSGACCESSCODESER_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serName" prepend="and">
+				<isNotEmpty property="serName">
+					SER_NAME = #serName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serType" prepend="and">
+				<isNotEmpty property="serType">
+					SER_TYPE = #serType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="accessCode" prepend="and">
+				<isNotEmpty property="accessCode">
+					ACCESS_CODE = #accessCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="accessName" prepend="and">
+				<isNotEmpty property="accessName">
+					ACCESS_NAME = #accessName#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmMsgAccessCodeSerInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="accessCodeServiceType" prepend="and">
+				<isNotEmpty property="accessCodeServiceType">
+					SER_TYPE = #accessCodeServiceType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="accessCode" prepend="and">
+				<isNotEmpty property="accessCode">
+					ACCESS_CODE = #accessCode#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="keyWords" prepend="and">
+				<isNotEmpty property="keyWords">
+					(
+					<iterate open="" close="" conjunction="or" property="keyWords" > 
+           		  	SER_NAME like '%'||#keyWords[]#||'%'
+           			</iterate>
+           			)
+				</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	</select>
+	
+	<select id="selectRmMsgAccessCodeSerInfoByLoginNo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		SELECT SER_NAME AS "serName",
+         ACCESS_NAME AS "accessName",
+         ACCESS_CODE AS "accessCode"
+         FROM rm_Msgaccesscodeser_Info
+    WHERE ACCESS_CODE in (SELECT ACCESS_CODE FROM RM_ROLEUSER_REL WHERE ACCESS_CODE IS NOT NULL AND LOGIN_NO = #loginNo#)
+    <dynamic prepend=" AND ">
+    	<isNotNull property="serType" prepend="and">
+		    <isNotEmpty property="serType">
+			    SER_TYPE = #serType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+    AND ACCESS_CODE IS NOT NULL
+	</select>
+	
+	<select id="selectRmMsgAccessCodeSerInfoByLoginNumber" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		SELECT SER_NAME AS "serName",
+         ACCESS_NAME AS "accessName",
+         ACCESS_CODE AS "accessCode"
+         FROM rm_Msgaccesscodeser_Info
+    WHERE ACCESS_CODE not in (SELECT ACCESS_CODE FROM RM_ROLEUSER_REL WHERE ACCESS_CODE IS NOT NULL AND LOGIN_NO = #loginNo#)
+    <dynamic prepend=" AND ">
+    	<isNotNull property="serType" prepend="and">
+		    <isNotEmpty property="serType">
+			    SER_TYPE = #serType#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+    AND ACCESS_CODE IS NOT NULL
+	</select>
+	
+	<insert id="insertRmMsgAccessCodeSerInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_MSGACCESSCODESER_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serName" prepend=",">
+			<isNotEmpty property="serName">
+				SER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serType" prepend=",">
+			<isNotEmpty property="serType">
+				SER_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="accessCode" prepend=",">
+			<isNotEmpty property="accessCode">
+				ACCESS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="accessName" prepend=",">
+			<isNotEmpty property="accessName">
+				ACCESS_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+			<isNotEmpty property="startDate">
+				START_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				END_DATE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				NOTE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serName" prepend=",">
+			<isNotEmpty property="serName">
+				#serName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serType" prepend=",">
+			<isNotEmpty property="serType">
+				#serType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="accessCode" prepend=",">
+			<isNotEmpty property="accessCode">
+				#accessCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="accessName" prepend=",">
+			<isNotEmpty property="accessName">
+				#accessName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+			<isNotEmpty property="startDate">
+				#startDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+			<isNotEmpty property="endDate">
+				#endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+			<isNotEmpty property="note">
+				#note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmMsgAccessCodeSerInfo" parameterClass="java.util.Map">
+	UPDATE RM_MSGACCESSCODESER_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="serName" prepend=",">
+		    <isNotEmpty property="serName">
+			    SER_NAME = #serName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serType" prepend=",">
+		    <isNotEmpty property="serType">
+			    SER_TYPE = #serType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="accessCode" prepend=",">
+		    <isNotEmpty property="accessCode">
+			    ACCESS_CODE = #accessCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="accessName" prepend=",">
+		    <isNotEmpty property="accessName">
+			    ACCESS_NAME = #accessName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startDate" prepend=",">
+		    <isNotEmpty property="startDate">
+			    START_DATE = #startDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endDate" prepend=",">
+		    <isNotEmpty property="endDate">
+			    END_DATE = #endDate#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="note" prepend=",">
+		    <isNotEmpty property="note">
+			    NOTE = #note#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serType" prepend="and">
+				<isNotEmpty property="serType">
+					SER_TYPE = #serType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="accessCode" prepend="and">
+				<isNotEmpty property="accessCode">
+					ACCESS_CODE = #accessCode#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</update>
+	
+
+	<delete id="deleteRmMsgAccessCodeSerInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_MSGACCESSCODESER_INFO
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="serType" prepend="and">
+				<isNotEmpty property="serType">
+					SER_TYPE = #serType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="accessCode" prepend="and">
+				<isNotEmpty property="accessCode">
+					ACCESS_CODE = #accessCode#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</delete>
+</sqlMap>

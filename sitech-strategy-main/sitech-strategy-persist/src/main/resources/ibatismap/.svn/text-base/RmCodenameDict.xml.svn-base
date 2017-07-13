@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmCodenameDict">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		FIELD_EN_NAME AS "fieldEnName",
+		FIELD_CN_NAME AS "fieldCnName",
+		FIELD_VALUE AS "fieldValue",
+		FIELD_DESC AS "fieldDesc",
+		ASSI_FIELD_EN_NAME AS "assiFieldEnName",
+		ASSI_FIELD_VALUE AS "assiFieldValue",
+		FIELD_ORDER AS "fieldOrder"	
+	FROM RM_CODENAME_DICT
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="fieldEnName" prepend="and">
+				<isNotEmpty property="fieldEnName">
+					FIELD_EN_NAME = #fieldEnName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fieldCnName" prepend="and">
+				<isNotEmpty property="fieldCnName">
+					FIELD_CN_NAME = #fieldCnName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fieldValue" prepend="and">
+				<isNotEmpty property="fieldValue">
+					FIELD_VALUE = #fieldValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fieldDesc" prepend="and">
+				<isNotEmpty property="fieldDesc">
+					FIELD_DESC = #fieldDesc#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="assiFieldEnName" prepend="and">
+				<isNotEmpty property="assiFieldEnName">
+					ASSI_FIELD_EN_NAME = #assiFieldEnName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="assiFieldValue" prepend="and">
+				<isNotEmpty property="assiFieldValue">
+					ASSI_FIELD_VALUE = #assiFieldValue#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmCodeNameDict" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="fieldEnName" prepend="and">
+				<isNotEmpty property="fieldEnName">
+					FIELD_EN_NAME = #fieldEnName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="fieldCnName" prepend="and">
+				<isNotEmpty property="fieldCnName">
+					FIELD_CN_NAME = #fieldCnName#
+				</isNotEmpty>
+			</isNotNull>
+	    </dynamic>
+	    ORDER BY FIELD_ORDER ASC,FIELD_VALUE ASC
+	</select>
+	
+	<select id="selectRmCodeNameDictInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+			<dynamic prepend=" WHERE ">
+				<isNotNull property="fieldValue" prepend="and">
+					<isNotEmpty property="fieldValue">
+						FIELD_VALUE = #fieldValue#
+					</isNotEmpty>
+				</isNotNull>
+				<isNotNull property="fieldEnName" prepend="and">
+					<isNotEmpty property="fieldEnName">
+						FIELD_EN_NAME = #fieldEnName#
+					</isNotEmpty>
+				</isNotNull>
+				<isNotNull property="keyWords" prepend="and">
+					<isNotEmpty property="keyWords">
+						(
+						<iterate open="" close="" conjunction="or" property="keyWords" > 
+            				FIELD_DESC like	'%'||#keyWords[]#||'%'
+            			</iterate>
+            			<iterate open="or" close="" conjunction="or" property="keyWords" > 
+            				FIELD_CN_NAME like	'%'||#keyWords[]#||'%'
+            			</iterate>
+            			<iterate open="or" close="" conjunction="or" property="keyWords" > 
+            				FIELD_EN_NAME like	'%'||#keyWords[]#||'%'
+            			</iterate>
+            			)
+					</isNotEmpty>
+				</isNotNull>
+			</dynamic>
+			ORDER BY FIELD_EN_NAME ASC,FIELD_ORDER ASC
+	</select>
+	
+	<insert id="insertRmCodeNameDict" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CODENAME_DICT
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="fieldEnName" prepend=",">
+			<isNotEmpty property="fieldEnName">
+				FIELD_EN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldCnName" prepend=",">
+			<isNotEmpty property="fieldCnName">
+				FIELD_CN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldValue" prepend=",">
+			<isNotEmpty property="fieldValue">
+				FIELD_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldDesc" prepend=",">
+			<isNotEmpty property="fieldDesc">
+				FIELD_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assiFieldEnName" prepend=",">
+			<isNotEmpty property="assiFieldEnName">
+				ASSI_FIELD_EN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assiFieldValue" prepend=",">
+			<isNotEmpty property="assiFieldValue">
+				ASSI_FIELD_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="fieldEnName" prepend=",">
+			<isNotEmpty property="fieldEnName">
+				#fieldEnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldCnName" prepend=",">
+			<isNotEmpty property="fieldCnName">
+				#fieldCnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldValue" prepend=",">
+			<isNotEmpty property="fieldValue">
+				#fieldValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldDesc" prepend=",">
+			<isNotEmpty property="fieldDesc">
+				#fieldDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assiFieldEnName" prepend=",">
+			<isNotEmpty property="assiFieldEnName">
+				#assiFieldEnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assiFieldValue" prepend=",">
+			<isNotEmpty property="assiFieldValue">
+				#assiFieldValue#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	)
+	</insert>
+	
+	<insert id="insertRmCodeNameDictInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CODENAME_DICT
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="fieldEnName" prepend=",">
+			<isNotEmpty property="fieldEnName">
+				FIELD_EN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldCnName" prepend=",">
+			<isNotEmpty property="fieldCnName">
+				FIELD_CN_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldValue" prepend=",">
+			<isNotEmpty property="fieldValue">
+				FIELD_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldDesc" prepend=",">
+			<isNotEmpty property="fieldDesc">
+				FIELD_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldOrder" prepend=",">
+			<isNotEmpty property="fieldOrder">
+				FIELD_ORDER
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="fieldEnName" prepend=",">
+			<isNotEmpty property="fieldEnName">
+				#fieldEnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldCnName" prepend=",">
+			<isNotEmpty property="fieldCnName">
+				#fieldCnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldValue" prepend=",">
+			<isNotEmpty property="fieldValue">
+				#fieldValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldDesc" prepend=",">
+			<isNotEmpty property="fieldDesc">
+				#fieldDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldOrder" prepend=",">
+			<isNotEmpty property="fieldOrder">
+				#fieldOrder#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	)
+	</insert>
+	
+	<update id="updateRmCodeNameDict" parameterClass="java.util.Map">
+	UPDATE RM_CODENAME_DICT
+	<dynamic prepend=" SET ">
+		<isNotNull property="fieldEnName" prepend=",">
+		    <isNotEmpty property="fieldEnName">
+			    FIELD_EN_NAME = #fieldEnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldCnName" prepend=",">
+		    <isNotEmpty property="fieldCnName">
+			    FIELD_CN_NAME = #fieldCnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldValue" prepend=",">
+		    <isNotEmpty property="fieldValue">
+			    FIELD_VALUE = #fieldValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldDesc" prepend=",">
+		    <isNotEmpty property="fieldDesc">
+			    FIELD_DESC = #fieldDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assiFieldEnName" prepend=",">
+		    <isNotEmpty property="assiFieldEnName">
+			    ASSI_FIELD_EN_NAME = #assiFieldEnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="assiFieldValue" prepend=",">
+		    <isNotEmpty property="assiFieldValue">
+			    ASSI_FIELD_VALUE = #assiFieldValue#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<update id="updateRmCodeNameDictInfo" parameterClass="java.util.Map">
+	UPDATE RM_CODENAME_DICT
+	<dynamic prepend=" SET ">
+		<isNotNull property="fieldCnName" prepend=",">
+		    <isNotEmpty property="fieldCnName">
+			    FIELD_CN_NAME = #fieldCnName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldDesc" prepend=",">
+		    <isNotEmpty property="fieldDesc">
+			    FIELD_DESC = #fieldDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="fieldOrder" prepend=",">
+		    <isNotEmpty property="fieldOrder">
+			    FIELD_ORDER = #fieldOrder#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	WHERE FIELD_EN_NAME = #fieldEnName# AND FIELD_VALUE = #fieldValue#
+	</update>
+	
+	<delete id="deleteRmCodeNameDict" parameterClass="java.util.Map">
+	DELETE FROM RM_CODENAME_DICT
+	<include refid="where-all-condition"/>
+	</delete>
+</sqlMap>

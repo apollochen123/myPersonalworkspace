@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="ijdbcConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:datasource.properties</value>
+				<value>classpath:ijdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="dataSource" class="com.sitech.jcf.core.datasource.DataSourceDelegating">
+  		<property name="defaultDBLabel" value="A1" />
+	</bean>
+
+	<bean id="dataSourceA1" class="com.sitech.jcf.core.datasource.BasicDataSource">
+				  		<property name="driverClassName"   	value="${DBCP.DataSource.ijdbc.driver}" />
+						<property name="url"               	value="${DBCP.DataSource.ijdbc.url}" /> 
+						<property name="username"          	value="${DBCP.DataSource.ijdbc.username}" />
+						<property name="password"          	value="${DBCP.DataSource.ijdbc.password}" />
+						<property name="maxActive"         	value="${DBCP.DataSource.ijdbc.maxactive}" />
+						<property name="maxIdle"           	value="${DBCP.DataSource.ijdbc.maxIdle}" />
+						<property name="maxWait"           	value="${DBCP.DataSource.ijdbc.maxwait}" />
+						<property name="testWhileIdle" 		value="${DBCP.DataSource.ijdbc.testWhileIdle}" />
+						<property name="validationQuery" 	value="${DBCP.DataSource.ijdbc.validationQuery}"/>
+						<property name="initialSize" 		value="${DBCP.DataSource.ijdbc.initialSize}"/>
+						<property name="defaultAutoCommit" 	value="true" />
+					</bean>
+	
+	<!-- spring与iBatis的配置 -->
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+         <property name="dataSource" ref="dataSource" />         
+         <property name="configLocation" value="classpath:/SqlMapConfig.xml" />
+    </bean>
+     
+    <bean id="baseDaoImpl" class="com.sitech.jcf.core.dao.BaseDao">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+	
+	<bean id="baseDao" class="com.sitech.jcf.core.dao.BaseDaoDelegating" autowire="byName" />
+	
+	<!--用于jdbc事务管理 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>	
+    
+    <bean id="proxyTemplate" class="com.sitech.jcf.transaction.JCFTransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>				
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>	
+</beans>

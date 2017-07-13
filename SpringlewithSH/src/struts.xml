@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定Struts 2配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<!-- Struts 2配置文件的根元素 -->
+<struts>
+	<!-- 配置了系列常量 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+	
+	<package name="a" extends="struts-default">
+		<!-- 定义处理用户请求的Action，该Action的class属性不是实际处理类
+			, 而是Spring容器中的Bean实例的ID -->
+			<!-- 让用户直接访问该应用时列出所有视图页面 -->
+		<action name="*">
+			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>
+		
+		<action name="LoginAction" class="loginAction">
+			<!-- 为两个逻辑视图配置视图页面 -->
+			<result name="error">/WEB-INF/content/error.jsp</result>
+			<result>/WEB-INF/content/success.jsp</result>
+		</action>
+	    
+	    <action name="addBook" class="action.BookAction" method="add"> 
+	        <result type="chain">listBooks</result>
+	        <result name="error">/WEB-INF/content/bookForm.jsp</result>
+	    </action>
+	    <action name="listBooks" class="action.BookAction" method="list">
+	         <result>/WEB-INF/content/listBooks.jsp</result>
+	    </action>
+	    <action name="deleteBook" class="action.BookAction" method="delete" >
+	         <result type="chain">listBooks</result>
+	    </action>
+	    
+		
+	</package>
+</struts>

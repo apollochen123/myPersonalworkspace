@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmMenuInfo">
+
+
+	<sql id="select-all-column">
+	SELECT
+		MENU_ID AS "menuId",
+		MENU_NAME AS "menuName",
+		MENU_LEVEL AS "menuLevel",
+		PARENT_MENU_ID AS "parentMenuId",
+		MENU_ORDER AS "menuOrder",
+		LINK_URL AS "linkUrl",
+		MENU_STATUS AS "menuStatus",
+		MENU_TYPE AS "menuType",
+		ICON_NAME AS "iconName",
+		MENU_DESC AS "menuDesc"
+	FROM RM_MENU_INFO
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="menuId" prepend="and">
+				<isNotEmpty property="menuId">
+					MENU_ID = #menuId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="menuName" prepend="and">
+				<isNotEmpty property="menuName">
+					MENU_NAME = #menuName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="menuLevel" prepend="and">
+				<isNotEmpty property="menuLevel">
+					MENU_LEVEL = #menuLevel#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="parentMenuId" prepend="and">
+				<isNotEmpty property="parentMenuId">
+					PARENT_MENU_ID = #parentMenuId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="menuOrder" prepend="and">
+				<isNotEmpty property="menuOrder">
+					MENU_ORDER = #menuOrder#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="linkUrl" prepend="and">
+				<isNotEmpty property="linkUrl">
+					LINK_URL = #linkUrl#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="menuStatus" prepend="and">
+				<isNotEmpty property="menuStatus">
+					MENU_STATUS = #menuStatus#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="menuType" prepend="and">
+				<isNotEmpty property="menuType">
+					MENU_TYPE = #menuType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="iconName" prepend="and">
+				<isNotEmpty property="iconName">
+					ICON_NAME = #iconName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="menuDesc" prepend="and">
+				<isNotEmpty property="menuDesc">
+					MENU_DESC = #menuDesc#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmMenuInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+	select son.menu_id as "menuId",
+           son.menu_name as "menuName",
+           son.menu_level as "menuLevel",
+           son.parent_menu_id as "parentMenuId",
+           son.menu_order as "menuOrder",
+           son.link_url as "linkUrl",
+           son.menu_status as "menuStatus",
+           son.menu_type  as "menuType",
+           son.icon_name as "iconName",
+           son.menu_desc as "menuDesc",
+           (select m.menu_name from rm_menu_info m
+                      where m.menu_id = son.parent_menu_id)  as "parentMenuName"
+    from   rm_menu_info son
+  	where MENU_ID = #menuId# and menu_status = '1'
+	</select>
+
+	<select id="selectRmMenuInfos" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	
+	<select id="selectRmMenuInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+	select son.menu_id as "menuId",
+           son.menu_name as "menuName",
+           son.menu_level as "menuLevel",
+           son.parent_menu_id as "parentMenuId",
+           son.menu_order as "menuOrder",
+           son.link_url as "linkUrl",
+           son.menu_status as "menuStatus",
+           son.menu_type  as "menuType",
+           son.icon_name as "iconName",
+           son.menu_desc as "menuDesc",
+           (select m.menu_name from rm_menu_info m
+                      where m.menu_id = son.parent_menu_id)  as "parentMenuName"
+    from   rm_menu_info son
+    where  menu_status = '1'
+    order by son.menu_level,son.menu_order
+	</select>
+	
+	<select id="selectRmMenuInfoByLoginNo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+	SELECT 
+			 DISTINCT
+    		 D.MENU_ID AS "menuId",
+    		 D.MENU_NAME AS "menuName",
+    		 D.MENU_LEVEL AS "menuLevel",
+     		 D.PARENT_MENU_ID AS "parentMenuId",
+    		 D.MENU_ORDER AS "menuOrder",
+    		 D.LINK_URL AS "linkUrl",
+     		 D.MENU_STATUS AS "menuStatus",
+     		 D.MENU_TYPE AS "menuType",
+     		 D.ICON_NAME AS "iconName",
+     		 D.MENU_DESC AS "menuDesc"
+   FROM      RM_LOGINMSG_INFO A,
+             RM_ROLEUSER_REL   B,
+             RM_ROLEMENU_REL   C,
+             RM_MENU_INFO      D
+  WHERE      A.LOGIN_NO = B.LOGIN_NO
+         AND B.ROLE_ID = C.ROLE_ID
+         AND C.MENU_ID = D.MENU_ID
+         AND D.menu_status = '1'
+         AND A.LOGIN_NO = #loginNo#
+  ORDER BY D.MENU_ORDER
+   
+		
+	</select>
+	
+	
+	<insert id="insertRmMenuInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_MENU_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="menuId" prepend=",">
+			<isNotEmpty property="menuId">
+				MENU_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuName" prepend=",">
+			<isNotEmpty property="menuName">
+				MENU_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuLevel" prepend=",">
+			<isNotEmpty property="menuLevel">
+				MENU_LEVEL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentMenuId" prepend=",">
+			<isNotEmpty property="parentMenuId">
+				PARENT_MENU_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuOrder" prepend=",">
+			<isNotEmpty property="menuOrder">
+				MENU_ORDER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="linkUrl" prepend=",">
+			<isNotEmpty property="linkUrl">
+				LINK_URL
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuStatus" prepend=",">
+			<isNotEmpty property="menuStatus">
+				MENU_STATUS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuType" prepend=",">
+			<isNotEmpty property="menuType">
+				MENU_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="iconName" prepend=",">
+			<isNotEmpty property="iconName">
+				ICON_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuDesc" prepend=",">
+			<isNotEmpty property="menuDesc">
+				MENU_DESC
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="menuId" prepend=",">
+			<isNotEmpty property="menuId">
+				#menuId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuName" prepend=",">
+			<isNotEmpty property="menuName">
+				#menuName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuLevel" prepend=",">
+			<isNotEmpty property="menuLevel">
+				#menuLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentMenuId" prepend=",">
+			<isNotEmpty property="parentMenuId">
+				#parentMenuId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuOrder" prepend=",">
+			<isNotEmpty property="menuOrder">
+				#menuOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="linkUrl" prepend=",">
+			<isNotEmpty property="linkUrl">
+				#linkUrl#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuStatus" prepend=",">
+			<isNotEmpty property="menuStatus">
+				#menuStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuType" prepend=",">
+			<isNotEmpty property="menuType">
+				#menuType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="iconName" prepend=",">
+			<isNotEmpty property="iconName">
+				#iconName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuDesc" prepend=",">
+			<isNotEmpty property="menuDesc">
+				#menuDesc#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmMenuInfo" parameterClass="java.util.Map">
+	UPDATE RM_MENU_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="menuId" prepend=",">
+		    <isNotEmpty property="menuId">
+			    MENU_ID = #menuId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuName" prepend=",">
+		    <isNotEmpty property="menuName">
+			    MENU_NAME = #menuName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuLevel" prepend=",">
+		    <isNotEmpty property="menuLevel">
+			    MENU_LEVEL = #menuLevel#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="parentMenuId" prepend=",">
+		    <isNotEmpty property="parentMenuId">
+			    PARENT_MENU_ID = #parentMenuId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuOrder" prepend=",">
+		    <isNotEmpty property="menuOrder">
+			    MENU_ORDER = #menuOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="linkUrl" prepend=",">
+		    <isNotEmpty property="linkUrl">
+			    LINK_URL = #linkUrl#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuStatus" prepend=",">
+		    <isNotEmpty property="menuStatus">
+			    MENU_STATUS = #menuStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuType" prepend=",">
+		    <isNotEmpty property="menuType">
+			    MENU_TYPE = #menuType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="iconName" prepend=",">
+		    <isNotEmpty property="iconName">
+			    ICON_NAME = #iconName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="menuDesc" prepend=",">
+		    <isNotEmpty property="menuDesc">
+			    MENU_DESC = #menuDesc#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	where MENU_ID = #menuId#
+	
+	</update>
+	
+	<delete id="deleteRmMenuInfoById" parameterClass="java.util.Map">
+	DELETE FROM RM_MENU_INFO
+	</delete>
+
+	<delete id="deleteRmMenuInfo" parameterClass="java.util.Map">
+	update rm_menu_info set menu_status = '2'
+	
+	where MENU_ID = #menuId#
+	</delete>
+	
+	<select id="selectRmMenuInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			MENU_ID AS menuId,
+			MENU_NAME AS menuName,
+			MENU_LEVEL AS menuLevel,
+			PARENT_MENU_ID AS parentMenuId,
+			MENU_ORDER AS menuOrder,
+			LINK_URL AS linkUrl,
+			MENU_STATUS AS menuStatus,
+			MENU_TYPE AS menuType,
+			ICON_NAME AS iconName,
+			MENU_DESC AS menuDesc
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_MENU_INFO $W$
+	</select>
+</sqlMap>

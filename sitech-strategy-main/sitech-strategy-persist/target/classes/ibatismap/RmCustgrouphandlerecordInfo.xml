@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmCustgrouphandlerecordInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="queryFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		CUST_GROUP_ID AS "custGroupId",
+		(SELECT CUST_GROUP_NAME FROM RM_CUSTGROUP_INFO A WHERE A.CUST_GROUP_ID = f.CUST_GROUP_ID) AS "custGroupName",
+		SERIAL_ID AS "serialId",
+		DISPOSE_STEP AS "disposeStep",
+		DISPOSE_DESC AS "disposeDesc",
+		DISPOSE_TIME AS "disposeTime",
+		START_TIME AS "startTime",
+		END_TIME AS "endTime",
+		DISPOSE_STATUS AS "disposeStatus",
+		DATA_NUM AS "dataNum"	
+	FROM RM_CUSTGROUPHANDLERECORD_INFO f
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="custGroupId" prepend="and">
+				<isNotEmpty property="custGroupId">
+					CUST_GROUP_ID = #custGroupId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+
+	<select id="selectRmCustgrouphandlerecordInfo" parameterClass="queryFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmCustgrouphandlerecordInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_CUSTGROUPHANDLERECORD_INFO
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				CUST_GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeStep" prepend=",">
+			<isNotEmpty property="disposeStep">
+				DISPOSE_STEP
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeDesc" prepend=",">
+			<isNotEmpty property="disposeDesc">
+				DISPOSE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeTime" prepend=",">
+			<isNotEmpty property="disposeTime">
+				DISPOSE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				START_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				END_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeStatus" prepend=",">
+			<isNotEmpty property="disposeStatus">
+				DISPOSE_STATUS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dataNum" prepend=",">
+			<isNotEmpty property="dataNum">
+				DATA_NUM
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="custGroupId" prepend=",">
+			<isNotEmpty property="custGroupId">
+				#custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeStep" prepend=",">
+			<isNotEmpty property="disposeStep">
+				#disposeStep#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeDesc" prepend=",">
+			<isNotEmpty property="disposeDesc">
+				#disposeDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeTime" prepend=",">
+			<isNotEmpty property="disposeTime">
+				#disposeTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				#startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				#endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeStatus" prepend=",">
+			<isNotEmpty property="disposeStatus">
+				#disposeStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dataNum" prepend=",">
+			<isNotEmpty property="dataNum">
+				#dataNum#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmCustgrouphandlerecordInfo" parameterClass="java.util.Map">
+	UPDATE RM_CUSTGROUPHANDLERECORD_INFO
+	<dynamic prepend=" SET ">
+		<isNotNull property="custGroupId" prepend=",">
+		    <isNotEmpty property="custGroupId">
+			    CUST_GROUP_ID = #custGroupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeStep" prepend=",">
+		    <isNotEmpty property="disposeStep">
+			    DISPOSE_STEP = #disposeStep#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeDesc" prepend=",">
+		    <isNotEmpty property="disposeDesc">
+			    DISPOSE_DESC = #disposeDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeTime" prepend=",">
+		    <isNotEmpty property="disposeTime">
+			    DISPOSE_TIME = #disposeTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+		    <isNotEmpty property="startTime">
+			    START_TIME = #startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+		    <isNotEmpty property="endTime">
+			    END_TIME = #endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="disposeStatus" prepend=",">
+		    <isNotEmpty property="disposeStatus">
+			    DISPOSE_STATUS = #disposeStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="dataNum" prepend=",">
+		    <isNotEmpty property="dataNum">
+			    DATA_NUM = #dataNum#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+
+	<delete id="deleteRmCustgrouphandlerecordInfo" parameterClass="java.util.Map">
+	DELETE FROM RM_CUSTGROUPHANDLERECORD_INFO
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmCustgrouphandlerecordInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			CUST_GROUP_ID AS custGroupId,
+			SERIAL_ID AS serialId,
+			DISPOSE_STEP AS disposeStep,
+			DISPOSE_DESC AS disposeDesc,
+			DISPOSE_TIME AS disposeTime,
+			START_TIME AS startTime,
+			END_TIME AS endTime,
+			DISPOSE_STATUS AS disposeStatus,
+			DATA_NUM AS dataNum
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM RM_CUSTGROUPHANDLERECORD_INFO $W$
+	</select>
+</sqlMap>

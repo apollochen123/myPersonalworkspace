@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmAuditrecordInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+
+	<sql id="select-all-column">
+	SELECT
+		AUDITRECORD_ID AS "auditRecordId",
+		BUSI_ID AS "busiId",
+		BUSI_TYPE AS "busiType",
+		AUDIT_ORDER AS "auditOrder",
+		AUDIT_DESC AS "auditDesc",
+		AUDIT_STATUS AS "auditStatus",
+		AUDIT_NO AS "auditNo",
+		AUDIT_TIME AS "auditTime",
+		REGION_CODE AS "regionCode",
+		CITY_CODE AS "cityCode",
+		GROUP_ID AS "groupId"	
+	FROM rm_auditrecord_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditRecordId" prepend="and">
+				<isNotEmpty property="auditRecordId">
+					AUDITRECORD_ID = #auditRecordId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditNo" prepend="and">
+			    <isNotEmpty property="auditNo">
+				    AUDIT_NO = #auditNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditOrder" prepend="and">
+				<isNotEmpty property="auditOrder">
+					AUDIT_ORDER = #auditOrder#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmAuditRecordInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE AUDITRECORD_ID = #auditRecordId#
+	</select>
+
+	<select id="selectRmMarketCaseAuditRecordInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		a.AUDITRECORD_ID AS "auditRecordId",
+		a.BUSI_ID AS "busiId",
+		a.BUSI_TYPE AS "busiType",
+		a.AUDIT_ORDER AS "auditOrder",
+		a.AUDIT_DESC AS "auditDesc",
+		a.AUDIT_STATUS AS "auditStatus",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'auditStatus' AND FIELD_VALUE = AUDIT_STATUS ) AS "statusName",
+		a.AUDIT_NO AS "auditNo",
+		a.AUDIT_TIME  AS "auditTime",
+		a.REGION_CODE AS "regionCode",
+		a.CITY_CODE AS "cityCode",
+		a.GROUP_ID AS "groupId",
+		b.MARKET_CASE_NAME AS "marketCaseName",
+		b.MARKET_CASE_ID AS "marketCaseId",
+		b.OPER_NAME AS "operName",
+		b.OPER_NO AS "operNo",
+		b.GROUP_NAME AS "groupName",
+		(
+		SELECT
+			FIELD_DESC
+		FROM
+			rm_codename_dict
+		WHERE
+			FIELD_EN_NAME = 'marketCaseType'
+		AND FIELD_VALUE = b.MARKET_CASE_TYPE
+	    ) AS "marketCaseTypeName"
+	FROM rm_auditrecord_info a,rm_marketcase_info b
+	WHERE  a.busi_id = b.market_case_id 
+		<isNotNull property="loginNo" prepend="and">
+				<isNotEmpty property="loginNo">
+					a.audit_role in(
+				        SELECT rolerel.role_id
+				        FROM rm_loginmsg_info login, rm_roleuser_rel rolerel
+				        WHERE login.login_no=rolerel.login_no
+				         AND login.login_no=#loginNo#
+				     )
+				</isNotEmpty>
+		</isNotNull>	
+		<isNotNull property="auditRecordId" prepend="and">
+				<isNotEmpty property="auditRecordId">
+					a.AUDITRECORD_ID = #auditRecordId#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="keyWords" prepend="and">
+				<isNotEmpty property="keyWords">
+					<iterate open="(" close=")" conjunction="or" property="keyWords" > 
+            		b.MARKET_CASE_NAME like	'%'||#keyWords[]#||'%'
+            		</iterate>
+            	</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					a.BUSI_ID = #busiId#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend="and">
+			<isNotEmpty property="auditOrder">
+				a.AUDIT_ORDER = #auditOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditStatus" prepend="and">
+			<isNotEmpty property="auditStatus">
+				a.AUDIT_STATUS = #auditStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend="and">
+				<isNotEmpty property="auditNo">
+					a.AUDIT_NO = #auditNo#
+				</isNotEmpty>
+		</isNotNull>
+		and a.AUDIT_ORDER in (1,2)
+		order by  a.AUDIT_TIME desc						
+	</select>
+		
+		<select id="selectRmMarketCaseAuditRecordInfoByJLMob" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		a.AUDITRECORD_ID AS "auditRecordId",
+		a.BUSI_ID AS "busiId",
+		a.BUSI_TYPE AS "busiType",
+		a.AUDIT_ORDER AS "auditOrder",
+		a.AUDIT_DESC AS "auditDesc",
+		a.AUDIT_STATUS AS "auditStatus",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'auditStatus' AND FIELD_VALUE = AUDIT_STATUS ) AS "statusName",
+		a.AUDIT_NO AS "auditNo",
+		a.AUDIT_TIME  AS "auditTime",
+		a.REGION_CODE AS "regionCode",
+		a.CITY_CODE AS "cityCode",
+		a.GROUP_ID AS "groupId",
+		b.MARKET_CASE_NAME AS "marketCaseName",
+		b.MARKET_CASE_ID AS "marketCaseId",
+		b.OPER_NAME AS "operName",
+		b.OPER_NO AS "operNo",
+		b.GROUP_NAME AS "groupName",
+		(
+		SELECT
+			FIELD_DESC
+		FROM
+			rm_codename_dict
+		WHERE
+			FIELD_EN_NAME = 'marketCaseType'
+		AND FIELD_VALUE = b.MARKET_CASE_TYPE
+	    ) AS "marketCaseTypeName"
+	FROM rm_auditrecord_info a,rm_marketcase_info b
+	WHERE  a.busi_id = b.market_case_id 	
+		<isNotNull property="auditRecordId" prepend="and">
+				<isNotEmpty property="auditRecordId">
+					a.AUDITRECORD_ID = #auditRecordId#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="keyWords" prepend="and">
+				<isNotEmpty property="keyWords">
+					<iterate open="(" close=")" conjunction="or" property="keyWords" > 
+            		b.MARKET_CASE_NAME like	'%'||#keyWords[]#||'%'
+            		</iterate>
+            	</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					a.BUSI_ID = #busiId#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend="and">
+			<isNotEmpty property="auditOrder">
+				a.AUDIT_ORDER = #auditOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditStatus" prepend="and">
+			<isNotEmpty property="auditStatus">
+				a.AUDIT_STATUS = #auditStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend="and">
+				<isNotEmpty property="auditNo">
+					a.AUDIT_NO = #auditNo#
+				</isNotEmpty>
+		</isNotNull>
+		and a.AUDIT_ORDER in (1,2)
+		order by  a.AUDIT_TIME desc						
+	</select>
+		
+	<select id="selectRmDownLoadAuditRecordInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		SELECT
+		a.AUDITRECORD_ID AS "auditRecordId",
+		a.BUSI_ID AS "busiId",
+		a.BUSI_TYPE AS "busiType",
+		a.AUDIT_ORDER AS "auditOrder",
+		a.AUDIT_DESC AS "auditDesc",
+		a.AUDIT_STATUS AS "auditStatus",
+		(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'auditStatus' AND FIELD_VALUE = AUDIT_STATUS ) AS "statusName",
+		a.AUDIT_NO AS "auditNo",
+		a.AUDIT_TIME AS "auditTime",
+		a.REGION_CODE AS "regionCode",
+		a.CITY_CODE AS "cityCode",
+		a.GROUP_ID AS "groupId",
+		b.CUST_GROUP_NAME AS "custGroupName",
+		b.CUST_GROUP_ID AS "custGroupId",
+		b.OPER_NAME AS "operName",
+		b.CUST_GROUP_NUM AS "custGroupNum"
+	FROM rm_auditrecord_info a,rm_custgroup_info b
+	WHERE  a.busi_id = b.cust_group_id 
+		<isNotNull property="auditRecordId" prepend="and">
+				<isNotEmpty property="auditRecordId">
+					a.AUDITRECORD_ID = #auditRecordId#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					a.BUSI_ID = #busiId#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend="and">
+				<isNotEmpty property="busiType">
+					a.BUSI_TYPE = #busiType#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditNo" prepend="and">
+				<isNotEmpty property="busiType">
+					a.AUDIT_NO = #auditNo#
+				</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="keyWords" prepend="and">
+				<isNotEmpty property="keyWords">
+					(
+					<iterate open="" close="" conjunction="or" property="keyWords" > 
+           		  	b.CUST_GROUP_NAME like '%'||#keyWords[]#||'%'
+           			</iterate>
+           			)
+				</isNotEmpty>
+		</isNotNull>
+	</select>
+	
+	<select id="selectRmMarketCaseAuditNum" parameterClass="querFilter" resultClass="java.util.HashMap"> 
+		SELECT 
+			count(*) as "auditRecordNum" 
+		FROM rm_auditrecord_info 
+		WHERE 
+			<isNotNull property="auditNo" > 
+				<isNotEmpty property="auditNo"> 
+					AUDIT_NO = #auditNo# 
+				</isNotEmpty> 
+			</isNotNull> 
+			<isNotNull property="auditStatus" prepend="and"> 
+				<isNotEmpty property="auditStatus"> 
+					AUDIT_STATUS = #auditStatus# 
+				</isNotEmpty> 
+			</isNotNull> 
+	</select>
+	
+	<select id="selectRmAuditRecordDetailList" parameterClass="querFilter" resultClass="java.util.HashMap">
+	SELECT
+		AUDITRECORD_ID AS "auditRecordId",
+		BUSI_ID AS "busiId",
+		BUSI_TYPE AS "busiType",
+		AUDIT_ORDER AS "auditOrder",
+		AUDIT_DESC AS "auditDesc",
+		AUDIT_STATUS AS "auditStatus",
+			(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'auditStatus' AND FIELD_VALUE = AUDIT_STATUS ) AS "statusName",
+		    (SELECT l.PHONE FROM RM_LOGINMSG_INFO l WHERE l.LOGIN_NO = AUDIT_NO) AS "phone",
+		    (SELECT a.ATTACH_NAME FROM RM_ATTACH_INFO a WHERE a.BUSI_ID = AUDITRECORD_ID) AS "attachName",
+		    (SELECT a.SYSTEM_NAME FROM RM_ATTACH_INFO a WHERE a.BUSI_ID = AUDITRECORD_ID) AS "systemName",
+		    (SELECT LOGIN_NAME FROM RM_LOGINMSG_INFO WHERE LOGIN_NO = AUDIT_NO) AS "auditName",
+		    (SELECT ROLE_NAME FROM RM_ROLE_INFO a WHERE a.ROLE_ID = AUDIT_ROLE ) AS "roleName",
+		AUDIT_NO AS "auditNo",
+		AUDIT_TIME AS "auditTime",
+		REGION_CODE AS "regionCode",
+		CITY_CODE AS "cityCode",
+		GROUP_ID AS "groupId",
+		OPER_NO AS "operNo",
+		OPER_NAME AS "operName",
+		OPER_DATE AS "operDate"
+	FROM rm_auditrecord_info 
+	WHERE BUSI_ID = #busiId#
+	ORDER BY AUDIT_TIME
+	</select>
+	
+		<select id="selectRmAuditRecordDetailListByJLMob" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<!-- add by wangdw 20170417  解决1、审批和查询活动不展示审批人姓名和手机号；2、审批结束后，全部审批人都显示审批通过，具体不知道哪一个人审批通过的。-->
+		select    
+		    a.AUDITRECORD_ID AS "auditRecordId",
+		    a.BUSI_ID AS "busiId",
+		    a.BUSI_TYPE AS "busiType",
+		    a.AUDIT_ORDER AS "auditOrder",
+		    a.AUDIT_DESC AS "auditDesc",
+		    a.AUDIT_STATUS AS "auditStatus",
+		    c.audit_name AS "statusName",
+		    d.contact_phone AS "phone",
+		    (SELECT e.ATTACH_NAME FROM RM_ATTACH_INFO e WHERE e.BUSI_ID = a.AUDITRECORD_ID) AS "attachName",
+			(SELECT e.SYSTEM_NAME FROM RM_ATTACH_INFO e WHERE e.BUSI_ID = a.AUDITRECORD_ID) AS "systemName",
+		    d.login_name AS "auditName",
+		    a.AUDIT_NO AS "auditNo",
+		    a.AUDIT_TIME AS "auditTime",
+		    a.REGION_CODE AS "regionCode",
+		    a.CITY_CODE AS "cityCode",
+		    a.GROUP_ID AS "groupId",
+		    a.OPER_NO AS "operNo",
+		    a.OPER_NAME AS "operName",
+		    a.OPER_DATE AS "operDate"
+	    from rm_auditrecord_info a,
+	    
+	     (with myaudit_info as(
+		     SELECT
+		     a.auditrecord_id,a.audit_status,a.audit_no,a.oper_no
+		     FROM rm_auditrecord_info a 
+		     WHERE a.BUSI_ID =#busiId#)
+		     select t1.auditrecord_id from myaudit_info t1 where t1.audit_status != '01' and t1.oper_no = t1.audit_no
+		     union 
+	     	select t2.auditrecord_id from myaudit_info t2 where t2.audit_status = '01' 
+	     ) b,
+	     
+	     (SELECT FIELD_VALUE audit_code,FIELD_DESC audit_name FROM rm_codename_dict 
+	     WHERE FIELD_EN_NAME = 'auditStatus')  
+	     c, 
+	     
+	     dbbaseadm.bs_loginmsg_dict d
+	     
+	     WHERE a.AUDIT_STATUS = c.audit_code
+	     AND a.AUDITRECORD_ID = b.auditrecord_id
+	     AND a.audit_no = d.login_no
+	     ORDER BY a.rowid asc
+		<!--  注释掉by wangdw 20170417，sql问题：1、审批和查询活动不展示审批人姓名和手机号；2、审批结束后，全部审批人都显示审批通过，具体不知道哪一个人审批通过的。
+		SELECT
+		AUDITRECORD_ID AS "auditRecordId",
+		BUSI_ID AS "busiId",
+		BUSI_TYPE AS "busiType",
+		AUDIT_ORDER AS "auditOrder",
+		AUDIT_DESC AS "auditDesc",
+		AUDIT_STATUS AS "auditStatus",
+			(SELECT FIELD_DESC FROM rm_codename_dict WHERE FIELD_EN_NAME = 'auditStatus' AND FIELD_VALUE = AUDIT_STATUS ) AS "statusName",
+		    '' AS "phone",
+		    (SELECT a.ATTACH_NAME FROM RM_ATTACH_INFO a WHERE a.BUSI_ID = AUDITRECORD_ID) AS "attachName",
+		    (SELECT a.SYSTEM_NAME FROM RM_ATTACH_INFO a WHERE a.BUSI_ID = AUDITRECORD_ID) AS "systemName",
+		    '' AS "auditName",
+		AUDIT_NO AS "auditNo",
+		AUDIT_TIME AS "auditTime",
+		REGION_CODE AS "regionCode",
+		CITY_CODE AS "cityCode",
+		GROUP_ID AS "groupId",
+		OPER_NO AS "operNo",
+		OPER_NAME AS "operName",
+		OPER_DATE AS "operDate"
+	FROM rm_auditrecord_info 
+	WHERE BUSI_ID = #busiId#
+	ORDER BY AUDIT_TIME-->
+	</select>
+	
+	<insert id="insertRmAuditRecordInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_auditrecord_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="auditRecordId" prepend=",">
+			<isNotEmpty property="auditRecordId">
+				AUDITRECORD_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				BUSI_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				BUSI_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend=",">
+			<isNotEmpty property="auditOrder">
+				AUDIT_ORDER
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditDesc" prepend=",">
+			<isNotEmpty property="auditDesc">
+				AUDIT_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditStatus" prepend=",">
+			<isNotEmpty property="auditStatus">
+				AUDIT_STATUS
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditRole" prepend=",">
+			<isNotEmpty property="auditRole">
+				AUDIT_ROLE
+			</isNotEmpty>
+		</isNotNull>		
+		<isNotNull property="auditNo" prepend=",">
+			<isNotEmpty property="auditNo">
+				AUDIT_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditTime" prepend=",">
+			<isNotEmpty property="auditTime">
+				AUDIT_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cityCode" prepend=",">
+			<isNotEmpty property="cityCode">
+				CITY_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				GROUP_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operDate" prepend=",">
+			<isNotEmpty property="operDate">
+				OPER_DATE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="auditRecordId" prepend=",">
+			<isNotEmpty property="auditRecordId">
+				#auditRecordId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiId" prepend=",">
+			<isNotEmpty property="busiId">
+				#busiId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="busiType" prepend=",">
+			<isNotEmpty property="busiType">
+				#busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend=",">
+			<isNotEmpty property="auditOrder">
+				#auditOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditDesc" prepend=",">
+			<isNotEmpty property="auditDesc">
+				#auditDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditStatus" prepend=",">
+			<isNotEmpty property="auditStatus">
+				#auditStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditRole" prepend=",">
+			<isNotEmpty property="auditRole">
+				#auditRole#
+			</isNotEmpty>
+		</isNotNull>		
+		<isNotNull property="auditNo" prepend=",">
+			<isNotEmpty property="auditNo">
+				#auditNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditTime" prepend=",">
+			<isNotEmpty property="auditTime">
+				#auditTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cityCode" prepend=",">
+			<isNotEmpty property="cityCode">
+				#cityCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+			<isNotEmpty property="groupId">
+				#groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operDate" prepend=",">
+			<isNotEmpty property="operDate">
+				#operDate#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	)
+	</insert>
+	
+	<update id="updateRmAuditRecordInfo" parameterClass="java.util.Map">
+	UPDATE rm_auditrecord_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="busiType" prepend=",">
+		    <isNotEmpty property="busiType">
+			    BUSI_TYPE = #busiType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditOrder" prepend=",">
+		    <isNotEmpty property="auditOrder">
+			    AUDIT_ORDER = #auditOrder#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditDesc" prepend=",">
+		    <isNotEmpty property="auditDesc">
+			    AUDIT_DESC = #auditDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="auditStatus" prepend=",">
+		    <isNotEmpty property="auditStatus">
+			    AUDIT_STATUS = #auditStatus#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="loginNo" prepend=",">
+		    <isNotEmpty property="loginNo">
+			    AUDIT_NO = #loginNo#
+			</isNotEmpty>
+		</isNotNull>		
+		<isNotNull property="auditTime" prepend=",">
+		    <isNotEmpty property="auditTime">
+			    AUDIT_TIME = #auditTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cityCode" prepend=",">
+		    <isNotEmpty property="cityCode">
+			    CITY_CODE = #cityCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="groupId" prepend=",">
+		    <isNotEmpty property="groupId">
+			    GROUP_ID = #groupId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operDate" prepend=",">
+		    <isNotEmpty property="operDate">
+			    OPER_DATE = #operDate#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="busiId" prepend="and">
+				<isNotEmpty property="busiId">
+					BUSI_ID = #busiId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditRecordId" prepend="and">
+				<isNotEmpty property="auditRecordId">
+					AUDITRECORD_ID = #auditRecordId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="auditOrder" prepend="and">
+				<isNotEmpty property="auditOrder">
+					AUDIT_ORDER = #auditOrder#
+				</isNotEmpty>
+			</isNotNull>			
+	</dynamic>
+	</update>
+	
+	<delete id="deleteRmAuditRecordInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_auditrecord_info
+	WHERE AUDITRECORD_ID = #auditRecordId#
+	</delete>
+
+	<delete id="deleteRmAuditRecordInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_auditrecord_info
+	<include refid="where-all-condition"/>
+	</delete>
+</sqlMap>

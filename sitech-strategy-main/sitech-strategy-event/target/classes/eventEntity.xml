@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">	
+	<bean id="busiEventEntity" class="com.sitech.strategy.event.entity.impl.BusiEventEntity">
+	    <property name="eventParse" ref="eventParse"></property>	
+	</bean>
+	<bean id="feeEventEntity" class="com.sitech.strategy.event.entity.impl.FeeEventEntity">
+	    <property name="eventParse" ref="eventParse"></property>	
+	</bean>
+	<bean id="flowEventEntity" class="com.sitech.strategy.event.entity.impl.FlowEventEntity">
+	    <property name="eventParse" ref="eventParse"></property>	
+	</bean>
+	<bean id="groupMsgEventEntity" class="com.sitech.strategy.event.entity.impl.GroupMsgEventEntity">
+	    <property name="eventParse" ref="eventParse"></property>
+	</bean>
+	<bean id ="prodEventEntity" class="com.sitech.strategy.event.entity.impl.ProdEventEntity">
+		<property name="eventParse" ref="eventParse"></property>
+	</bean>
+	
+	
+	<bean id="busiEventReceiverParam" class="com.sitech.strategy.event.entity.param.impl.BusiEventReceiverParam">
+	</bean>
+	<bean id ="feeEventReceiverParam" class="com.sitech.strategy.event.entity.param.impl.FeeEventReceiverParam">
+	</bean>
+	<bean id="flowEventReceiverParam" class="com.sitech.strategy.event.entity.param.impl.FlowEventReceiverParam">
+	</bean>
+	<bean id ="prodEventReceiverParam" class="com.sitech.strategy.event.entity.param.impl.ProdEventReceiverParam">
+	</bean>
+	<bean id="groupMsgEventReceiverParam" class="com.sitech.strategy.event.entity.param.impl.GroupMsgEventReceiverParam">
+	</bean>
+</beans>

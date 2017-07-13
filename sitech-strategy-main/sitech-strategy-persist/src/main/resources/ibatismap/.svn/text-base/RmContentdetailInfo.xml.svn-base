@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmContentdetailInfo">
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		CONTENT_ID AS "contentId",
+		CONTENT_DETAIL_ID AS "contentDetailId",
+		CONTENT_DETAIL_TYPE AS "contentDetailType",
+		CONTENT_PAR_CODE AS "contentParCode",
+		CONTENT_PAR_NAME AS "contentParName",
+		CONTENT_PAR_VALUE AS "contentParValue",
+		CONTENT_PAR_DESC AS "contentParDesc",
+		BATCH_NO AS "batchNo"	
+	FROM rm_contentdetail_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="contentId" prepend="and">
+				<isNotEmpty property="contentId">
+					CONTENT_ID = #contentId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="contentDetailId" prepend="and">
+				<isNotEmpty property="contentDetailId">
+					CONTENT_DETAIL_ID = #contentDetailId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmContentdetailInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmContentDetailInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmContentDetailId" parameterClass="querFilter" resultClass="java.util.HashMap">
+	SELECT 
+		DISTINCT CONTENT_DETAIL_ID AS "contentDetailId"
+	FROM rm_contentdetail_info	
+	<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmContentDetailInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_contentdetail_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentId" prepend=",">
+			<isNotEmpty property="contentId">
+				CONTENT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDetailId" prepend=",">
+			<isNotEmpty property="contentDetailId">
+				CONTENT_DETAIL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDetailType" prepend=",">
+			<isNotEmpty property="contentDetailType">
+				CONTENT_DETAIL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParCode" prepend=",">
+			<isNotEmpty property="contentParCode">
+				CONTENT_PAR_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParName" prepend=",">
+			<isNotEmpty property="contentParName">
+				CONTENT_PAR_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParValue" prepend=",">
+			<isNotEmpty property="contentParValue">
+				CONTENT_PAR_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParDesc" prepend=",">
+			<isNotEmpty property="contentParDesc">
+				CONTENT_PAR_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				BATCH_NO
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentId" prepend=",">
+			<isNotEmpty property="contentId">
+				#contentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDetailId" prepend=",">
+			<isNotEmpty property="contentDetailId">
+				#contentDetailId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDetailType" prepend=",">
+			<isNotEmpty property="contentDetailType">
+				#contentDetailType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParCode" prepend=",">
+			<isNotEmpty property="contentParCode">
+				#contentParCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParName" prepend=",">
+			<isNotEmpty property="contentParName">
+				#contentParName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParValue" prepend=",">
+			<isNotEmpty property="contentParValue">
+				#contentParValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParDesc" prepend=",">
+			<isNotEmpty property="contentParDesc">
+				#contentParDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				#batchNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmContentDetailInfo" parameterClass="java.util.Map">
+	UPDATE rm_contentdetail_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentId" prepend=",">
+		    <isNotEmpty property="contentId">
+			    CONTENT_ID = #contentId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDetailId" prepend=",">
+		    <isNotEmpty property="contentDetailId">
+			    CONTENT_DETAIL_ID = #contentDetailId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentDetailType" prepend=",">
+		    <isNotEmpty property="contentDetailType">
+			    CONTENT_DETAIL_TYPE = #contentDetailType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParCode" prepend=",">
+		    <isNotEmpty property="contentParCode">
+			    CONTENT_PAR_CODE = #contentParCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParName" prepend=",">
+		    <isNotEmpty property="contentParName">
+			    CONTENT_PAR_NAME = #contentParName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="contentParValue" prepend=",">
+		    <isNotEmpty property="contentParValue">
+			    CONTENT_PAR_VALUE = #contentParValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+		    <isNotEmpty property="batchNo">
+			    BATCH_NO = #batchNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmContentdetailInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_contentdetail_info
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmContentdetailInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_contentdetail_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmContentdetailInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			CONTENT_ID AS contentId,
+			CONTENT_DETAIL_ID AS contentDetailId,
+			CONTENT_DETAIL_TYPE AS contentDetailType,
+			CONTENT_PAR_CODE AS contentParCode,
+			CONTENT_PAR_NAME AS contentParName,
+			CONTENT_PAR_VALUE AS contentParValue,
+			BATCH_NO AS batchNo
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_contentdetail_info $W$
+	</select>
+	
+	<select id="selectContentDetailByEventIdAndMarketCaseId" parameterClass="querFilter" resultClass="java.util.HashMap">
+	SELECT
+			SERIAL_ID AS "serialId",
+			CONTENT_ID AS "contentId",
+			CONTENT_DETAIL_ID AS "contentDetailId",
+			CONTENT_DETAIL_TYPE AS "contentDetailType",
+			CONTENT_PAR_CODE AS "contentParCode",
+			CONTENT_PAR_NAME AS "contentParName",
+			CONTENT_PAR_VALUE AS "contentParValue",
+			BATCH_NO AS "batchNo"
+  	from rm_contentdetail_info t
+ 	where t.content_id in
+       (select t.component_id contentId
+          from rm_relation_rel t
+         where t.parent_rel_id in
+               (select event.relId
+                  from (select t.parent_component_id eventId,
+                               t.component_type      componentType,
+                               t.rel_id              relId
+                          from rm_relation_rel t
+                         where t.parent_component_type = '07'
+                           and t.parent_rel_id in
+                               (select t.rel_id
+                                  from rm_relation_rel t
+                                 where t.parent_component_type = '02'
+                                   and t.parent_rel_id in
+                                       (select t.rel_id
+                                          from rm_relation_rel t
+                                         where t.parent_component_type = '01'
+                                           and t.parent_component_id = #marketCaseId#))) event
+                 where event.eventId = #eventId#
+                   and event.componentType = '04'))
+	</select>
+	
+	<select id="selectContentDetailByProdId" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		where content_par_code=#contentParCode# AND content_par_value=#contentParValue#
+	</select>
+
+</sqlMap>

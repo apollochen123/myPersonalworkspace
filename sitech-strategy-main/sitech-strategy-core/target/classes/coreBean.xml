@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="actDemand" class="com.sitech.strategy.core.objectville.impl.ActDemand">
+		<property name="actDemandInsertor" ref="actDemandInsertor"></property>
+		<property name="actDemandSelector" ref="actDemandSelector"></property>
+		<property name="actDemandUpdater" ref="actDemandUpdater"></property>
+		<property name="actDemandDeleter" ref="actDemandDeleter"></property>
+		<property name="attach" ref="attach"></property>
+	</bean>
+	<bean id="attach" class="com.sitech.strategy.core.objectville.impl.Attach">
+		<property name="attachDeleter" ref="attachDeleter"></property>
+		<property name="attachInsertor" ref="attachInsertor"></property>
+		<property name="attachSelector" ref="attachSelector"></property>
+	</bean>
+	<bean id="audit" class="com.sitech.strategy.core.objectville.impl.extend.Audit.AuditBaseChannelByJLMob">
+		<property name="auditInsertor" ref="auditInsertor"></property>
+		<property name="auditSelector" ref="auditSelector"></property>
+		<property name="auditUpdater" ref="auditUpdater"></property>
+		<property name="auditDeleter" ref="auditDeleter"></property>
+		<property name="attachInsertor" ref="attachInsertor"></property>
+		<property name="loginSelector" ref="loginSelector"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="systemDealInsertor" ref="systemDealInsertor"></property>
+	</bean>
+	<bean id="batchPush" class="com.sitech.strategy.core.objectville.impl.BatchPush">
+		<property name="batchPushSender" ref="batchPushSender"></property>
+		<property name="batchPushTaskSelector" ref="batchPushTaskSelector"></property>
+		<property name="commonSelector" ref="commonSelector"></property>
+		<property name="coupleBackInsertor" ref="coupleBackInsertor"></property>
+		<property name="marketCaseDeleter" ref="marketCaseDeleter"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="rule" ref="rule"></property>
+		<property name="taskDeleter" ref="taskDeleter"></property>
+		<property name="taskInsertor" ref="taskInsertor"></property>
+		<property name="systemDealInsertor" ref="systemDealInsertor"></property>
+		<property name="systemDealUpdater" ref="systemDealUpdater"></property>
+		<property name="userInsertor" ref="userInsertor"></property>
+		<property name="regionCodePojo" ref="regionCodePojo"></property>
+	</bean>
+	<bean id="callTask" class="com.sitech.strategy.core.objectville.impl.CallTask">
+		<property name="commonSelector" ref="commonSelector"></property>
+		<property name="systemDealUpdater" ref="systemDealUpdater"></property>
+		<property name="systemDealInsertor" ref="systemDealInsertor"></property>
+	</bean>
+	<bean id="channel" class="com.sitech.strategy.core.objectville.impl.Channel">
+		<property name="channelInsertor" ref="channelInsertor"></property>
+		<property name="channelSelector" ref="channelSelector"></property>
+		<property name="channelDeleter" ref="channelDeleter"></property>
+		<property name="channelUpdater" ref="channelUpdater"></property>
+		<property name="regionCodePojo" ref = "regionCodePojo"></property>
+	</bean>
+	<bean id="channelTask" class="com.sitech.strategy.core.objectville.impl.ChannelTask">
+		<property name="channelTaskSender" ref="channelTaskSender"></property>
+		<property name="commonSelector" ref="commonSelector"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="rule" ref="rule"></property>
+		<property name="systemDealUpdater" ref="systemDealUpdater"></property>
+		<property name="taskUpdater" ref="taskUpdater"></property>
+		<property name="taskSelector" ref="taskSelector"></property>
+	</bean>
+	<bean id="channelTrigger" class="com.sitech.strategy.core.objectville.impl.ChannelTrigger">
+		<property name="component" ref="component"></property>
+		<property name="channel" ref="channel"></property>
+		<property name="channelPojo" ref="channelPojo"></property>
+		<property name="custGroup" ref="custGroup"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="priorityPojo" ref="priorityPojo"></property>
+		<property name="prioritySelector" ref="prioritySelector"></property>
+		<property name="rule" ref="rule"></property>
+	</bean>
+	<bean id="content" class="com.sitech.strategy.core.objectville.impl.Content">
+		<property name="contentDeleter" ref="contentDeleter"></property>
+		<property name="contentInsertor" ref="contentInsertor"></property>
+		<property name="contentSelector" ref="contentSelector"></property>
+		<property name="marketCaseInsertor" ref="marketCaseInsertor"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+	</bean>
+	<bean id="component" class="com.sitech.strategy.core.objectville.impl.Component">
+		<property name="channel" ref="channel"></property>
+		<property name="custGroup" ref="custGroup"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="rule" ref="rule"></property>
+	</bean>
+	<bean id="coupleBack" class="com.sitech.strategy.core.objectville.impl.CoupleBack">
+	    <property name="custGroup" ref="custGroup"></property>
+		<property name="coupleBackInsertor" ref="coupleBackInsertor"></property>
+		<property name="coupleBackSelector" ref="coupleBackSelector"></property>
+		<property name="evaluate" ref="evaluate"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="userSelector" ref="userSelector"></property>
+		<property name="task" ref="task"></property>
+		<property name="statisticInsertor" ref="statisticInsertor"></property>
+	</bean>
+	<bean id="custGroup" class="com.sitech.strategy.core.objectville.impl.CustGroup">
+		<property name="attach" ref="attach"></property>
+		<property name="custGroupDeleter" ref="custGroupDeleter"></property>
+		<property name="custGroupUpdater" ref="custGroupUpdater"></property>
+		<property name="custGroupInsertor" ref="custGroupInsertor"></property>
+		<property name="custGroupSelector" ref="custGroupSelector"></property>
+		<property name="hiveDBName" ref="hiveDBName"></property>
+		<property name="systemDealInsertor" ref="systemDealInsertor"></property>
+		<property name="attachSelector" ref="attachSelector"></property> 
+		<property name="commonSelector" ref="commonSelector"></property>
+		<property name="userSelector" ref="userSelector"></property>
+		<property name="inventoryInsertor" ref="inventoryInsertor"></property>
+		<property name="inventoryDeleter" ref="inventoryDeleter"></property>
+	</bean>
+	<bean id="evaluate" class="com.sitech.strategy.core.objectville.impl.Evaluate">
+		<property name="channelPojo" ref="channelPojo"></property>
+		<property name="evaluateSelector" ref="evaluateSelector"></property>
+		<property name="rmEvaluateStatisticsInfoHive" ref="rmEvaluateStatisticsInfoHive"></property>
+		<property name="statisticInsertor" ref="statisticInsertor"></property>
+		<property name="statisticSelector" ref="statisticSelector"></property>
+		<property name="evaluateInsertor" ref="evaluateInsertor"></property>
+	</bean>
+	<bean id="event" class="com.sitech.strategy.core.objectville.impl.Event">
+		<property name="eventInsertor" ref="eventInsertor"></property>
+		<property name="eventSelector" ref="eventSelector"></property>
+		<property name="eventUpdater" ref="eventUpdater"></property>
+		<property name="prioritySelector" ref="prioritySelector"></property>
+		<property name="priorityPojo" ref="priorityPojo"></property>
+		<property name="ruleInsertor" ref="ruleInsertor"></property>
+		<property name="eventDeleter" ref="eventDeleter"></property>
+	</bean>
+	<bean id="eventTrigger" class="com.sitech.strategy.core.objectville.impl.EventTrigger">
+		<property name="component" ref="component"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="giveFeeSender" ref="giveFeeSender"></property>
+		<property name="giveProdSender" ref="giveProdSender"></property>
+		<property name="position" ref="position"></property>
+		<property name="positionPojo" ref="positionPojo"></property>
+		<property name="priorityPojo" ref="priorityPojo"></property>
+		<property name="recommendMsgSender" ref="recommendMsgSender"></property>
+		<property name="rule" ref="rule"></property>
+	</bean>
+	<bean id="eventParse" class="com.sitech.strategy.core.objectville.impl.EventParse">
+       <property name="batchPushSender" ref="batchPushSender"></property>
+		<property name="eventSelector" ref="eventSelector"></property>
+		<property name="groupMsgEventSender" ref="groupMsgEventSender"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="rule" ref="rule"></property>
+		<property name="triggerMsgEventSender" ref="triggerMsgEventSender"></property>
+		<property name="userInsertor" ref="userInsertor"></property>
+		<property name="userSelector" ref="userSelector"></property>
+	</bean>
+	<bean id="filterAlgorithm" class="com.sitech.strategy.core.algorithm.FilterAlgorithm">
+		<property name="rule" ref="rule"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+	</bean>
+	<bean id="inventory" class="com.sitech.strategy.core.objectville.impl.Inventory">
+		<property name="inventoryInsertor" ref="inventoryInsertor"></property>
+		<property name="inventorySelector" ref="inventorySelector"></property>
+	</bean>
+	<bean id="login" class="com.sitech.strategy.core.objectville.impl.Login">
+		<property name="loginSelector" ref="loginSelector"></property>
+	</bean>
+	 <bean id="marketCase" class="com.sitech.strategy.core.objectville.impl.MarketCase">
+		<property name="attach" ref="attach"></property>
+		<property name="audit" ref="audit"></property>
+		<property name="rule" ref="rule"></property>
+		<property name="custGroup" ref="custGroup"></property>
+		<property name="channel" ref="channel"></property>
+		<property name="position" ref="position"></property>
+		<property name="productCommodity" ref="productCommodity"></property>
+		<property name="content" ref="content"></property>
+		<property name="event" ref="event"></property>
+		<property name="eventSelector" ref="eventSelector"></property>
+		<property name="marketCaseDetailPojo" ref="marketCaseDetailPojo"></property>
+		<property name="marketCaseInsertor" ref="marketCaseInsertor"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="marketCaseDeleter" ref="marketCaseDeleter"></property>
+		<property name="marketCaseUpdater" ref="marketCaseUpdater"></property>
+		<property name="prioritySelector" ref="prioritySelector"></property>
+		<property name="relationDeleter" ref="relationDeleter"></property>
+		<property name="systemDealUpdater" ref="systemDealUpdater"></property>
+	</bean> 
+	<bean id="monitor" class="com.sitech.strategy.core.objectville.impl.Monitor">
+		<property name="monitorInsertor" ref="monitorInsertor"></property>
+		<property name="monitorSelector" ref="monitorSelector"></property>
+	</bean>
+	<bean id="position" class="com.sitech.strategy.core.objectville.impl.Position">
+		<property name="positionInsertor" ref="positionInsertor"></property>
+		<property name="positionSelector" ref="positionSelector"></property>
+		<property name="positionDeleter" ref="positionDeleter"></property>
+		<property name="positionUpdater" ref="positionUpdater"></property>
+	</bean>
+	<bean id="productCommodity" class="com.sitech.strategy.core.objectville.impl.ProductCommodity">
+		<property name="productCommoditySelector" ref="productCommoditySelector"></property>
+	</bean>
+	<bean id="realTimePush" class="com.sitech.strategy.core.objectville.impl.RealTimePush">
+	</bean>
+	<bean id="recommedAlgo" class="com.sitech.strategy.core.algorithm.SimpleRecomAlgoByMarketCase">
+		<property name = "channel" ref = "channel"></property>
+		<property name = "channelTask" ref = "channelTask"></property>
+		<property name = "channelTrigger" ref = "channelTrigger"></property>
+		<property name = "eventTrigger" ref = "eventTrigger"></property>
+		<property name = "rule" ref = "rule"></property>
+		<property name = "user" ref = "user"></property>
+		<property name = "userSelector" ref = "userSelector"></property>
+	</bean>
+	<bean id="resultList" class="com.sitech.strategy.core.pojo.impl.ResultList">
+		<property name="actDemand" ref="actDemand"></property>
+		<property name="audit" ref="audit"></property>
+		<property name="channel" ref="channel"></property>
+		<property name="configSelector" ref="configSelector"></property>
+		<property name="commonSelector" ref="commonSelector"></property>
+		<property name="commonInsertor" ref="commonInsertor"></property>
+		<property name="custGroup" ref="custGroup"></property>
+		<property name="evaluate" ref="evaluate"></property>
+		<property name="loginSelector" ref="loginSelector"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="pagingDevice" ref="pagingDevice"></property>
+		<property name="productSelector" ref="productSelector"></property>
+		<property name="position" ref="position"></property>
+		<property name="questionNaireSelector" ref="questionNaireSelector"></property>		
+		<property name="rule" ref="rule"></property>
+		<property name="shortMessage" ref="shortMessage"></property>
+		<property name="template" ref="template"></property>
+		<property name="user" ref="user"></property>
+		<property name="workConfigSelector" ref="workConfigSelector"></property>
+	</bean>
+	<bean id="rule" class="com.sitech.strategy.core.objectville.impl.Rule">
+		<property name="custGroupSelector" ref="custGroupSelector"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="ruleInsertor" ref="ruleInsertor"></property>
+		<property name="ruleSelector" ref="ruleSelector"></property>
+		<property name="ruleDeleter" ref="ruleDeleter"></property>
+		<!--<property name="ruleUpdater" ref="ruleUpdater"></property> -->
+		<property name="userSelector" ref="userSelector"></property>
+		<property name="userInsertor" ref="userInsertor"></property>
+		<property name="systemDealInsertor" ref="systemDealInsertor"></property>
+		<property name="systemDealSelector" ref="systemDealSelector"></property>
+	</bean>
+	<bean id="shortMessage" class="com.sitech.strategy.core.objectville.impl.ShortMessage">
+	    <property name="assemblyMsgStructure" ref="assemblyMsgStructure"></property>
+	    <property name="batchPushSender" ref="batchPushSender"></property>
+	    <property name="marketCase" ref="marketCase"></property>
+	    <property name="marketCaseSelector" ref="marketCaseSelector"></property>
+	    <property name="rule" ref="rule"></property>
+		<property name="shortMessageInsertor" ref="shortMessageInsertor"></property>
+		<property name="shortMessageSelector" ref="shortMessageSelector"></property>
+		<property name="shortMessageDeleter" ref="shortMessageDeleter"></property>
+		<property name="shortMessageUpdater" ref="shortMessageUpdater"></property>
+		<property name="userSelector" ref="userSelector"></property>
+	</bean>
+	<bean id="task" class="com.sitech.strategy.core.objectville.impl.Task">
+		<property name="channelTaskSender" ref="channelTaskSender"></property>
+		<property name="custGroup" ref="custGroup"></property>
+		<property name="loginSelector" ref="loginSelector"></property>
+		<property name="marketCase" ref="marketCase"></property>
+		<property name="productCommodity" ref="productCommodity"></property>
+		<property name="rule" ref="rule"></property>
+		<property name="taskInsertor" ref="taskInsertor"></property>
+		<property name="taskUpdater" ref="taskUpdater"></property>
+		<property name="taskSelector" ref="taskSelector"></property>
+		<property name="userSelector" ref="userSelector"></property>
+		<property name="systemDealUpdater" ref="systemDealUpdater"></property>
+		<property name="systemDealInsertor" ref="systemDealInsertor"></property>
+		<property name="coupleBackSelector" ref="coupleBackSelector"></property>
+		<property name="systemDealSelector" ref="systemDealSelector"></property>
+	</bean>
+	<bean id="template" class="com.sitech.strategy.core.objectville.impl.Template">
+		<property name="templateInsertor" ref="templateInsertor"></property>
+		<property name="templateSelector" ref="templateSelector"></property>
+		<property name="templateDeleter" ref="templateDeleter"></property>
+		<property name="templateUpdater" ref="templateUpdater"></property>
+	</bean>
+	<bean id="user" class="com.sitech.strategy.core.objectville.impl.User">
+		<property name="coupleBackInsertor" ref="coupleBackInsertor"></property>
+		<property name="userSelector" ref="userSelector"></property>
+		<property name="userDeleter" ref="userDeleter"></property>
+		<property name="userInsertor" ref="userInsertor"></property>
+		<property name="userUpdater" ref="userUpdater"></property>
+	</bean>
+	<bean id="workBench" class="com.sitech.strategy.core.objectville.impl.WorkBench">
+		<property name="auditSelector" ref="auditSelector"></property>
+		<property name="marketCaseSelector" ref="marketCaseSelector"></property>
+		<property name="statisticSelector" ref="statisticSelector"></property>	
+		<property name="statisticInsertor" ref="statisticInsertor"></property>	
+		<property name="statisticDeleter" ref="statisticDeleter"></property>
+		<property name="statisticUpdater" ref="statisticUpdater"></property>
+	</bean>
+</beans>

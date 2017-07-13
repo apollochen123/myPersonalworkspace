@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmBatchpushexceptaskInfo">
+
+
+
+	<select id="selectRmBatchPushExcepTaskInfo" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		SELECT 
+             count(*) AS "excSendCount"
+             from RM_BATCHPUSHTASKEXCEP_INFO o
+			<dynamic prepend=" WHERE ">
+			<isNotNull property="marketCaseId" prepend="and">
+				<isNotEmpty property="marketCaseId">
+					o.key in (select task_id from RM_BATCHPUSHTASK_INFO where market_case_id = #marketCaseId#)
+				</isNotEmpty>
+			</isNotNull>
+
+	</dynamic>
+		
+	</select>
+	
+	
+	
+	
+</sqlMap>

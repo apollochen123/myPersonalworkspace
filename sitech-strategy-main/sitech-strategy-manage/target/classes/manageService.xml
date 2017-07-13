@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	        
+		    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="testManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.test.TestManageService">
+		<property name="testManageEntity" ref="testManageEntity" />
+	</bean>
+	<bean id="actDemandManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.ActDemandManageService">
+		<property name="actDemandManageEntity" ref="actDemandManageEntity"></property>
+		<property name="actDemandManageParam" ref="actDemandManageParam"></property>
+	</bean>
+	<bean id="auditManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.AuditManageService">
+		<property name="auditManageEntity" ref="auditManageEntity"></property>
+		<property name="auditManageParam" ref="auditManageParam"></property>
+	</bean>
+	<bean id="channelManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.ChannelManageService">
+		<property name="channelManageEntity" ref="channelManageEntity"/>
+		<property name="channelManageParam" ref="channelManageParam"></property>
+	</bean>
+	<bean id="commonManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.CommonManageService">
+		<property name="commonManageEntity" ref="commonManageEntity"/>
+		<property name="commonManageParam" ref="commonManageParam"/>
+	</bean>
+	<bean id="contentManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.ContentManageService">
+		<property name="contentManageEntity" ref="contentManageEntity"/>
+		<property name="contentManageParam" ref="contentManageParam"/>
+	</bean>
+	<bean id="confManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.ConfManageService">
+		<property name="confManageEntity" ref="confManageEntity"/>
+		<property name="confManageParam" ref="confManageParam"/>
+	</bean>
+    <bean id="custGroupManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.CustGroupManageService">
+        <property name="custGroupManageEntity" ref="custGroupManageEntity"></property>
+        <property name="custGroupManageParam" ref="custGroupManageParam"></property>
+    </bean>
+    <bean id="executeManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.ExecuteManageService">
+        <property name="executeManageEntity" ref="executeManageEntity"></property>
+        <property name="executeManageParam" ref="executeManageParam"></property>
+    </bean>
+    <bean id="eventManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.EventManageService">
+        <property name="eventManageEntity" ref="eventManageEntity"></property>
+        <property name="eventManageParam" ref="eventManageParam"></property>
+    </bean>
+    <bean id="evaluateManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.EvaluateManageService">	
+		<property name="evaluateManageEntity" ref="evaluateManageEntity"></property>
+		<property name="evaluateManageParam" ref="evaluateManageParam"></property>	
+	</bean>
+	<bean id="inventoryManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.InventoryManageService">	
+		<property name="inventoryManageEntity" ref="inventoryManageEntity"></property>
+		<property name="inventoryManageParam" ref="inventoryManageParam"></property>	
+	</bean>
+    <bean id="loginManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.LoginManageService">
+    	<property name="loginManageEntity" ref="loginManageEntity"></property>
+    	<property name="loginManageParam" ref="loginManageParam"></property>
+    </bean>
+    <bean id="marketCaseManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.MarketCaseManageService">
+		<property name="marketCaseManageEntity" ref="marketCaseManageEntity"></property>
+		<property name="marketCaseManageParam" ref="marketCaseManageParam"></property>
+	</bean>
+	<bean id="monitorManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.MonitorManageService">
+		<property name="monitorManageEntity" ref="monitorManageEntity"></property>
+		<property name="monitorManageParam" ref="monitorManageParam"></property>
+	</bean>
+	<bean id="productCommodityManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.ProductCommodityManageService">
+		<property name="productCommodityManageEntity" ref="productCommodityManageEntity"></property>
+		<property name="productCommodityManageParam" ref="productCommodityManageParam"></property>
+	</bean>
+	<bean id="ruleManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.RuleManageService">
+		<property name="ruleManageEntity" ref="ruleManageEntity"></property>
+		<property name="ruleManageParam" ref="ruleManageParam"></property>
+	</bean>
+	<bean id="shortMessageManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.ShortMessageManageService">
+		<property name="shortMessageManageEntity" ref="shortMessageManageEntity"></property>
+		<property name="shortMessageManageParam" ref="shortMessageManageParam"></property>
+	</bean>
+	<bean id="systemManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.SystemManageService">
+	    <property name="systemManageEntity" ref="systemManageEntity"></property>
+	    <property name="systemManageParam" ref="systemManageParam"></property>
+	</bean>
+	<bean id="taskManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.TaskManageService">
+		<property name="taskManageEntity" ref="taskManageEntity"></property>
+		 <property name="taskManageParam" ref="taskManageParam"></property>
+	</bean>
+	<bean id="transferManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.TransferManageService">
+	</bean>
+	<bean id="templateManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.TemplateManageService">
+		 <property name="templateManageEntity" ref="templateManageEntity"></property>
+		 <property name="templateManageParam" ref="templateManageParam"></property>
+	</bean>
+	<bean id="userManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.UserManageService">
+		 <property name="userManageEntity" ref="userManageEntity"></property>
+		 <property name="userManageParam" ref="userManageParam"></property>
+	</bean>
+	<bean id="workBenchManageServiceSvc" class="com.sitech.strategy.manage.service.jcf.impl.WorkBenchManageService">
+		<property name="workBenchManageEntity" ref="workBenchManageEntity"></property>
+		<property name="workBenchManageParam" ref="workBenchManageParam"></property>
+	</bean>
+</beans>

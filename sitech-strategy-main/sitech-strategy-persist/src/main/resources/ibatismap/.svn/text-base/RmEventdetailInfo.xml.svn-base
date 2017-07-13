@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmEventdetailInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		EVENT_ID AS "eventId",
+		EVENT_DETAIL_ID AS "eventDetailId",
+		EVENT_DETAIL_TYPE AS "eventDetailType",
+		EVENT_PAR_CODE AS "eventParCode",
+		EVENT_PAR_VALUE AS "eventParValue",
+		EVENT_PAR_NAME AS "eventParName",
+		BATCH_NO AS "batchNo"	
+	FROM rm_eventdetail_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="eventId" prepend="and">
+				<isNotEmpty property="eventId">
+					EVENT_ID = #eventId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="eventDetailId" prepend="and">
+				<isNotEmpty property="eventDetailId">
+					EVENT_DETAIL_ID = #eventDetailId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="eventDetailType" prepend="and">
+				<isNotEmpty property="eventDetailType">
+					EVENT_DETAIL_TYPE = #eventDetailType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="eventParCode" prepend="and">
+				<isNotEmpty property="eventParCode">
+					EVENT_PAR_CODE = #eventParCode#
+				</isNotEmpty>
+			</isNotNull>			
+	</dynamic>
+	</sql>
+	
+	<select id="selectRmEventdetailId" parameterClass="querFilter" resultClass="java.util.HashMap">
+	SELECT
+		DISTINCT
+		EVENT_DETAIL_ID AS "eventDetailId",
+		EVENT_DETAIL_TYPE AS "eventDetailType"
+	FROM rm_eventdetail_info	
+	<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmEventdetailInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmEventdetailInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+		
+	<insert id="insertRmEventdetailInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_eventdetail_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventId" prepend=",">
+			<isNotEmpty property="eventId">
+				EVENT_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventDetailId" prepend=",">
+			<isNotEmpty property="eventDetailId">
+				EVENT_DETAIL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventDetailType" prepend=",">
+			<isNotEmpty property="eventDetailType">
+				EVENT_DETAIL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParCode" prepend=",">
+			<isNotEmpty property="eventParCode">
+				EVENT_PAR_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParValue" prepend=",">
+			<isNotEmpty property="eventParValue">
+				EVENT_PAR_VALUE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParName" prepend=",">
+			<isNotEmpty property="eventParName">
+				EVENT_PAR_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				BATCH_NO
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventId" prepend=",">
+			<isNotEmpty property="eventId">
+				#eventId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventDetailId" prepend=",">
+			<isNotEmpty property="eventDetailId">
+				#eventDetailId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventDetailType" prepend=",">
+			<isNotEmpty property="eventDetailType">
+				#eventDetailType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParCode" prepend=",">
+			<isNotEmpty property="eventParCode">
+				#eventParCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParValue" prepend=",">
+			<isNotEmpty property="eventParValue">
+				#eventParValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParName" prepend=",">
+			<isNotEmpty property="eventParName">
+				#eventParName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+			<isNotEmpty property="batchNo">
+				#batchNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmEventdetailInfo" parameterClass="java.util.Map">
+	UPDATE rm_eventdetail_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventId" prepend=",">
+		    <isNotEmpty property="eventId">
+			    EVENT_ID = #eventId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventDetailId" prepend=",">
+		    <isNotEmpty property="eventDetailId">
+			    EVENT_DETAIL_ID = #eventDetailId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventDetailType" prepend=",">
+		    <isNotEmpty property="eventDetailType">
+			    EVENT_DETAIL_TYPE = #eventDetailType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParCode" prepend=",">
+		    <isNotEmpty property="eventParCode">
+			    EVENT_PAR_CODE = #eventParCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParValue" prepend=",">
+		    <isNotEmpty property="eventParValue">
+			    EVENT_PAR_VALUE = #eventParValue#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="eventParName" prepend=",">
+		    <isNotEmpty property="eventParName">
+			    EVENT_PAR_NAME = #eventParName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="batchNo" prepend=",">
+		    <isNotEmpty property="batchNo">
+			    BATCH_NO = #batchNo#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmEventdetailInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_eventdetail_info
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmEventdetailInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_eventdetail_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmEventdetailInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			EVENT_ID AS eventId,
+			EVENT_DETAIL_ID AS eventDetailId,
+			EVENT_DETAIL_TYPE AS eventDetailType,
+			EVENT_PAR_CODE AS eventParCode,
+			EVENT_PAR_VALUE AS eventParValue,
+			EVENT_PAR_NAME AS eventParName,
+			BATCH_NO AS batchNo
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_eventdetail_info $W$
+	</select>
+</sqlMap>

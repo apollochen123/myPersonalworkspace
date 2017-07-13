@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/CRMPD_RTMarket/!svn/ver/12208/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch
+END
+SystemProcess.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/SystemProcess.java
+END
+ExceptionProcess.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/CRMPD_RTMarket/!svn/ver/12208/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/ExceptionProcess.java
+END
+UpdateTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/UpdateTask.java
+END
+LoadCoupleBack.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/CRMPD_RTMarket/!svn/ver/10962/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/LoadCoupleBack.java
+END
+LoadCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/CRMPD_RTMarket/!svn/ver/11541/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/LoadCache.java
+END
+EvaluateStatistics.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/EvaluateStatistics.java
+END
+GenerateTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/CRMPD_RTMarket/!svn/ver/12208/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/GenerateTask.java
+END
+LoadCustGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/CRMPD_RTMarket/!svn/ver/10350/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/LoadCustGroup.java
+END
+LoadUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/CRMPD_RTMarket/!svn/ver/10165/branches/jlMobile/sitech-strategy-process/src/main/java/com/sitech/strategy/process/batch/LoadUser.java
+END

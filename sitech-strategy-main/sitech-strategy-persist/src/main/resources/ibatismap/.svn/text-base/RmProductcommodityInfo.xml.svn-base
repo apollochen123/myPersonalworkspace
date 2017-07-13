@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmProductcommodityInfo">
+<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter" alias="querFilter"/> 
+
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		PRODUCTCOMMODITY_ID AS "productCommodityId",
+		PRODUCTCOMMODITY_NAME AS "productCommodityName",
+		EFF_TIME AS "effTime",
+		EXP_TIME AS "expTime",
+		PRODUCTCOMMODITY_SRC AS "productCommoditySrc",
+		STATUS_CODE AS "statusCode",
+		CATA_CODE AS "cataCode",
+		CHANNEL_TYPE AS "channelType",
+		CONTENT AS "content",
+		PRODUCECOMMODITY_NOTE AS "produceCommodityNote"
+	FROM rm_ProductCommodity_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+
+			<isNotNull property="channelType" prepend="and">
+				<isNotEmpty property="channelType">
+					CHANNEL_TYPE = #channelType#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categroy" prepend="and">
+				<isNotEmpty property="categroy">
+					CATA_CODE = #categroy#
+				</isNotEmpty>
+			</isNotNull>									
+			<!-- 以下根据keyWords，来决定是使用精确查询还是模糊查询产品编码和产品名称。其中，模糊查询是hb需求。 -->
+			<isNull property="keyWords">
+				<isNotNull property="productCommodityId" prepend="OR">
+					<isNotEmpty property="productCommodityId">
+						PRODUCTCOMMODITY_ID = #productCommodityId#
+					</isNotEmpty>
+				</isNotNull>
+				<isNotNull property="productCommodityName" prepend="OR">
+					<isNotEmpty property="productCommodityName">
+						PRODUCTCOMMODITY_NAME = #productCommodityName#
+					</isNotEmpty>
+				</isNotNull>			
+			</isNull>
+
+			<isNotNull property="keyWords">
+			  <isNotEmpty property="keyWords">
+				<isNotNull property="dbType">
+					<isNotEmpty property="dbType">					
+						<isEqual property="dbType" compareValue="mysql">
+									
+									<isNotNull property="productCommodityId" prepend="AND">
+										<isNotEmpty property="productCommodityId">
+											PRODUCTCOMMODITY_ID like concat('%',#productCommodityId#,'%')
+										</isNotEmpty>
+									</isNotNull>
+									<isNotNull property="productCommodityName" prepend="AND">
+										<isNotEmpty property="productCommodityName">
+											PRODUCTCOMMODITY_NAME like concat('%',#productCommodityName#,'%')
+										</isNotEmpty>
+									</isNotNull>
+					           		
+			            </isEqual>			            		            
+					</isNotEmpty>
+				</isNotNull>			  
+			  </isNotEmpty>
+			</isNotNull>
+			
+
+						
+	</dynamic>
+	</sql>
+	<select id="selectRmProductCommodityInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmProductCommodityInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmProductCommodityInfoCount"  parameterClass="querFilter" resultClass="java.lang.String">
+		SELECT
+			count(1) as "total"	
+		FROM rm_productcommodity_info
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmProductCommodityInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_productcommodity_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommodityId" prepend=",">
+			<isNotEmpty property="ProductCommodityId">
+				PRODUCTCOMMODITY_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommodityName" prepend=",">
+			<isNotEmpty property="ProductCommodityName">
+				PRODUCTCOMMODITY_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+			<isNotEmpty property="effTime">
+				EFF_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expTime" prepend=",">
+			<isNotEmpty property="expTime">
+				EXP_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommoditySrc" prepend=",">
+			<isNotEmpty property="ProductCommoditySrc">
+				PRODUCTCOMMODITY_SRC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				STATUS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cataCode" prepend=",">
+			<isNotEmpty property="cataCode">
+				CATA_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+			<isNotEmpty property="channelType">
+				CHANNEL_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="content" prepend=",">
+			<isNotEmpty property="content">
+				CONTENT
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceCommodityNote" prepend=",">
+			<isNotEmpty property="produceCommodityNote">
+				PRODUCECOMMODITY_NOTE
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommodityId" prepend=",">
+			<isNotEmpty property="ProductCommodityId">
+				#ProductCommodityId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommodityName" prepend=",">
+			<isNotEmpty property="ProductCommodityName">
+				#ProductCommodityName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+			<isNotEmpty property="effTime">
+				#effTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expTime" prepend=",">
+			<isNotEmpty property="expTime">
+				#expTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommoditySrc" prepend=",">
+			<isNotEmpty property="ProductCommoditySrc">
+				#ProductCommoditySrc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+			<isNotEmpty property="statusCode">
+				#statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cataCode" prepend=",">
+			<isNotEmpty property="cataCode">
+				#cataCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+			<isNotEmpty property="channelType">
+				#channelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="content" prepend=",">
+			<isNotEmpty property="content">
+				#content#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceCommodityNote" prepend=",">
+			<isNotEmpty property="produceCommodityNote">
+				#produceCommodityNote#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmProductCommodityInfo" parameterClass="java.util.Map">
+	UPDATE rm_productcommodity_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommodityId" prepend=",">
+		    <isNotEmpty property="ProductCommodityId">
+			    PRODUCTCOMMODITY_ID = #ProductCommodityId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommodityName" prepend=",">
+		    <isNotEmpty property="ProductCommodityName">
+			    PRODUCTCOMMODITY_NAME = #ProductCommodityName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="effTime" prepend=",">
+		    <isNotEmpty property="effTime">
+			    EFF_TIME = #effTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="expTime" prepend=",">
+		    <isNotEmpty property="expTime">
+			    EXP_TIME = #expTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ProductCommoditySrc" prepend=",">
+		    <isNotEmpty property="ProductCommoditySrc">
+			    PRODUCTCOMMODITY_SRC = #ProductCommoditySrc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statusCode" prepend=",">
+		    <isNotEmpty property="statusCode">
+			    STATUS_CODE = #statusCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="cataCode" prepend=",">
+		    <isNotEmpty property="cataCode">
+			    CATA_CODE = #cataCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="channelType" prepend=",">
+		    <isNotEmpty property="channelType">
+			    CHANNEL_TYPE = #channelType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="content" prepend=",">
+		    <isNotEmpty property="content">
+			    CONTENT = #content#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="produceCommodityNote" prepend=",">
+		    <isNotEmpty property="produceCommodityNote">
+			    PRODUCECOMMODITY_NOTE = #produceCommodityNote#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmProductCommodityInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_productcommodity_info
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmProductCommodityInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_productcommodity_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmProductCommodityInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			PRODUCTCOMMODITY_ID AS ProductCommodityId,
+			PRODUCTCOMMODITY_NAME AS ProductCommodityName,
+			EFF_TIME AS effTime,
+			EXP_TIME AS expTime,
+			PRODUCTCOMMODITY_SRC AS ProductCommoditySrc,
+			STATUS_CODE AS statusCode,
+			CATA_CODE AS cataCode,
+			CHANNEL_TYPE AS channelType,
+			CONTENT AS content,
+			PRODUCECOMMODITY_NOTE AS produceCommodityNote
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_productcommodity_info $W$
+	</select>
+</sqlMap>

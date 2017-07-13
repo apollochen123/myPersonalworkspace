@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmRuleInfo">
+
+	<sql id="select-all-column">
+	SELECT
+		SERIAL_ID AS "serialId",
+		RULE_ID AS "ruleId",
+		RULE_NAME AS "ruleName",
+		RULE_TYPE AS "ruleType",
+		STATS_CODE AS "statsCode",
+		RULE_DESC AS "ruleDesc",
+		START_TIME AS "startTime",
+		END_TIME AS "endTime",
+		REGION_CODE AS "regionCode",
+		OPER_NO AS "operNo",
+		OPER_TIME AS "operTime",
+		OPER_NAME AS "operName",
+		UPDATE_NO AS "updateNo",
+		UPDATE_NAME AS "updateName",
+		UPDATE_TIME AS "updateTime"	
+	FROM rm_rule_info
+	</sql>
+	
+	<sql id="where-all-condition">
+	<dynamic prepend=" WHERE ">
+			<isNotNull property="ruleId" prepend="and">
+				<isNotEmpty property="ruleId">
+					RULE_ID = #ruleId#
+				</isNotEmpty>
+			</isNotNull>
+	</dynamic>
+	</sql>
+	<select id="selectRmRuleInfoById" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		WHERE SERIAL_ID = #serialId#
+	</select>
+
+	<select id="selectRmRuleInfo" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<select id="selectRmRuleInfoList" parameterClass="querFilter" resultClass="java.util.HashMap">
+		<include refid="select-all-column"/>
+		<include refid="where-all-condition"/>
+	</select>
+	
+	<insert id="insertRmRuleInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO rm_rule_info
+	]]>
+	<dynamic prepend=" (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				SERIAL_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleId" prepend=",">
+			<isNotEmpty property="ruleId">
+				RULE_ID
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleName" prepend=",">
+			<isNotEmpty property="ruleName">
+				RULE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleType" prepend=",">
+			<isNotEmpty property="ruleType">
+				RULE_TYPE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statsCode" prepend=",">
+			<isNotEmpty property="statsCode">
+				STATS_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDesc" prepend=",">
+			<isNotEmpty property="ruleDesc">
+				RULE_DESC
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				START_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				END_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				REGION_CODE
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				OPER_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				OPER_TIME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				OPER_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				UPDATE_NO
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				UPDATE_NAME
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				UPDATE_TIME
+			</isNotEmpty>
+		</isNotNull>
+		</dynamic>
+	    <dynamic prepend=" ) VALUES (  ">
+		<isNotNull property="serialId" prepend=",">
+			<isNotEmpty property="serialId">
+				#serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleId" prepend=",">
+			<isNotEmpty property="ruleId">
+				#ruleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleName" prepend=",">
+			<isNotEmpty property="ruleName">
+				#ruleName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleType" prepend=",">
+			<isNotEmpty property="ruleType">
+				#ruleType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statsCode" prepend=",">
+			<isNotEmpty property="statsCode">
+				#statsCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDesc" prepend=",">
+			<isNotEmpty property="ruleDesc">
+				#ruleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+			<isNotEmpty property="startTime">
+				#startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+			<isNotEmpty property="endTime">
+				#endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+			<isNotEmpty property="regionCode">
+				#regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+			<isNotEmpty property="operNo">
+				#operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+			<isNotEmpty property="operTime">
+				#operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+			<isNotEmpty property="operName">
+				#operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+			<isNotEmpty property="updateNo">
+				#updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+			<isNotEmpty property="updateName">
+				#updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+			<isNotEmpty property="updateTime">
+				#updateTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+	
+	)
+	</insert>
+	
+	<update id="updateRmRuleInfo" parameterClass="java.util.Map">
+	UPDATE rm_rule_info
+	<dynamic prepend=" SET ">
+		<isNotNull property="serialId" prepend=",">
+		    <isNotEmpty property="serialId">
+			    SERIAL_ID = #serialId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleId" prepend=",">
+		    <isNotEmpty property="ruleId">
+			    RULE_ID = #ruleId#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleName" prepend=",">
+		    <isNotEmpty property="ruleName">
+			    RULE_NAME = #ruleName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleType" prepend=",">
+		    <isNotEmpty property="ruleType">
+			    RULE_TYPE = #ruleType#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="statsCode" prepend=",">
+		    <isNotEmpty property="statsCode">
+			    STATS_CODE = #statsCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="ruleDesc" prepend=",">
+		    <isNotEmpty property="ruleDesc">
+			    RULE_DESC = #ruleDesc#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="startTime" prepend=",">
+		    <isNotEmpty property="startTime">
+			    START_TIME = #startTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="endTime" prepend=",">
+		    <isNotEmpty property="endTime">
+			    END_TIME = #endTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="regionCode" prepend=",">
+		    <isNotEmpty property="regionCode">
+			    REGION_CODE = #regionCode#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operNo" prepend=",">
+		    <isNotEmpty property="operNo">
+			    OPER_NO = #operNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operTime" prepend=",">
+		    <isNotEmpty property="operTime">
+			    OPER_TIME = #operTime#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="operName" prepend=",">
+		    <isNotEmpty property="operName">
+			    OPER_NAME = #operName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateNo" prepend=",">
+		    <isNotEmpty property="updateNo">
+			    UPDATE_NO = #updateNo#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateName" prepend=",">
+		    <isNotEmpty property="updateName">
+			    UPDATE_NAME = #updateName#
+			</isNotEmpty>
+		</isNotNull>
+		<isNotNull property="updateTime" prepend=",">
+		    <isNotEmpty property="updateTime">
+			    UPDATE_TIME = #updateTime#
+			</isNotEmpty>
+		</isNotNull>
+	</dynamic>
+
+	<include refid="where-all-condition"/>
+	</update>
+	
+	<delete id="deleteRmRuleInfoById" parameterClass="java.util.Map">
+	DELETE FROM rm_rule_info
+	WHERE SERIAL_ID = #serialId#
+	</delete>
+
+	<delete id="deleteRmRuleInfo" parameterClass="java.util.Map">
+	DELETE FROM rm_rule_info
+	<include refid="where-all-condition"/>
+	</delete>
+	
+	<select id="selectRmRuleInfoParam" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			SERIAL_ID AS serialId,
+			RULE_ID AS ruleId,
+			RULE_NAME AS ruleName,
+			RULE_TYPE AS ruleType,
+			STATS_CODE AS statsCode,
+			RULE_DESC AS ruleDesc,
+			START_TIME AS startTime,
+			END_TIME AS endTime,
+			REGION_CODE AS regionCode,
+			OPER_NO AS operNo,
+			OPER_TIME AS operTime,
+			OPER_NAME AS operName,
+			UPDATE_NO AS updateNo,
+			UPDATE_NAME AS updateName,
+			UPDATE_TIME AS updateTime
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		 	FROM rm_rule_info $W$
+	</select>
+</sqlMap>

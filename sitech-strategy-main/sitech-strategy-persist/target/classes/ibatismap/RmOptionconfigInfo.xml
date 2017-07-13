@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="RmOptionconfigInfo">
+	<typeAlias type="com.sitech.strategy.common.pojo.impl.QueryFilter"
+		alias="querFilter" />
+
+
+	<sql id="select-all-column">
+		SELECT
+		OPTION_NAME AS "optionName",
+		OPTION_VALUE AS
+		"optionValue",
+		CATEGROY AS
+		"categroy",
+		CATEGORY_NAME AS "categoryName",
+		SHOW_ORDER AS "showOrder",
+		OPER_NO AS "operNo",
+		OPER_NAME AS "operName",
+		OPER_DATE AS "operDate" ,
+		SERIAL_ID AS "serialId"
+		FROM
+		RM_OPTIONCONFIG_INFO
+	</sql>
+
+	<sql id="where-all-condition">
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="optionName" prepend="and">
+				<isNotEmpty property="optionName">
+					OPTION_NAME = #optionName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="optionValue" prepend="and">
+				<isNotEmpty property="optionValue">
+					OPTION_VALUE = #optionValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categroy" prepend="and">
+				<isNotEmpty property="categroy">
+					CATEGROY = #categroy#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categoryName" prepend="and">
+				<isNotEmpty property="categoryName">
+					CATEGORY_NAME = #categoryName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="showOrder" prepend="and">
+				<isNotEmpty property="showOrder">
+					SHOW_ORDER = #showOrder#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend="and">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operName" prepend="and">
+				<isNotEmpty property="operName">
+					OPER_NAME = #operName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operDateStart" prepend="and">
+				<isNotEmpty property="operDateStart">
+					<![CDATA[ OPER_DATE >= #operDateStart# ]]>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operDateEnd" prepend="and">
+				<isNotEmpty property="operDateEnd">
+					<![CDATA[ OPER_DATE <= #operDateEnd# ]]>
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="selectRmOptionConfigInfo" parameterClass="querFilter"
+		resultClass="java.util.HashMap">
+		<include refid="select-all-column" />
+		<dynamic prepend=" WHERE ">
+
+			<isNotNull property="optionValue" prepend="and">
+				<isNotEmpty property="optionValue">
+					OPTION_VALUE = #optionValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categroy" prepend="and">
+				<isNotEmpty property="categroy">
+					CATEGROY = #categroy#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="keyWords" prepend="and">
+				<isNotEmpty property="keyWords">
+					(
+					<iterate open="" close="" conjunction="or" property="keyWords">
+						OPTION_NAME like '%'||#keyWords[]#||'%'
+					</iterate>
+					<iterate open="or" close="" conjunction="or" property="keyWords">
+						CATEGORY_NAME like '%'||#keyWords[]#||'%'
+					</iterate>
+					)
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<insert id="insertRmOptionConfigInfo" parameterClass="java.util.Map">
+	<![CDATA[
+	INSERT INTO RM_OPTIONCONFIG_INFO
+	]]>
+		<dynamic prepend=" (  ">
+			<isNotNull property="optionName" prepend=",">
+				<isNotEmpty property="optionName">
+					OPTION_NAME
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="optionValue" prepend=",">
+				<isNotEmpty property="optionValue">
+					OPTION_VALUE
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categroy" prepend=",">
+				<isNotEmpty property="categroy">
+					CATEGROY
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categoryName" prepend=",">
+				<isNotEmpty property="categoryName">
+					CATEGORY_NAME
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="showOrder" prepend=",">
+				<isNotEmpty property="showOrder">
+					SHOW_ORDER
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend=",">
+				<isNotEmpty property="operNo">
+					OPER_NO
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operName" prepend=",">
+				<isNotEmpty property="operName">
+					OPER_NAME
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operDate" prepend=",">
+				<isNotEmpty property="operDate">
+					OPER_DATE
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serialId" prepend=",">
+				<isNotEmpty property="serialId">
+					SERIAL_ID
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" ) VALUES (  ">
+			<isNotNull property="optionName" prepend=",">
+				<isNotEmpty property="optionName">
+					#optionName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="optionValue" prepend=",">
+				<isNotEmpty property="optionValue">
+					#optionValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categroy" prepend=",">
+				<isNotEmpty property="categroy">
+					#categroy#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categoryName" prepend=",">
+				<isNotEmpty property="categoryName">
+					#categoryName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="showOrder" prepend=",">
+				<isNotEmpty property="showOrder">
+					#showOrder#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend=",">
+				<isNotEmpty property="operNo">
+					#operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operName" prepend=",">
+				<isNotEmpty property="operName">
+					#operName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operDate" prepend=",">
+				<isNotEmpty property="operDate">
+					#operDate#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="serialId" prepend=",">
+				<isNotEmpty property="serialId">
+					#serialId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+
+		)
+	</insert>
+
+	<update id="updateRmOptionConfigInfo" parameterClass="java.util.Map">
+		UPDATE RM_OPTIONCONFIG_INFO
+		<dynamic prepend=" SET ">
+			<isNotNull property="optionName" prepend=",">
+				<isNotEmpty property="optionName">
+					OPTION_NAME = #optionName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="optionValue" prepend=",">
+				<isNotEmpty property="optionValue">
+					OPTION_VALUE = #optionValue#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categroy" prepend=",">
+				<isNotEmpty property="categroy">
+					CATEGROY = #categroy#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="categoryName" prepend=",">
+				<isNotEmpty property="categoryName">
+					CATEGORY_NAME = #categoryName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="showOrder" prepend=",">
+				<isNotEmpty property="showOrder">
+					SHOW_ORDER = #showOrder#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operNo" prepend=",">
+				<isNotEmpty property="operNo">
+					OPER_NO = #operNo#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operName" prepend=",">
+				<isNotEmpty property="operName">
+					OPER_NAME = #operName#
+				</isNotEmpty>
+			</isNotNull>
+			<isNotNull property="operDate" prepend=",">
+				<isNotEmpty property="operDate">
+					OPER_DATE = #operDate#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" WHERE ">
+			<isNotNull property="serialId" prepend="and">
+				<isNotEmpty property="serialId">
+					SERIAL_ID = #serialId#
+				</isNotEmpty>
+			</isNotNull>
+		</dynamic>
+	</update>
+
+
+
+
+
+
+	<delete id="deleteRmOptionConfigInfo" parameterClass="java.util.Map">
+		DELETE FROM RM_OPTIONCONFIG_INFO
+		<include refid="where-all-condition" />
+	</delete>
+
+	<select id="selectRmOptionConfigInfoParam" parameterClass="java.util.Map"
+		resultClass="java.util.HashMap">
+		<isEmpty property="S">
+			SELECT
+			OPTION_NAME AS optionName,
+			OPTION_VALUE AS optionValue,
+			CATEGROY AS categroy,
+			CATEGORY_NAME AS
+			categoryName,
+			SHOW_ORDER AS showOrder,
+			OPER_NO AS operNo,
+			OPER_NAME AS
+			operName,
+			OPER_DATE AS operDate
+		</isEmpty>
+		<isNotEmpty property="S">
+			SELECT $S$
+		</isNotEmpty>
+		FROM RM_OPTIONCONFIG_INFO $W$
+	</select>
+</sqlMap>

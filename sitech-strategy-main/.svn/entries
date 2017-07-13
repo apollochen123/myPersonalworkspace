@@ -1,0 +1,123 @@
+10
+
+dir
+10788
+http://172.16.9.106:9001/svn/CRMPD_RTMarket/branches/jlMobile
+http://172.16.9.106:9001/svn/CRMPD_RTMarket
+
+
+
+2017-03-28T08:53:15.990048Z
+10782
+chenhao_crmpd
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+a57fb046-6ad4-427f-819f-e3b4a241ab2e
+
+.project
+file
+
+
+
+
+2017-03-20T01:44:38.968000Z
+a8ed45d63b9ad3abaa464077064fc68c
+2016-05-04T12:21:32.622083Z
+5
+sun
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+400
+
+.settings
+dir
+
+pom.xml
+file
+
+
+
+
+2017-03-20T01:44:32.593000Z
+f4e84578da54ca4ef0da20650b30e755
+2017-02-16T02:32:24.981829Z
+8575
+sun
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4790
+
+sitech-strategy-common
+dir
+
+sitech-strategy-core
+dir
+
+sitech-strategy-event
+dir
+
+sitech-strategy-manage
+dir
+
+sitech-strategy-persist
+dir
+
+sitech-strategy-process
+dir
+
+sitech-strategy-recommend
+dir
+
+sitech-strategy-site
+dir
+
