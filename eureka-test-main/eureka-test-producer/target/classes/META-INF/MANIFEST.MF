@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: eureka-test-producer
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: ￩ﾙﾈ￦ﾵﾩ
+Built-By: I343478
 Implementation-Vendor-Id: com.chen
 Build-Jdk: 1.8.0_131
 Implementation-URL: http://projects.spring.io/spring-boot/eureka-test-

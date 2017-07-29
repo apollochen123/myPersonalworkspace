@@ -28,6 +28,8 @@
 		<module>eureka-test-producer</module>
 		<module>eureka-test-comsumer</module>
 		<module>eureka-test-server</module>
+		<module>eureka-test-comsumer-ribbon</module>
+		<module>eureka-test-comsumer-feign</module>
 	</modules>
 	<dependencies>
 		<dependency>

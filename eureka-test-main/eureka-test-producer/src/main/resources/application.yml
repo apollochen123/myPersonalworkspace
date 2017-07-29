@@ -2,7 +2,7 @@ spring:
   application:
     name: eureka-test-producer
 server:
-  port: 8887
+  port: 8886
 eureka:
   client:
     serviceUrl:
