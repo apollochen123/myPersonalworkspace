@@ -1,12 +1,3 @@
----
-title: Spring Config
-date: 2017-12-15 21:47:51
-tags:
- -Spring AOP
-categories: Spring AOP
-thumbnail: https://raw.githubusercontent.com/apollochen123/apollochen123.github.io/master/img/test1.jpg
----
-
 # **spring AOP**
 This page just is written for a reference when forget. I won't tell you what is AOP.
 
